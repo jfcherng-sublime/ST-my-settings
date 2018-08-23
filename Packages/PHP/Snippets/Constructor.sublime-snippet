@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[${1:public} function __construct(${2})
+{
+	$0
+}]]></content>
+	<tabTrigger>con</tabTrigger>
+	<scope>source.php - string - comment</scope>
+	<description>function __construct</description>
+</snippet>

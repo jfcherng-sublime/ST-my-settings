@@ -1,0 +1,159 @@
+{
+    "debug": false,
+    "delay": 0.3,
+    "gutter_theme": "none",
+    "lint_mode": "background",
+    "linters": {
+        "chktex": {
+            "disable": false,
+            "args": [],
+            "erroron": [
+                16
+            ],
+            "excludes": [],
+            "inputfiles": [
+                0
+            ],
+            "nowarn": [
+                22,
+                24,
+                30
+            ]
+        },
+        "flake8": {
+            "disable": false,
+            "args": [
+                "--max-complexity","7",
+                "--max-line-length", "120",
+                "--ignore", "E2,E5"
+            ],
+            "excludes": [],
+            "select": ""
+        },
+        "gcc": {
+            "disable": false,
+            "args": [],
+            "c++_executable": "g++",
+            "c++_extra_flags": "-std=c++17",
+            "c_executable": "gcc",
+            "c_extra_flags": "-std=c90",
+            "excludes": [],
+            "include_dirs": [
+                "${project_folder}/include",
+                "C:\\boost\\include\\boost-1_67",
+                "/usr/local/include",
+                "/usr/local/halide/include",
+                "/usr/local/systemc-2.3.1/include"
+            ]
+        },
+        "iverilog": {
+            "disable": false,
+            "args": [],
+            "excludes": []
+        },
+        // http://rapilabs.github.io/eslintrc-generator/
+        "eslint": {
+            "disable": false,
+            "args": [],
+            "excludes": ["*.twig.html", "*.twig"]
+        },
+        "json": {
+            "disable": false,
+            "args": [],
+            "excludes": [],
+            "strict": true
+        },
+        "php": {
+            "disable": false,
+            "args": [],
+            "excludes": []
+        },
+        "rst": {
+            "disable": false,
+            "args": [],
+            "excludes": []
+        },
+        "shellcheck": {
+            "disable": false,
+            "args": [],
+            "exclude": "",
+            "excludes": []
+        },
+        "sublimesyntax": {
+            "disable": false,
+            "args": [],
+            "excludes": []
+        },
+        "yamllint": {
+            "disable": false,
+            "args": [],
+            "excludes": []
+        }
+    },
+    "no_column_highlights_line": true,
+    "paths": {
+        "linux": [],
+        "osx": [],
+        "windows": []
+    },
+    "show_marks_in_minimap": true,
+    "syntax_map": {
+        "c": "c",
+        "c improved": "c",
+        "c++11": "c++",
+        "coffeescript (gulpfile)": "coffeescript",
+        "html (django)": "html",
+        "html (rails)": "html",
+        "html 5": "html",
+        "javascript (babel)": "javascript",
+        "javascript (eslint)": "javascript",
+        "javascript (gruntfile)": "javascript",
+        "javascript (gulpfile)": "javascript",
+        "javascript (postcss)": "javascript",
+        "javascript (stylelint)": "javascript",
+        "javascript (webpack)": "javascript",
+        "json (babel)": "json",
+        "json (bower)": "json",
+        "json (composer)": "json",
+        "json (eslint)": "json",
+        "json (npm)": "json",
+        "json (postcss)": "json",
+        "json (settings)": "json",
+        "json (stylelint)": "json",
+        "json (sublime)": "json",
+        "magicpython": "python",
+        "php": "html",
+        "python django": "python",
+        "python3": "python",
+        "pythonimproved": "python",
+        "xml (config)": "xml",
+        "xml (svg)": "xml",
+        "yaml (circleci)": "yaml",
+        "yaml (docker)": "yaml",
+        "yaml (eslint)": "yaml",
+        "yaml (lock)": "yaml",
+        "yaml (procfile)": "yaml",
+        "yaml (stylelint)": "yaml",
+        "yaml (yarn)": "yaml"
+    },
+    "styles": [
+        {
+            "mark_style": "outline",
+            "priority": 1,
+            "scope": "region.yellowish markup.changed.sublime_linter markup.warning.sublime_linter",
+            "icon": "Packages/my_theme/lint_gutter/warning.png",
+            "types": [
+                "warning"
+            ]
+        },
+        {
+            "mark_style": "outline",
+            "priority": 1,
+            "scope": "region.redish markup.deleted.sublime_linter markup.error.sublime_linter",
+            "icon": "Packages/my_theme/lint_gutter/error.png",
+            "types": [
+                "error"
+            ]
+        }
+    ],
+}

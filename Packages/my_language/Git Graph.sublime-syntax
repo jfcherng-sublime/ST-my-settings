@@ -1,0 +1,32 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Git Graph
+file_extensions:
+  - git-graph
+scope: text.git-graph
+contexts:
+  main:
+    - match: '^([| *\\]+)([0-9a-f]{4,40}) -( \(.*?\))? (.*) (\(.*) (<.*>) .*'
+      scope: log-entry.git-graph
+      captures:
+        1: comment.git-graph
+        2: string.git-graph
+        3: support.function.git-graph
+        4: constant.numeric.git-graph
+        5: variable.parameter.git-graph
+        6: keyword.git-graph
+    - match: |-
+        ^\|[\|_\/\\ ]+
+        ?$
+      comment: lines with no commit details
+      scope: comment.git-graph
+    - match: '(?:[Ff]ix(?:e[ds])?|[Rr]esolve[ds]?|[Cc]lose[ds]?)?\s*(?:#\d+|\[.*?\])'
+      comment: issue numbers
+      scope: keyword.git-graph
+    - match: |-
+        Merge branch '(.*?)' of .*?
+        ?$
+      scope: comment.git-graph
+      captures:
+        1: variable.parameter.git-graph

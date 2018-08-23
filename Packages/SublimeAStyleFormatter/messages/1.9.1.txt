@@ -1,0 +1,3 @@
+SublimeAStyleFormatter 1.9.1 Changelog:
+
+* Add Linux support (Both x86 and x86_64) for Sublime Text 3.

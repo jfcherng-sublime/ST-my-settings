@@ -1,0 +1,30 @@
+Default/
+
+# dependencies will be downloaded by Package Control automatically
+backrefs/
+bz2/
+jsonschema/
+markupsafe/
+mdpopups/
+package_setting_context/
+pygments/
+pymdownx/
+python-jinja2/
+python-markdown/
+PyV8/
+pyyaml/
+ssl-linux/
+# packages
+Codecs33/
+ConvertToUTF8/
+HTML-CSS-JS Prettify/
+IntelliDocs/
+LaTeXTools/
+!SublimeAStyleFormatter/
+SublimeLinter*/
+SublimeREPL/
+zzz A File Icon zzz/
+
+Terminal/*
+!Terminal/PS.ps1
+!Terminal/Terminal.py

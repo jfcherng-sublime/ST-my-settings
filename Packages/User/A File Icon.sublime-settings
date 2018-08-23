@@ -1,0 +1,11 @@
+{
+	"color": "",
+	"color_on_hover": "",
+	"color_on_select": "",
+	"dev_mode": false,
+	"force_mode": true,
+	"opacity": 0.75,
+	"opacity_on_hover": 0.5,
+	"opacity_on_select": 1.0,
+	"size": 8
+}

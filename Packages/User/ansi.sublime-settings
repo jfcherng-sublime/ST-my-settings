@@ -1,0 +1,7 @@
+{
+  // when to process ANSI encoded string
+  // possible values:
+  // - on_finish - after whole build process (default)
+  // - on_data - when new data is posted to exec output
+  "ANSI_process_trigger": "on_finish",
+}

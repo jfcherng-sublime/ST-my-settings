@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+interface ${2:InterfaceName}
+{
+	$0
+}
+]]></content>
+	<tabTrigger>interface</tabTrigger>
+	<scope>source.php - string - comment</scope>
+	<description>interface …</description>
+</snippet>

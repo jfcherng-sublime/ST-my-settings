@@ -1,0 +1,8 @@
+.DS_Store
+*.pyc
+*.cache
+*.sublime-project
+*.swp
+package-metadata.json
+__pycache__/
+_local_arch/

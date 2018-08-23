@@ -1,0 +1,305 @@
+[
+    // ------------------------------------------------------------------------
+    // Format empty array on Enter
+    // ------------------------------------------------------------------------
+    {
+        // ## Example
+        //
+        // $arr = array(|)  | $arr = array(
+        //                  |     |
+        //                  | )
+        "keys": ["enter"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/wrap-newlines.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+            { "key": "selector", "operator": "equal", "operand": "source.php meta.array.empty", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true }
+        ]
+    },
+
+    // ------------------------------------------------------------------------
+    // Format on Enter
+    // ------------------------------------------------------------------------
+    {
+        // ## Examples
+        //
+        // function_call(|)            | function_call(
+        //                             |     |
+        //                             | )
+        //
+        // new class_name(|)           | new class_name(
+        //                             |     |
+        //                             | )
+        //
+        "keys": ["enter"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/wrap-newlines.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+            { "key": "selector", "operator": "equal", "operand": "source.php", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "[a-zA-Z_][a-zA-Z0-9_]*\\s*\\(\\s*$", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "^\\)\\s*$", "match_all": true }
+        ]
+    },
+
+    // ------------------------------------------------------------------------
+    // Auto complete array " => " on Tab within array declarations
+    // ------------------------------------------------------------------------
+    //
+    // ## Examples
+    //
+    // $arr = array(               | $arr = array(
+    //     'str|'                  |     'str' => |
+    // )                           | )
+    //
+    // $arr = array(               | $arr = array(
+    //     'str'|                  |     'str' => |
+    // )                           | )
+    //
+    {
+        "keys": ["tab"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/auto-array-equals-gt.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+            { "key": "selector", "operator": "equal", "operand": "source.php meta.array", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*('|\")[^'\"]*('|\")\\s*$", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "^\\s*$", "match_all": true }
+        ]
+    },
+    {
+        "keys": ["tab"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/auto-array-equals-gt.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+            { "key": "selector", "operator": "equal", "operand": "source.php meta.array", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*('|\")[^'\"]*$", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "^('|\")\\s*$", "match_all": true }
+        ]
+    },
+
+    // $thi| -> press s -> $this->|
+    /*
+    {
+        "keys": ["s"],
+        "command": "insert",
+        "args": { "characters": "s->" },
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "source.php variable", "match_all": true },
+            { "key": "preceding_text", "operator": "regex_match", "operand": "^\\s*\\$thi$", "match_all": true },
+            { "key": "following_text", "operator": "regex_match", "operand": "^$", "match_all": true }
+        ]
+    },
+    */
+
+    // ------------------------------------------------------------------------
+    // Auto complete eol comma within array declaration
+    // ------------------------------------------------------------------------
+    {
+        // ## Example
+        //
+        // $arr = array(    | $arr = array(
+        //     'str|'       |     'str',
+        // )                |     |
+        //                  | )
+        //
+        "keys": ["ctrl+enter"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/append-comma-newline.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "selector", "operator": "equal", "operand": "source.php meta.array string.quoted", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "('|\")$", "match_all": true }
+        ]
+    },
+
+    // ---------------------------
+    // Smart completion: semicolon
+    // ---------------------------
+
+    {
+        "keys": ["ctrl+;"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/append-semicolon.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "selector", "operator": "equal", "operand": "source.php", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "('|\"|\\)|\\])$", "match_all": true }
+        ]
+    },
+    {
+        "keys": ["ctrl+enter"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/append-semicolon-newline.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "selector", "operator": "equal", "operand": "source.php - meta.array string.quoted", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "('|\"|\\)|\\])$", "match_all": true }
+        ]
+    },
+    {
+        "keys": ["["],
+        "command": "insert_snippet",
+        "args": {"contents": "[$0];"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "selector", "operator": "equal", "operand": "source.php", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "\\$[a-zA-Z_][a-zA-Z0-9_]*\\s*=\\s*$", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "^\\s*$", "match_all": true }
+        ]
+    },
+    {
+        "keys": ["]"],
+        "command": "insert_snippet",
+        "args": {"contents": "$0];"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "selector", "operator": "equal", "operand": "source.php meta.array.php", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "\\$[a-zA-Z_][a-zA-Z0-9_]*\\s*=\\s*\\[$", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "^\\s*$", "match_all": true }
+        ]
+    },
+
+    // ------------------------------------------------------------------------
+    // Auto complete braces on ctrl+enter
+    // ------------------------------------------------------------------------
+    //
+    // ## Examples
+    //
+    // Press ctrl+enter anywhere on lines where auto inserting braces makes
+    // sense, like some of the following:
+    //
+    // for ($i = 0; $i < ; $i++|)  | for ($i = 0; $i < ; $i++) {
+    //                             |     |
+    //                             | }
+    //
+    // switch ($condition|)        | switch ($condition|) {
+    //                             |     |
+    //                             | }
+    //
+    // function x(|)               | function x()
+    //                             | {
+    //                             |     |
+    //                             | }
+    //
+    {
+        // for, foreach, if, switch, while
+        "keys": ["ctrl+enter"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/auto-pair-braces-current-line.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "selector", "operator": "equal", "operand": "source.php", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*(for(each)?|if|switch|while)\\s*\\(", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "\\)$", "match_all": true }
+        ]
+    },
+    {
+        // catch, elseif
+        "keys": ["ctrl+enter"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/auto-pair-braces-current-line.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "selector", "operator": "equal", "operand": "source.php", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*\\}\\s*(catch|elseif)\\s*\\(", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "\\)$", "match_all": true }
+        ]
+    },
+    {
+        // functions, methods
+        "keys": ["ctrl+enter"],
+        "command": "run_macro_file",
+        "args": {"file": "res://Packages/PHP/macros/auto-pair-braces-next-line.sublime-macro"},
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "selector", "operator": "equal", "operand": "source.php meta.function.php", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*((final|abstract|static)\\s+)*((private|protected|public)\\s+)*function\\s+[a-zA-Z_][a-zA-Z0-9_]*\\s*\\(", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "\\)$", "match_all": true }
+        ]
+    },
+
+    // ------------------------------------------------------------------------
+    // Delete optional PHP completion fields by pressing Backspace, ), or ;
+    // ------------------------------------------------------------------------
+    //
+    // Example
+    //
+    // *Using PHP Completions Kit*
+    //
+    // Trigger completion for the str_replace function and
+    // press Tab to move through the fields until the
+    // last optional field.
+    //
+    // str_replace(search, replace, subject, &replace_count)
+    //             ^^^^^^
+    // str_replace(search, replace, subject, &replace_count)
+    //                     ^^^^^^^
+    // str_replace(search, replace, subject, &replace_count)
+    //                              ^^^^^^^
+    // str_replace(search, replace, subject, &replace_count)
+    //                                     ^^^^^^^^^^^^^^^^
+    //
+    // Press "Delete" or ")".
+    //
+    // str_replace(search, replace, subject)
+    //                                      ^
+    // Or press ";".
+    //
+    // str_replace(search, replace, subject);
+    //                                       ^
+
+    {
+        "keys": ["backspace"],
+        "command": "finish_completion",
+        "context": [
+            { "key": "finish_completion", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "selector", "operator": "equal", "operand": "source.php", "match_all": true },
+            { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
+            { "key": "has_prev_field", "operator": "equal", "operand": true, "match_all": true }
+        ]
+    },
+    {
+        "keys": [")"],
+        "command": "finish_completion",
+        "context": [
+            { "key": "finish_completion", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "source.php", "match_all": true },
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
+            { "key": "has_prev_field", "operator": "equal", "operand": true, "match_all": true }
+        ]
+    },
+    {
+        "keys": [";"],
+        "command": "finish_completion",
+        "args": { "insert_characters": ";" },
+        "context": [
+            { "key": "finish_completion", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "source.php", "match_all": true },
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
+            { "key": "has_prev_field", "operator": "equal", "operand": true, "match_all": true }
+        ]
+    }
+]

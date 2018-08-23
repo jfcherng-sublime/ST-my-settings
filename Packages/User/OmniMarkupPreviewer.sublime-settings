@@ -1,0 +1,58 @@
+{
+    // User public static files should be placed into
+    //   ${packages}/User/OmniMarkupPreviewer/public/
+    // User templates should be placed into:
+    //   ${packages}/User/OmniMarkupPreviewer/templates/
+    // Requires browser reload
+    // Built-in templates: github, github-v1
+    "html_template_name": "github-official",
+    // MarkdownRenderer options
+    "renderer_options-MarkdownRenderer": {
+        // Valid extensions:
+        // - OFFICIAL (Python Markdown) -
+        //   "extra": Combines ["abbr", "attr_list", "def_list", "fenced_code", "footnotes", "tables", "smart_strong"]
+        //            For PHP Markdown Extra(http://michelf.ca/projects/php-markdown/extra/)
+        //   "abbr": http://packages.python.org/Markdown/extensions/abbreviations.html
+        //   "attr_list": http://packages.python.org/Markdown/extensions/attr_list.html
+        //   "def_list": http://packages.python.org/Markdown/extensions/definition_lists.html
+        //   "fenced_code": http://packages.python.org/Markdown/extensions/fenced_code_blocks.html
+        //   "footnotes": http://packages.python.org/Markdown/extensions/footnotes.html
+        //   "tables": http://packages.python.org/Markdown/extensions/tables.html
+        //   "smart_strong": http://packages.python.org/Markdown/extensions/smart_strong.html
+        //   "codehilite": http://packages.python.org/Markdown/extensions/code_hilite.html
+        //   "meta": http://packages.python.org/Markdown/extensions/meta_data.html
+        //   "toc": http://packages.python.org/Markdown/extensions/toc.html
+        //   "nl2br": http://packages.python.org/Markdown/extensions/nl2br.html
+        // - 3RD PARTY -
+        //   "strikeout": Strikeout extension syntax - `This ~~is deleted text.~~`
+        //   "subscript": Subscript extension syntax - `This is water: H~2~O`
+        //   "superscript": Superscript extension syntax 0 `2^10^ = 1024`
+        //   "smarty" or "smartypants": Python-Markdown extension using smartypants to emit
+        //                   typographically nicer ("curly") quotes, proper
+        //                   ("em" and "en") dashes, etc.
+        //                   See: http://daringfireball.net/projects/smartypants/
+        //                   And: https://github.com/waylan/Python-Markdown/blob/master/docs/extensions/smarty.txt
+        // Note that "strikeout" is incompatible with the latest python-markdown
+        "extensions": [
+            "admonition",
+            "codehilite",
+            "extra",
+            "meta",
+            "toc",
+            ////////////////////////////////////
+            // pip install pymdown-extensions //
+            ////////////////////////////////////
+            "pymdownx.betterem",
+            "pymdownx.caret",
+            "pymdownx.critic",
+            "pymdownx.details",
+            "pymdownx.inlinehilite",
+            "pymdownx.magiclink",
+            "pymdownx.mark",
+            "pymdownx.smartsymbols",
+            "pymdownx.superfences",
+            "pymdownx.tasklist",
+            "pymdownx.tilde",
+        ]
+    }
+}

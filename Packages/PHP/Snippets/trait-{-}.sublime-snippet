@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+trait ${2:TraitName}
+{
+	$0
+}
+]]></content>
+	<tabTrigger>trait</tabTrigger>
+	<scope>source.php - string - comment</scope>
+	<description>trait …</description>
+</snippet>

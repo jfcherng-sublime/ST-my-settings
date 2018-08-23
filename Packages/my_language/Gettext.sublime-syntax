@@ -1,0 +1,57 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Gettext
+comment: |
+  TODO:  Command for copy original to untranslated, label as fuzzy, remove fuzzy, next fuzzy etc
+          Create meta scope for each entry
+file_extensions:
+  - po
+  - potx
+scope: source.po
+contexts:
+  main:
+    - match: msgid\s+""
+      push:
+        - meta_scope: entity.name.section.header.po
+        - match: ^$
+          pop: true
+    - match: ^msgid(?:_plural)?\s+(")(.*)(")\s*$
+      scope: keyword.control.msgid.po
+      captures:
+        1: constant.character.double-quote.po
+        2: string.quoted.double.po
+        3: constant.character.double-quote.po
+    - match: '^msgstr(?:\[\d?\])?\s+(")(.*)(")\s*$'
+      scope: keyword.control.msgstr.po
+      captures:
+        1: constant.character.double-quote.po
+        2: string.quoted.double.po
+        3: constant.character.double-quote.po
+    - match: '^msgctxt(?:\[\d?\])?\s+(")(.*)(")\s*$'
+      scope: keyword.control.msgctxt.po
+      captures:
+        1: constant.character.double-quote.po
+        2: string.quoted.double.po
+        3: constant.character.double-quote.po
+    - match: ^(")(.+)(")\s*$
+      scope: string.quoted.double.po
+      captures:
+        1: constant.character.double-quote.po
+        2: string.quoted.double.po
+        3: constant.character.double-quote.po
+    - match: ^#\s+(.*)\s*$
+      scope: comment.line.number-sign.po
+    - match: ^#,\s+((?:(?:fuzzy)|(?:no-)?(?:c|objc|sh|lisp|elisp|librep|scheme|smalltalk|java|csharp|awk|object-pascal|ycp|tcl|perl|perl-brace|php|gcc-internal|qt|boost)-format)(?:,\s*(?:(?:fuzzy)|(?:no-)?(?:c|objc|sh|lisp|elisp|librep|scheme|smalltalk|java|csharp|awk|object-pascal|ycp|tcl|perl|perl-brace|php|gcc-internal|qt|boost)-format))*)\s*$
+      scope: comment.line.number-sign.flag.po
+      captures:
+        1: keyword.other.flag.po
+    - match: ^#\.\s+(.*)\s*$
+      scope: comment.line.number-sign.extracted.po
+    - match: '^#:\s+((.*))(:([\d;]*))\s*$'
+      scope: comment.line.number-sign.reference.po
+      captures:
+        1: constant.character.sourceref.po
+        3: constant.numeric.linenumber.po
+    - match: ^#|\s+(msgid|msgctxt)\s+(".*")\s*$
+      scope: comment.line.number-sign.previous.po

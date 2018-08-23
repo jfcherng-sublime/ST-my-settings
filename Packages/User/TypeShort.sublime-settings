@@ -1,0 +1,25 @@
+{
+    "cursor_placeholder": "{|}",
+    "bindings": [
+        {
+            "keymaps": {
+                "fj ": "$",
+                "dk ": "->"
+            },
+            "syntax_list": ["source.php"]
+        },
+        {
+            "keymaps": {
+                "fj ": "$"
+            },
+            "syntax_list": ["SCSS", "source.shell", "source.js"]
+        },
+        {
+            "keymaps": {
+                "fj ": "*",
+                "dk ": "->"
+            },
+            "syntax_list": ["source.c", "source.c++", "source.c++.11", "C#", "Objective-C", "Objective-C++"]
+        },
+    ]
+}

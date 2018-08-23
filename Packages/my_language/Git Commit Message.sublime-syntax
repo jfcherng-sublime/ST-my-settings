@@ -1,0 +1,22 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Git Commit Message
+file_extensions:
+  - COMMIT_EDITMSG
+scope: text.git-commit
+contexts:
+  main:
+    - match: |-
+        ^\s*(#).*$
+        ?
+      scope: comment.git-commit
+      captures:
+        1: punctuation.definition.comment.git-commit
+    - match: diff\ \-\-git
+      comment: diff at the end of the commit message when using commit -v, or viewing a log. End pattern is just something to be never matched so that the meta continues untill the end of the file.
+      push:
+        - meta_scope: meta.diff.git-commit
+        - match: (?=xxxxxx)123457
+          pop: true
+        - include: scope:source.diff

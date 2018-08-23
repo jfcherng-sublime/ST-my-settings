@@ -1,0 +1,16 @@
+Backup/
+Cache/
+Index/
+Local/
+
+# plugin generated
+Settings/
+
+# auto install Package Control
+Installed Packages/*
+!Installed Packages/BufferScroll.sublime-package
+!Installed Packages/Package Control.sublime-package
+!Installed Packages/SideBarGit.sublime-package
+!Installed Packages/Tag.sublime-package
+!Installed Packages/Theme - DC.sublime-package
+!Installed Packages/LSP.sublime-package

@@ -1,0 +1,206 @@
+{
+    // Show debug logging
+    "debug": false,
+
+    // Show index status in the status bar.
+    "show_index_status": true,
+
+    // Show popups automatically in configured files.
+    "auto_popup": true,
+
+    // Upper case hex when inserting
+    "upper_case_hex": false,
+
+    // Use webcolor names when value color matches a webcolor name.
+    "use_webcolor_names": true,
+
+    // For Windows 10 HiDpi setups.  This is a temporary workaround
+    // to help reduce abnormally large color previews and other images.
+    // This will be removed once the issue is fixed in Sublime Text 3.
+    "line_height_workaround": false,
+
+    // Color picker and palette picker by default
+    // are accessed by clicking an icon on the color info panel.
+    // Click access for one of these can be moved to the color box
+    // (visual representation of the color).
+    // (none|color_picker|palette_picker)
+    "click_color_box_to_pick": "none",
+
+    // Enables inline color previews found beside the identified color.
+    // Requires ST 3116+ and mdpopups 1.7.4
+    "inline_previews": true,
+
+    // Adjust the size of inline image previews by the offset given.
+    // Please use either a positive or negative number.
+    "inline_preview_offset": 0,
+
+    // Adjust the position of inline image previews.
+    // (left|right)
+    "inline_preview_position": "left",
+
+    // Enable color picker option.  Will use native color picker
+    // unless "use_color_picker_package" is enabled and external
+    // package is installed.
+    "enable_color_picker": true,
+
+    // If the color picker is too big, try playing with this.
+    // Graphics in tooltips usually look better bigger (especially in Hidpi),
+    // but that can make the tooltips really big. If they are too big,
+    // you can play with this setting.  We compromise with medium.
+    // (small | medium | large)
+    "graphic_size": "medium",
+
+    // Use https://github.com/weslly/ColorPicker for the color picker if installed.
+    "use_color_picker_package": false,
+
+    // This can be turned off to get a rectangular color picker
+    // That displays possible options by hue and brightness/luminance.
+    "use_hex_color_picker": true,
+
+    // Show global palettes in palette panel
+    "enable_global_user_palettes": true,
+
+    // Enable storing favorite colors to the favorite palette
+    "enable_favorite_palette": true,
+
+    // Enable showing current file color palette
+    "enable_current_file_palette": true,
+
+    // Enable color conversion options on color info panel
+    "enable_color_conversions": true,
+
+    // Scanning rules
+    "color_scanning": [
+        {
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": [
+                "source.css",
+                "text.html"
+            ],
+            "scan_scopes": [
+                // https://packagecontrol.io/packages/CSS3
+                "meta.declaration-list.css -support.type.property-name.css -comment -string",
+                // CSS, CSS in HTML etc. (based on: Sublime Default)
+                "meta.property-value.css -comment -string",
+                // CSS3, CSS3 in HTML etc. (based on: https://packagecontrol.io/packages/CSS3)
+                "meta.value.css -comment -string",
+                // HTML attributes (based on: Sublime Default)
+                "meta.tag.inline.any.html string.quoted -constant.character.entity.html",
+                "meta.tag.any.html meta.attribute-with-value.style.html"
+            ],
+            "scan_completion_scopes": [],
+            "extensions": [],
+            "allowed_colors": ["css3"],
+            "use_hex_argb": false,
+            "compress_hex_output": true
+        },
+        {
+            //Sass (based on: https://packagecontrol.io/packages/Sass)
+            "syntax_files": ["Sass/Syntaxes/Sass"],
+            "syntax_filter": "whitelist",
+            "base_scopes": [
+                "source.sass"
+            ],
+            "scan_scopes": [
+                "source.sass -comment -string -variable.parameter"
+            ],
+            "scan_completion_scopes": [
+            ],
+            "extensions": [],
+            "allowed_colors": ["css3"],
+            "use_hex_argb": false,
+            "compress_hex_output": true
+        },
+        {
+            // A number of sass and scss syntaxes are bundled together
+            // So we will just bundle all the scss and sass rules together
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": [
+                "source.scss",
+                "source.sass"
+            ],
+            "scan_scopes": [
+                // Sass and SCSS (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
+                "meta.property-list.css.sass -comment -string",
+                // Sass (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20PostCSS)
+                "constant.other.color.rgb-value.css.sass -comment -string",
+                // SCSS (based on https://packagecontrol.io/packages/SCSS)
+                "constant.other.color.rgb-value.scss -comment -string",
+                // SCSS (based on https://packagecontrol.io/packages/SCSS)
+                "constant.other.color.rgb-value.scss",
+                "support.constant.color.w3c-standard-color-name.scss",
+                "meta.property-value.scss",
+                // Sass and SCSS script maps (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
+                "sass-script-maps -variable.other -comment -string"
+            ],
+            "scan_completion_scopes": [
+                // SCSS (based on https://packagecontrol.io/packages/SCSS)
+                // Sass (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20PostCSS)
+                // Sass and SCSS script maps (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
+                "source.scss -comment -string",
+                "source.sass -comment -string"
+            ],
+            "extensions": [],
+            "allowed_colors": ["css3"],
+            "use_hex_argb": false,
+            "compress_hex_output": true
+        },
+        {
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": ["text.xml"],
+            "scan_scopes": ["text.xml -meta.tag.xml -comment -string, string.unquoted.cdata.xml"],
+            "allowed_colors": ["hex", "hexa", "hex_compressed"],
+            "extensions": [".tmTheme", ".hidden-tmTheme", ".stTheme"],
+            "use_hex_argb": false,
+            "compress_hex_output": false
+        },
+        {
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": ["source.stylus"],
+            "scan_scopes": [
+                // Based on https://github.com/billymoon/Stylus/blob/master/Stylus.tmLanguage
+                "constant.other.color.rgb-value.stylus",
+                "constant.color.w3c-standard-color-name.stylus",
+                "meta.property-value.stylus"
+            ],
+            "allowed_colors": ["css3"],
+            "extensions": [],
+            "use_hex_argb": false,
+            "compress_hex_output": true
+        },
+        {
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": ["source.less"],
+            "scan_scopes": [
+                "constant.other.color.rgb-value.css",
+                "constant.color.w3c-standard-color-name.css",
+                "meta.property-value.css"
+            ],
+            "allowed_colors": ["css3"],
+            "extensions": [],
+            "use_hex_argb": false,
+            "compress_hex_output": true
+        },
+        // add support for .sublime-color-scheme by jfcherng
+        {
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": [],
+            "scan_scopes": [
+                "string.quoted.double.json",
+            ],
+            "allowed_colors": ["hex", "hex_compressed", "hexa", "hexa_compressed", "rgb", "rgba", "hsl", "hsla", "gray", "graya", "hwb", "hwba"],
+            "extensions": [".sublime-color-scheme"],
+            "use_hex_argb": false,
+            "compress_hex_output": true
+        }
+    ],
+
+    // Enable project palettes in palette panel (Palettes stored in project file).
+    "enable_project_user_palettes": true
+}

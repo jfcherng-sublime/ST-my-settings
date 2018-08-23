@@ -1,0 +1,6 @@
+{
+    // always use tabs in makefile
+    "use_tab_stops": true,
+    "detect_indentation": false,
+    "translate_tabs_to_spaces": false
+}

@@ -1,0 +1,308 @@
+{
+    // Debug logging
+    "debug_enable": false,
+    // Character threshold to search
+    "search_threshold": 40000,
+    // Ignore threshold
+    "ignore_threshold": false,
+    // Set max number of multi-select brackets that will be searched automatically
+    "auto_selection_threshold": 20,
+    // Experimental: Creates a visible bar at the beginning of all lines between
+    // multiline bracket spans.
+    "content_highlight_bar": true,
+    // Experimental: Align the content highlight bar at the bracket indent level
+    "align_content_highlight_bar": true,
+    // Outside adjacent bracket matching
+    "bracket_outside_adjacent": false,
+
+    // user_scope_brackets and user_brackets will be appended
+    // to the tail of scope_brackets and brackets respectively
+    // If you have custom rules that you don't want to commit to
+    // the official list, and do not need to be inserted before
+    // one of the official definitions, this is a good place to
+    // put yours rules and keep in sync with the defaults.
+    "user_scope_brackets": [
+        {
+            "name": "latex_double_quote",
+            "open": "(``)",
+            "close": "('')",
+            "style": "double_quote",
+            "scopes": ["string"],
+            "language_filter": "whitelist",
+            "language_list": ["latex"],
+            "sub_bracket_search": "true",
+            "enabled": true
+        },
+        {
+            "name": "rst_substitution",
+            "open": "(\\|)",
+            "close": "(\\|)",
+            "style": "c_define",
+            "scopes": ["variable.other.substitution.restructuredtext"],
+            "language_filter": "whitelist",
+            "language_list": ["reStructuredText", "reStructuredText Improved"],
+            "sub_bracket_search": "true",
+            "enabled": true
+        },
+        {
+            "name": "bash_backtick",
+            "open": "(`)",
+            "close": "(`)",
+            "style": "single_quote",
+            "scopes": ["string"],
+            "language_filter": "whitelist",
+            "language_list": ["Shell-Unix-Generic"],
+            "sub_bracket_search": "true",
+            "enabled": true
+        },
+        ///////////////////////////////////////
+        // shift positions of built-in rules //
+        ///////////////////////////////////////
+        {"name": "py_single_quote", "position": 500},
+        {"name": "py_double_quote", "position": 501},
+        {"name": "single_quote", "position": 502},
+        {"name": "double_quote", "position": 503},
+        {"name": "jsregex", "position": 504},
+        {"name": "perlregex", "position": 505},
+        {"name": "rubyregex", "position": 506},
+        {
+            "name": "mditalic",
+            "language_list": ["Markdown", "Multimarkdown", "GithubFlavoredMarkdown", "MarkdownLight"],
+            "position": 507
+        },
+        {
+            "name": "mdbold",
+            "language_list": ["Markdown", "Multimarkdown", "GithubFlavoredMarkdown", "MarkdownLight"],
+            "position": 508
+        },
+        {
+            "name": "mdcodeinline",
+            "language_list": ["Markdown", "Multimarkdown", "GithubFlavoredMarkdown", "MarkdownLight"],
+            "position": 509
+        },
+        {
+            "name": "mdcodeblock",
+            "language_list": ["Markdown", "Multimarkdown", "GithubFlavoredMarkdown", "MarkdownLight"],
+            "position": 510
+        },
+        {"name": "latexmath_inline", "position": 511},
+    ],
+    "user_brackets": [
+        // Angle
+        {
+            "name": "angle",
+            "scope_exclude": [
+                "string",
+                "comment",
+                "keyword.operator",
+                "source.ruby.rails.embedded.html",
+                "source.ruby.embedded.html",
+                "storage.type.function.arrow.js",
+                "punctuation.accessor",
+                "meta.selector.css" // CSS in HTML (Twig)
+            ]
+        },
+        // C/C++ template
+        {
+            "name": "c_template",
+            "open": "(<)",
+            "close": "(>)",
+            "style": "angle",
+            "scope_exclude": [
+                "string - string.quoted.other.lt-gt.include",
+                "comment",
+                "keyword.operator", // "<<", ">>" operator
+                "punctuation.accessor", // "->" accessor
+            ],
+            "language_filter": "whitelist",
+            "language_list": ["C++", "C", "Objective-C", "CCpp", "C Improved", "C++ 11"],
+            "enabled": true
+        },
+        // HTML (Twig)
+        {
+            "name": "twig_tag",
+            "open": "({%)",
+            "close": "(%})",
+            "style": "angle",
+            "language_filter": "whitelist",
+            "language_list": ["HTML (Twig)"],
+            "enabled": true
+        },
+        {
+            "name": "twig_variable",
+            "open": "({{)",
+            "close": "(}})",
+            "style": "curly",
+            "language_filter": "whitelist",
+            "language_list": ["HTML (Twig)"],
+            "enabled": true
+        },
+        // Verilog
+        {
+            "name": "verilog_begin_end",
+            "open": "\\b((?:begin|case|celldefine|function|primitive|config|generate|module|specify|table|task|fork))\\b",
+            "close": "\\b(end(?:case|celldefine|function|primitive|config|generate|module|specify|table|task)?|join)\\b",
+            "style": "default",
+            "scope_exclude": ["quoted", "comment"],
+            "language_filter": "whitelist",
+            "language_list": ["Verilog"],
+            "enabled": true
+        },
+        {
+            "name": "verilog_def",
+            "open": "(?:[ \\t]*)(`ifn?def)\\b",
+            "close": "(?:[ \\t]*)(`endif)\\b",
+            "style": "c_define",
+            "scope_exclude": ["quoted", "comment"],
+            "language_filter": "whitelist",
+            "language_list": ["Verilog"],
+            "enabled": true
+        },
+        // reSturctureText
+        {
+            "name": "rst_link",
+            "open": "(<)",
+            "close": "(>)",
+            "style": "angle",
+            "scope_exclude": ["comment"],
+            "language_filter": "whitelist",
+            "language_list": ["reStructuredText", "reStructuredText Improved"],
+            "enabled": true
+        },
+        // Chinese punctuations
+        {
+            "name": "chinese_single_quote",
+            "open": "(「)",
+            "close": "(」)",
+            "style": "round",
+            "scope_exclude": ["string"],
+            "language_filter": "whitelist",
+            "language_list": ["Plain Text"],
+            "find_in_sub_search": "true",
+            "ignore_string_escape": true,
+            "enabled": true
+        },
+        {
+            "name": "chinese_double_quote",
+            "open": "(『)",
+            "close": "(』)",
+            "style": "round",
+            "scope_exclude": ["string"],
+            "language_filter": "whitelist",
+            "language_list": ["Plain Text"],
+            "find_in_sub_search": "true",
+            "ignore_string_escape": true,
+            "enabled": true
+        },
+        {
+            "name": "chinese_round",
+            "open": "(（)",
+            "close": "(）)",
+            "style": "round",
+            "scope_exclude": ["string"],
+            "language_filter": "whitelist",
+            "language_list": ["Plain Text"],
+            "find_in_sub_search": "true",
+            "ignore_string_escape": true,
+            "position": 0,
+            "enabled": true
+        },
+        ///////////////////////////////////////
+        // shift positions of built-in rules //
+        ///////////////////////////////////////
+        {"name": "curly", "position": 500},
+        {"name": "round", "position": 501},
+        {"name": "square", "position": 502},
+        {"name": "php_angle", "position": 503},
+        {"name": "angle", "position": 504},
+        {"name": "cssedit_groups", "position": 505},
+        {"name": "ruby_embedded_html", "position": 506},
+        {"name": "ruby", "position": 507},
+        {"name": "c_compile_switch", "position": 508},
+        {"name": "php_keywords", "position": 509},
+        {"name": "erlang", "position": 510},
+        {"name": "bash", "position": 511},
+        {"name": "fish", "position": 512},
+        {"name": "lua", "position": 513},
+        {"name": "latexenv", "position": 514},
+        {"name": "pascal", "position": 515},
+        {"name": "elixir", "position": 516},
+        {"name": "cmake", "position": 517},
+        {"name": "s840d_gcode", "position": 518},
+        {"name": "s840d_hmi", "position": 519},
+    ],
+
+    // Define region highlight styles
+    "bracket_styles": {
+        // "default" and "unmatched" styles are special
+        // styles. If they are not defined here,
+        // they will be generated internally with
+        // internal defaults.
+
+        // "default" style defines attributes that
+        // will be used for any style that does not
+        // explicitly define that attribute.  So if
+        // a style does not define a color, it will
+        // use the color from the "default" style.
+        "default": {
+            "icon": "dot", // angle, round, curly, square, tag, star, dot, bookmark, question, quote, double_quote, single_quote, single_quote_offset, double_quote_offset, none
+            "color": "brackethighlighter.default",
+            "style": "solid" // solid, underline, outline, none, thin_underline, squiggly, stippled
+        },
+
+        // This particular style is used to highlight
+        // unmatched bracket pairs.  It is a special
+        // style.
+        "unmatched": {
+            "icon": "question",
+            "color": "brackethighlighter.unmatched",
+            "style": "outline"
+        },
+        // User defined region styles
+        "curly": {
+            "icon": "curly_bracket",
+            "color": "brackethighlighter.curly",
+            // "style": "underline"
+        },
+        "round": {
+            "icon": "round_bracket",
+            "color": "brackethighlighter.round",
+            // "style": "underline"
+        },
+        "square": {
+            "icon": "square_bracket",
+            "color": "brackethighlighter.square",
+            // "style": "underline"
+        },
+        "angle": {
+            "icon": "angle_bracket",
+            "color": "brackethighlighter.angle",
+            // "style": "underline"
+        },
+        "tag": {
+            "icon": "tag",
+            "color": "brackethighlighter.tag",
+            // "style": "underline"
+        },
+        "c_define": {
+            "icon": "hash",
+            "color": "brackethighlighter.c_define",
+            // "style": "underline"
+        },
+        "single_quote": {
+            "icon": "single_quote",
+            "color": "brackethighlighter.quote",
+            // "style": "underline"
+        },
+        "double_quote": {
+            "icon": "double_quote",
+            "color": "brackethighlighter.quote",
+            // "style": "underline"
+        },
+        "regex": {
+            "icon": "regex",
+            "color": "brackethighlighter.quote",
+            // "style": "underline"
+        },
+    }
+}

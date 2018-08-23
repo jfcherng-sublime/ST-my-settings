@@ -1,0 +1,6 @@
+OmniMarkupPreviewer v1.3 Changelog:
+
+
+* Added syntax highlight support for Markdown, through the [CodeHilite Extension].
+* Unsaved buffer can now be previewed without error.
+* Updated github template.

@@ -1,0 +1,10 @@
+[
+    {
+        "keys": ["ctrl+alt+f"], "command": "astyleformat",
+        "context": [{"key": "astyleformat_is_enabled", "operator": "equal", "operand": ""}]
+    },
+    {
+        "keys": ["ctrl+k", "ctrl+f"], "command": "astyleformat", "args": {"selection_only": true},
+        "context": [{"key": "astyleformat_is_enabled", "operator": "equal", "operand": ""}]
+    }
+]

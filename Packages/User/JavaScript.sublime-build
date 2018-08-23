@@ -1,0 +1,12 @@
+{
+    "cmd": ["node", "${file}"],
+    "working_dir": "${file_path}",
+    "selector": "source.js",
+    "target": "console_exec",
+    "variants": [
+        {
+            "cmd": ["closure-compiler.jar", "--js", "${file}", "--js_output_file", "${file_base_name}.min.js"],
+            "name": "Minify"
+        },
+    ]
+}

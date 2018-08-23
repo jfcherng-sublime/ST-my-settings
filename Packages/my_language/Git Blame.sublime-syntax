@@ -1,0 +1,23 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Git Blame
+file_extensions:
+  - git-blame
+scope: text.git-blame
+contexts:
+  main:
+    - match: |-
+        ^\s*(#).*$
+        ?
+      scope: comment.git-blame
+      captures:
+        1: punctuation.definition.comment.git-blame
+    - match: '^\s*(\^?[a-f0-9]+)\s+([\w\-\d\.\/]*)\s*\((.*?)\s+(\d{4}-\d\d-\d\d(?: \d\d:\d\d:\d\d [+-]\d{4})?)\s+(\d+)\)'
+      scope: line.comment.git-blame
+      captures:
+        1: constant.numeric.sha.git-blame
+        2: string.path.git-blame
+        3: support.function.author.git-blame
+        4: constant.numeric.date.git-blame
+        5: variable.parameter.line-number.git-blame

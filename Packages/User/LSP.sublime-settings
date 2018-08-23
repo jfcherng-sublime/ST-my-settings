@@ -1,0 +1,95 @@
+{
+    "clients":
+    {
+        "cquery":
+        {
+            // https://github.com/cquery-project/cquery/wiki/Build-%28CMake%29
+            // Note: The main project must be the first directory in a ST project.
+            "enabled": true,
+            "command": ["cquery"],
+            "scopes": ["source.c", "source.c++", "source.objc", "source.objc++"],
+            "syntaxes": ["Packages/C++/C.sublime-syntax", "Packages/C++/C++.sublime-syntax", "Packages/Objective-C/Objective-C.sublime-syntax", "Packages/Objective-C/Objective-C++.sublime-syntax"],
+            "languageId": "cpp",
+            "initializationOptions": {
+                "cacheDirectory": "/tmp/cquery",
+            },
+        },
+        "pyls":
+        {
+            // pip install python-language-server
+            "enabled": true,
+            "command": ["pyls"],
+            "settings": {
+                "pyls": {
+                    "plugins":
+                    {
+                        // We have SublimeLinter-flake8 already
+                        "pyflakes": {
+                            "enabled": false,
+                        },
+                        "pydocstyle": {
+                            "enabled": false,
+                        },
+                        "pycodestyle": {
+                            "enabled": false,
+                            "ignore": ["E2", "E5"],
+                        },
+                    },
+                },
+            },
+            "scopes": ["source.python"],
+            "syntaxes": [
+                "Packages/Python/Python.sublime-syntax",
+                "Packages/MagicPython/grammars/MagicPython.tmLanguage",
+            ],
+            "languageId": "python",
+        },
+        // "phpls": {
+        //     // composer g require felixfbecker/language-server
+        //     "enabled": true,
+        //     "tcp_port": 5555,
+        //     "command": [
+        //         "php",
+        //         "C:/Users/Clover/AppData/Roaming/Composer/vendor/felixfbecker/language-server/bin/php-language-server.php",
+        //         "--memory-limit=2048M",
+        //         "--tcp-server=0.0.0.0:5555"
+        //     ],
+        //     "scopes": ["source.php"],
+        //     "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
+        //     "languageId": "php"
+        // },
+        "intelephense-ls":
+        {
+            // npm i -g intelephense-server
+            "enabled": true,
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Roaming/npm/node_modules/intelephense-server/lib/server.js",
+                "--stdio",
+            ],
+            "scopes": ["source.php", "embedding.php"],
+            "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
+            "languageId": "php",
+            "initializationOptions": {
+                "storagePath": "C:/Users/Clover/AppData/Local/Temp/intelephense-ls",
+            },
+        },
+    },
+    "show_status_messages": true,
+    "show_view_status": true,
+    "auto_show_diagnostics_panel": false,
+    "show_diagnostics_phantoms": false,
+    "show_diagnostics_in_view_status": true,
+    // highlight style of code diagnostics: "underline" or "box"
+    "diagnostics_highlight_style": "underline",
+    // gutter marker for code diagnostics: "dot", "circle", "bookmark", "cross" or ""
+    "diagnostics_gutter_marker": "dot",
+    "complete_all_chars": false,
+    "completion_hint_type": "auto",
+    "only_show_lsp_completions": false,
+    "resolve_completion_for_snippets": false,
+    "log_payloads": false,
+    "log_debug": false,
+    "log_server": false,
+    "log_stderr": true
+}

@@ -1,0 +1,30 @@
+[
+    {
+        "caption": "Preferences: OmniMarkupPreviewer Settings – Default",
+        "command": "open_file",
+        "args":
+        {
+            "file": "${packages}/OmniMarkupPreviewer/OmniMarkupPreviewer.sublime-settings"
+        }
+    },
+    {
+        "caption": "Preferences: OmniMarkupPreviewer Settings – User",
+        "command": "open_file",
+        "args":
+        {
+            "file": "${packages}/User/OmniMarkupPreviewer.sublime-settings"
+        }
+    },
+    {
+        "caption": "OmniMarkupPreviewer: Preview Current Markup in Browser",
+        "command": "omni_markup_preview"
+    },
+    {
+        "caption": "OmniMarkupPreviewer: Export Current Markup as HTML",
+        "command": "omni_markup_export"
+    },
+    {
+        "caption": "OmniMarkupPreviewer: Empty Cache",
+        "command": "omni_markup_clean_cache"
+    }
+]

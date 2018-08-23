@@ -1,0 +1,57 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: SRT Subtitles
+file_extensions:
+  - srt
+scope: text.srt
+contexts:
+  main:
+    - match: ^(\d+)$
+      comment: A number indicating which subtitle it is in the sequence.
+      scope: constant.numeric.sequence.srt
+    - match: '^(\d{2}:\d{2}:\d{2},\d{3})(\s-->\s)(\d{2}:\d{2}:\d{2},\d{3})$'
+      comment: The time that the subtitle should appear on the screen, and then disappear.
+      captures:
+        1: variable.parameter.srt
+        2: constant.character.srt
+        3: variable.parameter.srt
+    - match: \<(b)\>
+      comment: <b>Bold</b>
+      captures:
+        1: entity.name.tag.srt
+      push:
+        - match: \<\/(b)\>
+          captures:
+            1: entity.name.tag.srt
+          pop: true
+        - include: main
+        - match: .
+          scope: markup.bold.srt
+    - match: \<(i)\>
+      comment: <i>Italic</i>
+      captures:
+        1: entity.name.tag.srt
+      push:
+        - match: \<\/(i)\>
+          captures:
+            1: entity.name.tag.srt
+          pop: true
+        - include: main
+        - match: .
+          scope: markup.italic.srt
+    - match: \<(u)\>
+      comment: <u>Underline</u>
+      captures:
+        1: entity.name.tag.srt
+      push:
+        - match: \<\/(u)\>
+          captures:
+            1: entity.name.tag.srt
+          pop: true
+        - include: main
+        - match: .
+          scope: markup.underline.srt
+    - match: '\{\\an[1-9]{1}\}'
+      comment: Position tags
+      scope: entity.name.function.srt

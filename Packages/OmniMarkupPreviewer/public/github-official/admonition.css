@@ -1,0 +1,568 @@
+.markdown-body .admonition>.admonition-title:before,
+.markdown-body .admonition>summary:before,
+.markdown-body .critic.comment:before,
+.markdown-body .footnote-backref,
+.markdown-body .task-list-control .task-list-indicator:before,
+.markdown-body details>.admonition-title:before,
+.markdown-body details>summary:before,
+.markdown-body summary:after {
+    font-family: Material Icons;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: none;
+    white-space: nowrap;
+    speak: none;
+    word-wrap: normal;
+    direction: ltr
+}
+
+.markdown-body .admonition,
+.markdown-body details {
+    box-shadow: 2px 2px 10px -3px rgba(0,0,0,.14);
+    position: relative;
+    margin: 1.5625em 0;
+    padding: 0 1.2rem;
+    border-left: .4rem solid #448aff;
+    border-radius: .2rem;
+    font-size: 1rem;
+    overflow: auto
+}
+
+.markdown-body .admonition p,
+.markdown-body details p {
+    margin: 1em 0;
+    margin-top: 1em;
+    margin-right: 0px;
+    margin-bottom: 1em;
+    margin-left: 0px;
+}
+
+[dir=rtl] .markdown-body .admonition,
+[dir=rtl] .markdown-body details {
+    border-right: .4rem solid #448aff;
+    border-left: none
+}
+
+html .markdown-body .admonition>:last-child,
+html .markdown-body details>:last-child {
+    margin-bottom: 1.2rem
+}
+
+.markdown-body .admonition .admonition,
+.markdown-body .admonition details,
+.markdown-body details .admonition,
+.markdown-body details details {
+    margin: 1em 0
+}
+
+.markdown-body .admonition>.admonition-title,
+.markdown-body .admonition>summary,
+.markdown-body details>.admonition-title,
+.markdown-body details>summary {
+    margin: 0 -1.2rem;
+    padding: .8rem 1.2rem .8rem 3.6rem;
+    border-bottom: .1rem solid rgba(68,138,255,.1);
+    background-color: rgba(68,138,255,.1);
+    font-weight: 700
+}
+
+[dir=rtl] .markdown-body .admonition>.admonition-title,
+[dir=rtl] .markdown-body .admonition>summary,
+[dir=rtl] .markdown-body details>.admonition-title,
+[dir=rtl] .markdown-body details>summary {
+    padding: .8rem 4rem .8rem 1.2rem
+}
+
+.markdown-body .admonition>.admonition-title:last-child,
+.markdown-body .admonition>summary:last-child,
+.markdown-body details>.admonition-title:last-child,
+.markdown-body details>summary:last-child {
+    margin-bottom: 0
+}
+
+.markdown-body .admonition>.admonition-title:before,
+.markdown-body .admonition>summary:before,
+.markdown-body details>.admonition-title:before,
+.markdown-body details>summary:before {
+    position: absolute;
+    left: 1.2rem;
+    color: #448aff;
+    font-size: 1.5rem;
+    content: "\E3C9"
+}
+
+[dir=rtl] .markdown-body .admonition>.admonition-title:before,
+[dir=rtl] .markdown-body .admonition>summary:before,
+[dir=rtl] .markdown-body details>.admonition-title:before,
+[dir=rtl] .markdown-body details>summary:before {
+    right: 1.2rem;
+    left: auto
+}
+
+.markdown-body .admonition.abstract,
+.markdown-body .admonition.summary,
+.markdown-body .admonition.tldr,
+.markdown-body details.abstract,
+.markdown-body details.summary,
+.markdown-body details.tldr {
+    border-left-color: #00b0ff
+}
+
+[dir=rtl] .markdown-body .admonition.abstract,
+[dir=rtl] .markdown-body .admonition.summary,
+[dir=rtl] .markdown-body .admonition.tldr,
+[dir=rtl] .markdown-body details.abstract,
+[dir=rtl] .markdown-body details.summary,
+[dir=rtl] .markdown-body details.tldr {
+    border-right-color: #00b0ff
+}
+
+.markdown-body .admonition.abstract>.admonition-title,
+.markdown-body .admonition.abstract>summary,
+.markdown-body .admonition.summary>.admonition-title,
+.markdown-body .admonition.summary>summary,
+.markdown-body .admonition.tldr>.admonition-title,
+.markdown-body .admonition.tldr>summary,
+.markdown-body details.abstract>.admonition-title,
+.markdown-body details.abstract>summary,
+.markdown-body details.summary>.admonition-title,
+.markdown-body details.summary>summary,
+.markdown-body details.tldr>.admonition-title,
+.markdown-body details.tldr>summary {
+    border-bottom-color: .1rem solid rgba(0,176,255,.1);
+    background-color: rgba(0,176,255,.1)
+}
+
+.markdown-body .admonition.abstract>.admonition-title:before,
+.markdown-body .admonition.abstract>summary:before,
+.markdown-body .admonition.summary>.admonition-title:before,
+.markdown-body .admonition.summary>summary:before,
+.markdown-body .admonition.tldr>.admonition-title:before,
+.markdown-body .admonition.tldr>summary:before,
+.markdown-body details.abstract>.admonition-title:before,
+.markdown-body details.abstract>summary:before,
+.markdown-body details.summary>.admonition-title:before,
+.markdown-body details.summary>summary:before,
+.markdown-body details.tldr>.admonition-title:before,
+.markdown-body details.tldr>summary:before {
+    color: #00b0ff;
+    content: "\E8D2"
+}
+
+.markdown-body .admonition.info,
+.markdown-body .admonition.todo,
+.markdown-body details.info,
+.markdown-body details.todo {
+    border-left-color: #00b8d4
+}
+
+[dir=rtl] .markdown-body .admonition.info,
+[dir=rtl] .markdown-body .admonition.todo,
+[dir=rtl] .markdown-body details.info,
+[dir=rtl] .markdown-body details.todo {
+    border-right-color: #00b8d4
+}
+
+.markdown-body .admonition.info>.admonition-title,
+.markdown-body .admonition.info>summary,
+.markdown-body .admonition.todo>.admonition-title,
+.markdown-body .admonition.todo>summary,
+.markdown-body details.info>.admonition-title,
+.markdown-body details.info>summary,
+.markdown-body details.todo>.admonition-title,
+.markdown-body details.todo>summary {
+    border-bottom-color: .1rem solid rgba(0,184,212,.1);
+    background-color: rgba(0,184,212,.1)
+}
+
+.markdown-body .admonition.info>.admonition-title:before,
+.markdown-body .admonition.info>summary:before,
+.markdown-body .admonition.todo>.admonition-title:before,
+.markdown-body .admonition.todo>summary:before,
+.markdown-body details.info>.admonition-title:before,
+.markdown-body details.info>summary:before,
+.markdown-body details.todo>.admonition-title:before,
+.markdown-body details.todo>summary:before {
+    color: #00b8d4;
+    content: "\E88E"
+}
+
+.markdown-body .admonition.hint,
+.markdown-body .admonition.important,
+.markdown-body .admonition.tip,
+.markdown-body details.hint,
+.markdown-body details.important,
+.markdown-body details.tip {
+    border-left-color: #00bfa5
+}
+
+[dir=rtl] .markdown-body .admonition.hint,
+[dir=rtl] .markdown-body .admonition.important,
+[dir=rtl] .markdown-body .admonition.tip,
+[dir=rtl] .markdown-body details.hint,
+[dir=rtl] .markdown-body details.important,
+[dir=rtl] .markdown-body details.tip {
+    border-right-color: #00bfa5
+}
+
+.markdown-body .admonition.hint>.admonition-title,
+.markdown-body .admonition.hint>summary,
+.markdown-body .admonition.important>.admonition-title,
+.markdown-body .admonition.important>summary,
+.markdown-body .admonition.tip>.admonition-title,
+.markdown-body .admonition.tip>summary,
+.markdown-body details.hint>.admonition-title,
+.markdown-body details.hint>summary,
+.markdown-body details.important>.admonition-title,
+.markdown-body details.important>summary,
+.markdown-body details.tip>.admonition-title,
+.markdown-body details.tip>summary {
+    border-bottom-color: .1rem solid rgba(0,191,165,.1);
+    background-color: rgba(0,191,165,.1)
+}
+
+.markdown-body .admonition.hint>.admonition-title:before,
+.markdown-body .admonition.hint>summary:before,
+.markdown-body .admonition.important>.admonition-title:before,
+.markdown-body .admonition.important>summary:before,
+.markdown-body .admonition.tip>.admonition-title:before,
+.markdown-body .admonition.tip>summary:before,
+.markdown-body details.hint>.admonition-title:before,
+.markdown-body details.hint>summary:before,
+.markdown-body details.important>.admonition-title:before,
+.markdown-body details.important>summary:before,
+.markdown-body details.tip>.admonition-title:before,
+.markdown-body details.tip>summary:before {
+    color: #00bfa5;
+    content: "\E80E"
+}
+
+.markdown-body .admonition.check,
+.markdown-body .admonition.done,
+.markdown-body .admonition.success,
+.markdown-body details.check,
+.markdown-body details.done,
+.markdown-body details.success {
+    border-left-color: #00c853
+}
+
+[dir=rtl] .markdown-body .admonition.check,
+[dir=rtl] .markdown-body .admonition.done,
+[dir=rtl] .markdown-body .admonition.success,
+[dir=rtl] .markdown-body details.check,
+[dir=rtl] .markdown-body details.done,
+[dir=rtl] .markdown-body details.success {
+    border-right-color: #00c853
+}
+
+.markdown-body .admonition.check>.admonition-title,
+.markdown-body .admonition.check>summary,
+.markdown-body .admonition.done>.admonition-title,
+.markdown-body .admonition.done>summary,
+.markdown-body .admonition.success>.admonition-title,
+.markdown-body .admonition.success>summary,
+.markdown-body details.check>.admonition-title,
+.markdown-body details.check>summary,
+.markdown-body details.done>.admonition-title,
+.markdown-body details.done>summary,
+.markdown-body details.success>.admonition-title,
+.markdown-body details.success>summary {
+    border-bottom-color: .1rem solid rgba(0,200,83,.1);
+    background-color: rgba(0,200,83,.1)
+}
+
+.markdown-body .admonition.check>.admonition-title:before,
+.markdown-body .admonition.check>summary:before,
+.markdown-body .admonition.done>.admonition-title:before,
+.markdown-body .admonition.done>summary:before,
+.markdown-body .admonition.success>.admonition-title:before,
+.markdown-body .admonition.success>summary:before,
+.markdown-body details.check>.admonition-title:before,
+.markdown-body details.check>summary:before,
+.markdown-body details.done>.admonition-title:before,
+.markdown-body details.done>summary:before,
+.markdown-body details.success>.admonition-title:before,
+.markdown-body details.success>summary:before {
+    color: #00c853;
+    content: "\E876"
+}
+
+.markdown-body .admonition.faq,
+.markdown-body .admonition.help,
+.markdown-body .admonition.question,
+.markdown-body details.faq,
+.markdown-body details.help,
+.markdown-body details.question {
+    border-left-color: #64dd17
+}
+
+[dir=rtl] .markdown-body .admonition.faq,
+[dir=rtl] .markdown-body .admonition.help,
+[dir=rtl] .markdown-body .admonition.question,
+[dir=rtl] .markdown-body details.faq,
+[dir=rtl] .markdown-body details.help,
+[dir=rtl] .markdown-body details.question {
+    border-right-color: #64dd17
+}
+
+.markdown-body .admonition.faq>.admonition-title,
+.markdown-body .admonition.faq>summary,
+.markdown-body .admonition.help>.admonition-title,
+.markdown-body .admonition.help>summary,
+.markdown-body .admonition.question>.admonition-title,
+.markdown-body .admonition.question>summary,
+.markdown-body details.faq>.admonition-title,
+.markdown-body details.faq>summary,
+.markdown-body details.help>.admonition-title,
+.markdown-body details.help>summary,
+.markdown-body details.question>.admonition-title,
+.markdown-body details.question>summary {
+    border-bottom-color: .1rem solid rgba(100,221,23,.1);
+    background-color: rgba(100,221,23,.1)
+}
+
+.markdown-body .admonition.faq>.admonition-title:before,
+.markdown-body .admonition.faq>summary:before,
+.markdown-body .admonition.help>.admonition-title:before,
+.markdown-body .admonition.help>summary:before,
+.markdown-body .admonition.question>.admonition-title:before,
+.markdown-body .admonition.question>summary:before,
+.markdown-body details.faq>.admonition-title:before,
+.markdown-body details.faq>summary:before,
+.markdown-body details.help>.admonition-title:before,
+.markdown-body details.help>summary:before,
+.markdown-body details.question>.admonition-title:before,
+.markdown-body details.question>summary:before {
+    color: #64dd17;
+    content: "\E887"
+}
+
+.markdown-body .admonition.attention,
+.markdown-body .admonition.caution,
+.markdown-body .admonition.warning,
+.markdown-body details.attention,
+.markdown-body details.caution,
+.markdown-body details.warning {
+    border-left-color: #ff9100
+}
+
+[dir=rtl] .markdown-body .admonition.attention,
+[dir=rtl] .markdown-body .admonition.caution,
+[dir=rtl] .markdown-body .admonition.warning,
+[dir=rtl] .markdown-body details.attention,
+[dir=rtl] .markdown-body details.caution,
+[dir=rtl] .markdown-body details.warning {
+    border-right-color: #ff9100
+}
+
+.markdown-body .admonition.attention>.admonition-title,
+.markdown-body .admonition.attention>summary,
+.markdown-body .admonition.caution>.admonition-title,
+.markdown-body .admonition.caution>summary,
+.markdown-body .admonition.warning>.admonition-title,
+.markdown-body .admonition.warning>summary,
+.markdown-body details.attention>.admonition-title,
+.markdown-body details.attention>summary,
+.markdown-body details.caution>.admonition-title,
+.markdown-body details.caution>summary,
+.markdown-body details.warning>.admonition-title,
+.markdown-body details.warning>summary {
+    border-bottom-color: .1rem solid rgba(255,145,0,.1);
+    background-color: rgba(255,145,0,.1)
+}
+
+.markdown-body .admonition.attention>.admonition-title:before,
+.markdown-body .admonition.attention>summary:before,
+.markdown-body .admonition.caution>.admonition-title:before,
+.markdown-body .admonition.caution>summary:before,
+.markdown-body .admonition.warning>.admonition-title:before,
+.markdown-body .admonition.warning>summary:before,
+.markdown-body details.attention>.admonition-title:before,
+.markdown-body details.attention>summary:before,
+.markdown-body details.caution>.admonition-title:before,
+.markdown-body details.caution>summary:before,
+.markdown-body details.warning>.admonition-title:before,
+.markdown-body details.warning>summary:before {
+    color: #ff9100;
+    content: "\E002"
+}
+
+.markdown-body .admonition.fail,
+.markdown-body .admonition.failure,
+.markdown-body .admonition.missing,
+.markdown-body details.fail,
+.markdown-body details.failure,
+.markdown-body details.missing {
+    border-left-color: #ff5252
+}
+
+[dir=rtl] .markdown-body .admonition.fail,
+[dir=rtl] .markdown-body .admonition.failure,
+[dir=rtl] .markdown-body .admonition.missing,
+[dir=rtl] .markdown-body details.fail,
+[dir=rtl] .markdown-body details.failure,
+[dir=rtl] .markdown-body details.missing {
+    border-right-color: #ff5252
+}
+
+.markdown-body .admonition.fail>.admonition-title,
+.markdown-body .admonition.fail>summary,
+.markdown-body .admonition.failure>.admonition-title,
+.markdown-body .admonition.failure>summary,
+.markdown-body .admonition.missing>.admonition-title,
+.markdown-body .admonition.missing>summary,
+.markdown-body details.fail>.admonition-title,
+.markdown-body details.fail>summary,
+.markdown-body details.failure>.admonition-title,
+.markdown-body details.failure>summary,
+.markdown-body details.missing>.admonition-title,
+.markdown-body details.missing>summary {
+    border-bottom-color: .1rem solid rgba(255,82,82,.1);
+    background-color: rgba(255,82,82,.1)
+}
+
+.markdown-body .admonition.fail>.admonition-title:before,
+.markdown-body .admonition.fail>summary:before,
+.markdown-body .admonition.failure>.admonition-title:before,
+.markdown-body .admonition.failure>summary:before,
+.markdown-body .admonition.missing>.admonition-title:before,
+.markdown-body .admonition.missing>summary:before,
+.markdown-body details.fail>.admonition-title:before,
+.markdown-body details.fail>summary:before,
+.markdown-body details.failure>.admonition-title:before,
+.markdown-body details.failure>summary:before,
+.markdown-body details.missing>.admonition-title:before,
+.markdown-body details.missing>summary:before {
+    color: #ff5252;
+    content: "\E14C"
+}
+
+.markdown-body .admonition.danger,
+.markdown-body .admonition.error,
+.markdown-body details.danger,
+.markdown-body details.error {
+    border-left-color: #ff1744
+}
+
+[dir=rtl] .markdown-body .admonition.danger,
+[dir=rtl] .markdown-body .admonition.error,
+[dir=rtl] .markdown-body details.danger,
+[dir=rtl] .markdown-body details.error {
+    border-right-color: #ff1744
+}
+
+.markdown-body .admonition.danger>.admonition-title,
+.markdown-body .admonition.danger>summary,
+.markdown-body .admonition.error>.admonition-title,
+.markdown-body .admonition.error>summary,
+.markdown-body details.danger>.admonition-title,
+.markdown-body details.danger>summary,
+.markdown-body details.error>.admonition-title,
+.markdown-body details.error>summary {
+    border-bottom-color: .1rem solid rgba(255,23,68,.1);
+    background-color: rgba(255,23,68,.1)
+}
+
+.markdown-body .admonition.danger>.admonition-title:before,
+.markdown-body .admonition.danger>summary:before,
+.markdown-body .admonition.error>.admonition-title:before,
+.markdown-body .admonition.error>summary:before,
+.markdown-body details.danger>.admonition-title:before,
+.markdown-body details.danger>summary:before,
+.markdown-body details.error>.admonition-title:before,
+.markdown-body details.error>summary:before {
+    color: #ff1744;
+    content: "\E3E7"
+}
+
+.markdown-body .admonition.bug,
+.markdown-body details.bug {
+    border-left-color: #f50057
+}
+
+[dir=rtl] .markdown-body .admonition.bug,
+[dir=rtl] .markdown-body details.bug {
+    border-right-color: #f50057
+}
+
+.markdown-body .admonition.bug>.admonition-title,
+.markdown-body .admonition.bug>summary,
+.markdown-body details.bug>.admonition-title,
+.markdown-body details.bug>summary {
+    border-bottom-color: .1rem solid rgba(245,0,87,.1);
+    background-color: rgba(245,0,87,.1)
+}
+
+.markdown-body .admonition.bug>.admonition-title:before,
+.markdown-body .admonition.bug>summary:before,
+.markdown-body details.bug>.admonition-title:before,
+.markdown-body details.bug>summary:before {
+    color: #f50057;
+    content: "\E868"
+}
+
+.markdown-body .admonition.example,
+.markdown-body details.example {
+    border-left-color: #651fff
+}
+
+[dir=rtl] .markdown-body .admonition.example,
+[dir=rtl] .markdown-body details.example {
+    border-right-color: #651fff
+}
+
+.markdown-body .admonition.example>.admonition-title,
+.markdown-body .admonition.example>summary,
+.markdown-body details.example>.admonition-title,
+.markdown-body details.example>summary {
+    border-bottom-color: .1rem solid rgba(101,31,255,.1);
+    background-color: rgba(101,31,255,.1)
+}
+
+.markdown-body .admonition.example>.admonition-title:before,
+.markdown-body .admonition.example>summary:before,
+.markdown-body details.example>.admonition-title:before,
+.markdown-body details.example>summary:before {
+    color: #651fff;
+    content: "\E242"
+}
+
+.markdown-body .admonition.cite,
+.markdown-body .admonition.quote,
+.markdown-body details.cite,
+.markdown-body details.quote {
+    border-left-color: #9e9e9e
+}
+
+[dir=rtl] .markdown-body .admonition.cite,
+[dir=rtl] .markdown-body .admonition.quote,
+[dir=rtl] .markdown-body details.cite,
+[dir=rtl] .markdown-body details.quote {
+    border-right-color: #9e9e9e
+}
+
+.markdown-body .admonition.cite>.admonition-title,
+.markdown-body .admonition.cite>summary,
+.markdown-body .admonition.quote>.admonition-title,
+.markdown-body .admonition.quote>summary,
+.markdown-body details.cite>.admonition-title,
+.markdown-body details.cite>summary,
+.markdown-body details.quote>.admonition-title,
+.markdown-body details.quote>summary {
+    border-bottom-color: .1rem solid hsla(0,0%,62%,.1);
+    background-color: hsla(0,0%,62%,.1)
+}
+
+.markdown-body .admonition.cite>.admonition-title:before,
+.markdown-body .admonition.cite>summary:before,
+.markdown-body .admonition.quote>.admonition-title:before,
+.markdown-body .admonition.quote>summary:before,
+.markdown-body details.cite>.admonition-title:before,
+.markdown-body details.cite>summary:before,
+.markdown-body details.quote>.admonition-title:before,
+.markdown-body details.quote>summary:before {
+    color: #9e9e9e;
+    content: "\E244"
+}
