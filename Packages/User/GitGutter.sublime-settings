@@ -58,6 +58,13 @@
   // Do not set GitGutter icons in these regions
   // Useful for making sure GitGutter does not override other
   // regions, (e.g. Bookmarks, Linter/BracketHighlighter icons.)
-  "protected_regions": []
+  "protected_regions": [],
 
+  // (ST3, Build 3124+ only)
+  // Display a phantom text at the end of the active line with information
+  // about who changed it using the output of `git blame`.
+  //   "auto"  -- show line annotation if word wrap is disabled (default)
+  //   "true"  -- always show line annotation
+  //   "false" -- never show line annotation
+  "show_line_annotation": false,
 }
