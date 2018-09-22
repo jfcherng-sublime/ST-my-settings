@@ -143,6 +143,7 @@
 	"find_selected_text": true,
 	"folder_exclude_patterns":
 	[
+		".cache",
 		".git",
 		".hg",
 		".sass-cache",
@@ -194,6 +195,11 @@
 		"draw_active"
 	],
 	"indent_to_bracket": false,
+	"index_exclude_patterns":
+	[
+		"*.log",
+		"*/public/build/*"
+	],
 	"line_numbers": true,
 	"match_brackets": false,
 	"match_tags": false,
