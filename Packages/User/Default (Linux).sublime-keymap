@@ -5,6 +5,7 @@
      *******************/
     // { "keys": ["alt+q"], "command": "nop" },
     { "keys": ["alt+d", "alt+c"], "command": "decorate_inline_comment" },
+    { "keys": ["pause"], "command": "exec", "args": { "kill": true } },
     /**************************
      *    Built-in commands   *
      **************************/
