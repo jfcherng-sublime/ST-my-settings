@@ -2,7 +2,6 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"Codecs33"
 	],
 	"install_prereleases":
 	[
@@ -11,7 +10,6 @@
 	],
 	"installed_packages":
 	[
-		"A File Icon",
 		"AceJump",
 		"Advanced Substation Alpha (ASS)",
 		"AlignTab",
@@ -40,6 +38,7 @@
 		"ExportHtml",
 		"Fanhuaji",
 		"FileDiffs",
+		"FileIcons",
 		"FileManager",
 		"Filter Lines",
 		"GitGutter",

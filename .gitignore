@@ -8,7 +8,6 @@ Settings/
 
 # auto install Package Control
 Installed Packages/*
-!Installed Packages/A File Icon.sublime-package
 !Installed Packages/BufferScroll.sublime-package
 !Installed Packages/Package Control.sublime-package
 !Installed Packages/SideBarGit.sublime-package
