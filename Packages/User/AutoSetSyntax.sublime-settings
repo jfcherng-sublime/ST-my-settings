@@ -25,9 +25,12 @@
         ],
         "Makefile/Makefile.": [
             "(?i)^#\\s*-\\*-\\s+Makefile\\s+-\\*-"
+        ],
+        "ApacheConf/ApacheConf.": [
+            "^<(VirtualHost|Directory|Macro)"
         ]
     },
     // the scope that this plugin should work (regular expression)
     // leave it blank to match any scope
-    "working_scope": "(?x)^(text.plain | source.diff)\\b"
+    "working_scope": "(?x)^(text.plain | source.diff | source.nginx)\\b"
 }

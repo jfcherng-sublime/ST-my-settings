@@ -382,6 +382,12 @@
             "name": "Sublime Settings - JSON key",
             "scope": "meta.mapping.key.json string.quoted.double.json",
         },
+        {
+            "font_style": "bold",
+            "foreground": "var(Green)",
+            "name": "Apache Conf - tag",
+            "scope": "entity.tag.apacheconf",
+        },
         //////////////
         // markdown //
         //////////////
