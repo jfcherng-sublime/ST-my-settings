@@ -1,0 +1,256 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+# https://httpd.apache.org/docs/2.0/mod/
+# https://httpd.apache.org/docs/2.2/mod/
+# https://httpd.apache.org/docs/2.4/mod/
+name: Apache Conf
+file_extensions:
+  - conf
+  - CONF
+  - envvars
+  - htaccess
+  - HTACCESS
+  - htgroups
+  - HTGROUPS
+  - htpasswd
+  - HTPASSWD
+  - .htaccess
+  - .HTACCESS
+  - .htgroups
+  - .HTGROUPS
+  - .htpasswd
+  - .HTPASSWD
+scope: source.apacheconf
+contexts:
+  main:
+    - match: ^(\s)*(#).*$\n?
+      scope: comment.line.hash.ini
+      captures:
+        1: punctuation.definition.comment.apacheconf
+    - match: (?i)(<)(Proxy|ProxyMatch|IfVersion|Directory|DirectoryMatch|Files|FilesMatch|IfDefine|IfModule|Limit|LimitExcept|Location|LocationMatch|VirtualHost|Macro|If|Else|ElseIf)(\s(.+?))?(>)
+      captures:
+        1: punctuation.definition.tag.apacheconf
+        2: entity.tag.apacheconf
+        4: string.value.apacheconf
+        5: punctuation.definition.tag.apacheconf
+    - match: (?i)(</)(Proxy|ProxyMatch|IfVersion|Directory|DirectoryMatch|Files|FilesMatch|IfDefine|IfModule|Limit|LimitExcept|Location|LocationMatch|VirtualHost|Macro|If|Else|ElseIf)(>)
+      captures:
+        1: punctuation.definition.tag.apacheconf
+        2: entity.tag.apacheconf
+        3: punctuation.definition.tag.apacheconf
+    - match: (?i)(?<=(Rewrite(Rule|Cond)))\s+(.+?)\s+(.+?)($|\s)
+      captures:
+        3: string.regexp.apacheconf
+        4: string.replacement.apacheconf
+    - match: (?i)(?<=RedirectMatch)(\s+(\d\d\d|permanent|temp|seeother|gone))?\s+(.+?)\s+((.+?)($|\s))?
+      captures:
+        2: entity.status.apacheconf
+        3: string.regexp.apacheconf
+        5: string.path.apacheconf
+    - match: (?i)(?<=Redirect)(\s+(\d\d\d|permanent|temp|seeother|gone))?\s+(.+?)\s+((.+?)($|\s))?
+      captures:
+        2: entity.status.apacheconf
+        3: string.path.apacheconf
+        5: string.path.apacheconf
+    - match: (?i)(?<=ScriptAliasMatch|AliasMatch)\s+(.+?)\s+((.+?)\s)?
+      captures:
+        1: string.regexp.apacheconf
+        3: string.path.apacheconf
+    - match: (?i)(?<=RedirectPermanent|RedirectTemp|ScriptAlias|Alias)\s+(.+?)\s+((.+?)($|\s))?
+      captures:
+        1: string.path.apacheconf
+        3: string.path.apacheconf
+    - match: (?i)\b(AcceptFilter|AcceptPathInfo|AccessFileName|AddDefaultCharset|AddOutputFilterByType|AllowEncodedSlashes|AllowOverride|AllowOverrideList|AuthName|AuthType|CGIMapExtension|CGIPassAuth|CGIVar|ContentDigest|DefaultRuntimeDir|DefaultType|Define|DocumentRoot|EnableMMAP|EnableSendfile|Error|ErrorDocument|ErrorLog|FileETag|ForceType|GprofDir|HostnameLookups|HttpProtocolOptions|IdentityCheck|Include(Optional)?|KeepAlive|KeepAliveTimeout|LimitInternalRecursion|LimitRequestBody|LimitRequestFields|LimitRequestFieldSize|LimitRequestLine|LimitXMLRequestBody|LogLevel|MaxKeepAliveRequests|MaxRangeOverlaps|MaxRangeReversals|MergeTrailers|Mutex|NameVirtualHost|Options|Protocols?|ProtocolsHonorOrder|QualifyRedirectURL|RegexDefaultOptions|RegisterHttpMethod|Require|RLimitCPU|RLimitMEM|RLimitNPROC|Satisfy|ScriptInterpreterSource|SeeRequestTail|ServerAdmin|ServerAlias|ServerName|ServerPath|ServerRoot|ServerSignature|ServerTokens|SetHandler|SetInputFilter|SetOutputFilter|Time(O|o)ut|TraceEnable|UnDefine|UseCanonicalName|UseCanonicalPhysicalPort|Use|ErrorLogFormat|GlobalLog|PHPIniDir|SSLHonorCipherOrder|SSLCompression|SSLUseStapling|SSLStapling\w+|SSLCARevocationCheck|SSLSRPVerifierFile|SSLSessionTickets|RequestReadTimeout|ProxyHTML\w+|MaxRanges|UndefMacro)\b
+      captures:
+        1: keyword.core.apacheconf
+    - match: (?i)\b(AcceptMutex|AssignUserID|AsyncRequestWorkerFactor|BS2000Account|ChildPerUserID|CoreDumpDirectory|EnableExceptionHook|GracefulShutdownTimeout|Group|Listen|ListenBacklog|ListenBackLog|ListenCoresBucketsRatio|LockFile|MaxClients|MaxConnectionsPerChild|MaxMemFree|MaxRequestsPerChild|MaxRequestsPerThread|MaxRequestWorkers|MaxSpareServers|MaxSpareThreads|MaxThreads|MaxThreadsPerChild|MinSpareServers|MinSpareThreads|NumServers|PidFile|ReceiveBufferSize|ScoreBoardFile|SendBufferSize|ServerLimit|StartServers|StartThreads|ThreadLimit|ThreadsPerChild|ThreadStackSize|User|Win32DisableAcceptEx)\b
+      captures:
+        1: keyword.mpm.apacheconf
+    - match: (?i)\b(Allow|Deny|Order)\b
+      captures:
+        1: keyword.access.apacheconf
+    - match: (?i)\b(Action|Script)\b
+      captures:
+        1: keyword.actions.apacheconf
+    - match: (?i)\b(Alias|AliasMatch|Redirect|RedirectMatch|RedirectPermanent|RedirectTemp|ScriptAlias|ScriptAliasMatch)\b
+      captures:
+        1: keyword.alias.apacheconf
+    - match: (?i)\b(AuthAuthoritative|AuthGroupFile|AuthUserFile|AuthBasicProvider|AuthBasicFake|AuthBasicAuthoritative|AuthBasicUseDigestAlgorithm)\b
+      captures:
+        1: keyword.auth.apacheconf
+    - match: (?i)\b(Anonymous|Anonymous_Authoritative|Anonymous_LogEmail|Anonymous_MustGiveEmail|Anonymous_NoUserID|Anonymous_VerifyEmail)\b
+      captures:
+        1: keyword.auth_anon.apacheconf
+    - match: (?i)\b(AuthDBMAuthoritative|AuthDBMGroupFile|AuthDBMType|AuthDBMUserFile)\b
+      captures:
+        1: keyword.auth_dbm.apacheconf
+    - match: (?i)\b(AuthDigestAlgorithm|AuthDigestDomain|AuthDigestFile|AuthDigestGroupFile|AuthDigestNcCheck|AuthDigestNonceFormat|AuthDigestNonceLifetime|AuthDigestQop|AuthDigestShmemSize|AuthDigestProvider)\b
+      captures:
+        1: keyword.auth_digest.apacheconf
+    - match: (?i)\b(AuthLDAPAuthoritative|AuthLDAPBindDN|AuthLDAPBindPassword|AuthLDAPCharsetConfig|AuthLDAPCompareDNOnServer|AuthLDAPDereferenceAliases|AuthLDAPEnabled|AuthLDAPFrontPageHack|AuthLDAPGroupAttribute|AuthLDAPGroupAttributeIsDN|AuthLDAPRemoteUserIsDN|AuthLDAPUrl)\b
+      captures:
+        1: keyword.auth_ldap.apacheconf
+    - match: (?i)\b(AddAlt|AddAltByEncoding|AddAltByType|AddDescription|AddIcon|AddIconByEncoding|AddIconByType|DefaultIcon|HeaderName|IndexHeadInsert|IndexIgnore|IndexIgnoreReset|IndexOptions|IndexOrderDefault|IndexStyleSheet|ReadmeName)\b
+      captures:
+        1: keyword.autoindex.apacheconf
+    - match: (?i)\b(BalancerMember|BalancerGrowth|BalancerPersist|BalancerInherit)\b
+      captures:
+        1: keyword.filter.apacheconf
+    - match: (?i)\b(Cache(DefaultExpire|DetailHeader|Disable|Enable|ForceCompletion|Header|IgnoreCacheControl|IgnoreHeaders|IgnoreNoLastMod|IgnoreQueryString|IgnoreURLSessionIdentifiers|KeyBaseURL|LastModifiedFactor|Lock|LockMaxAge|LockPath|MaxExpire|MinExpire|QuickHandler|StaleOnError|StoreExpired|StoreNoStore|StorePrivate))\b
+      captures:
+        1: keyword.cache.apacheconf
+    - match: (?i)\b(MetaDir|MetaFiles|MetaSuffix)\b
+      captures:
+        1: keyword.cern_meta.apacheconf
+    - match: (?i)\b(ScriptLog|ScriptLogBuffer|ScriptLogLength)\b
+      captures:
+        1: keyword.cgi.apacheconf
+    - match: (?i)\b(CGIDScriptTimeout|ScriptLog|ScriptLogBuffer|ScriptLogLength|ScriptSock)\b
+      captures:
+        1: keyword.cgid.apacheconf
+    - match: (?i)\b(CharsetDefault|CharsetOptions|CharsetSourceEnc)\b
+      captures:
+        1: keyword.charset_lite.apacheconf
+    - match: (?i)\b(Dav|DavDepthInfinity|DavMinTimeout|DavLockDB)\b
+      captures:
+        1: keyword.dav.apacheconf
+    - match: (?i)\b(Deflate(BufferSize|CompressionLevel|FilterNote|InflateLimitRequestBody|InflateRatioBurst|InflateRatioLimit|MemLevel|WindowSize))\b
+      captures:
+        1: keyword.deflate.apacheconf
+    - match: (?i)\b(DirectoryIndex|DirectorySlash|FallbackResource)\b
+      captures:
+        1: keyword.dir.apacheconf
+    - match: (?i)\b(Cache(DirLength|DirLevels|ExpiryCheck|GcClean|GcDaily|GcInterval|GcMemUsage|GcUnused|MaxFileSize|MinFileSize|ReadSize|ReadTime|Root|Size|TimeMargin))\b
+      captures:
+        1: keyword.disk_cache.apacheconf
+    - match: (?i)\b(DumpIOInput|DumpIOOutput)\b
+      captures:
+        1: keyword.dumpio.apacheconf
+    - match: (?i)\b(PassEnv|SetEnv|UnsetEnv)\b
+      captures:
+        1: keyword.env.apacheconf
+    - match: (?i)\b(ExpiresActive|ExpiresByType|ExpiresDefault)\b
+      captures:
+        1: keyword.expires.apacheconf
+    - match: (?i)\b(ExtFilterDefine|ExtFilterOptions)\b
+      captures:
+        1: keyword.ext_filter.apacheconf
+    - match: (?i)\b(CacheFile|MMapFile)\b
+      captures:
+        1: keyword.file_cache.apacheconf
+    - match: (?i)\b(AddOutputFilterByType|FilterChain|FilterDeclare|FilterProtocol|FilterProvider|FilterTrace)\b
+      captures:
+        1: keyword.filter.apacheconf
+    - match: (?i)\b(H2(CopyFiles|Direct|EarlyHints|MaxSessionStreams|MaxWorkerIdleSeconds|MaxWorkers|MinWorkers|ModernTLSOnly|Push|PushDiarySize|PushPriority|PushResource|SerializeHeaders|StreamMaxMemSize|TLSCoolDownSecs|TLSWarmUpSize|Upgrade|WindowSize))\b
+      captures:
+        1: keyword.http2.apacheconf
+    - match: (?i)\b(Header|RequestHeader)\b
+      captures:
+        1: keyword.headers.apacheconf
+    - match: (?i)\b(ImapBase|ImapDefault|ImapMenu)\b
+      captures:
+        1: keyword.imap.apacheconf
+    - match: (?i)\b(SSIEndTag|SSIErrorMsg|SSIETag|SSILastModified|SSILegacyExprParser|SSIStartTag|SSITimeFormat|SSIUndefinedEcho|XBitHack)\b
+      captures:
+        1: keyword.include.apacheconf
+    - match: (?i)\b(ISAPIAppendLogToErrors|ISAPIAppendLogToQuery|ISAPICacheFile|ISAPIFakeAsync|ISAPILogNotSupported|ISAPIReadAheadBuffer)\b
+      captures:
+        1: keyword.isapi.apacheconf
+    - match: (?i)\b(LDAP(CacheEntries|CacheTTL|ConnectionPoolTTL|ConnectionTimeout|LibraryDebug|OpCacheEntries|OpCacheTTL|ReferralHopLimit|Referrals|Retries|RetryDelay|SharedCacheFile|SharedCacheSize|Timeout|TrustedCA|TrustedCAType|TrustedClientCert|TrustedGlobalCert|TrustedMode|VerifyServerCert))\b
+      captures:
+        1: keyword.ldap.apacheconf
+    - match: (?i)\b(BufferedLogs|CookieLog|CustomLog|LogFormat|TransferLog|ForensicLog)\b
+      captures:
+        1: keyword.log.apacheconf
+    - match: (?i)\b(Lua(AuthzProvider|CodeCache|HookAccessChecker|HookAuthChecker|HookCheckUserID|HookFixups|HookInsertFilter|HookLog|HookMapToStorage|HookTranslateName|HookTypeChecker|Inherit|InputFilter|MapHandler|OutputFilter|PackageCPath|PackagePath|QuickHandler|Root|Scope))\b
+      captures:
+        1: keyword.lua.apacheconf
+    - match: (?i)\b(MCacheMaxObjectCount|MCacheMaxObjectSize|MCacheMaxStreamingBuffer|MCacheMinObjectSize|MCacheRemovalAlgorithm|MCacheSize)\b
+      captures:
+        1: keyword.mem_cache.apacheconf
+    - match: (?i)\b(AddCharset|AddEncoding|AddHandler|AddInputFilter|AddLanguage|AddOutputFilter|AddType|DefaultLanguage|ModMimeUsePathInfo|MultiviewsMatch|RemoveCharset|RemoveEncoding|RemoveHandler|RemoveInputFilter|RemoveLanguage|RemoveOutputFilter|RemoveType|TypesConfig)\b
+      captures:
+        1: keyword.mime.apacheconf
+    - match: (?i)\b(ProtocolEcho|Example|AddModuleInfo|MIMEMagicFile|CheckSpelling|ExtendedStatus|SuexecUserGroup|UserDir)\b
+      captures:
+        1: keyword.misc.apacheconf
+    - match: (?i)\b(CacheNegotiatedDocs|ForceLanguagePriority|LanguagePriority)\b
+      captures:
+        1: keyword.negotiation.apacheconf
+    - match: (?i)\b(NWSSLTrustedCerts|NWSSLUpgradeable|SecureListen)\b
+      captures:
+        1: keyword.nw_ssl.apacheconf
+    - match: (?i)\b(DTracePrivileges|PrivilegesMode|VHostCGIMode|VHostCGIPrivs|VHostGroup|VHostPrivs|VHostSecure|VHostUser)\b
+      captures:
+        1: keyword.privileges.apacheconf
+    - match: (?i)\b(AllowCONNECT|NoProxy|ProxyBadHeader|ProxyBlock|ProxyDomain|ProxyErrorOverride|ProxyFtpDirCharset|ProxyIOBufferSize|ProxyMaxForwards|ProxyPass|ProxyPassMatch|ProxyPassReverse|ProxyPreserveHost|ProxyReceiveBufferSize|ProxyRemote|ProxyRemoteMatch|ProxyRequests|ProxyTimeout|ProxyVia)\b
+      captures:
+        1: keyword.proxy.apacheconf
+    - match: (?i)\b(RemoteIP(Header|InternalProxy|InternalProxyList|ProxiesHeader|ProxyProtocol|ProxyProtocolExceptions|TrustedProxy|TrustedProxyList))\b
+      captures:
+        1: keyword.remoteip.apacheconf
+    - match: (?i)\b(RewriteBase|RewriteCond|RewriteEngine|RewriteLock|RewriteLog|RewriteLogLevel|RewriteMap|RewriteOptions|RewriteRule)\b
+      captures:
+        1: keyword.rewrite.apacheconf
+    - match: (?i)\b(InputSed|OutputSed)\b
+      captures:
+        1: keyword.sed.apacheconf
+    - match: (?i)\b(Session(|Env|Exclude|Header|Include|MaxAge))\b
+      captures:
+        1: keyword.session.apacheconf
+    - match: (?i)\b(SessionCookie(Name|Name2|Remove))\b
+      captures:
+        1: keyword.session_cookie.apacheconf
+    - match: (?i)\b(SessionCrypto(Cipher|Driver|Passphrase|PassphraseFile))\b
+      captures:
+        1: keyword.session_crypto.apacheconf
+    - match: (?i)\b(SessionDBD(CookieName2|CookieRemove|DeleteLabel|InsertLabel|PerUser|SelectL|abel|UpdateLabel))\b
+      captures:
+        1: keyword.session_dbd.apacheconf
+    - match: (?i)\b(BrowserMatch|BrowserMatchNoCase|SetEnvIf|SetEnvIfExpr|SetEnvIfNoCase)\b
+      captures:
+        1: keyword.setenvif.apacheconf
+    - match: (?i)\b(LoadFile|LoadModule)\b
+      captures:
+        1: keyword.so.apacheconf
+    - match: (?i)\b(SSL(CACertificateFile|CACertificatePath|CADNRequestFile|CADNRequestPath|CARevocationCheck|CARevocationFile|CARevocationPath|CertificateChainFile|CertificateFile|CertificateKeyFile|CipherSuite|Compression|CryptoDevice|Engine|FIPS|HonorCipherOrder|InsecureRenegotiation|Mutex|OCSPDefaultResponder|OCSPEnable|OCSPNoverify|OCSPOverrideResponder|OCSPProxyURL|OCSPResponderCertificateFile|OCSPResponderTimeout|OCSPResponseMaxAge|OCSPResponseTimeSkew|OCSPUseRequestNonce|OpenSSLConfCmd|Options|PassPhraseDialog|Protocol|ProxyCACertificateFile|ProxyCACertificatePath|ProxyCARevocationCheck|ProxyCARevocationFile|ProxyCARevocationPath|ProxyCheckPeerCN|ProxyCheckPeerExpire|ProxyCheckPeerName|ProxyCipherSuite|ProxyEngine|ProxyMachineCertificateChainFile|ProxyMachineCertificateFile|ProxyMachineCertificatePath|ProxyProtocol|ProxyVerify|ProxyVerifyDepth|RandomSeed|RenegBufferSize|Require|RequireSSL|SessionCache|SessionCacheTimeout|SessionTicketKeyFile|SessionTickets|SRPUnknownUserSeed|SRPVerifierFile|StaplingCache|StaplingErrorCacheTimeout|StaplingFakeTryLater|StaplingForceURL|StaplingResponderTimeout|StaplingResponseMaxAge|StaplingResponseTimeSkew|StaplingReturnResponderErrors|StaplingStandardCacheTimeout|StrictSNIVHostCheck|UserName|UseStapling|VerifyClient|VerifyDepth))\b
+      captures:
+        1: keyword.ssl.apacheconf
+    - match: (?i)\b(Substitute|SubstituteInheritBefore|SubstituteMaxLineLength)\b
+      captures:
+        1: keyword.substitute.apacheconf
+    - match: (?i)\b(Brotli(AlterETag|CompressionMaxInputBlock|CompressionQuality|CompressionWindow|FilterNote))\b
+      captures:
+        1: keyword.brotili.apacheconf
+    - match: (?i)\b(CookieDomain|CookieExpires|CookieName|CookieStyle|CookieTracking)\b
+      captures:
+        1: keyword.usertrack.apacheconf
+    - match: (?i)\b(VirtualDocumentRoot|VirtualDocumentRootIP|VirtualScriptAlias|VirtualScriptAliasIP)\b
+      captures:
+        1: keyword.vhost_alias.apacheconf
+    - match: \b(php_value|php_flag|php_admin_value|php_admin_flag)\b(\s+(.+?)(\s+(".+?"|.+?))?)?\s
+      captures:
+        1: keyword.php.apacheconf
+        3: entity.property.apacheconf
+        5: string.value.apacheconf
+    - match: '(%\{)((HTTP_USER_AGENT|HTTP_REFERER|HTTP_COOKIE|HTTP_FORWARDED|HTTP_HOST|HTTP_PROXY_CONNECTION|HTTP_ACCEPT|REMOTE_ADDR|REMOTE_HOST|REMOTE_PORT|REMOTE_USER|REMOTE_IDENT|REQUEST_METHOD|SCRIPT_FILENAME|PATH_INFO|QUERY_STRING|AUTH_TYPE|DOCUMENT_ROOT|SERVER_ADMIN|SERVER_NAME|SERVER_ADDR|SERVER_PORT|SERVER_PROTOCOL|SERVER_SOFTWARE|TIME_YEAR|TIME_MON|TIME_DAY|TIME_HOUR|TIME_MIN|TIME_SEC|TIME_WDAY|TIME|API_VERSION|THE_REQUEST|REQUEST_URI|REQUEST_FILENAME|IS_SUBREQ|HTTPS)|(.*?))(\})'
+      captures:
+        1: punctuation.variable.apacheconf
+        3: variable.env.apacheconf
+        4: variable.misc.apacheconf
+        5: punctuation.variable.apacheconf
+    - match: \b((text|image|application|video|audio)/.+?)\s
+      captures:
+        1: entity.mime-type.apacheconf
+    - match: (?i)\b(export|from|unset|set|on|off)\b
+      captures:
+        1: entity.helper.apacheconf
+    - match: \b(\d+)\b
+      captures:
+        1: constant.integer.apacheconf
+    - match: '\s(\[)(.*?)(\])\s'
+      captures:
+        1: punctuation.definition.flag.apacheconf
+        2: string.flag.apacheconf
+        3: punctuation.definition.flag.apacheconf
