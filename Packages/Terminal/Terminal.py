@@ -26,7 +26,7 @@ def get_setting(key, default=None):
     os_specific_settings = {}
     if os.name == 'nt':
         os_specific_settings = sublime.load_settings('Terminal (Windows).sublime-settings')
-    elif os.name == 'darwin':
+    elif sys.platform == 'darwin':
         os_specific_settings = sublime.load_settings('Terminal (OSX).sublime-settings')
     else:
         os_specific_settings = sublime.load_settings('Terminal (Linux).sublime-settings')
@@ -56,10 +56,15 @@ class TerminalSelector():
         default = None
 
         if os.name == 'nt':
-            if os.path.exists(os.environ['ProgramFiles'] + '\\Git\\git-bash.exe'):
-                default = os.environ['ProgramFiles'] + '\\Git\\git-bash.exe'
-            elif os.path.exists(os.environ['ProgramFiles(x86)'] + '\\Git\\git-bash.exe'):
-                default = os.environ['ProgramFiles(x86)'] + '\\Git\\git-bash.exe'
+            git_shells = {
+                'git-bash-x64': os.environ['ProgramFiles'] + r'\Git\git-bash.exe',
+                'git-bash-x86': os.environ['ProgramFiles(x86)'] + r'\Git\git-bash.exe',
+            }
+
+            if os.path.exists(git_shells['git-bash-x64']):
+                default = git_shells['git-bash-x64']
+            elif os.path.exists(git_shells['git-bash-x86']):
+                default = git_shells['git-bash-x86']
             elif os.path.exists(os.environ['SYSTEMROOT'] +
                     '\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'):
                 # This mimics the default powershell colors since calling
@@ -96,19 +101,22 @@ class TerminalSelector():
                 os.chmod(default, 0o755)
 
         else:
-            ps = 'ps -eo comm | grep -E "gnome-session|ksmserver|' + \
-                'xfce4-session|lxsession|mate-panel|cinnamon-sessio" | grep -v grep'
+            ps = 'ps -eo comm,args | grep -E "^(gnome-session|ksmserver|' + \
+                'xfce4-session|lxsession|mate-panel|cinnamon-sessio)" | grep -v grep'
             wm = [x.replace("\n", '') for x in os.popen(ps)]
             if wm:
-                if 'gnome-session' in wm[0] or wm[0] == 'cinnamon-sessio':
-                    default = 'gnome-terminal'
-                elif wm[0] == 'xfce4-session':
+                if wm[0].startswith('gnome-session') or wm[0].startswith('cinnamon-sessio'):
+                    if 'pantheon' in wm[0]:
+                        default = 'pantheon-terminal'
+                    else:
+                        default = 'gnome-terminal'
+                elif wm[0].startswith('xfce4-session'):
                     default = 'xfce4-terminal'
-                elif wm[0] == 'ksmserver':
+                elif wm[0].startswith('ksmserver'):
                     default = 'konsole'
-                elif wm[0] == 'lxsession':
+                elif wm[0].startswith('lxsession'):
                     default = 'lxsession-default-terminal'
-                elif wm[0] == 'mate-panel':
+                elif wm[0].startswith('mate-panel'):
                     default = 'mate-terminal'
             if not default:
                 default = 'xterm'
