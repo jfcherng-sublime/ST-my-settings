@@ -14,13 +14,13 @@ python-markdown/
 PyV8/
 pyyaml/
 ssl-linux/
+
 # packages
 Codecs33/
 ConvertToUTF8/
 HTML-CSS-JS Prettify/
 IntelliDocs/
 LaTeXTools/
-!SublimeAStyleFormatter/
 SublimeLinter*/
 SublimeREPL/
 
