@@ -110,12 +110,12 @@ class TerminalSelector():
                         default = 'pantheon-terminal'
                     else:
                         default = 'gnome-terminal'
+                elif wm[0].startswith('lxsession'):
+                    default = 'lxsession-default-terminal'
                 elif wm[0].startswith('xfce4-session'):
                     default = 'xfce4-terminal'
                 elif wm[0].startswith('ksmserver'):
                     default = 'konsole'
-                elif wm[0].startswith('lxsession'):
-                    default = 'lxsession-default-terminal'
                 elif wm[0].startswith('mate-panel'):
                     default = 'mate-terminal'
             if not default:
