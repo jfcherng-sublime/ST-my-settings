@@ -7,6 +7,7 @@ jsonschema/
 markupsafe/
 mdpopups/
 package_setting_context/
+pathlib/
 pygments/
 pymdownx/
 python-jinja2/
@@ -14,6 +15,7 @@ python-markdown/
 PyV8/
 pyyaml/
 ssl-linux/
+sublime_lib/
 
 # packages
 Codecs33/
