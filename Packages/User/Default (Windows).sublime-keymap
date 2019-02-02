@@ -392,8 +392,8 @@
     { "keys": ["alt+e", "alt+m"], "command": "select_emoji" },
     { "keys": ["ctrl+shift+c"], "command": "color_picker" },
     // gitGutter
-    { "keys": ["alt+d", "alt+i"], "command": "git_gutter_prev_change" },
-    { "keys": ["alt+d", "alt+k"], "command": "git_gutter_next_change" },
+    { "keys": ["alt+d", "alt+i"], "command": "prev_modification" },
+    { "keys": ["alt+d", "alt+k"], "command": "next_modification" },
     // plugin: Insert Nums
     { "keys": ["alt+m", "alt+i"], "command": "prompt_insert_nums" },
     // plugin: IntelliDocs
