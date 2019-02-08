@@ -118,7 +118,7 @@
     // "default": Show the previous git state in the popup
     // "diff": Compare the git state to the working state and highlight
     //         the differences in the popup
-    "diff_popup_default_mode": "default",
+    "diff_popup_default_mode": "diff",
 
     // Do not show the Diff Popup if a line contains these regions
     // Useful for making sure GitGutter does not fight with other popups.
@@ -185,7 +185,7 @@
     // Determines whether GitGutter shows status information in the status bar.
     // Set false to disable status information.
     // Set true to show information using the "status_bar_text" template.
-    "show_status_bar_text": true,
+    "show_status_bar_text": false,
 
     // STATUS BAR TEXT TEMPLATE
     // The array is joined to a single string and passed to jinja2 template
