@@ -164,7 +164,7 @@
         "highlight": "var(foreground)",
         "implicit_selection_foreground": "true",
         "inactive_selection": "color(White alpha(0.2))",
-        "invisibles": "color(White blend(color(Black) 25%))",
+        "invisibles": "color(White blend(color(Black) 20%))",
         "line_highlight": "color(White blend(color(Black) 15%))",
         "misspelling": "var(Pink300)",
         "phantom_css": "html { color: var(--foreground); --yellowish: #FFC966; --background: #262626; --bluish: #75ADE6; --foreground: #E8E8E8; --greenish: #A9D274; --redish: #FF6673; --orangish: #FC9569; background-color: transparent; --purplish: #BF94E6; } a { color: var(--bluish); } #inline-error .error a { color: var(--foreground); background-color: color(var(--redish) blend(var(--background) 30%)); font-size: 1.1rem; font-weight: normal; } #inline-error .error-arrow { border-left-color: color(var(--redish) blend(var(--background) 30%)); } #inline-error .error { background-color: color(var(--redish) blend(var(--background) 30%)); }",
