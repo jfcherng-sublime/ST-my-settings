@@ -1,18 +1,6 @@
+// @see https://www.sublimetext.com/docs/3/themes.html
 [
-    // fix the missing status bar icons
-    {
-        "class": "panel_button_control",
-        "layer0.texture": "Theme - Default/common/dark/panels_button.png",
-        "layer0.opacity": { "target": 0.4, "speed": 4.0, "interpolation": "smoothstep" },
-        "content_margin": [8, 8, 8, 8]
-    },
-    {
-        "class": "panel_button_control",
-        "attributes": ["hover"],
-        "layer0.opacity": { "target": 0.6, "speed": 4.0, "interpolation": "smoothstep" },
-    },
-
-    // @see: https://gist.github.com/OdatNurd/4bb596e6162693567642b7aef4cab4c0
+    // @see https://gist.github.com/OdatNurd/4bb596e6162693567642b7aef4cab4c0
 
     // VCS badges
     {
@@ -21,7 +9,7 @@
         "layer0.texture": "Theme - Default/common/status_untracked.png",
         "layer0.tint": "color(var(--yellowish) blend(rgb(255, 255, 255) 60%))",
         "layer0.opacity": 1.0,
-        "content_margin": 6
+        "content_margin": 6,
     },
     {
         "class": "vcs_status_badge",
@@ -29,7 +17,7 @@
         "layer0.texture": "Theme - Default/common/status_modified.png",
         "layer0.tint": "color(var(--bluish) min-contrast(var(--background) 2.5))",
         "layer0.opacity": 1.0,
-        "content_margin": 6
+        "content_margin": 6,
     },
     {
         "class": "vcs_status_badge",
@@ -37,7 +25,7 @@
         "layer0.texture": "Theme - Default/common/status_staged.png",
         "layer0.tint": "color(var(--purplish) min-contrast(var(--background) 2.5))",
         "layer0.opacity": 1.0,
-        "content_margin": 6
+        "content_margin": 6,
     },
     {
         "class": "vcs_status_badge",
@@ -45,7 +33,7 @@
         "layer0.texture": "Theme - Default/common/status_staged.png",
         "layer0.tint": "color(var(--greenish) min-contrast(var(--background) 2.5))",
         "layer0.opacity": 1.0,
-        "content_margin": 6
+        "content_margin": 6,
     },
     {
         "class": "vcs_status_badge",
@@ -53,12 +41,12 @@
         "layer0.texture": "Theme - Default/common/status_unmerged.png",
         "layer0.tint": "color(var(--redish) min-contrast(var(--background) 2.5))",
         "layer0.opacity": 1.0,
-        "content_margin": 6
+        "content_margin": 6,
     },
     {
         "class": "sidebar_label",
         "parents": [{"class": "file_system_entry", "attributes": ["ignored"]}],
-        "color": "color(var(--background) blend(rgb(255, 255, 255) 70%))"
+        "color": "color(var(--background) blend(rgb(255, 255, 255) 70%))",
     },
     {
         "class": "sidebar_label",
@@ -66,56 +54,98 @@
             {"class": "window", "attributes": ["file_light"]},
             {"class": "file_system_entry", "attributes": ["ignored"]}
         ],
-        "color": "color(var(--background) blend(rgb(0, 0, 0) 70%))"
+        "color": "color(var(--background) blend(rgb(0, 0, 0) 70%))",
     },
 
-    // VCS Filenames.
+    // VCS filenames
     {
         "class": "sidebar_label",
         "parents": [{"class": "file_system_entry", "attributes": ["untracked"]}],
-        "color": "color(var(--yellowish) blend(rgb(255, 255, 255) 75%))"
+        "color": "color(var(--yellowish) blend(rgb(255, 255, 255) 75%))",
     },
     {
         "class": "sidebar_label",
         "parents": [{"class": "file_system_entry", "attributes": ["modified"]}],
-        "color": "color(var(--bluish) blend(rgb(255, 255, 255) 75%))"
+        "color": "color(var(--bluish) blend(rgb(255, 255, 255) 75%))",
     },
     {
         "class": "sidebar_label",
         "parents": [{"class": "file_system_entry", "attributes": ["staged"]}],
-        "color": "color(var(--purplish) blend(rgb(255, 255, 255) 75%))"
+        "color": "color(var(--purplish) blend(rgb(255, 255, 255) 75%))",
     },
     {
         "class": "sidebar_label",
         "parents": [{"class": "file_system_entry", "attributes": ["added"]}],
-        "color": "color(var(--greenish) blend(rgb(255, 255, 255) 75%))"
+        "color": "color(var(--greenish) blend(rgb(255, 255, 255) 75%))",
     },
     {
         "class": "sidebar_label",
         "parents": [{"class": "file_system_entry", "attributes": ["unmerged"]}],
-        "color": "color(var(--redish) blend(rgb(255, 255, 255) 75%))"
+        "color": "color(var(--redish) blend(rgb(255, 255, 255) 75%))",
     },
 
-    // @see: https://github.com/braver/FileIcons#customize
+    // @see https://github.com/braver/FileIcons#customize
 
     // file icons
-    {
-        "class": "sidebar_tree"
-    },
     {
         "class": "icon_file_type",
         "layer0.tint": [255, 255, 255],
         "layer0.opacity": 0.75,
-        "content_margin": [8, 8]
+        "content_margin": [8, 8],
     },
     {
         "class": "icon_file_type",
         "parents": [{"class": "tree_row", "attributes": ["hover"]}],
-        "layer0.opacity": 0.5
+        // "layer0.opacity": 0.5,
     },
     {
         "class": "icon_file_type",
         "parents": [{"class": "tree_row", "attributes": ["selected"]}],
-        "layer0.opacity": 1.0
+        // "layer0.opacity": 1.0,
+    },
+
+//
+// STATUS BAR
+//
+    {
+        "class": "status_bar",
+        "content_margin": [6, 2, 6, 2], // make bar thinner
+        // change the bg color
+        "layer1.tint": "color(#00f)",
+        "layer1.opacity": 0.2,
+    },
+    {
+        "class": "label_control",
+        "parents": [{"class": "status_bar"}],
+        "fg": "color(#ddd)",
+        "font.size": 12,
+    },
+    // fix the missing status bar icons
+    {
+        "class": "panel_button_control",
+        "layer0.texture": "Theme - Default/common/dark/panels_button.png",
+        "layer0.opacity": { "target": 0.4, "speed": 4.0, "interpolation": "smoothstep" },
+        "content_margin": [12, 11]
+    },
+    {
+        "class": "panel_button_control",
+        "attributes": ["hover"],
+        "layer0.opacity": { "target": 0.6, "speed": 4.0, "interpolation": "smoothstep" },
+    },
+//
+// SIDEBAR
+//
+    {
+        "class": "sidebar_heading",
+        "fg": "color(#aaa)",
+    },
+    {
+        "class": "sidebar_tree",
+        "row_padding": [6, 3, 6, 3], // make rows more compact
+    },
+    {
+        "class": "tree_row",
+        "attributes": ["selectable", "hover"],
+        "layer0.opacity": 0.75,
     },
 ]
