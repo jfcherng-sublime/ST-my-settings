@@ -1,5 +1,5 @@
 {
-    "statusbar_branch": true,
+    "statusbar_branch": false,
     "path_to_git_unixes": "", //example: /usr/local/git/bin/git
     "syntax_blame": "Packages/my_language/Git Blame.sublime-syntax"
 }
