@@ -2,7 +2,6 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"Codecs33"
 	],
 	"install_prereleases":
 	[
@@ -82,7 +81,6 @@
 		"SublimeLinter-contrib-sublime-syntax",
 		"SublimeLinter-contrib-yamllint",
 		"SublimeLinter-eslint",
-		"SublimeLinter-flake8",
 		"SublimeLinter-gcc",
 		"SublimeLinter-json",
 		"SublimeLinter-php",
