@@ -88,6 +88,9 @@
         {"name": "latexmath_inline", "position": 511},
     ],
     "user_brackets": [
+        ///////////////////
+        // add new rules //
+        ///////////////////
         // Angle
         {
             "name": "angle",
@@ -230,6 +233,36 @@
         {"name": "cmake", "position": 517},
         {"name": "s840d_gcode", "position": 518},
         {"name": "s840d_hmi", "position": 519},
+        /////////////////////
+        // revise built-in //
+        /////////////////////
+        {
+            "name": "curly",
+            "scope_exclude": [
+                "string",
+                // "comment",
+                "source.regexp constant.character.escape",
+                "source.yaml-tmlanguage constant.character.escape",
+            ],
+        },
+        {
+            "name": "round",
+            "scope_exclude": [
+                "string",
+                // "comment",
+                "source.regexp constant.character.escape",
+                "punctuation.definition.case-pattern.shell",
+                "source.yaml-tmlanguage constant.character.escape",
+            ],
+        },
+        {
+            "name": "square",
+            "scope_exclude": [
+                "string",
+                "source.regexp constant.character.escape",
+                // "comment",
+            ],
+        },
     ],
 
     // Define region highlight styles
