@@ -9,6 +9,10 @@
     /**************************
      *    Built-in commands   *
      **************************/
+    // diff-related requires ST 3190
+    { "keys": ["alt+d", "alt+i"],   "command": "prev_modification"   },
+    { "keys": ["alt+d", "alt+k"],   "command": "next_modification"   },
+    { "keys": ["ctrl+k", "ctrl+z"], "command": "revert_modification" },
     // "insert a tab" rather than "insert the best completion" while pressing Tab at BOL
     {
         "keys": ["tab"], "command": "indent",
@@ -391,9 +395,8 @@
     // plugin: Emoji
     { "keys": ["alt+e", "alt+m"], "command": "select_emoji" },
     { "keys": ["ctrl+shift+c"], "command": "color_picker" },
-    // gitGutter
-    { "keys": ["alt+d", "alt+i"], "command": "prev_modification" },
-    { "keys": ["alt+d", "alt+k"], "command": "next_modification" },
+    // plugin: GitGutter
+    { "keys": ["ctrl+alt+shift+z"], "command": "git_gutter_revert_change" },
     // plugin: Insert Nums
     { "keys": ["alt+m", "alt+i"], "command": "prompt_insert_nums" },
     // plugin: IntelliDocs
