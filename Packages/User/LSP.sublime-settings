@@ -1,8 +1,6 @@
 {
-    "clients":
-    {
-        "cquery":
-        {
+    "clients": {
+        "cquery": {
             // https://github.com/cquery-project/cquery/wiki/Build-%28CMake%29
             // Note: The main project must be the first directory in a ST project.
             "enabled": true,
@@ -14,15 +12,13 @@
                 "cacheDirectory": "/tmp/cquery",
             },
         },
-        "pyls":
-        {
+        "pyls": {
             // pip install python-language-server pyflakes pydocstyle pycodestyle
             "enabled": true,
             "command": ["pyls"],
             "settings": {
                 "pyls": {
-                    "plugins":
-                    {
+                    "plugins": {
                         // We have SublimeLinter-flake8 already
                         "pyflakes": {
                             "enabled": true,
@@ -59,8 +55,7 @@
             "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
             "languageId": "php"
         },
-        "intelephense-ls":
-        {
+        "intelephense-ls": {
             // npm i -g intelephense-server
             // yarn global add intelephense-server
             "enabled": true,
@@ -74,11 +69,10 @@
             "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
             "languageId": "php",
             "initializationOptions": {
-                "storagePath": "C:/Users/Clover/AppData/Local/Temp/intelephense-ls",
+                "storagePath": "E:/_Data/intelephense-ls",
             },
         },
-        "intelephense":
-        {
+        "intelephense": {
             // https://github.com/bmewburn/intelephense-docs
             // npm -g i intelephense
             // yarn global add intelephense
@@ -93,7 +87,7 @@
             "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
             "languageId": "php",
             "initializationOptions": {
-                "storagePath": "C:/Users/Clover/AppData/Local/Temp/intelephense-ls",
+                "storagePath": "E:/_Data/intelephense",
             },
         },
     },
