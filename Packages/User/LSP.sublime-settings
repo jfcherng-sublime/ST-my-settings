@@ -77,6 +77,25 @@
                 "storagePath": "C:/Users/Clover/AppData/Local/Temp/intelephense-ls",
             },
         },
+        "intelephense":
+        {
+            // https://github.com/bmewburn/intelephense-docs
+            // npm -g i intelephense
+            // yarn global add intelephense
+            "enabled": false,
+            "command": [
+                "node",
+                // "C:/Users/Clover/AppData/Roaming/npm/node_modules/intelephense/lib/intelephense.js",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/intelephense/lib/intelephense.js",
+                "--stdio",
+            ],
+            "scopes": ["source.php", "embedding.php"],
+            "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
+            "languageId": "php",
+            "initializationOptions": {
+                "storagePath": "C:/Users/Clover/AppData/Local/Temp/intelephense-ls",
+            },
+        },
     },
     "show_view_status": true,
     "auto_show_diagnostics_panel": false,
