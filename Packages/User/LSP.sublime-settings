@@ -16,7 +16,7 @@
         },
         "pyls":
         {
-            // pip install python-language-server
+            // pip install python-language-server pyflakes pydocstyle pycodestyle
             "enabled": true,
             "command": ["pyls"],
             "settings": {
@@ -45,20 +45,20 @@
             ],
             "languageId": "python",
         },
-        // "phpls": {
-        //     // composer g require felixfbecker/language-server
-        //     "enabled": true,
-        //     "tcp_port": 5555,
-        //     "command": [
-        //         "php",
-        //         "C:/Users/Clover/AppData/Roaming/Composer/vendor/felixfbecker/language-server/bin/php-language-server.php",
-        //         "--memory-limit=2048M",
-        //         "--tcp-server=0.0.0.0:5555"
-        //     ],
-        //     "scopes": ["source.php"],
-        //     "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
-        //     "languageId": "php"
-        // },
+        "phpls": {
+            // composer g require felixfbecker/language-server
+            "enabled": false,
+            "tcp_port": 5555,
+            "command": [
+                "php",
+                "C:/Users/Clover/AppData/Roaming/Composer/vendor/felixfbecker/language-server/bin/php-language-server.php",
+                "--memory-limit=2048M",
+                "--tcp-server=0.0.0.0:5555"
+            ],
+            "scopes": ["source.php"],
+            "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
+            "languageId": "php"
+        },
         "intelephense-ls":
         {
             // npm i -g intelephense-server
