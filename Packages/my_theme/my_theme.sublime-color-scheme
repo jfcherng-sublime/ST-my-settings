@@ -1,6 +1,6 @@
 {
-    "name": "Monokai Soda Mod",
-    "author": "Jack Cherng (jfcherng)",
+    "name": "Wicked Rainbow",
+    "author": "Jack Cherng <jfcherng@gmail.com>",
     "variables": {
         //////////
         // base //
@@ -663,6 +663,29 @@
             "font_style": "bold",
             "foreground": "var(Orange)",
             "scope": "meta.diff.header.from-file, punctuation.definition.from-file, meta.diff.header.to-file, punctuation.definition.to-file",
+        },
+        //////////////////
+        // ASS subitlte //
+        //////////////////
+        {
+            "background": "var(Brown800)",
+            "font_style": "bold",
+            "scope": "meta.section.ass",
+        },
+        {
+            "foreground": "var(Blue200)",
+            "font_style": "italic",
+            "scope": "storage.type.comment.ass, storage.type.comment.template.ass, storage.type.comment.code.ass",
+        },
+        {
+            "foreground": "var(Orange600)",
+            "font_style": "bold",
+            "scope": "entity.name.style.ass, variable.parameter.style.ass",
+        },
+        {
+            "foreground": "var(PinkA100)",
+            "font_style": "bold",
+            "scope": "string.unquoted.font.ass",
         },
         ////////////////////////
         // brackethighlighter //
