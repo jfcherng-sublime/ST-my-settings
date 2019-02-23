@@ -58,7 +58,7 @@
         "intelephense-ls": {
             // npm i -g intelephense-server
             // yarn global add intelephense-server
-            "enabled": true,
+            "enabled": false,
             "command": [
                 "node",
                 // "C:/Users/Clover/AppData/Roaming/npm/node_modules/intelephense-server/lib/server.js",
@@ -76,7 +76,7 @@
             // https://github.com/bmewburn/intelephense-docs
             // npm -g i intelephense
             // yarn global add intelephense
-            "enabled": false,
+            "enabled": true,
             "command": [
                 "node",
                 // "C:/Users/Clover/AppData/Roaming/npm/node_modules/intelephense/lib/intelephense.js",
@@ -93,16 +93,21 @@
     },
     "show_view_status": true,
     "auto_show_diagnostics_panel": false,
+    "auto_show_diagnostics_panel_level": 3,
     "show_diagnostics_phantoms": false,
+    "show_diagnostics_count_in_view_status": true,
     "show_diagnostics_in_view_status": true,
+    "show_diagnostics_severity_level": 3,
     "diagnostics_highlight_style": "box",
     "highlight_active_signature_parameter": true,
     "document_highlight_style": "underline",
     "diagnostics_gutter_marker": "dot",
+    "show_code_actions_bulb": true,
     "complete_all_chars": true,
     "completion_hint_type": "auto",
     "only_show_lsp_completions": false,
     "resolve_completion_for_snippets": false,
+    "show_references_in_quick_panel": false,
     "log_payloads": false,
     "log_debug": false,
     "log_server": false,
