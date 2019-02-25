@@ -29,7 +29,14 @@
                         },
                         "pycodestyle": {
                             "enabled": true,
-                            "ignore": ["E2", "E5"],
+                            "ignore": [
+                                "E2",
+                                "E5",
+                                // PEP 8 suggests putting multiline binary operator in a new line
+                                // so we disable W503 (PEP 8) and enable W504
+                                // https://www.python.org/dev/peps/pep-0008/#should-a-line-break-before-or-after-a-binary-operator
+                                "W503",
+                            ],
                         },
                     },
                 },
