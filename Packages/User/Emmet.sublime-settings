@@ -7,5 +7,5 @@
     // Disables PyV8 auto-update. Useful for users who installed PyV8
     // manually from https://github.com/emmetio/pyv8-binaries because
     // of local proxy restrictions
-    "disable_pyv8_update": true,
+    "disable_pyv8_update": false,
 }

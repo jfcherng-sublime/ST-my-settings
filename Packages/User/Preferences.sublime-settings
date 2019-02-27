@@ -170,7 +170,6 @@
 	"ignored_packages":
 	[
 		"Codecs33",
-		"Emmet",
 		"RestructuredText",
 		"Vintage"
 	],
