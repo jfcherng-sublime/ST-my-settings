@@ -148,7 +148,7 @@
         "foreground": "var(White)",
     },
     "globals": {
-        "active_guide": "color(White alpha(0.2))",
+        "active_guide": "color(White alpha(0.3))",
         "background": "var(background)",
         "bracket_contents_foreground": "var(LightBlue300)",
         "bracket_contents_options": "underline",
@@ -165,7 +165,7 @@
         "implicit_selection_foreground": "true",
         "inactive_selection": "color(White alpha(0.2))",
         "invisibles": "color(White blend(color(Black) 25%))",
-        "line_highlight": "color(White blend(color(Black) 15%))",
+        "line_highlight": "color(color(White blend(color(Black) 30%)) alpha(50%))",
         "misspelling": "var(Pink300)",
         "phantom_css": "html { color: var(--foreground); --yellowish: #FFC966; --background: #262626; --bluish: #75ADE6; --foreground: #E8E8E8; --greenish: #A9D274; --redish: #FF6673; --orangish: #FC9569; background-color: transparent; --purplish: #BF94E6; } a { color: var(--bluish); } #inline-error .error a { color: var(--foreground); background-color: color(var(--redish) blend(var(--background) 30%)); font-size: 1rem; font-weight: normal; } #inline-error .error-arrow { border-left-color: color(var(--redish) blend(var(--background) 30%)); } #inline-error .error { background-color: color(var(--redish) blend(var(--background) 30%)); }",
         "popup_css": "html { color: var(--foreground); --yellowish: #FFC966; --background: #262626; --bluish: #75ADE6; --foreground: #E8E8E8; --greenish: #A9D274; --redish: #FF6673; --orangish: #FC9569; background-color: color(var(--background) blend(#FFF 95%)); --purplish: #BF94E6; } a { color: var(--bluish); } html.light { background-color: color(var(--background) blend(#000 95%)); } #show-scope a { font-size: 1rem; } #show-scope { padding: 0.5rem; }",
@@ -630,9 +630,9 @@
             "name": "Shell - variable punctuation",
             "scope": "punctuation.definition.variable.shell, meta.group.expansion punctuation.section, meta.group.arithmetic.shell, meta.group.expansion.arithmetic.shell",
         },
-        //////////
-        // diff //
-        //////////
+        ///////////////////
+        // diff (syntax) //
+        ///////////////////
         {
             "foreground": "var(foreground)",
             "name": "diff.header",
@@ -663,6 +663,33 @@
             "font_style": "bold",
             "foreground": "var(Orange)",
             "scope": "meta.diff.header.from-file, punctuation.definition.from-file, meta.diff.header.to-file, punctuation.definition.to-file",
+        },
+        //////////////////////
+        // inline diff (ST) //
+        //////////////////////
+        {
+            "background": "color(var(background) blend(var(Green) 80%))",
+            "name": "ST diff inserted",
+            "scope": "diff.inserted",
+            "foreground_adjust": "l(- 10%)",
+        },
+        {
+            "background": "color(var(background) blend(var(Green) 50%))",
+            "name": "ST diff inserted char",
+            "scope": "diff.inserted.char",
+            "foreground_adjust": "l(+ 10%)",
+        },
+        {
+            "background": "color(var(background) blend(var(Red) 80%))",
+            "name": "ST diff deleted",
+            "scope": "diff.deleted",
+            "foreground_adjust": "l(- 10%)",
+        },
+        {
+            "background": "color(var(background) blend(var(Red) 50%))",
+            "name": "ST diff deleted char",
+            "scope": "diff.deleted.char",
+            "foreground_adjust": "l(+ 10%)",
         },
         //////////////////
         // ASS subitlte //

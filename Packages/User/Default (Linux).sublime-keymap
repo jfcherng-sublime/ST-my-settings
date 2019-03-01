@@ -13,6 +13,7 @@
     { "keys": ["alt+d", "alt+i"],   "command": "prev_modification"   },
     { "keys": ["alt+d", "alt+k"],   "command": "next_modification"   },
     { "keys": ["ctrl+k", "ctrl+z"], "command": "revert_modification" },
+    { "keys": ["ctrl+k", "ctrl+/"], "command": "toggle_inline_diff"  },
     // "insert a tab" rather than "insert the best completion" while pressing Tab at BOL
     {
         "keys": ["tab"], "command": "indent",
