@@ -442,10 +442,10 @@
     { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "source.css" } ] },
     { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "source.scss" } ] },
     // plugin: JsFormat
-    { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.js" } ] },
+    { "keys": ["ctrl+alt+f"], "command": "format_eslint", "context": [ { "key": "selector", "operator": "equal", "operand": "source.js" } ] },
     { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json" } ] },
-    { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.sublime-settings" } ] },
-    { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.sublimekeymap" } ] },
+    { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json.sublime.settings" } ] },
+    { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json.sublime.keymap" } ] },
     // plugin: php-cs-fix
     { "keys": ["ctrl+alt+f"], "command": "phpcs_fix_this_file", "args": {"tool": "Fixer"}, "context": [ { "key": "selector", "operator": "equal", "operand": "embedding.php" } ] },
     /**************************
