@@ -1,0 +1,48 @@
+[{
+    "id": "view",
+    "children": [{
+        "id": "indentation",
+        "children": [{
+            "caption": "-",
+        }, {
+            "caption": "Auto Set Indentation",
+            "command": "auto_set_indentation",
+        }, {
+            "caption": "-",
+        }]
+    }]
+}, {
+    "id": "preferences",
+    "children": [{
+        "id": "package-settings",
+        "children": [{
+            "caption": "AutoSetIndentation",
+            "children": [{
+                "caption": "-",
+            }, {
+                "caption": "Settings",
+                "command": "edit_settings",
+                "args": {
+                    "base_file": "${packages}/AutoSetIndentation/AutoSetIndentation.sublime-settings",
+                    "default": "{\n\t$0\n}\n",
+                },
+            }, {
+                "caption": "-",
+            }, {
+                "caption": "README",
+                "command": "open_file",
+                "args": {
+                    "file": "${packages}/AutoSetIndentation/README.md",
+                },
+            }, {
+                "caption": "Changelog",
+                "command": "open_file",
+                "args": {
+                    "file": "${packages}/AutoSetIndentation/CHANGELOG.md",
+                },
+            }, {
+                "caption": "-",
+            }]
+        }]
+    }]
+}]
