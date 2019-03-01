@@ -14,6 +14,7 @@
     { "keys": ["alt+d", "alt+k"],   "command": "next_modification"   },
     { "keys": ["ctrl+k", "ctrl+z"], "command": "revert_modification" },
     { "keys": ["ctrl+k", "ctrl+/"], "command": "toggle_inline_diff"  },
+    { "keys": ["alt+shift+o", "alt+shift+m"], "command": "sublime_merge_open_repo" },
     // "insert a tab" rather than "insert the best completion" while pressing Tab at BOL
     {
         "keys": ["tab"], "command": "indent",
@@ -404,7 +405,7 @@
     { "keys": ["ctrl+alt+h"], "command": "intelli_docs" },
     // plugin: MultiEditUtils
     { "keys": ["shift+escape"], "command": "jump_to_last_region"   },
-    { "keys": ["ctrl+alt+u"],   "command": "add_last_selection"    },
+    { "keys": ["ctrl+alt+r"], "command": "remove_empty_regions", "context": [{ "key": "setting.is_widget", "operator": "equal", "operand": false }] },
     // { "keys": ["ctrl+alt+c"],   "command": "cycle_through_regions" },
     { "keys": ["ctrl+alt+n"],   "command": "normalize_region_ends" },
     { "keys": ["ctrl+alt+,"],   "command": "split_selection" },

@@ -4,22 +4,22 @@
         {
             "keymaps": {
                 "fj ": "$",
-                "dk ": "->"
+                "dk ": "->",
             },
-            "syntax_list": ["source.php"]
+            "syntax_list": ["source.php"],
         },
         {
             "keymaps": {
-                "fj ": "$"
+                "fj ": "$",
             },
-            "syntax_list": ["SCSS", "source.shell", "source.js"]
+            "syntax_list": ["SCSS", "source.shell", "source.js"],
         },
         {
             "keymaps": {
                 "fj ": "*",
-                "dk ": "->"
+                "dk ": "->",
             },
-            "syntax_list": ["source.c", "source.c++", "source.c++.11", "C#", "Objective-C", "Objective-C++"]
+            "syntax_list": ["source.c", "source.c++", "source.c++.11", "C#", "Objective-C", "Objective-C++"],
         },
     ]
 }
