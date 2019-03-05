@@ -502,8 +502,8 @@
         {
             "font_style": "bold",
             "foreground": "var(foreground)",
-            "name": "PHP - Definition Punctuation in double quotes",
-            "scope": "string.quoted.double.php punctuation.definition.expression.php",
+            "name": "PHP - Definition Punctuation in double quotes or Heredoc",
+            "scope": "string.quoted.double.php punctuation.definition.expression.php, string.unquoted.heredoc.php punctuation.definition.expression.php",
         },
         {
             "font_style": "bold",
