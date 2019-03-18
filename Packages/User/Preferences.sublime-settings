@@ -172,6 +172,7 @@
 	[
 		"Codecs33",
 		"RestructuredText",
+		"SublimeLinter-gcc",
 		"Vintage"
 	],
 	"ignored_words":

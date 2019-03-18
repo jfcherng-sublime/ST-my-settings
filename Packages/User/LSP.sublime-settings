@@ -1,9 +1,21 @@
 {
     "clients": {
+        "clangd": {
+            "enabled": true,
+            "command": [
+                "clangd",
+                "-function-arg-placeholders=0",
+                "-header-insertion-decorators=1",
+                "-index",
+            ],
+            "scopes": ["source.c", "source.c++", "source.objc", "source.objc++"],
+            "syntaxes": ["Packages/C++/C.sublime-syntax", "Packages/C++/C++.sublime-syntax", "Packages/Objective-C/Objective-C.sublime-syntax", "Packages/Objective-C/Objective-C++.sublime-syntax"],
+            "languageId": "cpp",
+        },
         "cquery": {
             // https://github.com/cquery-project/cquery/wiki/Build-%28CMake%29
             // Note: The main project must be the first directory in a ST project.
-            "enabled": true,
+            "enabled": false,
             "command": ["cquery"],
             "scopes": ["source.c", "source.c++", "source.objc", "source.objc++"],
             "syntaxes": ["Packages/C++/C.sublime-syntax", "Packages/C++/C++.sublime-syntax", "Packages/Objective-C/Objective-C.sublime-syntax", "Packages/Objective-C/Objective-C++.sublime-syntax"],
@@ -57,7 +69,7 @@
                 "php",
                 "C:/Users/Clover/AppData/Roaming/Composer/vendor/felixfbecker/language-server/bin/php-language-server.php",
                 "--memory-limit=2048M",
-                "--tcp-server=0.0.0.0:5555"
+                "--tcp-server=0.0.0.0:5555",
             ],
             "scopes": ["source.php"],
             "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
