@@ -13,6 +13,7 @@
             },
         },
         "pyls": {
+            // pip install -U git+https://github.com/PyCQA/pycodestyle.git
             // pip install python-language-server pyflakes pydocstyle pycodestyle
             "enabled": true,
             "command": ["pyls"],
