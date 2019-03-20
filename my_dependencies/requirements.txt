@@ -1,10 +1,9 @@
 # This is an implicit value, here for clarity
 --index https://pypi.python.org/simple/
 
+compdb
+compiledb
 markdown
 pymdown-extensions
-python-language-server
-pydocstyle
-pyflakes
-pycodestyle
+python-language-server[all]
 yamllint

@@ -1,7 +1,7 @@
 {
   "author": "Jack Cherng",
   "dependencies": {
-    "eslint": "^5.0.1",
-    "intelephense-server": "^0.8.8"
+    "eslint": "^5.15.2",
+    "intelephense": "^1.0.8"
   }
 }

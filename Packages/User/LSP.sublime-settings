@@ -25,8 +25,7 @@
             },
         },
         "pyls": {
-            // pip install -U git+https://github.com/PyCQA/pycodestyle.git
-            // pip install python-language-server pyflakes pydocstyle pycodestyle
+            // pip install -U python-language-server[all]
             "enabled": true,
             "command": ["pyls"],
             "settings": {
@@ -74,23 +73,6 @@
             "scopes": ["source.php"],
             "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
             "languageId": "php"
-        },
-        "intelephense-ls": {
-            // npm i -g intelephense-server
-            // yarn global add intelephense-server
-            "enabled": false,
-            "command": [
-                "node",
-                // "C:/Users/Clover/AppData/Roaming/npm/node_modules/intelephense-server/lib/server.js",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/intelephense-server/lib/server.js",
-                "--stdio",
-            ],
-            "scopes": ["source.php", "embedding.php"],
-            "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
-            "languageId": "php",
-            "initializationOptions": {
-                "storagePath": "E:/_Data/intelephense-ls",
-            },
         },
         "intelephense": {
             // https://github.com/bmewburn/intelephense-docs
