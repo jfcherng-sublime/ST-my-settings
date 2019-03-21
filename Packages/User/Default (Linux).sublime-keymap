@@ -404,6 +404,13 @@
     { "keys": ["alt+m", "alt+i"], "command": "prompt_insert_nums" },
     // plugin: IntelliDocs
     { "keys": ["ctrl+alt+h"], "command": "intelli_docs" },
+    // plugin: LSP
+    { "keys": ["f2"], "command": "lsp_symbol_rename" },
+    { "keys": ["f12"], "command": "lsp_symbol_definition"}, // LSP falls back to ST's built-in goto definition command in case LSP fails
+    { "keys": ["ctrl+alt+space"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": 0}] },
+    { "keys": ["alt+i"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": -1 }] },
+    { "keys": ["alt+k"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": 1 }] },
+    // { "keys": ["ctrl+alt+f"], "command": "lsp_format_document"},
     // plugin: MultiEditUtils
     { "keys": ["shift+escape"], "command": "jump_to_last_region"   },
     { "keys": ["ctrl+alt+r"], "command": "remove_empty_regions", "context": [{ "key": "setting.is_widget", "operator": "equal", "operand": false }] },
@@ -411,8 +418,6 @@
     { "keys": ["ctrl+alt+n"],   "command": "normalize_region_ends" },
     { "keys": ["ctrl+alt+,"],   "command": "split_selection" },
     // plugin: MultiFill
-    { "keys": ["ctrl+alt+d"],                 "command": "multi_select"     },
-    { "keys": ["ctrl+alt+s"],                 "command": "multi_select_all" },
     { "keys": ["super+alt+up"],               "command": "multi_window_compare", "args": { "direction": "up",   "sync":"false" } },
     { "keys": ["super+alt+down"],             "command": "multi_window_compare", "args": { "direction": "down", "sync":"false" } },
     { "keys": ["super+alt+shift+up"],         "command": "multi_window_compare", "args": { "direction": "up",   "sync":"true"  } },
@@ -423,6 +428,14 @@
     { "keys": ["super+ctrl+alt+right"],       "command": "multi_select_windows", "args": { "direction": "right" } },
     { "keys": ["super+ctrl+alt+shift+left"],  "command": "multi_move_window",    "args": { "direction": "left"  } },
     { "keys": ["super+ctrl+alt+shift+right"], "command": "multi_move_window",    "args": { "direction": "right" } },
+    // plugin: Power Cursor
+    { "keys": ["alt+="],  "command": "power_cursor_add" },
+    { "keys": ["alt++"],  "command": "power_cursor_add" },
+    { "keys": ["alt+-"],  "command": "power_cursor_remove", "context": [ { "key": "in_cursor_transition" } ] },
+    { "keys": ["alt+a"],  "command": "power_cursor_activate", "context": [ { "key": "in_cursor_transition" } ] },
+    { "keys": ["alt+["],  "command": "power_cursor_select", "args": { "forward": false } },
+    { "keys": ["alt+]"],  "command": "power_cursor_select", "args": { "forward": true } },
+    { "keys": ["escape"], "command": "power_cursor_exit", "context": [ { "key": "in_cursor_transition" } ] },
     // plugin: Project Manager
     { "keys": ["ctrl+alt+p"], "command": "project_manager" },
     // plugin: Scope Hunter
@@ -444,8 +457,9 @@
     // plugin: JsFormat
     { "keys": ["ctrl+alt+f"], "command": "format_eslint", "context": [ { "key": "selector", "operator": "equal", "operand": "source.js" } ] },
     { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json" } ] },
-    { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json.sublime.settings" } ] },
     { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json.sublime.keymap" } ] },
+    { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json.sublime.project" } ] },
+    { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json.sublime.settings" } ] },
     // plugin: php-cs-fix
     { "keys": ["ctrl+alt+f"], "command": "phpcs_fix_this_file", "args": {"tool": "Fixer"}, "context": [ { "key": "selector", "operator": "equal", "operand": "embedding.php" } ] },
     /**************************
