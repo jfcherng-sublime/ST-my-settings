@@ -31,7 +31,6 @@
             "settings": {
                 "pyls": {
                     "plugins": {
-                        // We have SublimeLinter-flake8 already
                         "pyflakes": {
                             "enabled": true,
                         },
