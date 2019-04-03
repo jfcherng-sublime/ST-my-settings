@@ -5,6 +5,7 @@
     "eslint": "^5.15.2",
     "intelephense": "^1.0.8",
     "lsp-tsserver": "~0.0.4",
-    "vscode-css-languageserver-bin": "^1.4.0"
+    "vscode-css-languageserver-bin": "^1.4.0",
+    "vscode-html-languageserver-bin": "^1.4.0"
   }
 }

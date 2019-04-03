@@ -131,6 +131,20 @@
             "syntaxes": ["Packages/TypeScript-TmLanguage/TypeScript.tmLanguage", "Packages/TypeScript-TmLanguage/TypeScriptReact.tmLanguage"],
             "languageId": "typescript",
         },
+        "vscode-html": {
+            // https://github.com/vscode-langservers/vscode-html-languageserver-bin
+            // npm -g i vscode-html-languageserver-bin
+            // yarn global add vscode-html-languageserver-bin
+            "enabled": true,
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-html-languageserver-bin/htmlServerMain.js",
+                "--stdio",
+            ],
+            "scopes": ["text.html.basic"],
+            "syntaxes": ["Packages/HTML/HTML.sublime-syntax"],
+            "languageId": "html",
+        },
         // CSS-family
         "vscode-css": {
             // https://github.com/vscode-langservers/vscode-css-languageserver-bin
