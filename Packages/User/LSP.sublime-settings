@@ -1,5 +1,30 @@
 {
     "clients": {
+        "bashls": {
+            // https://github.com/mads-hartmann/bash-language-server
+            // npm -g i bash-language-server
+            // yarn global add bash-language-server
+            "enabled": true,
+            "command":
+            [
+                "bash-language-server",
+                "start",
+            ],
+            "scopes": ["source.shell.bash"],
+            "syntaxes": ["Packages/ShellScript/Bash.sublime-syntax"],
+            "languageId": "bash",
+        },
+        "bashls-my": {
+            "enabled": true,
+            "command":
+            [
+                "bash-language-server",
+                "start",
+            ],
+            "scopes": ["source.shell"],
+            "syntaxes": ["Packages/ShellScriptImproved/Shell-Unix-Generic.sublime-syntax"],
+            "languageId": "bash",
+        },
         "clangd": {
             "enabled": true,
             "command": [
