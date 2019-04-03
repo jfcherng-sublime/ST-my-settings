@@ -91,6 +91,70 @@
                 "storagePath": "E:/_Data/intelephense",
             },
         },
+        // CSS-family
+        "vscode-css": {
+            // https://github.com/vscode-langservers/vscode-css-languageserver-bin
+            // npm -g i vscode-css-languageserver-bin
+            // yarn global add vscode-css-languageserver-bin
+            "enabled": true,
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-css-languageserver-bin/cssServerMain.js",
+                "--stdio",
+            ],
+            "settings": {
+                "css": {
+                    "validate": true,
+                    "lint": {
+                        "duplicateProperties": "warning",
+                        "unknownVendorSpecificProperties": "warning",
+                    },
+                },
+            },
+            "scopes": ["source.css"],
+            "syntaxes": ["Packages/CSS/CSS.sublime-syntax"],
+            "languageId": "css",
+        },
+        "vscode-sass": {
+            "enabled": true,
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-css-languageserver-bin/cssServerMain.js",
+                "--stdio",
+            ],
+            "settings": {
+                "sass": {
+                    "validate": true,
+                    "lint": {
+                        "duplicateProperties": "warning",
+                        "unknownVendorSpecificProperties": "warning",
+                    },
+                },
+            },
+            "scopes": ["source.sass"],
+            "syntaxes": ["Packages/Sass/Syntaxes/Sass.sublime-syntax"],
+            "languageId": "sass",
+        },
+        "vscode-scss": {
+            "enabled": true,
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-css-languageserver-bin/cssServerMain.js",
+                "--stdio",
+            ],
+            "settings": {
+                "scss": {
+                    "validate": true,
+                    "lint": {
+                        "duplicateProperties": "warning",
+                        "unknownVendorSpecificProperties": "warning",
+                    },
+                },
+            },
+            "scopes": ["source.scss"],
+            "syntaxes": ["Packages/Sass/Syntaxes/SCSS.sublime-syntax"],
+            "languageId": "scss",
+        },
     },
     "show_view_status": true,
     "auto_show_diagnostics_panel": false,
