@@ -4,6 +4,7 @@
     "bash-language-server": "^1.5.6",
     "eslint": "^5.15.2",
     "intelephense": "^1.0.8",
+    "lsp-tsserver": "~0.0.4",
     "vscode-css-languageserver-bin": "^1.4.0"
   }
 }

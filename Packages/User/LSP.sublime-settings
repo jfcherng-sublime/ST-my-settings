@@ -116,6 +116,21 @@
                 "storagePath": "E:/_Data/intelephense",
             },
         },
+        // JS-family
+        "js": {
+            "enabled": true,
+            "command": ["lsp-tsserver"],
+            "scopes": ["source.js"],
+            "syntaxes": ["Packages/JavaScript/JavaScript.sublime-syntax"],
+            "languageId": "javascript",
+        },
+        "jsts": {
+            "enabled": true,
+            "command": ["lsp-tsserver"],
+            "scopes": ["source.ts", "source.tsx"],
+            "syntaxes": ["Packages/TypeScript-TmLanguage/TypeScript.tmLanguage", "Packages/TypeScript-TmLanguage/TypeScriptReact.tmLanguage"],
+            "languageId": "typescript",
+        },
         // CSS-family
         "vscode-css": {
             // https://github.com/vscode-langservers/vscode-css-languageserver-bin
