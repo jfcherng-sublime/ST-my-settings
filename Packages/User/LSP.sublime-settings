@@ -34,7 +34,12 @@
                 "-index",
             ],
             "scopes": ["source.c", "source.c++", "source.objc", "source.objc++"],
-            "syntaxes": ["Packages/C++/C.sublime-syntax", "Packages/C++/C++.sublime-syntax", "Packages/Objective-C/Objective-C.sublime-syntax", "Packages/Objective-C/Objective-C++.sublime-syntax"],
+            "syntaxes": [
+                "Packages/C++/C.sublime-syntax",
+                "Packages/C++/C++.sublime-syntax",
+                "Packages/Objective-C/Objective-C.sublime-syntax",
+                "Packages/Objective-C/Objective-C++.sublime-syntax",
+            ],
             "languageId": "cpp",
         },
         "cquery": {
@@ -43,7 +48,12 @@
             "enabled": false,
             "command": ["cquery"],
             "scopes": ["source.c", "source.c++", "source.objc", "source.objc++"],
-            "syntaxes": ["Packages/C++/C.sublime-syntax", "Packages/C++/C++.sublime-syntax", "Packages/Objective-C/Objective-C.sublime-syntax", "Packages/Objective-C/Objective-C++.sublime-syntax"],
+            "syntaxes": [
+                "Packages/C++/C.sublime-syntax",
+                "Packages/C++/C++.sublime-syntax",
+                "Packages/Objective-C/Objective-C.sublime-syntax",
+                "Packages/Objective-C/Objective-C++.sublime-syntax",
+            ],
             "languageId": "cpp",
             "initializationOptions": {
                 "cacheDirectory": "/tmp/cquery",
@@ -128,7 +138,10 @@
             "enabled": true,
             "command": ["lsp-tsserver"],
             "scopes": ["source.ts", "source.tsx"],
-            "syntaxes": ["Packages/TypeScript-TmLanguage/TypeScript.tmLanguage", "Packages/TypeScript-TmLanguage/TypeScriptReact.tmLanguage"],
+            "syntaxes": [
+                "Packages/TypeScript-TmLanguage/TypeScript.tmLanguage",
+                "Packages/TypeScript-TmLanguage/TypeScriptReact.tmLanguage",
+            ],
             "languageId": "typescript",
         },
         "vscode-html": {
