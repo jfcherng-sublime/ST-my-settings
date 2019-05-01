@@ -490,6 +490,11 @@
         },
         {
             "foreground": "var(Pink)",
+            "name": "PHP - Arrow Function Definition Punctuation",
+            "scope": "punctuation.definition.arrow-function.php",
+        },
+        {
+            "foreground": "var(Pink)",
             "name": "PHP - Function Return Type Separator",
             "scope": "meta.function.return-type.php punctuation.separator.php",
         },
