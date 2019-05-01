@@ -102,6 +102,7 @@
                 "source.ruby.embedded.html",
                 "storage.type.function.arrow.js",
                 "punctuation.accessor",
+                "punctuation.definition.arrow-function",
                 "meta.selector.css" // CSS in HTML (Twig)
             ]
         },
