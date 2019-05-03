@@ -10,8 +10,10 @@ pygments/
 pymdownx/
 python-jinja2/
 python-markdown/
+python-toml/
 PyV8/
 pyyaml/
+requests/
 ssl-linux/
 sublime_lib/
 

@@ -1,0 +1,60 @@
+{
+      // ########################
+      // Black specific options #
+      // ########################
+
+      // line length
+      // uses black default, if not modified
+      "black_line_length": 100,
+
+      // If --fast given, skip temporary sanity checks.
+      "black_fast": false,
+
+      // prevent black from changing single quote to double quotes
+      // default is false
+      // add --black_skip_string_normalization
+      "black_skip_string_normalization": false,
+
+      // force py36 syntax mode
+      "black_py36": null,
+
+      // specify python variant version
+      "black_target_version": null,
+
+      // ##########################
+      // Sublack specific options #
+      // ##########################
+
+      // full path and command to run black
+      "black_command": "black",
+
+      // run black before saving document
+      "black_on_save": false,
+
+      // set debug mode. default is info.
+      // choices : debug > info > error
+      "black_log": "info",
+
+      // default encoding for never saved file, if not specified un  first 2 lines (pep 263):
+      // default is "utf-8". Change this only if you want override default behaviour.
+      "black_default_encoding": "utf-8",
+
+      // use blackd server instead of black
+      "black_use_blackd": false,
+
+      // blackd server host
+      "black_blackd_host": "localhost",
+
+      // blackd server port, default is like black, should be string
+      "black_blackd_port": "45484",
+
+      // Start blackdserver on start. shuts down at sublimetext exit.
+      "black_blackd_autostart": false,
+
+      // Use pre-commit if possible
+      "black_use_precommit": false,
+
+      // Disable formatll command
+      "black_confirm_formatall": false
+
+}

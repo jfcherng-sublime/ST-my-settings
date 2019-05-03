@@ -451,6 +451,9 @@
     // plugin: FileManager
     { "keys": ["alt+shift+o", "alt+shift+b"], "command": "fm_open_in_browser" },
     { "keys": ["alt+shift+o", "alt+shift+e"], "command": "fm_open_in_explorer" },
+    // plugin: sublack
+    { "keys": ["ctrl+alt+f"], "command": "black_file", "context": [ { "key": "selector", "operator": "equal", "operand": "source.python" } ] },
+    { "keys": ["ctrl+alt+shift+f"], "command": "black_diff", "context": [ { "key": "selector", "operator": "equal", "operand": "source.python" } ] },
     // plugin: CSS Format
     { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "source.css" } ] },
     { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "source.scss" } ] },
