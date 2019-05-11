@@ -1,3 +1,0 @@
-SublimeAStyleFormatter 1.9 Changelog:
-
-* Preliminary support for Sublime Text 3.

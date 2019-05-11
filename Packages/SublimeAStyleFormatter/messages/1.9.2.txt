@@ -1,3 +1,0 @@
-SublimeAStyleFormatter 1.9.2 Changelog:
-
-* Add OS X support for Sublime Text 3.

@@ -1,3 +1,0 @@
-SublimeAStyleFormatter 1.7 Changelog:
-
-* Buffer will not scroll up and down during formatting now.

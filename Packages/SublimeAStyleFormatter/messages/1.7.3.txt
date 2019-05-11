@@ -1,3 +1,0 @@
-SublimeAStyleFormatter 1.7.3 Changelog:
-
-* Fix a conflict with SublimeCodeIntel.

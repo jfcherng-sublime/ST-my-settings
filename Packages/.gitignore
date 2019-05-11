@@ -21,9 +21,13 @@ sublime_lib/
 Bootstrap 4.3 Autocomplete/
 Codecs33/
 ConvertToUTF8/
+CTags/
 HTML-CSS-JS Prettify/
 IntelliDocs/
 LaTeXTools/
+OmniMarkupPreviewer/
+SublimeAStyleFormatter/
+SublimeHighlight/
 SublimeLinter*/
 SublimeREPL/
 
