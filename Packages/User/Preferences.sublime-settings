@@ -13,7 +13,9 @@
 		"plugins",
 		"screenshot",
 		"screenshots",
-		"javascript"
+		"javascript",
+		"online",
+		"offline"
 	],
 	"atomic_save": false,
 	"auto_complete_cycle": true,
