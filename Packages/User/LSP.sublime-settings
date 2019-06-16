@@ -211,6 +211,26 @@
             "syntaxes": ["Packages/Sass/Syntaxes/SCSS.sublime-syntax"],
             "languageId": "scss",
         },
+        "vscode-less": {
+            "enabled": true,
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-css-languageserver-bin/cssServerMain.js",
+                "--stdio",
+            ],
+            "settings": {
+                "less": {
+                    "validate": true,
+                    "lint": {
+                        "duplicateProperties": "warning",
+                        "unknownVendorSpecificProperties": "warning",
+                    },
+                },
+            },
+            "scopes": ["source.less"],
+            "syntaxes": ["Packages/LESS/Syntaxes/LESS.sublime-syntax"],
+            "languageId": "less",
+        },
     },
     "show_view_status": true,
     "auto_show_diagnostics_panel": false,
