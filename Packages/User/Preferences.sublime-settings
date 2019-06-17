@@ -47,7 +47,7 @@
 	"caret_extra_width": 2,
 	"caret_style": "blink",
 	"close_windows_when_empty": false,
-	"color_scheme": "Packages/my_theme/my_theme.sublime-color-scheme",
+	"color_scheme": "Packages/Color Scheme - Quokka/my_theme.sublime-color-scheme",
 	"dc_always_show_minimap_viewport": true,
 	"dc_autohide_scrollbars": false,
 	"dc_bold_folder_labels": true,
@@ -176,7 +176,6 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"Codecs33",
 		"RestructuredText",
 		"SublimeLinter-gcc",
 		"Vintage"

@@ -2,7 +2,6 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"Codecs33"
 	],
 	"install_prereleases":
 	[
@@ -70,6 +69,7 @@
 		"PowerCursors",
 		"ProjectManager",
 		"Protobuf Syntax Hightlighting",
+		"Quokka",
 		"Restructured Text (RST) Snippets",
 		"RestructuredText Improved",
 		"Sass",
