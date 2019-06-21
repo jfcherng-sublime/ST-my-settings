@@ -15,7 +15,10 @@
 		"screenshots",
 		"javascript",
 		"online",
-		"offline"
+		"offline",
+		"css",
+		"js",
+		"Roundcube"
 	],
 	"atomic_save": false,
 	"auto_complete_cycle": true,
