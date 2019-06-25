@@ -87,7 +87,8 @@
         "bookmarks",
         "lsp_error",
         "lsp_warning",
-        "lsp_info"
+        "lsp_info",
+        "ecc",
     ],
 
     // Show GitGutter information in the minimap
@@ -136,7 +137,7 @@
     //   "auto"  -- show line annotation if word wrap is disabled (default)
     //   "true"  -- always show line annotation
     //   "false" -- never show line annotation
-    "show_line_annotation": "false",
+    "show_line_annotation": false,
 
     // (ST3, Build 3124+ only)
     // The 1 based ruler index to align the line annotation text to.
@@ -191,6 +192,7 @@
     // The array is joined to a single string and passed to jinja2 template
     // engine to render the status message text. The template can be modified using
     // jinja2 supported syntax. GitGutter provides the following variables:
+    //   {{st_git_status}}      -- Sublime Text git integration available and enabled
     //   {{repo}}               -- repository name / folder name containing the .git directory
     //   {{branch}}             -- checked out branch you are working on
     //   {{remote}}             -- tracked remote of current branch you are working on or `None`
@@ -220,14 +222,16 @@
     //   {{line_previous}}      -- the hash of the previous commit
     "status_bar_text": [
         "{% if repo and branch %}",
-        "{{repo}}/{{branch}}",
-        "{% if added_files + deleted_files + modified_files > 0 %}*{% endif %}",
-        "{% if compare not in ('HEAD', branch, None) %}, Comparing against {{compare}}{% endif %}",
-        "{% if state %}, File is {{state}}{% endif %}",
-        "{% if deleted > 0 %}, {{deleted}}-{% endif %}",
-        "{% if inserted > 0 %}, {{inserted}}+{% endif %}",
-        "{% if modified > 0 %}, {{modified}}≠{% endif %}",
-        "{% if line_author and line_author_age %}, ⟢ {{line_author}} ({{line_author_age}}){% endif %}",
+            "{% if not st_git_status %}",
+                "{{repo}}/{{branch}}",
+                "{% if added_files + deleted_files + modified_files > 0 %}*{% endif %}, ",
+            "{% endif %}",
+            "{% if compare not in ('HEAD', branch, None) %}Comparing against {{compare}}, {% endif %}",
+            "{% if state %}File is {{state}}{% endif %}",
+            "{% if deleted > 0 %}, {{deleted}}-{% endif %}",
+            "{% if inserted > 0 %}, {{inserted}}+{% endif %}",
+            "{% if modified > 0 %}, {{modified}}≠{% endif %}",
+            "{% if line_author and line_author_age %}, ⟢ {{line_author}} ({{line_author_age}}){% endif %}",
         "{% endif %}"
     ]
 }
