@@ -18,6 +18,7 @@ ssl-linux/
 sublime_lib/
 
 # packages
+AutoSetIndentation/
 Bootstrap 4x Autocomplete/
 Codecs33/
 ConvertToUTF8/
