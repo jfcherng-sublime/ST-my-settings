@@ -4,13 +4,15 @@
 name: SRT Subtitles
 file_extensions:
   - srt
+  - vtt
+first_line_match: '(?i)\bWEBVTT\b'
 scope: text.srt
 contexts:
   main:
     - match: ^(\d+)$
       comment: A number indicating which subtitle it is in the sequence.
       scope: constant.numeric.sequence.srt
-    - match: '^(\d{2}:\d{2}:\d{2},\d{3})(\s-->\s)(\d{2}:\d{2}:\d{2},\d{3})$'
+    - match: '^((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})(\s-->\s)((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})$'
       comment: The time that the subtitle should appear on the screen, and then disappear.
       captures:
         1: variable.parameter.srt
