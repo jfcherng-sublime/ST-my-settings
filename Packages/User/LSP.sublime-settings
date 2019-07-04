@@ -115,27 +115,115 @@
                 "storagePath": "E:/_Data/intelephense",
             },
         },
-        // JS-family
-        "js": {
+        "yaml-lsp": {
+            // https://github.com/redhat-developer/yaml-language-server
+            // yarn global add yaml-language-server
             "enabled": true,
-            "command": ["lsp-tsserver"],
-            "scopes": ["source.js"],
-            "syntaxes": ["Packages/JavaScript/JavaScript.sublime-syntax"],
-            "languageId": "javascript",
-        },
-        "jsts": {
-            "enabled": true,
-            "command": ["lsp-tsserver"],
-            "scopes": ["source.ts", "source.tsx"],
-            "syntaxes": [
-                "Packages/TypeScript-TmLanguage/TypeScript.tmLanguage",
-                "Packages/TypeScript-TmLanguage/TypeScriptReact.tmLanguage",
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/yaml-language-server/bin/yaml-language-server",
+                "--stdio",
             ],
-            "languageId": "typescript",
+            "scopes": ["source.yaml"],
+            "syntaxes": ["Packages/YAML/YAML.sublime-syntax"],
+            "languageId": "yaml",
+        },
+        "vue-lsp": {
+            // https://github.com/vuejs/vetur/tree/master/server
+            // yarn global add vue-language-server
+            "enabled": true,
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vue-language-server/bin/vls",
+            ],
+            "scopes": ["text.html.vue"],
+            "syntaxes": ["Packages/Vue Syntax Highlight/Vue Component.sublime-syntax"],
+            "languageId": "vue",
+            "initializationOptions": {
+                "config": {
+                    "vetur": {
+                        "useWorkspaceDependencies": false,
+                        "validation": { "template": true, "style": true, "script": true },
+                        "completion": { "autoImport": false, "useScaffoldSnippets": false, "tagCasing": "kebab" },
+                        "format": {
+                            "defaultFormatter": { "js": "none", "ts": "none" },
+                            "defaultFormatterOptions": {},
+                            "scriptInitialIndent": false,
+                            "styleInitialIndent": false,
+                        },
+                    },
+                    "css": {},
+                    "html": { "suggest": {} },
+                    "javascript": { "format": {} },
+                    "typescript": { "format": {} },
+                    "emmet": {},
+                    "stylusSupremacy": {},
+                },
+            },
+        },
+        "javascript-typescript-langserver": {
+            // https://github.com/sourcegraph/javascript-typescript-langserver
+            // yarn global add javascript-typescript-langserver
+            "enabled": true,
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/javascript-typescript-langserver/lib/language-server-stdio.js",
+            ],
+            "languages": [{
+                "scopes": ["source.js", "source.jsx"],
+                "syntaxes": [
+                    "Packages/JavaScript/JavaScript.sublime-syntax",
+                    "Packages/my_language/aliases/JavaScript (Webpack).sublime-syntax",
+                    "Packages/my_language/aliases/JavaScript (ESLint).sublime-syntax",
+                    "Packages/my_language/aliases/JavaScript (Gruntfile).sublime-syntax",
+                    "Packages/my_language/aliases/JavaScript (Gulpfile).sublime-syntax",
+                    "Packages/my_language/aliases/JavaScript (PostCSS).sublime-syntax",
+                    "Packages/my_language/aliases/JavaScript (Stylelint).sublime-syntax",
+                ],
+                "languageId": "javascript",
+            }, {
+                "scopes": ["source.ts", "source.tsx"],
+                "syntaxes": [
+                    "Packages/TypeScript-TmLanguage/TypeScript.tmLanguage",
+                    "Packages/TypeScript-TmLanguage/TypeScriptReact.tmLanguage",
+                ],
+                "languageId": "typescript",
+            }],
+        },
+        "vscode-json": {
+            // https://www.npmjs.com/package/vscode-json-languageserver
+            // yarn global add vscode-json-languageserver
+            "enabled": true,
+            "command": [
+                "node",
+                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-json-languageserver/bin/vscode-json-languageserver",
+                "--stdio",
+            ],
+            "scopes": ["source.json"],
+            "languages": [{
+                "syntaxes": [
+                    "Packages/JavaScript/JSON.sublime-syntax",
+                    "Packages/my_language/aliases/JSON (Babel).sublime-syntax",
+                    "Packages/my_language/aliases/JSON (Bower).sublime-syntax",
+                    "Packages/my_language/aliases/JSON (Composer).sublime-syntax",
+                    "Packages/my_language/aliases/JSON (ESLint).sublime-syntax",
+                    "Packages/my_language/aliases/JSON (NPM).sublime-syntax",
+                    "Packages/my_language/aliases/JSON (PostCSS).sublime-syntax",
+                    "Packages/my_language/aliases/JSON (Stylelint).sublime-syntax",
+                    "Packages/my_language/aliases/JSON (Tern JS).sublime-syntax",
+                ],
+                "languageId": "json",
+            }, {
+                // ST's config allows comment and trailing comma
+                "syntaxes": [
+                    "Package/Sublime Text Settings/Sublime Text Settings.sublime-syntax",
+                    "Packages/my_language/aliases/JSON (Settings).sublime-syntax",
+                ],
+                "languageId": "jsonc",
+            }],
         },
         "vscode-html": {
             // https://github.com/vscode-langservers/vscode-html-languageserver-bin
-            // npm -g i vscode-html-languageserver-bin
             // yarn global add vscode-html-languageserver-bin
             "enabled": true,
             "command": [
@@ -147,10 +235,8 @@
             "syntaxes": ["Packages/HTML/HTML.sublime-syntax"],
             "languageId": "html",
         },
-        // CSS-family
         "vscode-css": {
             // https://github.com/vscode-langservers/vscode-css-languageserver-bin
-            // npm -g i vscode-css-languageserver-bin
             // yarn global add vscode-css-languageserver-bin
             "enabled": true,
             "command": [
@@ -158,78 +244,59 @@
                 "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-css-languageserver-bin/cssServerMain.js",
                 "--stdio",
             ],
-            "settings": {
-                "css": {
-                    "validate": true,
-                    "lint": {
-                        "duplicateProperties": "warning",
-                        "unknownVendorSpecificProperties": "warning",
+            "languages": [{
+                "settings": {
+                    "css": {
+                        "validate": true,
+                        "lint": {
+                            "duplicateProperties": "warning",
+                            "unknownVendorSpecificProperties": "warning",
+                        },
                     },
                 },
-            },
-            "scopes": ["source.css"],
-            "syntaxes": ["Packages/CSS/CSS.sublime-syntax"],
-            "languageId": "css",
-        },
-        "vscode-sass": {
-            "enabled": true,
-            "command": [
-                "node",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-css-languageserver-bin/cssServerMain.js",
-                "--stdio",
-            ],
-            "settings": {
-                "sass": {
-                    "validate": true,
-                    "lint": {
-                        "duplicateProperties": "warning",
-                        "unknownVendorSpecificProperties": "warning",
+                "scopes": ["source.css"],
+                "syntaxes": ["Packages/CSS/CSS.sublime-syntax"],
+                "languageId": "css",
+            }, {
+                "settings": {
+                    "sass": {
+                        "validate": true,
+                        "lint": {
+                            "duplicateProperties": "warning",
+                            "unknownVendorSpecificProperties": "warning",
+                        },
                     },
                 },
-            },
-            "scopes": ["source.sass"],
-            "syntaxes": ["Packages/Sass/Syntaxes/Sass.sublime-syntax"],
-            "languageId": "sass",
-        },
-        "vscode-scss": {
-            "enabled": true,
-            "command": [
-                "node",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-css-languageserver-bin/cssServerMain.js",
-                "--stdio",
-            ],
-            "settings": {
-                "scss": {
-                    "validate": true,
-                    "lint": {
-                        "duplicateProperties": "warning",
-                        "unknownVendorSpecificProperties": "warning",
+                "scopes": ["source.sass"],
+                "syntaxes": ["Packages/Sass/Syntaxes/Sass.sublime-syntax"],
+                "languageId": "sass",
+            }, {
+                "settings": {
+                    "scss": {
+                        "validate": true,
+                        "lint": {
+                            "duplicateProperties": "warning",
+                            "unknownVendorSpecificProperties": "warning",
+                        },
                     },
                 },
-            },
-            "scopes": ["source.scss"],
-            "syntaxes": ["Packages/Sass/Syntaxes/SCSS.sublime-syntax"],
-            "languageId": "scss",
-        },
-        "vscode-less": {
-            "enabled": true,
-            "command": [
-                "node",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-css-languageserver-bin/cssServerMain.js",
-                "--stdio",
-            ],
-            "settings": {
-                "less": {
-                    "validate": true,
-                    "lint": {
-                        "duplicateProperties": "warning",
-                        "unknownVendorSpecificProperties": "warning",
+                "scopes": ["source.scss"],
+                "syntaxes": ["Packages/Sass/Syntaxes/SCSS.sublime-syntax"],
+                "languageId": "scss",
+            }, {
+                "settings": {
+                    "less": {
+                        "validate": true,
+                        "lint": {
+                            "duplicateProperties": "warning",
+                            "unknownVendorSpecificProperties": "warning",
+                        },
                     },
                 },
-            },
-            "scopes": ["source.less"],
-            "syntaxes": ["Packages/LESS/Syntaxes/LESS.sublime-syntax"],
-            "languageId": "less",
+                "scopes": ["source.less"],
+                "syntaxes": ["Packages/LESS/Syntaxes/LESS.sublime-syntax"],
+                "languageId": "less",
+            }],
         },
     },
     "show_view_status": true,
@@ -240,14 +307,12 @@
     "show_diagnostics_in_view_status": true,
     "show_diagnostics_severity_level": 3,
     "diagnostics_highlight_style": "box",
-    "highlight_active_signature_parameter": true,
     "document_highlight_style": "underline",
     "diagnostics_gutter_marker": "dot",
     "show_code_actions_bulb": true,
     "complete_all_chars": true,
     "completion_hint_type": "auto",
     "only_show_lsp_completions": false,
-    "resolve_completion_for_snippets": false,
     "show_references_in_quick_panel": false,
     "log_payloads": false,
     "log_debug": false,

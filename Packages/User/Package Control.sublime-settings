@@ -98,7 +98,8 @@
 		"TOML",
 		"TypeShort",
 		"Verilog",
-		"Verilog Automatic"
+		"Verilog Automatic",
+		"Vue Syntax Highlight"
 	],
 	"repositories":
 	[
