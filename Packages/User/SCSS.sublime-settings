@@ -1,4 +1,3 @@
-// These settings override both User and Default settings for the SCSS syntax
 {
     // "-" is not a word breaker
     "word_separators": "./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?",
