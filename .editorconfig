@@ -52,5 +52,8 @@ indent_size = 4
 [*.{yml,yaml,toml,neon}]
 indent_size = 2
 
+[Preferences.sublime-settings]
+indent_style = tab
+
 [Makefile]
 indent_style = tab
