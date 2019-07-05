@@ -9,17 +9,37 @@ first_line_match: '(?i)\bWEBVTT\b'
 scope: text.srt
 contexts:
   main:
-    - match: ^(\d+)$
-      comment: A number indicating which subtitle it is in the sequence.
+    - match: ^(WEBVTT)
+      push:
+        # subtitle meta informations
+        - match: '^(NOTE)(?=$|\s)'
+          captures:
+            1: punctuation.definition.comment.src
+          push:
+            - meta_scope: comment.src
+            - match: .*
+              pop: true
+        # now we hit the SRT part
+        - match: '(?=\d)'
+          set: src
+    # now we hit the SRT part
+    - match: '(?=\d)'
+      set: src
+  src:
+    - match: ^(\d+)\s*$
       scope: constant.numeric.sequence.srt
-    - match: '^((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})(\s-->\s)((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})$'
-      comment: The time that the subtitle should appear on the screen, and then disappear.
+    - match: '^((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})\s*(-->)\s*((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})'
       captures:
         1: variable.parameter.srt
         2: constant.character.srt
         3: variable.parameter.srt
+      push:
+        - match: '([^: ]+)\s*(:)\s*([^: ]+)'
+          captures:
+            1: storage.type.srt
+        - match: $
+          pop: true
     - match: \<(b)\>
-      comment: <b>Bold</b>
       captures:
         1: entity.name.tag.srt
       push:
@@ -31,7 +51,6 @@ contexts:
         - match: .
           scope: markup.bold.srt
     - match: \<(i)\>
-      comment: <i>Italic</i>
       captures:
         1: entity.name.tag.srt
       push:
@@ -43,7 +62,6 @@ contexts:
         - match: .
           scope: markup.italic.srt
     - match: \<(u)\>
-      comment: <u>Underline</u>
       captures:
         1: entity.name.tag.srt
       push:
@@ -54,6 +72,10 @@ contexts:
         - include: main
         - match: .
           scope: markup.underline.srt
+    # unknown tags
+    - match: \</?([^<> ]+)\>
+      captures:
+        0: comment.srt
+    # ASS-like position tags
     - match: '\{\\an[1-9]{1}\}'
-      comment: Position tags
       scope: entity.name.function.srt
