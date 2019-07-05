@@ -20,16 +20,6 @@
                 30
             ]
         },
-        "flake8": {
-            "disable": false,
-            "args": [
-                "--max-complexity","7",
-                "--max-line-length", "120",
-                "--ignore", "E2,E5"
-            ],
-            "excludes": [],
-            "select": ""
-        },
         "gcc": {
             "disable": false,
             "args": [],
@@ -46,7 +36,7 @@
                 "/usr/local/systemc-2.3.1/include"
             ]
         },
-        "iverilog": {
+        "verilator": {
             "disable": false,
             "args": [],
             "excludes": []
@@ -64,11 +54,6 @@
             "strict": true
         },
         "php": {
-            "disable": false,
-            "args": [],
-            "excludes": []
-        },
-        "rst": {
             "disable": false,
             "args": [],
             "excludes": []
