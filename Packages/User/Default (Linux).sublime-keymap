@@ -412,7 +412,7 @@
     { "keys": ["alt+k"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": 1 }] },
     // { "keys": ["ctrl+alt+f"], "command": "lsp_format_document"},
     // plugin: MultiEditUtils
-    { "keys": ["shift+escape"], "command": "jump_to_last_region"   },
+    { "keys": ["shift+escape"], "command": "jump_to_last_region" },
     { "keys": ["ctrl+alt+r"], "command": "remove_empty_regions", "context": [{ "key": "setting.is_widget", "operator": "equal", "operand": false }] },
     // { "keys": ["ctrl+alt+c"],   "command": "cycle_through_regions" },
     { "keys": ["ctrl+alt+n"],   "command": "normalize_region_ends" },
