@@ -31,23 +31,6 @@
             ],
             "languageId": "cpp",
         },
-        "cquery": {
-            // https://github.com/cquery-project/cquery/wiki/Build-%28CMake%29
-            // Note: The main project must be the first directory in a ST project.
-            "enabled": false,
-            "command": ["cquery"],
-            "scopes": ["source.c", "source.c++", "source.objc", "source.objc++"],
-            "syntaxes": [
-                "Packages/C++/C.sublime-syntax",
-                "Packages/C++/C++.sublime-syntax",
-                "Packages/Objective-C/Objective-C.sublime-syntax",
-                "Packages/Objective-C/Objective-C++.sublime-syntax",
-            ],
-            "languageId": "cpp",
-            "initializationOptions": {
-                "cacheDirectory": "/tmp/cquery",
-            },
-        },
         "pyls": {
             // pip install -U python-language-server[all]
             "enabled": true,
