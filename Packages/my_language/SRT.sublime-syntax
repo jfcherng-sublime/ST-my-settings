@@ -4,28 +4,9 @@
 name: SRT Subtitles
 file_extensions:
   - srt
-  - vtt
-first_line_match: '(?i)\bWEBVTT\b'
 scope: text.srt
 contexts:
   main:
-    - match: ^(WEBVTT)
-      push:
-        # subtitle meta informations
-        - match: '^(NOTE)(?=$|\s)'
-          captures:
-            1: punctuation.definition.comment.src
-          push:
-            - meta_scope: comment.src
-            - match: .*
-              pop: true
-        # now we hit the SRT part
-        - match: '(?=\d)'
-          set: src
-    # now we hit the SRT part
-    - match: '(?=\d)'
-      set: src
-  src:
     - match: ^(\d+)\s*$
       scope: constant.numeric.sequence.srt
     - match: '^((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})\s*(-->)\s*((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})'

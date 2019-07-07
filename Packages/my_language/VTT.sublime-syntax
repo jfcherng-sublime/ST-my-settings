@@ -1,0 +1,83 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: VTT Subtitles
+file_extensions:
+  - vtt
+first_line_match: '^\s*WEBVTT\s*$'
+scope: text.vtt
+variables:
+  line_terminator: \r?\n|\r
+  blank_line: ^{{line_terminator}}$
+contexts:
+  main:
+    - include: header
+    - include: comment-block
+    - include: content-block
+  header:
+    - match: ^(WEBVTT)(?=$|\s)
+  comment-block:
+    # https://www.w3.org/TR/webvtt1/#introduction-comments
+    - match: '^(NOTE)(?=$|\s)'
+      captures:
+        1: punctuation.definition.comment.vtt
+      push:
+        - meta_scope: comment.vtt
+        - match: '{{blank_line}}'
+          pop: true
+  content-block:
+    - match: ^(\d+)\s*$
+      scope: constant.numeric.sequence.vtt
+    - match: '(?=^((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})\s*(-->)\s*((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3}))'
+      push:
+        - match: '{{blank_line}}'
+          pop: true
+        - match: '^((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})\s*(-->)\s*((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})'
+          captures:
+            1: variable.parameter.vtt
+            2: constant.character.vtt
+            3: variable.parameter.vtt
+          push:
+            - match: '([^: ]+)\s*(:)\s*([^: ]+)'
+              captures:
+                1: storage.type.vtt
+            - match: $
+              pop: true
+        - match: \<(b)\>
+          captures:
+            1: entity.name.tag.vtt
+          push:
+            - match: \<\/(b)\>
+              captures:
+                1: entity.name.tag.vtt
+              pop: true
+            - include: main
+            - match: .
+              scope: markup.bold.vtt
+        - match: \<(i)\>
+          captures:
+            1: entity.name.tag.vtt
+          push:
+            - match: \<\/(i)\>
+              captures:
+                1: entity.name.tag.vtt
+              pop: true
+            - include: main
+            - match: .
+              scope: markup.italic.vtt
+        - match: \<(u)\>
+          captures:
+            1: entity.name.tag.vtt
+          push:
+            - match: \<\/(u)\>
+              captures:
+                1: entity.name.tag.vtt
+              pop: true
+            - include: main
+            - match: .
+              scope: markup.underline.vtt
+        # unknown tags
+        - match: \</?([^<> ]+)\>
+          captures:
+            0: comment.vtt, meta.unknown-tag.vtt
+            1: entity.name.tag.vtt
