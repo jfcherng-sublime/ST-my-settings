@@ -1,6 +1,6 @@
 {
     "clients": {
-        "bashls": {
+        "bash-lsp": {
             // https://github.com/mads-hartmann/bash-language-server
             // npm -g i bash-language-server
             // yarn global add bash-language-server
@@ -31,20 +31,13 @@
             ],
             "languageId": "cpp",
         },
-        "pyls": {
+        "py-lsp": {
             // pip install -U python-language-server[all]
             "enabled": true,
             "command": ["pyls"],
             "settings": {
                 "pyls": {
                     "plugins": {
-                        "pyflakes": {
-                            "enabled": true,
-                        },
-                        "pydocstyle": {
-                            "enabled": true,
-                            "ignore": ["D1", "D2", "D4"],
-                        },
                         "pycodestyle": {
                             "enabled": true,
                             "ignore": [
@@ -56,6 +49,17 @@
                                 "W503",
                             ],
                         },
+                        "pydocstyle": {
+                            "enabled": true,
+                            "ignore": ["D1", "D2", "D4"],
+                        },
+                        "pyflakes": {
+                            "enabled": true,
+                        },
+                        "pylint": {
+                            "enabled": false,
+                            "ignore": [],
+                        },
                     },
                 },
             },
@@ -66,7 +70,7 @@
             ],
             "languageId": "python",
         },
-        "phpls": {
+        "php-lsp": {
             // composer g require felixfbecker/language-server
             "enabled": false,
             "tcp_port": 5555,
@@ -144,7 +148,7 @@
                 },
             },
         },
-        "javascript-typescript-langserver": {
+        "js-ts-lsp": {
             // https://github.com/sourcegraph/javascript-typescript-langserver
             // yarn global add javascript-typescript-langserver
             "enabled": true,
