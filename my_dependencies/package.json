@@ -8,7 +8,7 @@
     "vscode-css-languageserver-bin": "^1.4.0",
     "vscode-html-languageserver-bin": "^1.4.0",
     "vscode-json-languageserver": "^1.0.1",
-    "vue-language-server": "~0.0",
-    "yaml-language-server": "~0.4"
+    "vue-language-server": "^0",
+    "yaml-language-server": "^0"
   }
 }
