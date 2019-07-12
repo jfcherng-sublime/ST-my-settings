@@ -77,7 +77,7 @@ contexts:
             - match: .
               scope: markup.underline.vtt
         # unknown tags
-        - match: \</?([^<> ]+)\>
+        - match: \</?([^<>]+)\>
           captures:
             0: comment.vtt, meta.unknown-tag.vtt
             1: entity.name.tag.vtt

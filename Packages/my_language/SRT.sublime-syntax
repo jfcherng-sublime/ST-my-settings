@@ -54,7 +54,7 @@ contexts:
         - match: .
           scope: markup.underline.srt
     # unknown tags
-    - match: \</?([^<> ]+)\>
+    - match: \</?([^<>]+)\>
       captures:
         0: comment.srt
     # ASS-like position tags
