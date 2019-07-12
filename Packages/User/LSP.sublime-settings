@@ -71,12 +71,11 @@
             "languageId": "python",
         },
         "php-lsp": {
-            // composer g require felixfbecker/language-server
+            // composer g req felixfbecker/language-server
             "enabled": false,
             "tcp_port": 5555,
             "command": [
-                "php",
-                "C:/Users/Clover/AppData/Roaming/Composer/vendor/felixfbecker/language-server/bin/php-language-server.php",
+                "php-language-server.php",
                 "--memory-limit=2048M",
                 "--tcp-server=0.0.0.0:5555",
             ],
@@ -90,9 +89,7 @@
             // yarn global add intelephense
             "enabled": true,
             "command": [
-                "node",
-                // "C:/Users/Clover/AppData/Roaming/npm/node_modules/intelephense/lib/intelephense.js",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/intelephense/lib/intelephense.js",
+                "intelephense",
                 "--stdio",
             ],
             "scopes": ["source.php", "embedding.php"],
@@ -107,8 +104,7 @@
             // yarn global add yaml-language-server
             "enabled": true,
             "command": [
-                "node",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/yaml-language-server/bin/yaml-language-server",
+                "yaml-language-server",
                 "--stdio",
             ],
             "scopes": ["source.yaml"],
@@ -120,8 +116,7 @@
             // yarn global add vue-language-server
             "enabled": true,
             "command": [
-                "node",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vue-language-server/bin/vls",
+                "vls",
             ],
             "scopes": ["text.html.vue"],
             "syntaxes": ["Packages/Vue Syntax Highlight/Vue Component.sublime-syntax"],
@@ -153,8 +148,7 @@
             // yarn global add javascript-typescript-langserver
             "enabled": true,
             "command": [
-                "node",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/javascript-typescript-langserver/lib/language-server-stdio.js",
+                "javascript-typescript-stdio",
             ],
             "languages": [{
                 "scopes": ["source.js", "source.jsx"],
@@ -182,8 +176,7 @@
             // yarn global add vscode-json-languageserver
             "enabled": true,
             "command": [
-                "node",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-json-languageserver/bin/vscode-json-languageserver",
+                "vscode-json-languageserver",
                 "--stdio",
             ],
             "scopes": ["source.json"],
@@ -214,8 +207,7 @@
             // yarn global add vscode-html-languageserver-bin
             "enabled": true,
             "command": [
-                "node",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-html-languageserver-bin/htmlServerMain.js",
+                "html-languageserver",
                 "--stdio",
             ],
             "scopes": ["text.html.basic"],
@@ -227,8 +219,7 @@
             // yarn global add vscode-css-languageserver-bin
             "enabled": true,
             "command": [
-                "node",
-                "C:/Users/Clover/AppData/Local/Yarn/Data/global/node_modules/vscode-css-languageserver-bin/cssServerMain.js",
+                "css-languageserver",
                 "--stdio",
             ],
             "languages": [{
