@@ -202,6 +202,20 @@
             ],
             "use_hex_argb": false,
             "compress_hex_output": true
+        },
+        // add support for subtitles by jfcherng
+        {
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": [],
+            "scan_scopes": [
+                "text.srt",
+                "text.vtt",
+            ],
+            "allowed_colors": ["hex", "hex_compressed"],
+            "extensions": [/* no restriction */],
+            "use_hex_argb": false,
+            "compress_hex_output": false
         }
     ],
 
