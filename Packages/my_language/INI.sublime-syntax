@@ -10,6 +10,8 @@ file_extensions:
   - reg
   - REG
   - lng
+  # PHP framework ENV files
+  - .env
 scope: source.ini
 contexts:
   main:

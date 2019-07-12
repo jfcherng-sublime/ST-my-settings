@@ -43,6 +43,7 @@
         ".inc",
         ".include",
         ".local",
+        ".test",
         ".sample",
     ],
 }
