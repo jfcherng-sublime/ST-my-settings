@@ -129,6 +129,7 @@
                 // SCSS (based on https://packagecontrol.io/packages/SCSS)
                 "constant.other.color.rgb-value.scss -comment -string",
                 // SCSS (based on https://packagecontrol.io/packages/SCSS)
+                "constant.other.color.rgb-value.css",
                 "constant.other.color.rgb-value.scss",
                 "support.constant.color.w3c-standard-color-name.scss",
                 "meta.property-value.scss",
