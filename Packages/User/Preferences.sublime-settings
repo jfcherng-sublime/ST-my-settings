@@ -18,7 +18,9 @@
 		"offline",
 		"css",
 		"js",
-		"Roundcube"
+		"Roundcube",
+		"namespace",
+		"Symfony"
 	],
 	"atomic_save": false,
 	"auto_complete_cycle": true,
