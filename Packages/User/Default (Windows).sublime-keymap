@@ -454,9 +454,11 @@
     // plugin: sublack
     { "keys": ["ctrl+alt+f"], "command": "black_file", "context": [ { "key": "selector", "operator": "equal", "operand": "source.python" } ] },
     { "keys": ["ctrl+alt+shift+f"], "command": "black_diff", "context": [ { "key": "selector", "operator": "equal", "operand": "source.python" } ] },
-    // plugin: CSS Format
+    // plugin: HTMLPrettify
     { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "source.css" } ] },
     { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "source.scss" } ] },
+    { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "source.less" } ] },
+    { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "text.html.basic" } ] },
     // plugin: JsFormat
     { "keys": ["ctrl+alt+f"], "command": "format_eslint", "context": [ { "key": "selector", "operator": "equal", "operand": "source.js" } ] },
     { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json" } ] },
