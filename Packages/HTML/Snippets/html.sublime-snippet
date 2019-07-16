@@ -1,4 +1,5 @@
 <snippet>
+    <description>html</description>
     <content><![CDATA[<!DOCTYPE html>
 <html>
 <head>
