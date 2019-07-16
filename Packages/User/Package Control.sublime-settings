@@ -100,9 +100,5 @@
 		"Verilog",
 		"Verilog Automatic",
 		"Vue Syntax Highlight"
-	],
-	"repositories":
-	[
-		"https://github.com/n1k0/SublimeHighlight/tree/python3"
 	]
 }
