@@ -22,6 +22,19 @@
 		"namespace",
 		"Symfony"
 	],
+	"afn_blacklist_scopes":
+	[
+		"string.regexp"
+	],
+	"afn_valid_scopes":
+	[
+		"text -text.html.basic",
+		"source string",
+		"source.css",
+		"source.less",
+		"source.sass",
+		"source.scss"
+	],
 	"atomic_save": false,
 	"auto_complete_cycle": true,
 	"auto_complete_selector": "source, meta.tag - punctuation.definition.tag.begin, text",

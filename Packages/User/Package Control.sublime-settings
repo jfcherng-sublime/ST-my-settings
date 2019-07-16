@@ -16,6 +16,7 @@
 		"AlignTab",
 		"All Autocomplete",
 		"ANSIescape",
+		"AutoFileName",
 		"AutomaticPackageReloader",
 		"AutoSetIndentation",
 		"AutoSetSyntax",
@@ -100,5 +101,9 @@
 		"Verilog",
 		"Verilog Automatic",
 		"Vue Syntax Highlight"
+	],
+	"repositories":
+	[
+		"https://github.com/evandrocoan/AutoFileName"
 	]
 }
