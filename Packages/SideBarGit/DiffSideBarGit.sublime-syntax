@@ -1,10 +1,12 @@
 %YAML 1.2
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
-name: Diff
+name: DiffSideBarGit
+hidden:  true
 file_extensions:
   - diff
   - patch
+  - rej # patch failing details
 first_line_match: |-
   (?x)^
       (===\ modified\ file
@@ -19,56 +21,60 @@ first_line_match: |-
 scope: source.diff
 contexts:
   main:
-    - match: '^((\*{15})|(={67})|(-{3}))$\n?'
+    - match: ^Index(:) (.+)$
+      scope: meta.diff.index
+      captures:
+        1: punctuation.separator.key-value.diff
+        2: meta.toc-list.file-name.diff
+    - match: '^((\*{15})|(={67})|(-{3}))$'
       scope: meta.separator.diff
       captures:
         1: punctuation.definition.separator.diff
-    - match: ^\d+(,\d+)*(a|d|c)\d+(,\d+)*$\n?
+    - match: ^\d+(,\d+)*(a|d|c)\d+(,\d+)*$
       scope: meta.diff.range.normal
-    - match: ^\s*(@@)\s*(.+?)\s*(@@)($\n?)?
+    - match: ^\s*(@@)\s*(.+?)\s*(@@)($)?
       scope: meta.diff.range.unified
       captures:
         1: punctuation.definition.range.diff
         2: meta.toc-list.line-number.diff
         3: punctuation.definition.range.diff
-    - match: '^(((\-{3}) .+ (\-{4}))|((\*{3}) .+ (\*{4})))$\n?'
+    - match: '^(((\-{3}) .+ (\-{4}))|((\*{3}) .+ (\*{4})))$'
       scope: meta.diff.range.context
       captures:
         3: punctuation.definition.range.diff
         4: punctuation.definition.range.diff
         6: punctuation.definition.range.diff
         7: punctuation.definition.range.diff
-    - match: '(^(((-{3}) .+)|((\*{3}) .+))$\n?|^(={4}) .+(?= - ))'
+
+    - match: '(^(((-{3}) .+)|((\*{3}) .+))$|^(={4}) .+(?= - ))'
       scope: meta.diff.header.from-file
       captures:
         4: punctuation.definition.from-file.diff
         6: punctuation.definition.from-file.diff
         7: punctuation.definition.from-file.diff
-    - match: '(^(\+{3}) .+$\n?| (-) .* (={4})$\n?)'
+    - match: '(^(\+{3}) .+$| (-) .* (={4})$)'
       scope: meta.diff.header.to-file
       captures:
         2: punctuation.definition.to-file.diff
         3: punctuation.definition.to-file.diff
         4: punctuation.definition.to-file.diff
-    - match: '^(((>)( .*)?)|(\s{0,4}(\+).*))$\n?'
+
+    # must be 0 or 4 leading spaces
+    - match: '^(((>)( .*)?)|((?:\s{4}|)(\+).*))$'
       scope: markup.inserted.diff
       captures:
         3: punctuation.definition.inserted.diff
         6: punctuation.definition.inserted.diff
-    - match: ^(!).*$\n?
-      scope: markup.changed.diff
-      captures:
-        1: punctuation.definition.changed.diff
-    - match: '^(((<)( .*)?)|(\s{0,4}(-).*))$\n?'
+    # must be 0 or 4 leading spaces
+    - match: '^(((<)( .*)?)|((?:\s{4}|)(-).*))$'
       scope: markup.deleted.diff
       captures:
         3: punctuation.definition.deleted.diff
         6: punctuation.definition.deleted.diff
-    - match: ^Index(:) (.+)$\n?
-      scope: meta.diff.index
+    - match: ^(!).*$
+      scope: markup.changed.diff
       captures:
-        1: punctuation.separator.key-value.diff
-        2: meta.toc-list.file-name.diff
+        1: punctuation.definition.changed.diff
 
     # git stat
     - match: '^\s*((?:.(?! => ))*.)(?: (=>) (.*))?\s+(\|)\s+([0-9]+)\s+([+]*)([-]*)'
