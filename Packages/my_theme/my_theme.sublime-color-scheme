@@ -351,6 +351,12 @@
         /////////////////
         {
             "font_style": "bold",
+            "foreground": "var(Pink)",
+            "name": "JS - arrow function",
+            "scope": "storage.type.function.arrow.js",
+        },
+        {
+            "font_style": "bold",
             "foreground": "var(DeepPurple300)",
             "name": "Tcl - variable",
             "scope": "variable.other.tcl",
