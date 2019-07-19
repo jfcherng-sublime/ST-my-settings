@@ -44,6 +44,22 @@
         "content_margin": 6,
     },
     {
+        "class": "vcs_status_badge",
+        "parents": [{"class": "file_system_entry", "attributes": ["deleted"]}],
+        "layer0.texture": "Theme - Default/common/status_staged.png",
+        "layer0.tint": "color(var(--pinkish) min-contrast(var(--background) 2.5))",
+        "layer0.opacity": 1.0,
+        "content_margin": 6,
+    },
+    {
+        "class": "vcs_status_badge",
+        "parents": [{"class": "file_system_entry", "attributes": ["missing"]}],
+        "layer0.texture": "Theme - Default/common/status_modified.png",
+        "layer0.tint": "color(var(--pinkish) min-contrast(var(--background) 2.5))",
+        "layer0.opacity": 1.0,
+        "content_margin": 6,
+    },
+    {
         "class": "sidebar_label",
         "parents": [{"class": "file_system_entry", "attributes": ["ignored"]}],
         "color": "color(var(--background) blend(rgb(255, 255, 255) 70%))",
@@ -52,7 +68,7 @@
         "class": "sidebar_label",
         "parents": [
             {"class": "window", "attributes": ["file_light"]},
-            {"class": "file_system_entry", "attributes": ["ignored"]}
+            {"class": "file_system_entry", "attributes": ["ignored"]},
         ],
         "color": "color(var(--background) blend(rgb(0, 0, 0) 70%))",
     },
@@ -82,6 +98,16 @@
         "class": "sidebar_label",
         "parents": [{"class": "file_system_entry", "attributes": ["unmerged"]}],
         "color": "color(var(--redish) blend(rgb(255, 255, 255) 75%))",
+    },
+    {
+        "class": "sidebar_label",
+        "parents": [{"class": "file_system_entry", "attributes": ["deleted"]}],
+        "color": "color(var(--pinkish) blend(rgb(255, 255, 255) 75%))",
+    },
+    {
+        "class": "sidebar_label",
+        "parents": [{"class": "file_system_entry", "attributes": ["missing"]}],
+        "color": "color(var(--pinkish) blend(rgb(255, 255, 255) 75%))",
     },
 
     // @see https://github.com/braver/FileIcons#customize
