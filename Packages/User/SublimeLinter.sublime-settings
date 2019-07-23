@@ -22,19 +22,31 @@
         },
         "gcc": {
             "disable": false,
-            "args": [],
-            "c++_executable": "g++",
-            "c++_extra_flags": "-std=c++17",
-            "c_executable": "gcc",
-            "c_extra_flags": "-std=c90",
-            "excludes": [],
-            "include_dirs": [
-                "${project_folder}/include",
-                "C:\\boost\\include\\boost-1_67",
+            "executable": ["gcc"],
+            "args": ["-fsyntax-only", "-std=c90"],
+            "I": [
+                "${file_path}/include",
+                "${folder}/include",
+                "C:\\boost\\include\\boost-1_70",
                 "/usr/local/include",
                 "/usr/local/halide/include",
-                "/usr/local/systemc-2.3.1/include"
-            ]
+                "/usr/local/systemc-2.3.1/include",
+            ],
+            "excludes": [],
+        },
+        "g++": {
+            "disable": false,
+            "executable": ["g++"],
+            "args": ["-fsyntax-only", "-std=c++17"],
+            "I": [
+                "${file_path}/include",
+                "${folder}/include",
+                "C:\\boost\\include\\boost-1_70",
+                "/usr/local/include",
+                "/usr/local/halide/include",
+                "/usr/local/systemc-2.3.1/include",
+            ],
+            "excludes": [],
         },
         "verilator": {
             "disable": false,
