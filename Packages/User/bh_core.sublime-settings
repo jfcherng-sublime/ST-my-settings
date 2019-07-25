@@ -88,6 +88,20 @@
         {"name": "latexmath_inline", "position": 511},
     ],
     "user_brackets": [
+        /////////////////////////////
+        // override official rules //
+        /////////////////////////////
+        // PHP Angle
+        {
+            "name": "php_angle",
+            "open": "(<\\?)(?:php|=)?",
+            "close": "(\\?>)",
+            "style": "angle",
+            "scope_exclude": ["string", "comment", "keyword.operator"],
+            "language_filter": "whitelist",
+            "language_list": ["PHP", "HTML", "HTML 5"],
+            "enabled": true
+        },
         ///////////////////
         // add new rules //
         ///////////////////
