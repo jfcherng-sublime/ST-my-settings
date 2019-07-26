@@ -1,0 +1,3 @@
+Changelog:
+
+Please be sure to restart Sublime Text to start using this new version. For more information or how to use this plugin visit https://github.com/alepez/LiveReload-sublimetext3

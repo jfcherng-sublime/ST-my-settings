@@ -410,7 +410,14 @@
     { "keys": ["ctrl+alt+space"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": 0}] },
     { "keys": ["alt+i"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": -1 }] },
     { "keys": ["alt+k"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": 1 }] },
-    // { "keys": ["ctrl+alt+f"], "command": "lsp_format_document"},
+    { "keys": ["alt+f", "alt+d"], "command": "lsp_format_document"},
+    // plugin: MarkdownPreview
+    {
+        "keys": ["alt+m", "alt+p"],
+        "command": "markdown_preview",
+        "args": { "target": "browser", "parser": "markdown" },
+        "context": [ { "key": "selector", "operator": "equal", "operand": "text.html.markdown" } ],
+    },
     // plugin: MultiEditUtils
     { "keys": ["shift+escape"], "command": "jump_to_last_region" },
     { "keys": ["ctrl+alt+r"], "command": "remove_empty_regions", "context": [{ "key": "setting.is_widget", "operator": "equal", "operand": false }] },

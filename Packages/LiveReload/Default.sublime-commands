@@ -1,0 +1,14 @@
+[
+    {
+        "caption": "LiveReload: Self test",
+        "command": "live_reload_test"
+    },
+    {
+        "caption": "LiveReload: Help",
+        "command": "live_reload_help"
+    },
+    {
+        "caption": "LiveReload: Enable/disable plug-ins",
+        "command": "live_reload_enable_plugin"
+    }
+]
