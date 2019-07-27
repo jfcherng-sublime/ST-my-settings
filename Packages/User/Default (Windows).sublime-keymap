@@ -411,13 +411,6 @@
     { "keys": ["alt+i"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": -1 }] },
     { "keys": ["alt+k"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": 1 }] },
     { "keys": ["alt+f", "alt+d"], "command": "lsp_format_document"},
-    // plugin: MarkdownPreview
-    {
-        "keys": ["alt+m", "alt+p"],
-        "command": "markdown_preview",
-        "args": { "target": "browser", "parser": "markdown" },
-        "context": [ { "key": "selector", "operator": "equal", "operand": "text.html.markdown" } ],
-    },
     // plugin: MultiEditUtils
     { "keys": ["shift+escape"], "command": "jump_to_last_region" },
     { "keys": ["ctrl+alt+r"], "command": "remove_empty_regions", "context": [{ "key": "setting.is_widget", "operator": "equal", "operand": false }] },
@@ -483,6 +476,18 @@
     /**************************
      *    Chained  commands   *
      **************************/
+    // plugin: LiveReload + MarkdownPreview
+    {
+        "keys": ["alt+m", "alt+p"],
+        "command": "chain",
+        "args": {
+            "commands": [
+                [ "live_reload_config_plugin", { "plugin": "SimpleRefreshDelay", "operation": "enable" } ],
+                [ "markdown_preview", { "target": "browser", "parser": "markdown" } ],
+            ],
+        },
+        "context": [ { "key": "selector", "operator": "equal", "operand": "text.html.markdown" } ],
+    },
     // get 8 chars hash
     {
         "keys": ["ctrl+shift+,"],
