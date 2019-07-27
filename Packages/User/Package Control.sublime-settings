@@ -28,7 +28,6 @@
 		"BracketSpacer",
 		"Case Conversion",
 		"Chain of Command",
-		"Clickable URLs",
 		"CMake",
 		"Codec",
 		"Codecs33",
@@ -63,7 +62,7 @@
 		"MultiEditUtils",
 		"MultiFill",
 		"nginx",
-		"OmniMarkupPreviewer",
+		"OpenUriInBrowser",
 		"Package Control",
 		"PackageDev",
 		"PHP Completions Kit",
@@ -103,8 +102,13 @@
 		"Verilog Automatic",
 		"Vue Syntax Highlight"
 	],
+	"package_name_map":
+	{
+		"Sublime-OpenUriInBrowser": "OpenUriInBrowser"
+	},
 	"repositories":
 	[
-		"https://github.com/evandrocoan/AutoFileName"
+		"https://github.com/evandrocoan/AutoFileName",
+		"https://github.com/jfcherng/Sublime-OpenUriInBrowser"
 	]
 }

@@ -428,6 +428,12 @@
     { "keys": ["super+ctrl+alt+right"],       "command": "multi_select_windows", "args": { "direction": "right" } },
     { "keys": ["super+ctrl+alt+shift+left"],  "command": "multi_move_window",    "args": { "direction": "left"  } },
     { "keys": ["super+ctrl+alt+shift+right"], "command": "multi_move_window",    "args": { "direction": "right" } },
+    // plugin: OpenUriInBrowser
+    {
+        "keys": ["alt+o", "alt+i", "alt+b"],
+        "command": "open_uri_in_browser_from_cursor",
+        "args": {"browser": ""},
+    },
     // plugin: Power Cursor
     { "keys": ["alt+="],  "command": "power_cursor_add" },
     { "keys": ["alt++"],  "command": "power_cursor_add" },
