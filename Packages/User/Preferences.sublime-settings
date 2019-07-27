@@ -20,7 +20,8 @@
 		"js",
 		"Roundcube",
 		"namespace",
-		"Symfony"
+		"Symfony",
+		"inline"
 	],
 	"afn_blacklist_scopes":
 	[
