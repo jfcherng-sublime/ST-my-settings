@@ -1,0 +1,15 @@
+{
+    "annotation_found_text": "→",
+    "annotation_not_found_text": "Ｘ",
+    "lookup_paths": {
+        "js": [],
+        "jstl": [
+            "taglib *prefix ?= ?[\"'](.*)[\"'] *tagdir ?= ?[\"'](.*)[\"']",
+            "xmlns:(\\w*)=[\"']urn:jsptagdir:(.*?)[\"']"
+        ],
+        "twig": [
+            "templates",
+            "views",
+        ],
+    },
+}
