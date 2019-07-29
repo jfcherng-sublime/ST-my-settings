@@ -10,6 +10,12 @@
         },
         {
             "keymaps": {
+                "dk ": "->",
+            },
+            "syntax_list": ["source.python"],
+        },
+        {
+            "keymaps": {
                 "fj ": "$",
             },
             "syntax_list": ["SCSS", "source.shell", "source.js"],
