@@ -21,7 +21,8 @@
 		"Roundcube",
 		"namespace",
 		"Symfony",
-		"inline"
+		"inline",
+		"timestamp"
 	],
 	"afn_blacklist_scopes":
 	[
