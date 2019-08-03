@@ -76,7 +76,7 @@
             "syntax_filter": "whitelist",
             "base_scopes": [
                 "source.css",
-                "text.html"
+                "text.html",
             ],
             "scan_scopes": [
                 // https://packagecontrol.io/packages/CSS3
@@ -87,30 +87,30 @@
                 "meta.value.css -comment -string",
                 // HTML attributes (based on: Sublime Default)
                 "meta.tag.inline.any.html string.quoted -constant.character.entity.html",
-                "meta.tag.any.html meta.attribute-with-value.style.html"
+                "meta.tag.any.html meta.attribute-with-value.style.html",
             ],
             "scan_completion_scopes": [],
             "extensions": [],
             "allowed_colors": ["css3"],
             "use_hex_argb": false,
-            "compress_hex_output": true
+            "compress_hex_output": true,
         },
         {
             //Sass (based on: https://packagecontrol.io/packages/Sass)
             "syntax_files": ["Sass/Syntaxes/Sass"],
             "syntax_filter": "whitelist",
             "base_scopes": [
-                "source.sass"
+                "source.sass",
             ],
             "scan_scopes": [
-                "source.sass -comment -string -variable.parameter"
+                "source.sass -comment -string -variable.parameter",
             ],
             "scan_completion_scopes": [
             ],
             "extensions": [],
             "allowed_colors": ["css3"],
             "use_hex_argb": false,
-            "compress_hex_output": true
+            "compress_hex_output": true,
         },
         {
             // A number of sass and scss syntaxes are bundled together
@@ -119,38 +119,32 @@
             "syntax_filter": "whitelist",
             "base_scopes": [
                 "source.scss",
-                "source.sass"
+                "source.sass",
             ],
             "scan_scopes": [
                 // Sass and SCSS (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
-                "meta.property-list.css.sass -comment -string",
+                "meta.property-list.css -comment -string",
                 // Sass (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20PostCSS)
-                "constant.other.color.rgb-value.css.sass -comment -string",
+                "constant.other.rgb-value",
                 // SCSS (based on https://packagecontrol.io/packages/SCSS)
-                "constant.other.color.rgb-value.css -comment -string",
-                "constant.other.color.rgb-value.scss -comment -string",
-                // SCSS (based on https://packagecontrol.io/packages/SCSS)
-                "constant.other.color.rgb-value.css",
-                "constant.other.color.rgb-value.scss",
-                "support.constant.color.w3c-standard-color-name.css",
-                "support.constant.color.w3c-standard-color-name.scss",
+                "constant.other.color.rgb-value",
+                "support.constant.color",
                 "meta.property-value.css",
-                "meta.property-value.scss",
                 // Sass and SCSS script maps (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
-                "sass-script-maps -variable.other -comment -string"
+                "sass-script-maps -variable.other -comment -string",
             ],
             "scan_completion_scopes": [
                 // SCSS (based on https://packagecontrol.io/packages/SCSS)
                 // Sass (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20PostCSS)
-                // Sass and SCSS script maps (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
+                // Sass and SCSS script maps (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
                 "source.css -comment -string",
                 "source.scss -comment -string",
-                "source.sass -comment -string"
+                "source.sass -comment -string",
             ],
             "extensions": [],
             "allowed_colors": ["css3"],
             "use_hex_argb": false,
-            "compress_hex_output": true
+            "compress_hex_output": true,
         },
         {
             "syntax_files": [],
@@ -160,7 +154,7 @@
             "allowed_colors": ["hex", "hexa", "hex_compressed"],
             "extensions": [".tmTheme", ".hidden-tmTheme", ".stTheme"],
             "use_hex_argb": false,
-            "compress_hex_output": false
+            "compress_hex_output": false,
         },
         {
             "syntax_files": [],
@@ -175,21 +169,22 @@
             "allowed_colors": ["css3"],
             "extensions": [],
             "use_hex_argb": false,
-            "compress_hex_output": true
+            "compress_hex_output": true,
         },
         {
             "syntax_files": [],
             "syntax_filter": "whitelist",
             "base_scopes": ["source.less"],
             "scan_scopes": [
-                "constant.other.color.rgb-value.css",
-                "constant.color.w3c-standard-color-name.css",
-                "meta.property-value.css"
+                // LESS (based on https://packagecontrol.io/packages/LESS)
+                "constant.other.color.rgb-value",
+                "constant.color.w3c-standard-color-name",
+                "meta.property-value",
             ],
             "allowed_colors": ["css3"],
             "extensions": [],
             "use_hex_argb": false,
-            "compress_hex_output": true
+            "compress_hex_output": true,
         },
         // add support for .sublime-color-scheme by jfcherng
         {
@@ -205,7 +200,7 @@
                 ".sublime-theme",
             ],
             "use_hex_argb": false,
-            "compress_hex_output": true
+            "compress_hex_output": true,
         },
         // add support for subtitles by jfcherng
         {
@@ -219,10 +214,10 @@
             "allowed_colors": ["hex", "hex_compressed"],
             "extensions": [/* no restriction */],
             "use_hex_argb": false,
-            "compress_hex_output": false
-        }
+            "compress_hex_output": false,
+        },
     ],
 
     // Enable project palettes in palette panel (Palettes stored in project file).
-    "enable_project_user_palettes": true
+    "enable_project_user_palettes": true,
 }
