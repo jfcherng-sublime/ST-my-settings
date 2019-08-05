@@ -89,9 +89,13 @@
     },
     "no_column_highlights_line": true,
     "paths": {
-        "linux": [],
+        "linux": [
+            "/usr/local/iverilog/bin",
+        ],
         "osx": [],
-        "windows": []
+        "windows": [
+            "C:\\iverilog\\bin",
+        ],
     },
     "show_marks_in_minimap": true,
     "syntax_map": {
