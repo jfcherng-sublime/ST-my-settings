@@ -48,9 +48,9 @@
             ],
             "excludes": [],
         },
-        "verilator": {
+        "iverilog": {
             "disable": false,
-            "args": [],
+            "args": ["-i"],
             "excludes": []
         },
         // http://rapilabs.github.io/eslintrc-generator/
