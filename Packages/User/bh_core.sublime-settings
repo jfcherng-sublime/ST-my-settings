@@ -65,26 +65,10 @@
         {"name": "jsregex", "position": 504},
         {"name": "perlregex", "position": 505},
         {"name": "rubyregex", "position": 506},
-        {
-            "name": "mditalic",
-            "language_list": ["Markdown", "Multimarkdown", "GithubFlavoredMarkdown", "MarkdownLight"],
-            "position": 507
-        },
-        {
-            "name": "mdbold",
-            "language_list": ["Markdown", "Multimarkdown", "GithubFlavoredMarkdown", "MarkdownLight"],
-            "position": 508
-        },
-        {
-            "name": "mdcodeinline",
-            "language_list": ["Markdown", "Multimarkdown", "GithubFlavoredMarkdown", "MarkdownLight"],
-            "position": 509
-        },
-        {
-            "name": "mdcodeblock",
-            "language_list": ["Markdown", "Multimarkdown", "GithubFlavoredMarkdown", "MarkdownLight"],
-            "position": 510
-        },
+        {"name": "mditalic", "position": 507},
+        {"name": "mdbold", "position": 508},
+        {"name": "mdcodeinline", "position": 509},
+        {"name": "mdcodeblock", "position": 510},
         {"name": "latexmath_inline", "position": 511},
     ],
     "user_brackets": [
