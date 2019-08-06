@@ -107,11 +107,13 @@
 	],
 	"package_name_map":
 	{
+		"Sublime-IntelliDocs": "IntelliDocs",
 		"Sublime-OpenUriInBrowser": "OpenUriInBrowser"
 	},
 	"repositories":
 	[
 		"https://github.com/evandrocoan/AutoFileName",
+		"https://github.com/jfcherng/Sublime-IntelliDocs",
 		"https://github.com/jfcherng/Sublime-OpenUriInBrowser"
 	]
 }
