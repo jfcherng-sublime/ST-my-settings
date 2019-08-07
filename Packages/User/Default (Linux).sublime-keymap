@@ -505,13 +505,13 @@
     { "keys": ["ctrl+alt+f"], "command": "black_file", "context": [ { "key": "selector", "operator": "equal", "operand": "source.python" } ] },
     { "keys": ["ctrl+alt+shift+f"], "command": "black_diff", "context": [ { "key": "selector", "operator": "equal", "operand": "source.python" } ] },
     // plugin: HTMLPrettify
-    { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "source.css, source.scss, source.less" } ] },
+    { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "source.css | source.scss | source.less" } ] },
     { "keys": ["ctrl+alt+f"], "command": "htmlprettify", "context": [ { "key": "selector", "operator": "equal", "operand": "text.html.basic" } ] },
     // plugin: JsFormat
     { "keys": ["ctrl+alt+f"], "command": "format_eslint", "context": [ { "key": "selector", "operator": "equal", "operand": "source.js" } ] },
     { "keys": ["ctrl+alt+f"], "command": "js_format", "context": [ { "key": "selector", "operator": "equal", "operand": "source.json" } ] },
     // plugin: php-cs-fix
-    { "keys": ["ctrl+alt+f"], "command": "phpcs_fix_this_file", "args": {"tool": "Fixer"}, "context": [ { "key": "selector", "operator": "equal", "operand": "embedding.php, source.php" } ] },
+    { "keys": ["ctrl+alt+f"], "command": "phpcs_fix_this_file", "args": {"tool": "Fixer"}, "context": [ { "key": "selector", "operator": "equal", "operand": "embedding.php | source.php" } ] },
     /**************************
      *    Chained  commands   *
      **************************/
