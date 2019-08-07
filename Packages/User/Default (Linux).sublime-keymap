@@ -451,6 +451,7 @@
     { "keys": ["f2"], "command": "lsp_symbol_rename" },
     { "keys": ["f12"], "command": "lsp_symbol_definition"}, // LSP falls back to ST's built-in goto definition command in case LSP fails
     { "keys": ["ctrl+alt+space"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": 0}] },
+    { "keys": ["ctrl+alt+space"], "command": "lsp_hover", "context": [{ "key": "selector", "operator": "equal", "operand": "entity.name.class | entity.name.function | entity.name.tag | entity.other.inherited-class | meta.property-name.css | meta.property-value.css | meta.selector.css | support.class | support.function | variable.function" }] },
     { "keys": ["alt+i"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": -1 }] },
     { "keys": ["alt+k"], "command": "noop", "context": [{ "key": "lsp.signature_help", "operator": "equal", "operand": 1 }] },
     { "keys": ["alt+f", "alt+d"], "command": "lsp_format_document"},
