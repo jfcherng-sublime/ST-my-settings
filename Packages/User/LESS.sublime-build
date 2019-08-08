@@ -1,0 +1,28 @@
+{
+    "cmd": [
+        "lessc",
+        "--insecure",
+        "${file}",
+        "${file_path}/${file_base_name}.css",
+    ],
+    "selector": "source.less",
+    "working_dir": "${file_path}",
+    "osx": {
+        "path": "/usr/local/bin:$PATH",
+    },
+    "windows": {
+        "shell": true,
+    },
+    "target": "ansi_color_build",
+    "syntax": "Packages/ANSIescape/ANSI.sublime-syntax",
+    "variants": [{
+        "cmd": [
+            "lessc",
+            "--compress",
+            "--insecure",
+            "${file}",
+            "${file_path}/${file_base_name}.css",
+        ],
+        "name": "Compress",
+    }],
+}
