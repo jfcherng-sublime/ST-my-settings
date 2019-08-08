@@ -1,0 +1,31 @@
+{
+    "cmd": [
+        "sass",
+        "${file}:${file_path}/${file_base_name}.css",
+        "--color",
+        "--style", "expanded",
+        "--stop-on-error",
+        "--no-source-map",
+    ],
+    "selector": "source.sass, source.scss",
+    "working_dir": "${file_path}",
+    "osx": {
+        "path": "/usr/local/bin:$PATH",
+    },
+    "windows": {
+        "shell": true,
+    },
+    "target": "ansi_color_build",
+    "syntax": "Packages/ANSIescape/ANSI.sublime-syntax",
+    "variants": [{
+        "cmd": [
+            "sass",
+            "${file}:${file_path}/${file_base_name}.min.css",
+            "--color",
+            "--style", "compressed",
+            "--stop-on-error",
+            "--no-source-map",
+        ],
+        "name": "Compress",
+    }],
+}
