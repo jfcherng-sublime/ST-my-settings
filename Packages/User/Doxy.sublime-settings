@@ -1,6 +1,11 @@
 // Settings in here override those in "${packages}/DoxyDoxygen (evolution)/Doxy.sublime-settings",
 // and are overridden in turn by syntax-specific settings.
 {
+    // If true, the primitives "Boolean" and "Integer" are shortened to "Bool" and "Int"
+    //
+    // Some tools, like PHP CODE SNIFFER, may require this option to work.
+    "phpdoc_short_primitives": true,
+
     "min_spaces_between_columns": [ 1, 1 ],
     "preferred_tabs_sizes": [ 1, 2 ],
 
