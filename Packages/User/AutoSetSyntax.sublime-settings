@@ -29,6 +29,10 @@
         "ApacheConf/ApacheConf.": [
             "^<(?:VirtualHost|Directory|Macro)",
         ],
+        "Packages/PHP/PHP.": [
+            "<\\?php",
+            "<\\?=",
+        ]
     },
     // the scope that this plugin should work (regular expression)
     // leave it blank to match any scope
