@@ -22,7 +22,10 @@
 		"namespace",
 		"Symfony",
 		"inline",
-		"timestamp"
+		"timestamp",
+		"regex",
+		"todo",
+		"fallback"
 	],
 	"afn_blacklist_scopes":
 	[
