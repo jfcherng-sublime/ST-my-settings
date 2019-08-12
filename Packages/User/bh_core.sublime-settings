@@ -2,7 +2,7 @@
     // Debug logging
     "debug_enable": false,
     // Character threshold to search
-    "search_threshold": 40000,
+    "search_threshold": 10000,
     // Ignore threshold
     "ignore_threshold": false,
     // Set max number of multi-select brackets that will be searched automatically
@@ -14,6 +14,11 @@
     "align_content_highlight_bar": true,
     // Outside adjacent bracket matching
     "bracket_outside_adjacent": false,
+    // Adjust number of lines of additional context
+    // that are shown when brackets are vertically off screen.
+    // Specified line count is split to context before and after the target line.
+    // So a value of 4 would give you two lines of context before and two lines after.
+    "popup_line_context": 6,
 
     // user_scope_brackets and user_brackets will be appended
     // to the tail of scope_brackets and brackets respectively
