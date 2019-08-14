@@ -28,6 +28,15 @@
     // put yours rules and keep in sync with the defaults.
     "user_scope_brackets": [
         {
+            "name": "mdcodeblock",
+            "scopes": [
+                "markup.raw.block.fenced.markdown, markup.raw.block.markdown.fenced",
+                // added
+                "meta.code-fence, markup.raw.code-fence",
+            ],
+            "enabled": true,
+        },
+        {
             "name": "latex_double_quote",
             "open": "(``)",
             "close": "('')",
@@ -36,7 +45,7 @@
             "language_filter": "whitelist",
             "language_list": ["latex"],
             "sub_bracket_search": "true",
-            "enabled": true
+            "enabled": true,
         },
         {
             "name": "rst_substitution",
@@ -47,7 +56,7 @@
             "language_filter": "whitelist",
             "language_list": ["reStructuredText", "reStructuredText Improved"],
             "sub_bracket_search": "true",
-            "enabled": true
+            "enabled": true,
         },
         {
             "name": "bash_backtick",
@@ -58,7 +67,7 @@
             "language_filter": "whitelist",
             "language_list": ["Shell-Unix-Generic"],
             "sub_bracket_search": "true",
-            "enabled": true
+            "enabled": true,
         },
         ///////////////////////////////////////
         // shift positions of built-in rules //
@@ -89,7 +98,7 @@
             "scope_exclude": ["string", "comment", "keyword.operator"],
             "language_filter": "whitelist",
             "language_list": ["PHP", "HTML", "HTML 5"],
-            "enabled": true
+            "enabled": true,
         },
         ///////////////////
         // add new rules //
@@ -106,8 +115,21 @@
                 "storage.type.function.arrow.js",
                 "punctuation.accessor",
                 "punctuation.definition.arrow-function",
-                "meta.selector.css" // CSS in HTML (Twig)
-            ]
+                "meta.selector.css", // CSS in HTML (Twig)
+            ],
+        },
+        // Python
+        {
+            "name": "python_double_curly_brackets",
+            "style": "curly",
+            "open": "({{)",
+            "close": "(}})",
+            "scope_exclude": ["source.python - string.quoted"],
+            "language_filter": "whitelist",
+            "language_list": ["Python"],
+            "find_in_sub_search": "true",
+            "ignore_string_escape": true,
+            "enabled": true,
         },
         // C/C++ template
         {
@@ -123,7 +145,8 @@
             ],
             "language_filter": "whitelist",
             "language_list": ["C++", "C", "Objective-C", "CCpp", "C Improved", "C++ 11"],
-            "enabled": true
+            "find_in_sub_search": "true",
+            "enabled": true,
         },
         // HTML (Twig)
         {
@@ -133,7 +156,8 @@
             "style": "angle",
             "language_filter": "whitelist",
             "language_list": ["HTML (Twig)"],
-            "enabled": true
+            "find_in_sub_search": "true",
+            "enabled": true,
         },
         {
             "name": "twig_variable",
@@ -142,7 +166,8 @@
             "style": "curly",
             "language_filter": "whitelist",
             "language_list": ["HTML (Twig)"],
-            "enabled": true
+            "find_in_sub_search": "true",
+            "enabled": true,
         },
         // Verilog
         {
@@ -153,7 +178,8 @@
             "scope_exclude": ["quoted", "comment"],
             "language_filter": "whitelist",
             "language_list": ["Verilog"],
-            "enabled": true
+            "find_in_sub_search": "true",
+            "enabled": true,
         },
         {
             "name": "verilog_def",
@@ -163,7 +189,8 @@
             "scope_exclude": ["quoted", "comment"],
             "language_filter": "whitelist",
             "language_list": ["Verilog"],
-            "enabled": true
+            "find_in_sub_search": "true",
+            "enabled": true,
         },
         // reSturctureText
         {
@@ -174,7 +201,8 @@
             "scope_exclude": ["comment"],
             "language_filter": "whitelist",
             "language_list": ["reStructuredText", "reStructuredText Improved"],
-            "enabled": true
+            "find_in_sub_search": "true",
+            "enabled": true,
         },
         // Chinese punctuations
         {
@@ -187,7 +215,7 @@
             "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
-            "enabled": true
+            "enabled": true,
         },
         {
             "name": "chinese_double_quote",
@@ -199,7 +227,7 @@
             "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
-            "enabled": true
+            "enabled": true,
         },
         {
             "name": "chinese_round",
@@ -212,7 +240,7 @@
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "position": 0,
-            "enabled": true
+            "enabled": true,
         },
         ///////////////////////////////////////
         // shift positions of built-in rules //
@@ -284,7 +312,7 @@
         "default": {
             "icon": "dot", // angle, round, curly, square, tag, star, dot, bookmark, question, quote, double_quote, single_quote, single_quote_offset, double_quote_offset, none
             "color": "brackethighlighter.default",
-            "style": "solid" // solid, underline, outline, none, thin_underline, squiggly, stippled
+            "style": "solid", // solid, underline, outline, none, thin_underline, squiggly, stippled
         },
 
         // This particular style is used to highlight
@@ -293,53 +321,53 @@
         "unmatched": {
             "icon": "question",
             "color": "brackethighlighter.unmatched",
-            "style": "outline"
+            "style": "outline",
         },
         // User defined region styles
         "curly": {
             "icon": "curly_bracket",
             "color": "brackethighlighter.curly",
-            // "style": "underline"
+            // "style": "underline",
         },
         "round": {
             "icon": "round_bracket",
             "color": "brackethighlighter.round",
-            // "style": "underline"
+            // "style": "underline",
         },
         "square": {
             "icon": "square_bracket",
             "color": "brackethighlighter.square",
-            // "style": "underline"
+            // "style": "underline",
         },
         "angle": {
             "icon": "angle_bracket",
             "color": "brackethighlighter.angle",
-            // "style": "underline"
+            // "style": "underline",
         },
         "tag": {
             "icon": "tag",
             "color": "brackethighlighter.tag",
-            // "style": "underline"
+            // "style": "underline",
         },
         "c_define": {
             "icon": "hash",
             "color": "brackethighlighter.c_define",
-            // "style": "underline"
+            // "style": "underline",
         },
         "single_quote": {
             "icon": "single_quote",
             "color": "brackethighlighter.quote",
-            // "style": "underline"
+            // "style": "underline",
         },
         "double_quote": {
             "icon": "double_quote",
             "color": "brackethighlighter.quote",
-            // "style": "underline"
+            // "style": "underline",
         },
         "regex": {
             "icon": "regex",
             "color": "brackethighlighter.quote",
-            // "style": "underline"
+            // "style": "underline",
         },
-    }
+    },
 }
