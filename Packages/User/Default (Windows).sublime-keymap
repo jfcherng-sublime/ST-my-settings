@@ -99,6 +99,7 @@
     // goto definition
     { "keys": ["f12"],          "command": "goto_definition"        },
     { "keys": ["ctrl+shift+r"], "command": "goto_symbol_in_project" },
+    { "keys": ["ctrl+alt+r"],   "command": "navigate_to_line_via_quick_panel" },
     // paste (set default to use smart paste)
     { "keys": ["ctrl+v"],       "command": "paste_and_indent" },
     { "keys": ["ctrl+shift+v"], "command": "paste"            },
@@ -457,10 +458,10 @@
     { "keys": ["alt+f", "alt+d"], "command": "lsp_format_document"},
     // plugin: MultiEditUtils
     { "keys": ["shift+escape"], "command": "jump_to_last_region" },
-    { "keys": ["ctrl+alt+r"], "command": "remove_empty_regions", "context": [{ "key": "setting.is_widget", "operator": "equal", "operand": false }] },
-    // { "keys": ["ctrl+alt+c"],   "command": "cycle_through_regions" },
-    { "keys": ["ctrl+alt+n"],   "command": "normalize_region_ends" },
-    { "keys": ["ctrl+alt+,"],   "command": "split_selection" },
+    { "keys": ["alt+r", "alt+e"], "command": "remove_empty_regions", "context": [{ "key": "setting.is_widget", "operator": "equal", "operand": false }] },
+    { "keys": ["alt+r", "alt+c"],   "command": "cycle_through_regions" },
+    { "keys": ["alt+r", "alt+n"],   "command": "normalize_region_ends" },
+    { "keys": ["alt+r", "alt+s"],   "command": "split_selection" },
     // plugin: MultiFill
     { "keys": ["super+alt+up"],               "command": "multi_window_compare", "args": { "direction": "up",   "sync":"false" } },
     { "keys": ["super+alt+down"],             "command": "multi_window_compare", "args": { "direction": "down", "sync":"false" } },
