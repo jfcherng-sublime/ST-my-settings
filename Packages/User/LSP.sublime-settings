@@ -97,6 +97,7 @@
             "languageId": "php",
             "initializationOptions": {
                 "storagePath": "E:/_Data/intelephense",
+                "globalStoragePath": "E:/_Data/intelephense",
             },
         },
         "yaml-lsp": {
