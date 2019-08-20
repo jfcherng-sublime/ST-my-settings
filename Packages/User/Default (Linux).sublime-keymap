@@ -459,10 +459,11 @@
     // plugin: MultiEditUtils
     { "keys": ["shift+escape"], "command": "jump_to_last_region" },
     { "keys": ["alt+r", "alt+e"], "command": "remove_empty_regions", "context": [{ "key": "setting.is_widget", "operator": "equal", "operand": false }] },
-    { "keys": ["alt+r", "alt+c"],   "command": "cycle_through_regions" },
-    { "keys": ["alt+r", "alt+n"],   "command": "normalize_region_ends" },
-    { "keys": ["alt+r", "alt+s"],   "command": "split_selection" },
+    { "keys": ["alt+r", "alt+c"], "command": "cycle_through_regions" },
+    { "keys": ["alt+r", "alt+n"], "command": "normalize_region_ends" },
+    { "keys": ["alt+r", "alt+s"], "command": "split_selection" },
     // plugin: MultiFill
+    { "keys": ["alt+m", "alt+f"], "command": "multi_integer" },
     { "keys": ["super+alt+up"],               "command": "multi_window_compare", "args": { "direction": "up",   "sync":"false" } },
     { "keys": ["super+alt+down"],             "command": "multi_window_compare", "args": { "direction": "down", "sync":"false" } },
     { "keys": ["super+alt+shift+up"],         "command": "multi_window_compare", "args": { "direction": "up",   "sync":"true"  } },
