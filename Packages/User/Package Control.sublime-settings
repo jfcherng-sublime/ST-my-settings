@@ -63,7 +63,7 @@
 		"MultiEditUtils",
 		"MultiFill",
 		"nginx",
-		"OpenUriInBrowser",
+		"OpenUri",
 		"Package Control",
 		"PackageDev",
 		"PHP Completions Kit",
@@ -108,12 +108,12 @@
 	"package_name_map":
 	{
 		"Sublime-IntelliDocs": "IntelliDocs",
-		"Sublime-OpenUriInBrowser": "OpenUriInBrowser"
+		"Sublime-OpenUri": "OpenUri"
 	},
 	"repositories":
 	[
 		"https://github.com/evandrocoan/AutoFileName",
 		"https://github.com/jfcherng/Sublime-IntelliDocs",
-		"https://github.com/jfcherng/Sublime-OpenUriInBrowser"
+		"https://github.com/jfcherng/Sublime-OpenUri"
 	]
 }
