@@ -106,8 +106,10 @@
             "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
             "languageId": "php",
             "initializationOptions": {
+                "clearCache": false,
                 "storagePath": "E:/_Data/intelephense",
                 "globalStoragePath": "E:/_Data/intelephense",
+                "licenceKey": "FILL_YOUR_LICENSE_KEY_HERE",
             },
         },
         "yaml-lsp": {
@@ -319,5 +321,5 @@
     "log_payloads": false,
     "log_debug": false,
     "log_server": false,
-    "log_stderr": true
+    "log_stderr": true,
 }
