@@ -1,9 +1,9 @@
 # do not add any dir
 */
 
-Doxy.sublime-license
+*.crt
+*.sublime-license
 encoding_cache.json
 Package Control.*
-*.crt
 
 !*.sublime-settings
