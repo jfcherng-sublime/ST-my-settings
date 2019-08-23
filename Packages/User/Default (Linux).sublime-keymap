@@ -414,6 +414,19 @@
     { "keys": ["ctrl+,"], "command": "bh_key", "args": { "no_outside_adj": true, "lines" : true, "plugin": { "type": ["__all__"], "command": "bh_modules.bracketselect", "args": { "select": "left" } } } },
     { "keys": ["ctrl+."], "command": "bh_key", "args": { "no_outside_adj": true, "lines" : true, "plugin": { "type": ["__all__"], "command": "bh_modules.bracketselect", "args": { "select": "right"} } } },
     { "keys": ["ctrl+'"], "command": "bh_key", "args": { "no_outside_adj": true, "lines" : true, "plugin": { "type": ["__all__"], "command": "bh_modules.bracketselect" } } },
+    {
+        // Select tag name of HTML/XML tag (both opening name and closing)
+        "keys": ["ctrl+shift+'"],
+        "command": "bh_key",
+        "args":
+        {
+            "plugin":
+            {
+                "type": ["cfml", "html", "angle", "bbcode_tag"],
+                "command": "bh_modules.tagnameselect",
+            },
+        },
+    },
     { "keys": ["alt+s", "alt+b"], "command": "swap_brackets", "args": { "async": true } },
     { "keys": ["alt+s", "alt+q"], "command": "bh_async_key",  "args": { "lines": true, "plugin": { "command": "bh_modules.swapquotes", "type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"] } } },
     // plugin: Case Convertion
