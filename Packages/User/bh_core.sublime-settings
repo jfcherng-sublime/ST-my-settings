@@ -204,6 +204,18 @@
             "find_in_sub_search": "true",
             "enabled": true,
         },
+        // BBCode
+        {
+            "name": "bbcode_tag",
+            "open": "(\\[)",
+            "close": "(\\])",
+            "style": "tag",
+            "scope_exclude": [],
+            "language_filter": "whitelist",
+            "language_list": ["BBCode"],
+            "plugin_library": "bh_modules.tags",
+            "enabled": true
+        },
         // Chinese punctuations
         {
             "name": "chinese_single_updown_quote",
