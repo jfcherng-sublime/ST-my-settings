@@ -63,6 +63,7 @@
 		"MultiEditUtils",
 		"MultiFill",
 		"nginx",
+		"OpenUri",
 		"Package Control",
 		"PackageDev",
 		"PHP Completions Kit",
@@ -102,6 +103,7 @@
 		"TypeShort",
 		"Verilog",
 		"Verilog Automatic",
+		"VisualizeZeroWidthChars",
 		"Vue Syntax Highlight"
 	],
 	"package_name_map":
