@@ -13,6 +13,7 @@ python-markdown/
 python-toml/
 PyV8/
 pyyaml/
+regex/
 requests/
 ssl-linux/
 sublime_lib/
