@@ -1,5 +1,6 @@
 PyV8/
 *.sublime-package
+*.sublime-package-new
 
 !Package Control.sublime-package
 !SideBarGit.sublime-package
