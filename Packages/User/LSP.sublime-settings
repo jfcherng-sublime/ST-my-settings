@@ -1,4 +1,8 @@
 {
+    // Disable language client capabilities. Supported values:
+    // "hover", "completion", "colorProvider", "documentHighlight", "signatureHelp"
+    "disabled_capabilities": ["colorProvider"],
+    // LSP servers configurations
     "clients": {
         "bash-lsp": {
             // https://github.com/mads-hartmann/bash-language-server
@@ -109,7 +113,10 @@
                 "clearCache": false,
                 "storagePath": "E:/_Data/intelephense",
                 "globalStoragePath": "E:/_Data/intelephense",
-                "licenceKey": "FILL_YOUR_LICENSE_KEY_HERE",
+                // To use the licenceKey,
+                // you can also write it to "YOUR_HOME_DIR/intelephense/licence.txt"
+                // and comment out the following property
+                "licenceKey": "${packages}/User/intelephense.sublime-license",
             },
         },
         "yaml-lsp": {
