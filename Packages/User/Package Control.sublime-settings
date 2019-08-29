@@ -110,14 +110,12 @@
 	"package_name_map":
 	{
 		"Sublime-IntelliDocs": "IntelliDocs",
-		"Sublime-OpenUri": "OpenUri",
 		"Sublime-VisualizeZeroWidthChars": "VisualizeZeroWidthChars"
 	},
 	"repositories":
 	[
 		"https://github.com/evandrocoan/AutoFileName",
 		"https://github.com/jfcherng/Sublime-IntelliDocs",
-		"https://github.com/jfcherng/Sublime-OpenUri",
 		"https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars"
 	]
 }
