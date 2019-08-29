@@ -1,4 +1,0 @@
-[
-    // plugin: Clickable URLs
-    { "button": "button2", "modifiers": ["ctrl"], "press_command": "open_context_url" },
-]
