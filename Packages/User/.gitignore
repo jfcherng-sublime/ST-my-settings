@@ -4,6 +4,6 @@
 *.crt
 *.sublime-license
 encoding_cache.json
-Package Control.*
 
-!*.sublime-settings
+Package Control.*
+!Package Control.sublime-settings
