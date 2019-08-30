@@ -17,6 +17,7 @@ regex/
 requests/
 ssl-linux/
 sublime_lib/
+typing/
 
 # packages
 AutoSetIndentation/
