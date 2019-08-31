@@ -5,6 +5,7 @@ black[d]
 compdb
 compiledb
 markdown
+mypy
 pymdown-extensions
 python-language-server[all]
 yamllint
