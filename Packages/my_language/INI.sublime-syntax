@@ -11,8 +11,10 @@ file_extensions:
   - reg
   - REG
   - lng
-  # PHP framework ENV files
+  # PHP framework ENV file
   - .env
+  # python linter configuration file
+  - .flake8
 scope: source.ini
 contexts:
   main:
