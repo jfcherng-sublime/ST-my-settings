@@ -174,8 +174,10 @@
 	"folder_exclude_patterns":
 	[
 		".cache",
+		".clangd",
 		".git",
 		".hg",
+		".mypy_cache",
 		".sass-cache",
 		".simvision",
 		".svn",
@@ -184,8 +186,7 @@
 		"CVS",
 		"INCA_libs",
 		"nLintDB",
-		"nLintLog",
-		"node_modules"
+		"nLintLog"
 	],
 	"font_face": "Ubuntu Mono",
 	"font_options":
