@@ -106,6 +106,7 @@
         // Angle
         {
             "name": "angle",
+            "open": "(?<!<)(<)(?=[^?%<]|$)",
             "scope_exclude": [
                 "string",
                 "comment",
