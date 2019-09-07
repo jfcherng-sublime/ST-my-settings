@@ -1,6 +1,20 @@
 {
+    "supported_syntaxes": {
+        "rst": [
+            "reStructuredText.tmLanguage",
+            "reStructuredText Improved.tmLanguage",
+        ],
+    },
     "annotation_found_text": "→",
     "annotation_not_found_text": "Ｘ",
+    "import_line_regex": {
+        "rst": [
+            "^\\s*\\.\\. include::\\s*(.*)$",
+        ],
+    },
+    "valid_extensions": {
+        "rst": ["rst"],
+    },
     "lookup_paths": {
         "js": [],
         "jstl": [
