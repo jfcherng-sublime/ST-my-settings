@@ -1,29 +1,182 @@
 {
-    "supported_syntaxes": {
+    "supported_syntaxes":
+    {
+        "js": [
+            "ecmascript.sublime-syntax",
+            "JavaScript.sublime-syntax",
+            "JavaScript (Babel).sublime-syntax",
+            "JavaScriptNext.tmLanguage",
+            "JavaScript.tmLanguage",
+            "naomi.fjsx15.sublime-syntax",
+            "naomi.jsx1.sublime-syntax",
+            "Vue Component.sublime-syntax",
+            "TypeScript.tmLanguage",
+            "TypeScriptReact.tmLanguage",
+        ],
+        "sass": [
+            "SCSS.tmLanguage",
+            "Sass.tmLanguage",
+        ],
+        "less": [
+            "LESS.tmLanguage",
+        ],
+        "php": [
+            "PHP.sublime-syntax",
+            "PHP Source.sublime-syntax",
+        ],
+        "stylus": [
+            "Stylus.tmLanguage",
+        ],
+        "html": [
+            "HTML.sublime-syntax",
+        ],
+        "jstl": [
+            "jstl.tmLanguage",
+        ],
+        "css": [
+            "CSS.sublime-syntax",
+            "PostCSS.tmLanguage",
+        ],
+        "pug": [
+            "Pug.tmLanguage",
+        ],
+        "sugarss": [
+            "Sss.tmLanguage",
+            "SugarSS.tmLanguage",
+        ],
+        "sugarml": [
+            "SugarML.tmLanguage",
+        ],
+        "nunjucks": [
+            "Nunjucks.tmLanguage",
+        ],
+        "jinja2": [
+            "Jinja2.tmLanguage",
+        ],
+        "twig": [
+            "HTML (Twig).tmLanguage",
+            "Craft-Twig.tmLanguage",
+        ],
+        // jfcherng
         "rst": [
             "reStructuredText.tmLanguage",
             "reStructuredText Improved.tmLanguage",
         ],
     },
-    "annotation_found_text": "→",
-    "annotation_not_found_text": "Ｘ",
-    "import_line_regex": {
+    "import_line_regex":
+    {
+        "js": [
+            "^import\\s+['\"](.+)['\"];?$",
+            ".*from\\s+['\"](.+)['\"];?$",
+            ".*require\\(['\"](.+?)['\"]\\)",
+            ".*import\\((?:\\/\\*.+?\\*\\/\\s+)?['\"](.+)['\"]\\)(?:[;\\.,])?",
+        ],
+        "sass": [
+            "^@import\\s+['\"](.+)['\"];?$",
+        ],
+        "less": [
+            "^@import\\s+\\(?.*\\)?\\s*['\"](.+)['\"];?$",
+        ],
+        "php": [
+            // jfcherng
+            "\\b(?:include|require)(?:_once)?\\s*\\(?['\"](.+)['\"]\\)?;?$",
+        ],
+        "stylus": [
+            "^@import\\s+['\"](.+)['\"];?$",
+        ],
+        "html": [
+            // jfcherng
+            ".*?<link\\s+rel=\"import\"\\s+href=['\"](.+)['\"]/?>",
+        ],
+        "jstl": [
+            "(<([\\w-]*)\\:([\\w-]*))",
+        ],
+        "css": [
+            "^@import\\s+['\"](.+)['\"].*?;$",
+            "^@import\\s+url\\(['\"](.+)['\"]\\).*?;$",
+        ],
+        "pug": [
+            // jfcherng
+            "^(?:include|extends)\\s+(.+)$",
+        ],
+        "sugarss": [
+            "^@import\\s+['\"](.+)['\"]$",
+        ],
+        "sugarml": [
+            // jfcherng
+            "^(?:include|extends)\\(src=['\"]\/?(.+)['\"]\\)$",
+        ],
+        "nunjucks": [
+            // jfcherng
+            "^{%\\s+(?:extends|include|import)\\s+['\"](.+)['\"].*?%}$",
+            "^{%\\s+from\\s+['\"](.+)['\"]\\s+import.*?%}$",
+        ],
+        "jinja2": [
+            // jfcherng
+            "^{%\\s+(?:extends|include|import)\\s+['\"](.+)['\"].*?%}$",
+            "^{%\\s+from\\s+['\"](.+)['\"]\\s+import.*?%}$",
+        ],
+        "twig": [
+            // jfcherng
+            "^{%\\s+(?:embed|extends|include|import|use)\\s+['\"](.+)['\"].*?%}$",
+            "^{%\\s+from\\s+['\"](.+)['\"]\\s+import.*?%}$",
+            "^{%\\s+.+?\\s+with\\s+['\"](.+)['\"].*?%}$",
+            "^{{\\s+include\\(['\"](.+)['\"].*?$",
+        ],
+        // jfcherng
         "rst": [
-            "^\\s*\\.\\. include::\\s*(.*)$",
+            "^\\s*\\.\\. include::\\s+(.+)$",
         ],
     },
-    "valid_extensions": {
+    "valid_extensions":
+    {
+        "js": ["js", "jsx", "vue", "mjs", "ts", "tsx"],
+        "sass": ["scss", "sass"],
+        "less": ["less"],
+        "php": ["php"],
+        "stylus": ["styl", "stylus"],
+        "html": ["html"],
+        "jstl": ["jsp", "tag"],
+        "css": ["css", "pcss", "postcss"],
+        "pug": ["pug", "jade"],
+        "sugarss": ["sss"],
+        "sugarml": ["sgr"],
+        "nunjucks": ["njk", "nunjucks", "njs", "html"],
+        "jinja2": ["j2"],
+        "twig": ["twig"],
+        // jfcherng
         "rst": ["rst"],
     },
-    "lookup_paths": {
+    "default_filenames":
+    {
+        "js": ["index"],
+    },
+    "vendor_dirs":
+    {
+        "js": ["node_modules"],
+        "html": ["node_modules", "bower_components"],
+        "jstl": ["WEB-INF"],
+    },
+    "lookup_paths":
+    {
         "js": [],
         "jstl": [
             "taglib *prefix ?= ?[\"'](.*)[\"'] *tagdir ?= ?[\"'](.*)[\"']",
-            "xmlns:(\\w*)=[\"']urn:jsptagdir:(.*?)[\"']"
+            "xmlns:(\\w*)=[\"']urn:jsptagdir:(.*?)[\"']",
         ],
+        // jfcherng
         "twig": [
             "templates",
             "views",
         ],
     },
+    // jfcherng
+    "aliases": {
+      "js": {
+        "@assets": "assets",
+      },
+    },
+    "annotation_found_text": "→",
+    "annotation_not_found_text": "Ｘ",
+    "annotations_enabled": true,
 }
