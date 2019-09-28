@@ -4,7 +4,7 @@
      *   My commands   *
      *******************/
     // { "keys": ["alt+q"], "command": "nop" },
-    { "keys": ["alt+d", "alt+c"], "command": "decorate_inline_comment" },
+    { "keys": ["alt+d", "alt+c"], "command": "decorate_inline_comment", "context": [ { "key": "selector", "operator": "equal", "operand": "comment" } ] },
     { "keys": ["pause"], "command": "exec", "args": { "kill": true } },
     /**************************
      *    Built-in commands   *
@@ -455,6 +455,8 @@
     // plugin: Emoji
     { "keys": ["alt+e", "alt+m"], "command": "select_emoji" },
     { "keys": ["ctrl+shift+c"], "command": "color_picker" },
+    // plugin: Find Cursor
+    { "keys": ["alt+f", "alt+c"], "command": "find_cursor", "args": { "reverse": false, "pan": false } },
     // plugin: GitGutter
     { "keys": ["ctrl+alt+shift+z"], "command": "git_gutter_revert_change" },
     // plugin: Insert Nums

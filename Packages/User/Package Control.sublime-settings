@@ -45,6 +45,7 @@
 		"FileDiffs",
 		"FileManager",
 		"Filter Lines",
+		"FindCursor",
 		"GitGutter",
 		"Gitignore",
 		"GotoEndOfLineOrScope",
