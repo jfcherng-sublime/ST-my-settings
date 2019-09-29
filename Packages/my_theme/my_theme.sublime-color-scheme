@@ -143,9 +143,10 @@
         "Brown"      : "var(Brown600)"      ,
         "Grey"       : "var(Grey600)"       ,
         "BlueGrey"   : "var(BlueGrey600)"   ,
-        // ...
+        // custom
         "background": "var(Black)",
         "foreground": "var(White)",
+        "DarkBlueBackground": "color(var(Blue) blend(color(var(background)) 15%))",
     },
     "globals": {
         "active_guide": "color(White alpha(0.3))",
@@ -489,10 +490,30 @@
         // php //
         /////////
         {
+            "background": "var(DarkBlueBackground)",
+            "name": "PHP - Block Comment",
+            "scope": "embedding.php comment.block.documentation",
+        },
+        {
             "font_style": "bold",
             "foreground": "var(Pink300)",
             "name": "PHP - PHPUnit annotations",
             "scope": "keyword.other.phpunit.php",
+        },
+        {
+            "foreground": "var(Pink200)",
+            "name": "PHP - Annotations",
+            "scope": "keyword.other.annotation.tag.php, keyword.other.annotation.object.php",
+        },
+        {
+            "foreground": "var(foreground)",
+            "name": "PHP - Annotation punctutions",
+            "scope": "punctuation.section.group",
+        },
+        {
+            "foreground": "var(foreground)",
+            "name": "PHP - Annotation Parameter Separator",
+            "scope": "meta.comment.annotation.php punctuation.separator.php",
         },
         {
             "foreground": "var(Pink)",
