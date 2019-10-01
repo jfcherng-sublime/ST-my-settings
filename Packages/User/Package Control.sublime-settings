@@ -46,6 +46,7 @@
 		"FileManager",
 		"Filter Lines",
 		"FindCursor",
+		"GenerateUUID",
 		"GitGutter",
 		"Gitignore",
 		"GotoEndOfLineOrScope",
