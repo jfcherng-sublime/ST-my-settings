@@ -1,6 +1,7 @@
 {
 	"extensions":
 	[
-		"webmanifest"
+		"webmanifest",
+		".markdownlintrc"
 	]
 }

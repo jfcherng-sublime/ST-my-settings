@@ -6,6 +6,7 @@
     "intelephense": "^1",
     "javascript-typescript-langserver": "^2",
     "less": "^3",
+    "markdownlint-cli": "^0",
     "sass": "^1",
     "vscode-css-languageserver-bin": "^1",
     "vscode-html-languageserver-bin": "^1",
