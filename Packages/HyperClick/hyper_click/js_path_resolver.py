@@ -80,7 +80,7 @@ class JsPathResolver:
         # Node modules
         return self.resolve_node_modules(self.str_path, self.current_dir)
 
-    def resolve_from_alias (self, alias, alias_source):
+    def resolve_from_alias(self, alias, alias_source):
         if (self.str_path == alias):
             result = self.resolve_relative_to_dir(self.str_path, self.currentRoot)
             if result:

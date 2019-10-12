@@ -2,68 +2,68 @@
     "supported_syntaxes":
     {
         "js": [
-            "ecmascript.sublime-syntax",
-            "JavaScript.sublime-syntax",
-            "JavaScript (Babel).sublime-syntax",
-            "JavaScriptNext.tmLanguage",
-            "JavaScript.tmLanguage",
-            "naomi.fjsx15.sublime-syntax",
-            "naomi.jsx1.sublime-syntax",
-            "Vue Component.sublime-syntax",
-            "TypeScript.tmLanguage",
-            "TypeScriptReact.tmLanguage",
+            "/ecmascript.sublime-syntax",
+            "/JavaScript.sublime-syntax",
+            "/JavaScript (Babel).sublime-syntax",
+            "/JavaScriptNext.tmLanguage",
+            "/JavaScript.tmLanguage",
+            "/naomi.fjsx15.sublime-syntax",
+            "/naomi.jsx1.sublime-syntax",
+            "/Vue Component.sublime-syntax",
+            "/TypeScript.tmLanguage",
+            "/TypeScriptReact.tmLanguage",
         ],
         "sass": [
-            "SCSS.tmLanguage",
-            "SCSS.sublime-syntax",
-            "Sass.tmLanguage",
-            "Sass.sublime-syntax",
+            "/SCSS.tmLanguage",
+            "/SCSS.sublime-syntax",
+            "/Sass.tmLanguage",
+            "/Sass.sublime-syntax",
         ],
         "less": [
-            "LESS.tmLanguage",
-            "LESS.sublime-syntax",
+            "/LESS.tmLanguage",
+            "/LESS.sublime-syntax",
         ],
         "php": [
-            "PHP.sublime-syntax",
-            "PHP Source.sublime-syntax",
+            "/PHP.sublime-syntax",
+            "/PHP Source.sublime-syntax",
         ],
         "stylus": [
-            "Stylus.tmLanguage",
+            "/Stylus.tmLanguage",
         ],
         "html": [
-            "HTML.sublime-syntax",
+            "/HTML.sublime-syntax",
         ],
         "jstl": [
-            "jstl.tmLanguage",
+            "/jstl.tmLanguage",
         ],
         "css": [
-            "CSS.sublime-syntax",
-            "PostCSS.tmLanguage",
+            "/CSS.sublime-syntax",
+            "/PostCSS.tmLanguage",
         ],
         "pug": [
-            "Pug.tmLanguage",
+            "/Pug.tmLanguage",
         ],
         "sugarss": [
-            "Sss.tmLanguage",
-            "SugarSS.tmLanguage",
+            "/Sss.tmLanguage",
+            "/SugarSS.tmLanguage",
         ],
         "sugarml": [
-            "SugarML.tmLanguage",
+            "/SugarML.tmLanguage",
         ],
         "nunjucks": [
-            "Nunjucks.tmLanguage",
+            "/Nunjucks.tmLanguage",
         ],
         "jinja2": [
-            "Jinja2.tmLanguage",
+            "/Jinja2.tmLanguage",
         ],
         "twig": [
-            "HTML (Twig).tmLanguage",
-            "Craft-Twig.tmLanguage",
+            "/HTML (Twig).tmLanguage",
+            "/Craft-Twig.tmLanguage",
         ],
         // jfcherng
         "rst": [
-            "reStructuredText.tmLanguage",
-            "reStructuredText Improved.tmLanguage",
+            "/reStructuredText.tmLanguage",
+            "/reStructuredText Improved.tmLanguage",
         ],
     },
     "import_line_regex":
@@ -179,9 +179,6 @@
         "@assets": "assets",
       },
       "sass": {
-        "@assets": "assets",
-      },
-      "less": {
         "@assets": "assets",
       },
     },
