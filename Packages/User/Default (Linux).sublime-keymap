@@ -516,6 +516,7 @@
     { "keys": ["alt+shift+o", "alt+shift+t"], "command": "open_terminal" },
     { "keys": ["ctrl+alt+shift+t"], "command": "open_terminal_project_folder" },
     // plugin: FileManager
+    { "keys": ["alt+f2"], "command": "fm_rename" },
     { "keys": ["alt+shift+o", "alt+shift+b"], "command": "fm_open_in_browser" },
     { "keys": ["alt+shift+o", "alt+shift+e"], "command": "fm_open_in_explorer" },
     // plugin: sublack
