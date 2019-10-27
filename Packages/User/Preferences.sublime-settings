@@ -67,6 +67,24 @@
 		}
 	],
 	"auto_find_in_selection": true,
+	"binary_file_patterns":
+	[
+		"*.jpg",
+		"*.jpeg",
+		"*.png",
+		"*.gif",
+		"*.ttf",
+		"*.tga",
+		"*.dds",
+		"*.ico",
+		"*.eot",
+		"*.pdf",
+		"*.swf",
+		"*.jar",
+		"*.zip",
+		"public/build/**",
+		"branch-build/**"
+	],
 	"caret_extra_width": 2,
 	"caret_style": "blink",
 	"close_windows_when_empty": false,
@@ -232,7 +250,8 @@
 	"index_exclude_patterns":
 	[
 		"*.log",
-		"*/public/build/*"
+		"public/build/**",
+		"branch-build/**"
 	],
 	"line_numbers": true,
 	"match_brackets": false,
