@@ -113,13 +113,11 @@
 	],
 	"package_name_map":
 	{
-		"Sublime-IntelliDocs": "IntelliDocs",
-		"Sublime-VisualizeZeroWidthChars": "VisualizeZeroWidthChars"
+		"Sublime-IntelliDocs": "IntelliDocs"
 	},
 	"repositories":
 	[
 		"https://github.com/evandrocoan/AutoFileName",
-		"https://github.com/jfcherng/Sublime-IntelliDocs",
-		"https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars"
+		"https://github.com/jfcherng/Sublime-IntelliDocs"
 	]
 }
