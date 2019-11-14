@@ -128,7 +128,10 @@
                 "--stdio",
             ],
             "scopes": ["source.yaml"],
-            "syntaxes": ["Packages/YAML/YAML.sublime-syntax"],
+            "syntaxes": [
+                "Packages/PackageDev/Package/Sublime Text Syntax Definition/Sublime Text Syntax Definition.sublime-syntax",
+                "Packages/YAML/YAML.sublime-syntax",
+            ],
             "languageId": "yaml",
         },
         "vue-lsp": {
