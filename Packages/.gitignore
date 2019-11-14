@@ -39,5 +39,3 @@ SublimeREPL/
 Terminal/*
 !Terminal/PS.ps1
 !Terminal/Terminal.py
-
-!SublimeLinter-contrib-markdownlint/
