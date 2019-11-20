@@ -51,7 +51,16 @@
             "command": ["pyls"],
             "settings": {
                 "pyls": {
+                    "env": {
+                        // "PYTHONPATH": "/Users/mike/.virtualenvs/my-virtual-env/lib/python3.7/site-packages",
+                    },
                     "plugins": {
+                        "jedi": {
+                            "extra_paths": [
+                                // for ST plugin development
+                                "C:\\Program Files\\Sublime Text 3\\stubs",
+                            ],
+                        },
                         "pycodestyle": {
                             "enabled": true,
                             "ignore": [
