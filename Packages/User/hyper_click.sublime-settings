@@ -57,7 +57,9 @@
             "/Jinja2.tmLanguage",
         ],
         "twig": [
+            "/HTML (Twig).sublime-syntax",
             "/HTML (Twig).tmLanguage",
+            "/Craft-Twig.sublime-syntax",
             "/Craft-Twig.tmLanguage",
         ],
         // jfcherng
@@ -121,10 +123,9 @@
         ],
         "twig": [
             // jfcherng
-            "^{%\\s+(?:embed|extends|include|import|use)\\s+['\"](.+)['\"].*?%}$",
-            "^{%\\s+from\\s+['\"](.+)['\"]\\s+import.*?%}$",
-            "^{%\\s+.+?\\s+with\\s+['\"](.+)['\"].*?%}$",
-            "^{{\\s+include\\(['\"](.+)['\"].*?$",
+            "^{%\\s+(?:embed|extends|include|import|use)\\s+['\"](.+)['\"]",
+            "^{%\\s+from\\s+['\"](.+)['\"]",
+            "^{%\\s+.+?\\s+with\\s+['\"](.+)['\"]",
         ],
         // jfcherng
         "rst": [
