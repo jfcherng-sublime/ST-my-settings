@@ -114,7 +114,7 @@
 	"dc_use_small_tabs": true,
 	"dc_use_soda_search_icons": true,
 	"dc_use_white_puck": false,
-	"default_line_ending": "system",
+	"default_line_ending": "unix",
 	"detect_indentation": false,
 	"draw_minimap_border": true,
 	"draw_shadows": true,
