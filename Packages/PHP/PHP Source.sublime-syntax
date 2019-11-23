@@ -803,7 +803,6 @@ contexts:
           scope: punctuation.definition.comment.end.php
           pop: true
         - include: php-doc
-        - include: doc-annotation
     - match: /\*
       scope: punctuation.definition.comment.begin.php
       push:
@@ -1427,9 +1426,7 @@ contexts:
         2: keyword.other.phpdoc.php
         4: storage.modifier.php
         5: invalid.illegal.wrong-access-type.phpdoc.php
-    - match: ^\s*(\*)(?!/)
-      captures:
-        1: punctuation.definition.comment.php
+    - include: doc-annotation-leading-asterisk
     - match: "((https?|s?ftp|ftps|file|smb|afp|nfs|(x-)?man|gopher|txmt)://|mailto:)[-:@a-zA-Z0-9_.~%+/?=&#]*[-@a-zA-Z0-9_~%+/=&#]"
       scope: markup.underline.link.php
     - match: (@xlink)\s+(.+)\s*$
@@ -1448,22 +1445,15 @@ contexts:
       scope: meta.tag.inline.phpdoc.php
       captures:
         1: keyword.other.phpdoc.php
+    # General annotations
+    - include: doc-annotation
   doc-annotation:
-    # If the next line doesn't start with whitespace then an asterisk, the use
-    # is either writing an invalid phpdoc comment, or not using phpdoc. Instead
-    # of marking the comment as invalid, we just switch to a normal block-level
-    # comment.
-    - match: ^(?!\s*\*)
-      set:
-        - meta_scope: comment.block.php
-        - match: \*/
-          scope: punctuation.definition.comment.end.php
-          pop: true
     # general annotations like @Route("/login", name="login", methods="GET")
-    - match: \@(?!inheritdoc|link){{identifier_annotation}}(?=\s*\()
+    - match: \@{{identifier_annotation}}(?=\s*\()
       scope: keyword.other.annotation.object.php
       push:
         - meta_scope: meta.comment.annotation.php
+        - include: doc-annotation-leading-asterisk
         - match: \)
           scope: punctuation.section.group.end.php
           pop: true
@@ -1478,29 +1468,36 @@ contexts:
               scope: punctuation.section.group.begin.php
             - match: '[)\]}]'
               scope: punctuation.section.group.end.php
-            # named args
-            - match: '({{identifier}})\s*(=)'
-              captures:
-                1: variable.parameter.php
-                2: keyword.operator.assignment.php
-              push:
-                - match: (?=[,)])
-                  pop: true
-                - match: '[.:]'
-                  scope: punctuation.separator.php
-                - match: '[\[{]'
-                  scope: punctuation.section.group.begin.php
-                - match: '[\]}]'
-                  scope: punctuation.section.group.end.php
-                - include: doc-annotation-args
-            # unnamed args
-            - include: doc-annotation-args
-    - match: \@(?!inheritdoc|link){{identifier_annotation}}(?=\s)
+            - include: doc-annotation-args-named
+            - include: doc-annotation-args-unnamed
+    - match: \@{{identifier_annotation}}\b
       scope: meta.comment.annotation.php keyword.other.annotation.tag.php
-  doc-annotation-args:
+  doc-annotation-args-named:
+    - include: doc-annotation-leading-asterisk
+    - match: '({{identifier}})\s*(=)'
+      captures:
+        1: variable.parameter.php
+        2: keyword.operator.assignment.php
+      push:
+        - include: doc-annotation
+        - match: (?=[,)])
+          pop: true
+        - match: '[.:]'
+          scope: punctuation.separator.php
+        - match: '[\[{]'
+          scope: punctuation.section.group.begin.php
+        - match: '[\]}]'
+          scope: punctuation.section.group.end.php
+        - include: doc-annotation-args-unnamed
+  doc-annotation-args-unnamed:
+    - include: doc-annotation-leading-asterisk
     - include: constants
     - include: numbers
     - include: strings
+  doc-annotation-leading-asterisk:
+    - match: ^\s*(\*)(?!/)
+      captures:
+        1: punctuation.definition.comment.php
   regex-double-quoted:
     - match: (?="/(\\.|[^"/])+/[eimsuxADJSUX]*")|(?="/[^"]*$)
       push:
