@@ -319,6 +319,25 @@
     /****************
      *    Pairing   *
      ****************/
+    // better square bracket auto indentation
+    { "keys": ["enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line in Braces.sublime-macro"}, "context":
+        [
+            { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "\\[$", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "^\\]", "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "source" },
+        ],
+    },
+    { "keys": ["shift+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line in Braces.sublime-macro"}, "context":
+        [
+            { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "\\[$", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "^\\]", "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "source" },
+        ],
+    },
     // auto-pairing for backtick
     {
         "keys": ["`"], "command": "insert_snippet", "args": {"contents": "`$0`"}, "context":
