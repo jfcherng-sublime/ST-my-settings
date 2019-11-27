@@ -1,4 +1,7 @@
-// These settings override both User and Default settings for the JavaScript syntax
 {
+    "extensions":
+    [
+        "js.twig"
+    ],
     "tab_size": 2,
 }
