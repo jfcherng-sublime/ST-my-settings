@@ -20,6 +20,7 @@ sublime_lib/
 typing/
 
 # packages
+AutomaticPackageReloader*/
 AutoSetIndentation/
 Bootstrap 4x Autocomplete/
 Codecs33/
