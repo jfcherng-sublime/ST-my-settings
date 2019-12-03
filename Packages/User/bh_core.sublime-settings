@@ -69,6 +69,17 @@
             "sub_bracket_search": "true",
             "enabled": true,
         },
+        {
+            "name": "js_backtick",
+            "open": "(`)",
+            "close": "(`)",
+            "style": "single_quote",
+            "scopes": ["meta.string"],
+            "language_filter": "whitelist",
+            "language_list": ["JavaScript"],
+            "sub_bracket_search": "true",
+            "enabled": true,
+        },
         ///////////////////////////////////////
         // shift positions of built-in rules //
         ///////////////////////////////////////
