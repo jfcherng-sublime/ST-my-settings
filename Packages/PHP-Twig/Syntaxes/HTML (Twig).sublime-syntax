@@ -210,7 +210,7 @@ contexts:
       push:
         - match: (?!(^\s*)?<\?)
           pop: true
-        - include: scope:text.html.php
+        - include: scope:source.php
   python:
     - match: (?:^\s*)<\?python(?!.*\?>)
       push:
