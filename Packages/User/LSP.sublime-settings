@@ -212,6 +212,9 @@
                 "--stdio",
             ],
             "scopes": ["source.json"],
+            "initializationOptions": {
+                "provideFormatter": true,
+            },
             "languages": [{
                 "syntaxes": [
                     "Packages/JavaScript/JSON.sublime-syntax",
