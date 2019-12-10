@@ -1493,6 +1493,7 @@ contexts:
           scope: punctuation.section.group.end.php
         - include: doc-annotation-args-unnamed
   doc-annotation-args-unnamed:
+    - include: doc-annotation
     - include: doc-annotation-leading-asterisk
     - include: constants
     - include: numbers
