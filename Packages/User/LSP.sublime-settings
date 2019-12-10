@@ -127,6 +127,20 @@
                 // and comment out the following property
                 "licenceKey": "${packages}/User/intelephense.sublime-license",
             },
+            // ...
+            "settings": {
+                "diagnostics": {
+                    "undefinedSymbols": true,
+                },
+                "debug": {
+                    "enable": false,
+                },
+                "files": {
+                    "exlude": [
+                        "**/branch-*/**",
+                    ],
+                },
+            },
         },
         "yaml-lsp": {
             // https://github.com/redhat-developer/yaml-language-server
