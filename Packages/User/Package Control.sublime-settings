@@ -63,6 +63,7 @@
 		"LiveReload",
 		"LSP",
 		"LSP-intelephense",
+		"LSP-json",
 		"MarkdownPreview",
 		"MultiEditUtils",
 		"MultiFill",
