@@ -7,7 +7,6 @@
     "less": "^3",
     "markdownlint-cli": "^0",
     "sass": "^1",
-    "vscode-css-languageserver-bin": "^1",
     "vscode-html-languageserver-bin": "^1",
     "vue-language-server": "^0",
     "yaml-language-server": "^0"

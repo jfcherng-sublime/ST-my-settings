@@ -62,6 +62,7 @@
 		"LESS",
 		"LiveReload",
 		"LSP",
+		"LSP-css",
 		"LSP-intelephense",
 		"LSP-json",
 		"MarkdownPreview",
