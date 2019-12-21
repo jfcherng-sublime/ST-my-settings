@@ -62,6 +62,7 @@
 		"LESS",
 		"LiveReload",
 		"LSP",
+		"LSP-intelephense",
 		"MarkdownPreview",
 		"MultiEditUtils",
 		"MultiFill",

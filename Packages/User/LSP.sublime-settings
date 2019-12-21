@@ -93,55 +93,6 @@
             ],
             "languageId": "python",
         },
-        "php-lsp": {
-            // composer g req felixfbecker/language-server
-            "enabled": false,
-            "tcp_port": 5555,
-            "command": [
-                "php-language-server.php",
-                "--memory-limit=2048M",
-                "--tcp-server=0.0.0.0:5555",
-            ],
-            "scopes": ["source.php"],
-            "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
-            "languageId": "php"
-        },
-        "intelephense": {
-            // https://github.com/bmewburn/intelephense-docs
-            // npm -g i intelephense
-            // yarn global add intelephense
-            "enabled": true,
-            "command": [
-                "intelephense",
-                "--stdio",
-            ],
-            "scopes": ["source.php", "embedding.php"],
-            "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
-            "languageId": "php",
-            "initializationOptions": {
-                "clearCache": false,
-                "storagePath": "E:/_Data/intelephense",
-                "globalStoragePath": "E:/_Data/intelephense",
-                // To use the licenceKey,
-                // you can also write it to "YOUR_HOME_DIR/intelephense/licence.txt"
-                // and comment out the following property
-                "licenceKey": "${packages}/User/intelephense.sublime-license",
-            },
-            // ...
-            "settings": {
-                "diagnostics": {
-                    "undefinedSymbols": true,
-                },
-                "debug": {
-                    "enable": false,
-                },
-                "files": {
-                    "exlude": [
-                        "**/branch-*/**",
-                    ],
-                },
-            },
-        },
         "yaml-lsp": {
             // https://github.com/redhat-developer/yaml-language-server
             // yarn global add yaml-language-server

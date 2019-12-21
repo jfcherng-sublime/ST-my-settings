@@ -3,7 +3,6 @@
   "dependencies": {
     "bash-language-server": "^1",
     "eslint": "^6",
-    "intelephense": "^1",
     "javascript-typescript-langserver": "^2",
     "less": "^3",
     "markdownlint-cli": "^0",
