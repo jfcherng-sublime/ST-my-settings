@@ -180,68 +180,6 @@
             "syntaxes": ["Packages/HTML/HTML.sublime-syntax"],
             "languageId": "html",
         },
-        "vscode-css": {
-            // https://github.com/vscode-langservers/vscode-css-languageserver-bin
-            // yarn global add vscode-css-languageserver-bin
-            "enabled": true,
-            "command": [
-                "css-languageserver",
-                "--stdio",
-            ],
-            "languages": [{
-                "settings": {
-                    "css": {
-                        "validate": true,
-                        "lint": {
-                            "duplicateProperties": "warning",
-                            "unknownVendorSpecificProperties": "warning",
-                        },
-                    },
-                },
-                "scopes": ["source.css"],
-                "syntaxes": ["Packages/CSS/CSS.sublime-syntax"],
-                "languageId": "css",
-            }, {
-                "settings": {
-                    "sass": {
-                        "validate": true,
-                        "lint": {
-                            "duplicateProperties": "warning",
-                            "unknownVendorSpecificProperties": "warning",
-                        },
-                    },
-                },
-                "scopes": ["source.sass"],
-                "syntaxes": ["Packages/Sass/Syntaxes/Sass.sublime-syntax"],
-                "languageId": "sass",
-            }, {
-                "settings": {
-                    "scss": {
-                        "validate": true,
-                        "lint": {
-                            "duplicateProperties": "warning",
-                            "unknownVendorSpecificProperties": "warning",
-                        },
-                    },
-                },
-                "scopes": ["source.scss"],
-                "syntaxes": ["Packages/Sass/Syntaxes/SCSS.sublime-syntax"],
-                "languageId": "scss",
-            }, {
-                "settings": {
-                    "less": {
-                        "validate": true,
-                        "lint": {
-                            "duplicateProperties": "warning",
-                            "unknownVendorSpecificProperties": "warning",
-                        },
-                    },
-                },
-                "scopes": ["source.less"],
-                "syntaxes": ["Packages/LESS/Syntaxes/LESS.sublime-syntax"],
-                "languageId": "less",
-            }],
-        },
     },
     "auto_show_diagnostics_panel": false,
     "auto_show_diagnostics_panel_level": 3,
