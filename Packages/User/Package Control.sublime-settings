@@ -66,6 +66,7 @@
 		"LSP-html",
 		"LSP-intelephense",
 		"LSP-json",
+		"LSP-vue",
 		"MarkdownPreview",
 		"MultiEditUtils",
 		"MultiFill",
