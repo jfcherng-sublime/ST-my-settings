@@ -168,18 +168,6 @@
                 "languageId": "typescript",
             }],
         },
-        "vscode-html": {
-            // https://github.com/vscode-langservers/vscode-html-languageserver-bin
-            // yarn global add vscode-html-languageserver-bin
-            "enabled": true,
-            "command": [
-                "html-languageserver",
-                "--stdio",
-            ],
-            "scopes": ["text.html.basic"],
-            "syntaxes": ["Packages/HTML/HTML.sublime-syntax"],
-            "languageId": "html",
-        },
     },
     "auto_show_diagnostics_panel": false,
     "auto_show_diagnostics_panel_level": 3,

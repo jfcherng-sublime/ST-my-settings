@@ -63,6 +63,7 @@
 		"LiveReload",
 		"LSP",
 		"LSP-css",
+		"LSP-html",
 		"LSP-intelephense",
 		"LSP-json",
 		"MarkdownPreview",
