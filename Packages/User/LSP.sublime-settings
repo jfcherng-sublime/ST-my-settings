@@ -108,38 +108,6 @@
             ],
             "languageId": "yaml",
         },
-        "vue-lsp": {
-            // https://github.com/vuejs/vetur/tree/master/server
-            // yarn global add vue-language-server
-            "enabled": true,
-            "command": [
-                "vls",
-            ],
-            "scopes": ["text.html.vue"],
-            "syntaxes": ["Packages/Vue Syntax Highlight/Vue Component.sublime-syntax"],
-            "languageId": "vue",
-            "initializationOptions": {
-                "config": {
-                    "vetur": {
-                        "useWorkspaceDependencies": false,
-                        "validation": { "template": true, "style": true, "script": true },
-                        "completion": { "autoImport": false, "useScaffoldSnippets": false, "tagCasing": "kebab" },
-                        "format": {
-                            "defaultFormatter": { "js": "none", "ts": "none" },
-                            "defaultFormatterOptions": {},
-                            "scriptInitialIndent": false,
-                            "styleInitialIndent": false,
-                        },
-                    },
-                    "css": {},
-                    "html": { "suggest": {} },
-                    "javascript": { "format": {} },
-                    "typescript": { "format": {} },
-                    "emmet": {},
-                    "stylusSupremacy": {},
-                },
-            },
-        },
         "js-ts-lsp": {
             // https://github.com/sourcegraph/javascript-typescript-langserver
             // yarn global add javascript-typescript-langserver
