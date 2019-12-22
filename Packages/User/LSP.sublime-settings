@@ -119,12 +119,12 @@
                 "scopes": ["source.js", "source.jsx"],
                 "syntaxes": [
                     "Packages/JavaScript/JavaScript.sublime-syntax",
-                    "Packages/my_language/aliases/JavaScript (Webpack).sublime-syntax",
                     "Packages/my_language/aliases/JavaScript (ESLint).sublime-syntax",
                     "Packages/my_language/aliases/JavaScript (Gruntfile).sublime-syntax",
                     "Packages/my_language/aliases/JavaScript (Gulpfile).sublime-syntax",
                     "Packages/my_language/aliases/JavaScript (PostCSS).sublime-syntax",
                     "Packages/my_language/aliases/JavaScript (Stylelint).sublime-syntax",
+                    "Packages/my_language/aliases/JavaScript (Webpack).sublime-syntax",
                 ],
                 "languageId": "javascript",
             }, {
@@ -153,7 +153,7 @@
     "show_symbol_action_links": true,
     "show_view_status": true,
     "log_payloads": false,
-    "log_debug": false,
-    "log_server": false,
+    "log_debug": true,
+    "log_server": true,
     "log_stderr": true,
 }
