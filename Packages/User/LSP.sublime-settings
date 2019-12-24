@@ -15,7 +15,6 @@
                 "start",
             ],
             "scopes": ["source.shell.bash"],
-            "syntaxes": ["Packages/ShellScript/Bash.sublime-syntax"],
             "languageId": "bash",
         },
         "clangd": {
@@ -29,19 +28,15 @@
             ],
             "languages": [{
                 "scopes": ["source.c"],
-                "syntaxes": ["Packages/C++/C.sublime-syntax"],
                 "languageId": "c",
             }, {
                 "scopes": ["source.c++"],
-                "syntaxes": ["Packages/C++/C++.sublime-syntax"],
                 "languageId": "cpp",
             }, {
                 "scopes": ["source.objc"],
-                "syntaxes": ["Packages/Objective-C/Objective-C.sublime-syntax"],
                 "languageId": "objective-c",
             }, {
                 "scopes": ["source.objc++"],
-                "syntaxes": ["Packages/Objective-C/Objective-C++.sublime-syntax"],
                 "languageId": "objective-cpp",
             }],
         },
@@ -87,10 +82,6 @@
                 },
             },
             "scopes": ["source.python"],
-            "syntaxes": [
-                "Packages/Python/Python.sublime-syntax",
-                "Packages/MagicPython/grammars/MagicPython.tmLanguage",
-            ],
             "languageId": "python",
         },
         "yaml-lsp": {
@@ -101,10 +92,9 @@
                 "yaml-language-server",
                 "--stdio",
             ],
-            "scopes": ["source.yaml"],
-            "syntaxes": [
-                "Packages/PackageDev/Package/Sublime Text Syntax Definition/Sublime Text Syntax Definition.sublime-syntax",
-                "Packages/YAML/YAML.sublime-syntax",
+            "scopes": [
+                "source.yaml",
+                "source.yaml.sublime.syntax",
             ],
             "languageId": "yaml",
         },
@@ -116,23 +106,19 @@
                 "javascript-typescript-stdio",
             ],
             "languages": [{
-                "scopes": ["source.js", "source.jsx"],
-                "syntaxes": [
-                    "Packages/JavaScript/JavaScript.sublime-syntax",
-                    "Packages/my_language/aliases/JavaScript (ESLint).sublime-syntax",
-                    "Packages/my_language/aliases/JavaScript (Gruntfile).sublime-syntax",
-                    "Packages/my_language/aliases/JavaScript (Gulpfile).sublime-syntax",
-                    "Packages/my_language/aliases/JavaScript (PostCSS).sublime-syntax",
-                    "Packages/my_language/aliases/JavaScript (Stylelint).sublime-syntax",
-                    "Packages/my_language/aliases/JavaScript (Webpack).sublime-syntax",
+                "scopes": [
+                    "source.js",
+                    "source.js.eslint",
+                    "source.js.gruntfile",
+                    "source.js.gulpfile",
+                    "source.js.postcss",
+                    "source.js.stylelint",
+                    "source.js.webpack",
+                    "source.jsx",
                 ],
                 "languageId": "javascript",
             }, {
                 "scopes": ["source.ts", "source.tsx"],
-                "syntaxes": [
-                    "Packages/TypeScript-TmLanguage/TypeScript.tmLanguage",
-                    "Packages/TypeScript-TmLanguage/TypeScriptReact.tmLanguage",
-                ],
                 "languageId": "typescript",
             }],
         },

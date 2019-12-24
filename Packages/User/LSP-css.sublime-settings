@@ -14,9 +14,6 @@
                     },
                 },
                 "scopes": ["source.css"],
-                "syntaxes": [
-                    "Packages/CSS/CSS.sublime-syntax",
-                ],
                 "languageId": "css",
             },
             {
@@ -30,7 +27,6 @@
                     },
                 },
                 "scopes": ["source.sass"],
-                "syntaxes": ["Packages/Sass/Syntaxes/Sass.sublime-syntax"],
                 "languageId": "sass",
             },
             {
@@ -44,7 +40,6 @@
                     },
                 },
                 "scopes": ["source.scss"],
-                "syntaxes": ["Packages/Sass/Syntaxes/SCSS.sublime-syntax"],
                 "languageId": "scss",
             },
             {
@@ -58,7 +53,6 @@
                     },
                 },
                 "scopes": ["source.less"],
-                "syntaxes": ["Packages/LESS/Syntaxes/LESS.sublime-syntax"],
                 "languageId": "less",
             },
         ],

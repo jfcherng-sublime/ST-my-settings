@@ -5,19 +5,7 @@
         "languages": [
             {
                 "languageId": "html",
-                "scopes": ["text.html.basic"],
-                "syntaxes": [
-                    "Packages/HTML/HTML.sublime-syntax",
-                    "Packages/PHP/PHP.sublime-syntax",
-                ],
-            },
-            {
-                "languageId": "html",
-                "scopes": ["text.html.twig"],
-                "syntaxes": [
-                    "Packages/PHP-Twig/Syntaxes/HTML (Twig).sublime-syntax",
-                    "Packages/PHP-Twig/Syntaxes/HTML (Twig).tmlanguage",
-                ],
+                "scopes": ["text.html.basic", "text.html.twig"],
             },
         ],
         "initializationOptions": {},
