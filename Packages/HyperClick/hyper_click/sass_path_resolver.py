@@ -11,13 +11,14 @@ class SassPathResolver:
         self.roots = roots
         self.valid_extensions = settings.get('valid_extensions', {})[lang]
         self.proj_settings = proj_settings
-        self.aliases = settings.get('aliases',{})[lang]
+        self.proj_aliases = proj_settings.get('aliases', {}).get(lang, {})
+        self.aliases = settings.get('aliases', {}).get(lang, {})
+        self.aliases.update(self.proj_aliases)
         self.matchingRoots = [root for root in self.roots if self.current_dir.startswith(root)]
         self.currentRoot = self.matchingRoots[0] if self.matchingRoots else self.current_dir
         self.lookup_paths = self.proj_settings.get('lookup_paths', {}).get(lang, False) or settings.get('lookup_paths', {}).get(lang, False) or []
 
     def resolve(self):
-        # Resolve by global aliases
         for alias, alias_source in self.aliases.items():
             result = self.resolve_from_alias(alias, alias_source)
             if result:
@@ -34,15 +35,12 @@ class SassPathResolver:
         return ''
 
     def resolve_from_alias(self, alias, alias_source):
-        if (self.str_path == alias):
-            result = self.resolve_relative_to_dir(self.str_path, self.currentRoot)
-            if result:
-                return result
-        elif (self.str_path.startswith(alias + '/')):
-            alias_path = alias_source + self.str_path[len(alias):]
-            result = self.resolve_relative_to_dir(alias_path, self.currentRoot)
-            if result:
-                return result
+        path_parts = path.normpath(self.str_path).split(path.sep)
+
+        if path_parts[0] == alias:
+            path_parts[0] = alias_source
+
+            return self.resolve_relative_to_dir(path.join(*path_parts), self.currentRoot)
 
     def resolve_relative_to_dir(self, target, directory):
         combined = path.realpath(path.join(directory, target))
