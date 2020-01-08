@@ -85,6 +85,8 @@
         "php": [
             // jfcherng
             "\\b(?:include|require)(?:_once)?\\s*\\(?['\"](.+)['\"]\\)?;?$",
+            // Symfony render Twig templates in PHP
+            ".*['\"]([^'\"]+\\.twig)['\"]",
         ],
         "stylus": [
             "^@import\\s+['\"](.+)['\"];?$",
@@ -137,7 +139,7 @@
         "js": ["js", "jsx", "vue", "mjs", "ts", "tsx"],
         "sass": ["scss", "sass"],
         "less": ["less"],
-        "php": ["php"],
+        "php": ["php", "twig"],
         "stylus": ["styl", "stylus"],
         "html": ["html"],
         "jstl": ["jsp", "tag"],
@@ -163,6 +165,10 @@
     },
     "lookup_paths":
     {
+        "php": [
+            "templates",
+            "views",
+        ],
         "js": [],
         "jstl": [
             "taglib *prefix ?= ?[\"'](.*)[\"'] *tagdir ?= ?[\"'](.*)[\"']",
