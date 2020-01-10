@@ -50,10 +50,6 @@
 			"selector": "text.html"
 		},
 		{
-			"characters": "b4",
-			"selector": "text.html"
-		},
-		{
 			"characters": ".",
 			"selector": "source.python"
 		},
