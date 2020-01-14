@@ -6,6 +6,7 @@ hidden: true
 file_extensions:
   - composer.json
   - composer.lock
+  - symfony.lock
 scope: source.json.composer
 contexts:
   main:
