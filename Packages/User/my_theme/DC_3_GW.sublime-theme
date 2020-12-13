@@ -152,7 +152,10 @@
 
     {
         "class": "quick_panel_detail_label",
-        // such as repository links in "Package Control: List Packages"
+        "link_color": "var(--bluish)",
+    },
+    {
+        "class": "auto_complete_details",
         "link_color": "var(--bluish)",
     },
 ]
