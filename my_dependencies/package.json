@@ -2,8 +2,9 @@
   "author": "Jack Cherng",
   "dependencies": {
     "babel-eslint": "^10",
+    "diagnostic-languageserver": "^1",
     "eslint": "^7",
-    "eslint-config-prettier": "^7",
+    "eslint-config-prettier": "^8",
     "eslint-plugin-prettier": "^3",
     "less": "^3",
     "markdownlint-cli": "^0",
