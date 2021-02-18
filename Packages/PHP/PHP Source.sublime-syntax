@@ -21,6 +21,7 @@ contexts:
 
   statements:
     - include: class
+    - include: enum
     - include: use-statement
     - match: '(?i)^\s*(interface)\s+({{identifier}})\s*'
       captures:
@@ -530,6 +531,56 @@ contexts:
         - include: identifier-constant-pop
     - include: use-statement-common
     - include: identifier-constant-pop
+
+  enum:
+    - match: '(?i)\b(enum)\s+({{identifier}})\s*'
+      captures:
+        1: storage.type.enum.php
+        2: entity.name.enum.php
+      push: enum-definition
+
+  enum-definition:
+    - match: "(?=;)"
+      pop: 1
+    - match: "(?=:)"
+      push:
+        - match: ':'
+          scope: punctuation.separator.php
+          set:
+            - match: '(?={{path}})'
+              set:
+                - meta_scope: meta.path.php
+                - include: type-hint
+                - match: ''
+                  pop: 1
+        - match: '(?=\S)'
+          pop: 1
+    - match: \{
+      scope: meta.block.php punctuation.section.block.begin.php
+      set: class-body
+    - include: attributes
+    - include: comments
+    - match: (?i)(implements)\b\s*
+      captures:
+        1: storage.modifier.implements.php
+      push:
+        - include: attributes
+        - include: comments
+        - match: '(?={{path}})'
+          push:
+            - meta_scope: meta.path.php
+            - meta_content_scope: entity.other.inherited-class.php
+            - include: class-builtin
+            - include: identifier-parts
+            - match: '(\\)?{{identifier}}(?!\\)'
+              captures:
+                1: punctuation.separator.namespace.php
+            - match: ''
+              pop: 1
+        - match: ','
+          scope: punctuation.separator.php
+        - match: '(?=\S)'
+          pop: 1
 
   class:
     - match: '(?i)(\b(?:abstract|final)\s+)?\b(class)\s+({{identifier}})\s*'

@@ -33,6 +33,9 @@ contexts:
           | PhpToken
           | Reflection
           | ReflectionClass
+          | ReflectionEnum
+          | ReflectionEnumBackedCase
+          | ReflectionEnumUnitCase
           | ReflectionExtension
           | ReflectionFunction
           | ReflectionFunctionAbstract
