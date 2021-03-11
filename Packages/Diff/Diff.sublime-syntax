@@ -63,13 +63,13 @@ contexts:
         2: meta.toc-list.file-name.diff
 
     # must be 0 or 4 leading spaces
-    - match: ^(((>)( .*)?)|((?:\s{4}|)(\+).*))$\n?
+    - match: ^(((>)( .*)?)|((?:\t| {4}|)(\+).*))$\n?
       scope: markup.inserted.diff
       captures:
         3: punctuation.definition.inserted.diff
         6: punctuation.definition.inserted.diff
     # must be 0 or 4 leading spaces
-    - match: ^(((<)( .*)?)|((?:\s{4}|)(-).*))$\n?
+    - match: ^(((<)( .*)?)|((?:\t| {4}|)(-).*))$\n?
       scope: markup.deleted.diff
       captures:
         3: punctuation.definition.deleted.diff
