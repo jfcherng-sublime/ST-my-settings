@@ -105,7 +105,8 @@
             "language_list": [
                 "Python",
                 "PythonImproved",
-                "MagicPython"
+                "MagicPython",
+                "TOML",
             ],
             "sub_bracket_search": "true",
             "plugin_library": "bh_modules.pyquotes",
@@ -122,7 +123,8 @@
             "language_list": [
                 "Python",
                 "PythonImproved",
-                "MagicPython"
+                "MagicPython",
+                "TOML",
             ],
             "sub_bracket_search": "true",
             "plugin_library": "bh_modules.pyquotes",
