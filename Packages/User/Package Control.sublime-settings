@@ -14,7 +14,7 @@
         "AceJump-Chinese",
         "Advanced Substation Alpha (ASS)",
         "AlignTab",
-        "AutoFileName",
+        "AutoFilePath",
         "AutomaticPackageReloader",
         "AutoSetSyntax",
         "BetterFindBuffer",
@@ -95,6 +95,5 @@
     [
         "https://raw.githubusercontent.com/jfcherng-sublime/ST-my-package-control/master/repository.json",
         "https://raw.githubusercontent.com/facelessuser/sublime-channel/master/repositories.json",
-        "https://github.com/ilearnio/AutoFileName.git",
     ],
 }

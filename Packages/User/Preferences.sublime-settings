@@ -22,11 +22,11 @@
         "todo",
         "unittests",
     ],
-    "afn_blacklist_scopes":
+    "afp_blacklist_scopes":
     [
         "string.regexp",
     ],
-    "afn_valid_scopes":
+    "afp_valid_scopes":
     [
         "text -text.html.basic",
         "source string",
