@@ -2,11 +2,11 @@
 <plist version="1.0">
   <dict>
     <key>scope</key>
-    <string>source.fortran, source.modern-fortran</string>
+    <string>text.plain.image</string>
     <key>settings</key>
     <dict>
       <key>icon</key>
-      <string>file_type_modern-fortran</string>
+      <string>file_type_imageunsupported</string>
     </dict>
   </dict>
 </plist>
