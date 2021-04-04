@@ -2,30 +2,6 @@
     // Show debug logging
     "debug": false,
 
-    // Show index status in the status bar.
-    "show_index_status": true,
-
-    // Show popups automatically in configured files.
-    "auto_popup": true,
-
-    // Upper case hex when inserting
-    "upper_case_hex": false,
-
-    // Use webcolor names when value color matches a webcolor name.
-    "use_webcolor_names": true,
-
-    // For Windows 10 HiDpi setups.  This is a temporary workaround
-    // to help reduce abnormally large color previews and other images.
-    // This will be removed once the issue is fixed in Sublime Text 3.
-    "line_height_workaround": false,
-
-    // Color picker and palette picker by default
-    // are accessed by clicking an icon on the color info panel.
-    // Click access for one of these can be moved to the color box
-    // (visual representation of the color).
-    // (none|color_picker|palette_picker)
-    "click_color_box_to_pick": "none",
-
     // Enables inline color previews found beside the identified color.
     // Requires ST 3116+ and mdpopups 1.7.4
     "inline_previews": true,
@@ -38,188 +14,44 @@
     // (left|right)
     "inline_preview_position": "left",
 
-    // Enable color picker option.  Will use native color picker
-    // unless "use_color_picker_package" is enabled and external
-    // package is installed.
-    "enable_color_picker": true,
-
-    // If the color picker is too big, try playing with this.
-    // Graphics in tooltips usually look better bigger (especially in Hidpi),
-    // but that can make the tooltips really big. If they are too big,
-    // you can play with this setting.  We compromise with medium.
-    // (small | medium | large)
-    "graphic_size": "medium",
-
-    // Use https://github.com/weslly/ColorPicker for the color picker if installed.
-    "use_color_picker_package": false,
-
-    // This can be turned off to get a rectangular color picker
-    // That displays possible options by hue and brightness/luminance.
-    "use_hex_color_picker": true,
-
-    // Show global palettes in palette panel
-    "enable_global_user_palettes": true,
-
-    // Enable storing favorite colors to the favorite palette
-    "enable_favorite_palette": true,
-
-    // Enable showing current file color palette
-    "enable_current_file_palette": true,
-
-    // Enable color conversion options on color info panel
-    "enable_color_conversions": true,
-
-    // Scanning rules
-    "color_scanning": [
-        {
-            "syntax_files": [],
-            "syntax_filter": "whitelist",
-            "base_scopes": [
-                "source.css",
-                "text.html",
-            ],
-            "scan_scopes": [
-                // https://packagecontrol.io/packages/CSS3
-                "meta.declaration-list.css -support.type.property-name.css -comment -string",
-                // CSS, CSS in HTML etc. (based on: Sublime Default)
-                "meta.property-value.css -comment -string",
-                // CSS3, CSS3 in HTML etc. (based on: https://packagecontrol.io/packages/CSS3)
-                "meta.value.css -comment -string",
-                // HTML attributes (based on: Sublime Default)
-                "meta.tag.inline.any.html string.quoted -constant.character.entity.html",
-                "meta.tag.any.html meta.attribute-with-value.style.html",
-            ],
-            "scan_completion_scopes": [],
-            "extensions": [],
-            "allowed_colors": ["css3"],
-            "use_hex_argb": false,
-            "compress_hex_output": true,
-        },
-        {
-            //Sass (based on: https://packagecontrol.io/packages/Sass)
-            "syntax_files": ["Sass/Syntaxes/Sass"],
-            "syntax_filter": "whitelist",
-            "base_scopes": [
-                "source.sass",
-            ],
-            "scan_scopes": [
-                "source.sass -comment -string -variable.parameter",
-            ],
-            "scan_completion_scopes": [
-            ],
-            "extensions": [],
-            "allowed_colors": ["css3"],
-            "use_hex_argb": false,
-            "compress_hex_output": true,
-        },
-        {
-            // A number of sass and scss syntaxes are bundled together
-            // So we will just bundle all the scss and sass rules together
-            "syntax_files": [],
-            "syntax_filter": "whitelist",
-            "base_scopes": [
-                "source.scss",
-                "source.sass",
-            ],
-            "scan_scopes": [
-                // Sass and SCSS (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
-                "meta.property-list.css -comment -string",
-                // Sass (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20PostCSS)
-                "constant.other.rgb-value",
-                // SCSS (based on https://packagecontrol.io/packages/SCSS)
-                "constant.other.color.rgb-value",
-                "support.constant.color",
-                "meta.property-value.css",
-                // Sass and SCSS script maps (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
-                "sass-script-maps -variable.other -comment -string",
-            ],
-            "scan_completion_scopes": [
-                // SCSS (based on https://packagecontrol.io/packages/SCSS)
-                // Sass (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20PostCSS)
-                // Sass and SCSS script maps (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
-                "source.css -comment -string",
-                "source.scss -comment -string",
-                "source.sass -comment -string",
-            ],
-            "extensions": [],
-            "allowed_colors": ["css3"],
-            "use_hex_argb": false,
-            "compress_hex_output": true,
-        },
-        {
-            "syntax_files": [],
-            "syntax_filter": "whitelist",
-            "base_scopes": ["text.xml"],
-            "scan_scopes": ["text.xml -meta.tag.xml -comment -string, string.unquoted.cdata.xml"],
-            "allowed_colors": ["hex", "hexa", "hex_compressed"],
-            "extensions": [".tmTheme", ".hidden-tmTheme", ".stTheme"],
-            "use_hex_argb": false,
-            "compress_hex_output": false,
-        },
-        {
-            "syntax_files": [],
-            "syntax_filter": "whitelist",
-            "base_scopes": ["source.stylus"],
-            "scan_scopes": [
-                // Based on https://github.com/billymoon/Stylus/blob/master/Stylus.tmLanguage
-                "constant.other.color.rgb-value.stylus",
-                "constant.color.w3c-standard-color-name.stylus",
-                "meta.property-value.stylus"
-            ],
-            "allowed_colors": ["css3"],
-            "extensions": [],
-            "use_hex_argb": false,
-            "compress_hex_output": true,
-        },
-        {
-            "syntax_files": [],
-            "syntax_filter": "whitelist",
-            "base_scopes": ["source.less"],
-            "scan_scopes": [
-                // LESS (based on https://packagecontrol.io/packages/LESS)
-                "constant.other.color.rgb-value",
-                "constant.color.w3c-standard-color-name",
-                "meta.property-value",
-            ],
-            "allowed_colors": ["css3"],
-            "extensions": [],
-            "use_hex_argb": false,
-            "compress_hex_output": true,
-        },
-        // add support for .sublime-color-scheme by jfcherng
-        {
-            "syntax_files": [],
-            "syntax_filter": "whitelist",
-            "base_scopes": [],
-            "scan_scopes": [
-                "string.quoted.double.json",
-            ],
-            "allowed_colors": ["hex", "hex_compressed", "hexa", "hexa_compressed", "rgb", "rgba", "hsl", "hsla", "gray", "graya", "hwb", "hwba"],
-            "extensions": [
-                ".hidden-color-scheme",
-                ".sublime-color-scheme",
-                ".sublime-settings",
-                ".sublime-theme",
-            ],
-            "use_hex_argb": false,
-            "compress_hex_output": true,
-        },
-        // add support for subtitles by jfcherng
-        {
-            "syntax_files": [],
-            "syntax_filter": "whitelist",
-            "base_scopes": [],
-            "scan_scopes": [
-                "text.srt",
-                "text.vtt",
-            ],
-            "allowed_colors": ["hex", "hex_compressed"],
-            "extensions": [/* no restriction */],
-            "use_hex_argb": false,
-            "compress_hex_output": false,
-        },
-    ],
-
-    // Enable project palettes in palette panel (Palettes stored in project file).
-    "enable_project_user_palettes": true,
+    // These are the color rules for a given view.
+    // Only one rule will apply to a given view.
+    //
+    // - `name`:           optional name that, if a user creates a rule in `user_color_rules`, and it
+    //                     it shares the same `name`, a shallow merge of the two rules will be made which
+    //                     will allow the user rule to override the values of top level keys.
+    //
+    // - `sytnax_files`:   target a view using a syntax from the given list. Defaults to an empty list.
+    //
+    // - `syntax_filter`:  specify whether `syntax_files` is an allowlist or blocklist. Can be either
+    //                     (blocklist|allowlist). Default's to `allowlist`.
+    //
+    // - `base_scopes`:    target a view whose base scope matches something from the list of scopes.
+    //                     Defaults to an empty list.
+    //
+    // - `extensions`:     target a view with an extension from the provided list. Defaults to an empty list.
+    //
+    // - `color_class`:    A string defining the name of a color class to use for the associated views. Color class
+    //                     name should be defined in `color_classes`.
+    //
+    //                     If needed, you can define multiple color classes with a list of dicitionaries. Each
+    //                     dictionary in the list should contain a `class` and `scopes`:
+    //
+    //                     - `scopes`:    A string that defines a base scope that the color class applies to.
+    //
+    //                     - `class`:     The name of the color class profile to use (defined in `color_classes`).
+    //
+    // - `scanning`:       A list containing scopes that should be scanned for colors.
+    //
+    // - color_trigger`.   It is slow to test the entire buffer with the color class, so do a quick search for
+    //                     tokens that should trigger a color check. That way we only test in places where we
+    //                     think we might have a valid color. For instance, the color class can translate colors
+    //                     in the form `rgb(1 1 1 / 1)`, so we can specify `rgb(` as a color trigger. If we find `rgb(`,
+    //                     we will test that spot's scope and attempt to read in a color at that location.
+    //                     Defaults to "(?i)(?:\b(?<![-#&])(?:color|hsla?|lch|lab|hwb|rgba?)\(|\b(?<![-#&])[\w]{3,}(?!\()\b|(?<![&])#)"
+    //
+    // - `allow_scanning`: This is an easy way to disable just scanning within a certain ruleset. Defaults to `true`.
+    //
+    //.- `enable`:         This can be used to disable a color rule entirely. Defaults to `true`.
+    "user_color_rules": [],
 }
