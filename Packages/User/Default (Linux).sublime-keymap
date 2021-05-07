@@ -28,6 +28,7 @@
     { "keys": ["ctrl+k", "ctrl+z"], "command": "revert_modification" },
     { "keys": ["ctrl+alt+shift+z"], "command": "revert_hunk" },
     { "keys": ["ctrl+k", "ctrl+/"], "command": "toggle_inline_diff" },
+    { "keys": ["ctrl+k", "ctrl+;"], "command": "toggle_all_inline_diffs" },
     { "keys": ["alt+shift+o", "alt+shift+m"], "command": "sublime_merge_open_repo" },
     // "insert a tab" rather than "insert the best completion" while pressing Tab at BOL
     {
@@ -614,25 +615,6 @@
             { "key": "num_selections", "operator": "equal", "operand": 1 },
             { "key": "selector", "operator": "equal", "operand": "comment.block" },
         ],
-    },
-    // show/hide all inline diff
-    {
-        "keys": ["ctrl+k", "ctrl+;"],
-        "command": "chain",
-        "args": {
-            "commands": [
-                // save cursors
-                ["power_cursor_exit"],
-                ["power_cursor_add"],
-                // ...
-                ["select_all"],
-                ["toggle_inline_diff", { "prefer_hide": true }],
-                ["deselect"],
-                // load cursors
-                ["power_cursor_activate"],
-                ["power_cursor_exit"]
-            ]
-        }
     },
     // get an 8-char fingerprint of the current content
     {
