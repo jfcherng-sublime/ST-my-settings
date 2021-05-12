@@ -120,6 +120,12 @@
             ],
         },
         // jfcherng
+        "text.html.basic": {
+            "regexes": [
+                ".*\\b(?:href|src)=['\"]([^'\"?]+)",
+            ],
+            "extensions": ["htm", "html"]
+        },
         "text.restructuredtext": {
             "regexes": [
                 "^\\s*\\.\\. include::\\s+(.+)$",
