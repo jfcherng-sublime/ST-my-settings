@@ -149,6 +149,7 @@ contexts:
           | mysqli_fetch_all
           | mysqli_fetch_array
           | mysqli_fetch_assoc
+          | mysqli_fetch_column
           | mysqli_fetch_field
           | mysqli_fetch_field_direct
           | mysqli_fetch_fields
