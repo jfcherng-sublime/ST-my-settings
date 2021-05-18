@@ -66,6 +66,7 @@ contexts:
           | disk_total_space
           | diskfreespace
           | fclose
+          | fdatasync
           | feof
           | fflush
           | fgetc
@@ -95,6 +96,7 @@ contexts:
           | fscanf
           | fseek
           | fstat
+          | fsync
           | ftell
           | ftruncate
           | fwrite
