@@ -5,7 +5,15 @@ version: 2
 scope: source.php.ext.curl
 contexts:
   main: []
-  class: []
+  class:
+    - match: |-
+        (?x)(\\)?\b(
+          CURLFile
+          | CURLStringFile
+        )\b
+      captures:
+        1: punctuation.separator.namespace.php
+        2: support.class.curl.php
   constant:
     - match: |-
         (?x)(\\)?\b(
