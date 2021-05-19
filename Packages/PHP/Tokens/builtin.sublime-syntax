@@ -20,6 +20,9 @@ contexts:
           | Error
           | ErrorException
           | Exception
+          | Fiber
+          | FiberError
+          | FiberExit
           | InternalIterator
           | Iterator
           | IteratorAggregate
@@ -37,6 +40,7 @@ contexts:
           | ReflectionEnumBackedCase
           | ReflectionEnumUnitCase
           | ReflectionExtension
+          | ReflectionFiber
           | ReflectionFunction
           | ReflectionFunctionAbstract
           | ReflectionMethod
