@@ -1,0 +1,13 @@
+%YAML 1.2
+---
+name: HTML (interpolation)
+scope: text.html.basic.php-interpolation
+version: 2
+hidden: true
+
+contexts:
+  main:
+    - match: ''
+      push: Packages/HTML/HTML.sublime-syntax
+      with_prototype:
+        - include: PHP Source.sublime-syntax#interpolation

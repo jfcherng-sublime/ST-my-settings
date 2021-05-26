@@ -1,0 +1,13 @@
+%YAML 1.2
+---
+name: JavaScript (interpolation)
+scope: source.js.php-interpolation
+version: 2
+hidden: true
+
+contexts:
+  main:
+    - match: ''
+      push: Packages/JavaScript/JavaScript.sublime-syntax
+      with_prototype:
+        - include: PHP Source.sublime-syntax#interpolation

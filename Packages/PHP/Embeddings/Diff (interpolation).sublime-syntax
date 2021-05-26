@@ -1,0 +1,13 @@
+%YAML 1.2
+---
+name: Diff (interpolation)
+scope: source.diff.php-interpolation
+version: 2
+hidden: true
+
+contexts:
+  main:
+    - match: ''
+      push: Packages/Diff/Diff.sublime-syntax
+      with_prototype:
+        - include: PHP Source.sublime-syntax#interpolation

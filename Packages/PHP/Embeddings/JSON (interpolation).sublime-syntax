@@ -1,0 +1,13 @@
+%YAML 1.2
+---
+name: JSON (interpolation)
+scope: source.json.php-interpolation
+version: 2
+hidden: true
+
+contexts:
+  main:
+    - match: ''
+      push: Packages/JSON/JSON.sublime-syntax
+      with_prototype:
+        - include: PHP Source.sublime-syntax#interpolation
