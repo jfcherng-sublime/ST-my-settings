@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 """
 Console Exec
 
-Plugin for Sublime Text 2 to execute a command and redirect its output
+Plugin for Sublime Text to execute a command and redirect its output
 into a console window. This is based on the default exec command.
 """
 
@@ -19,24 +17,23 @@ except ImportError:
 
 
 class ConsoleExecCommand(sublime_plugin.WindowCommand):
-    def run(self, cmd=[], env={}, path='', shell=False, win_console=None,
-            unix_console=None, **kwargs):
+    def run(self, cmd=[], env={}, path="", shell=False, win_console=None, unix_console=None, **kwargs):
         # Show message
-        sublime.status_message('Running ' + ' '.join(cmd))
+        sublime.status_message("Running " + " ".join(cmd))
 
         # Get platform-specific command arguments
-        if os.name == 'nt':
-            console = win_console or ['cmd.exe', '/c']
-            pause = ['pause']
-            console_cmd = console + cmd + ['&'] + pause
+        if os.name == "nt":
+            console = win_console or ["cmd.exe", "/c"]
+            pause = ["pause"]
+            console_cmd = console + cmd + ["&"] + pause
         else:
             console = unix_console or self.get_unix_console()
             pause = '; read -p "Press [Enter] to continue..."'
-            escaped_cmd = ' '.join([quote(x) for x in cmd])
-            console_cmd = console + ['bash -c ' + quote(escaped_cmd + pause)]
+            escaped_cmd = " ".join([quote(x) for x in cmd])
+            console_cmd = console + ["bash -c " + quote(escaped_cmd + pause)]
 
         # debug
-        self.debug_print('reconstructed console_cmd is', console_cmd)
+        self.debug_print("reconstructed console_cmd is", console_cmd)
 
         # Default the to the current file's directory if no working directory
         # was provided
@@ -48,7 +45,7 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
         # Get environment
         env = env.copy()
         if self.window.active_view():
-            user_env = self.window.active_view().settings().get('build_env')
+            user_env = self.window.active_view().settings().get("build_env")
             if user_env:
                 env.update(user_env)
 
@@ -63,34 +60,34 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
         try:
             # Set temporary PATH to locate executable in arg_list
             if path:
-                old_path = os.environ['PATH']
-                os.environ['PATH'] = os.path.expandvars(path)
+                old_path = os.environ["PATH"]
+                os.environ["PATH"] = os.path.expandvars(path)
             subprocess.Popen(console_cmd, env=proc_env, cwd=cwd, shell=shell)
         finally:
             if old_path:
-                os.environ['PATH'] = old_path
+                os.environ["PATH"] = old_path
 
-    def get_unix_console (self):
-        sessions = ['gnome-session', 'ksmserver', 'xfce4-session', 'lxsession']
-        ps = 'ps -eo comm | grep -E "{0}"'.format('|'.join(sessions))
+    def get_unix_console(self):
+        sessions = ["gnome-session", "ksmserver", "xfce4-session", "lxsession"]
+        ps = 'ps -eo comm | grep -E "{0}"'.format("|".join(sessions))
         # get the first found session or an empty string
-        session_found = os.popen(ps).read().split('\n')[0]
+        session_found = os.popen(ps).read().split("\n")[0]
         # Gnome
-        if session_found == 'gnome-session':
-            console = ['gnome-terminal', '-e']
+        if session_found == "gnome-session":
+            console = ["gnome-terminal", "-e"]
         # XDE
-        elif session_found == 'xfce4-session':
-            console = ['terminal', '-e']
+        elif session_found == "xfce4-session":
+            console = ["terminal", "-e"]
         # KDE
-        elif session_found == 'ksmserver':
-            console = ['konsole', '-e']
+        elif session_found == "ksmserver":
+            console = ["konsole", "-e"]
         # LXDE
-        elif session_found == 'lxsession':
-            console = ['lxterminal', '-e']
+        elif session_found == "lxsession":
+            console = ["lxterminal", "-e"]
         # default
         else:
-            console = ['xterm', '-e']
+            console = ["xterm", "-e"]
         return console
 
-    def debug_print (self, *arg):
-        print('Console Exec:', *arg)
+    def debug_print(self, *arg):
+        print("Console Exec:", *arg)
