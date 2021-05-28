@@ -100,6 +100,18 @@
     { "keys": ["ctrl+alt+shift+j"], "command": "move", "args": { "by": "words", "extend": true, "forward": false } },
     { "keys": ["ctrl+alt+shift+l"], "command": "move", "args": { "by": "word_ends", "extend": true, "forward": true } },
     { "keys": ["alt+shift+p"], "command": "expand_selection_to_paragraph" },
+    {
+        "keys": ["ctrl+shift+a"],
+        "command": "expand_selection",
+        "args": { "to": "tag" },
+        "context": [
+            {
+                "key": "selector",
+                "operator": "equal",
+                "operand": "(text.html | text.xml) - source",
+            },
+        ],
+    },
     // select lines
     { "keys": ["ctrl+alt+up"], "command": "select_lines", "args": { "forward": false } },
     { "keys": ["ctrl+alt+down"], "command": "select_lines", "args": { "forward": true } },
