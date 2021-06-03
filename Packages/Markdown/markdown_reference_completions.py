@@ -2,7 +2,7 @@ import re
 import sublime
 import sublime_plugin
 
-from typing import Any, AnyStr, Dict, Iterable, List, Match, Optional, Sequence, Tuple, Union
+from typing import Any, AnyStr, Dict, Iterable, List, Match, Optional, Sequence
 
 
 # test case
@@ -62,9 +62,9 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
     # @see https://www.markdownguide.org/basic-syntax/#reference-style-links
     re_ref_links = re.compile(
         r"(?:^[ \t]*((?:[\-*]|\d+\.)[ \t]+)?)"
-        r"\[(?P<ref_id>[^\]]+)\]:"
-        r"(?:[ \t]*(?P<link><[^>]*>|[^\s]*))"
-        r"(?:[ \t]+(?P<title>.*))?",
+        + r"\[(?P<ref_id>[^\]]+)\]:"
+        + r"(?:[ \t]*(?P<link><[^>]*>|[^\s]*))"
+        + r"(?:[ \t]+(?P<title>.*))?",
         re.MULTILINE,
     )
 
@@ -72,12 +72,10 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
     ignored_commands = {"move", "drag_select", "left_delete", "right_delete", "delete_word"}
     working_scope = (
         "text.html.markdown meta.link.reference"
-        "    (constant.other.reference.link.markdown | punctuation.definition.constant.end.markdown)"
+        + "    (constant.other.reference.link.markdown | punctuation.definition.constant.end.markdown)"
     )
 
-    def on_post_text_command(
-        self, view: sublime.View, command_name: str, args: Dict[str, Any]
-    ) -> None:
+    def on_post_text_command(self, view: sublime.View, command_name: str, args: Dict[str, Any]) -> None:
         cursor = view.sel()[0].b
 
         if command_name in self.ignored_commands:
@@ -121,7 +119,7 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
         # prepare title #
         # ------------- #
 
-        title = (m.group("title") or "").strip()
+        title = str(m.group("title") or "").strip()
         title = strip_pairs(title, [("'", "'"), ('"', '"'), ("(", ")")])
 
         if not title:
@@ -131,7 +129,7 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
         # prepare link #
         # ------------ #
 
-        link = (m.group("link") or "").strip()
+        link = str(m.group("link") or "").strip()
         link = strip_pairs(link, [("<", ">")])
 
         if not link:
@@ -150,9 +148,9 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
 
         return sublime.CompletionItem(
             annotation=truncate(title, 30),
-            completion=m.group("ref_id"),
+            completion=str(m.group("ref_id")),
             completion_format=sublime.COMPLETION_FORMAT_TEXT,
             details=details,
             kind=(sublime.KIND_ID_MARKUP, "m", "Ref"),
-            trigger=m.group("ref_id"),
+            trigger=str(m.group("ref_id")),
         )
