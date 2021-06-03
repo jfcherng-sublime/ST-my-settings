@@ -1,0 +1,48 @@
+%YAML 1.2
+---
+name: PHP
+version: 2
+file_extensions:
+  - php
+  - php3
+  - php4
+  - php5
+  - php7
+  - php8
+  - phps
+  - phpt
+  - phtml
+first_line_match: '^(#!.*[^-]php[0-9]?|<\?php)\b'
+scope: embedding.php
+contexts:
+  main:
+    - match: ''
+      push: scope:text.html.basic
+      with_prototype:
+        - match: <\?(?i:php|=)?(?![^?]*\?>)
+          scope: punctuation.section.embedded.begin.php
+          push:
+            - clear_scopes: true # I don't want the "text.html.basic" parent scope
+            - meta_scope: embedding.php meta.embedded.block.php
+            - meta_content_scope: source.php
+            - include: php-end-tag-pop
+            - include: scope:source.php
+        - match: <\?(?i:php|=)?
+          scope: punctuation.section.embedded.begin.php
+          push:
+            # I don't add clear_scopes here because I would like to
+            # keep the following test pass since it's quite common in real world...
+            #
+            # <div class="test <?= $foo ?>"></div>
+            # //         ^^^^^^^^^^^^^^^^^^ string.quoted.double.html
+            - meta_scope: meta.embedded.line.php
+            - meta_content_scope: source.php
+            - include: php-end-tag-pop
+            - include: scope:source.php
+
+  php-end-tag-pop:
+    - match: (\?>)(\s*\n)?
+      captures:
+        1: punctuation.section.embedded.end.php
+        2: meta.html-newline-after-php.php
+      pop: 1
