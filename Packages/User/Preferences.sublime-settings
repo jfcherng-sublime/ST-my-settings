@@ -229,6 +229,7 @@
         "Vintage",
     ],
     "ignored_snippets": [
+        "C++/Snippets/*",
         "LiveReload/snippets/*",
     ],
     "ignored_words":
