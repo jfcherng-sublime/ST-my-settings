@@ -1,8 +1,9 @@
+from functools import lru_cache
+from typing import Any, AnyStr, Dict, Iterable, List, Match, Optional, Sequence
 import re
 import sublime
 import sublime_plugin
-
-from typing import Any, AnyStr, Dict, Iterable, List, Match, Optional, Sequence
+import textwrap
 
 
 # test case
@@ -17,6 +18,7 @@ from typing import Any, AnyStr, Dict, Iterable, List, Match, Optional, Sequence
 """
 
 
+@lru_cache
 def truncate(s: str, max_length: int, ellipsis: str = "…") -> str:
     """
     @brief Truncate str to no more than max_length chars.
@@ -28,7 +30,9 @@ def truncate(s: str, max_length: int, ellipsis: str = "…") -> str:
     @return The truncated string.
     """
 
-    return s if len(s) <= max_length else s[: max_length - 1] + ellipsis
+    parts = textwrap.wrap(s, width=max_length)
+
+    return f"{parts[0]}{ellipsis}" if len(parts) > 1 else parts[0]
 
 
 def strip_pairs(s: str, pairs: Iterable[Sequence[str]], only_first: bool = True) -> str:
@@ -55,9 +59,7 @@ def strip_pairs(s: str, pairs: Iterable[Sequence[str]], only_first: bool = True)
 
 
 class MarkdownReferenceCompletions(sublime_plugin.EventListener):
-    """
-    @brief Provide completions that match just after typing an opening square bracket.
-    """
+    """Provide completions that match just after typing an opening square bracket."""
 
     # @see https://www.markdownguide.org/basic-syntax/#reference-style-links
     re_ref_links = re.compile(
@@ -68,11 +70,19 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
         re.MULTILINE,
     )
 
-    re_linkable = re.compile(r"^(https?|ftps?)://", re.IGNORECASE)
-    ignored_commands = {"move", "drag_select", "left_delete", "right_delete", "delete_word"}
-    working_scope = (
-        "text.html.markdown meta.link.reference"
-        + "    (constant.other.reference.link.markdown | punctuation.definition.constant.end.markdown)"
+    re_linkable = re.compile(r"^(?:https?|ftps?)://", re.IGNORECASE)
+
+    ignored_commands = {
+        "move",
+        "drag_select",
+        "left_delete",
+        "right_delete",
+        "delete_word",
+    }
+
+    working_scopes = (
+        "text.html.markdown entity.name.reference.link",
+        "text.html.markdown meta.link.reference punctuation.definition.constant.end",
     )
 
     def on_post_text_command(self, view: sublime.View, command_name: str, args: Dict[str, Any]) -> None:
@@ -82,15 +92,18 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
             return
 
         # auto invoke auto_complete
-        if view.match_selector(cursor, self.working_scope):
+        if self._view_match_selector(view, cursor):
             view.run_command("auto_complete")
 
     def on_query_completions(
-        self, view: sublime.View, prefix: str, locations: List[int]
+        self,
+        view: sublime.View,
+        prefix: str,
+        locations: List[int],
     ) -> Optional[sublime.CompletionList]:
         cursor = locations[0]
 
-        if not view.match_selector(cursor, self.working_scope):
+        if not self._view_match_selector(view, cursor):
             return None
 
         # make sure we're inside the reference name portion
@@ -99,10 +112,10 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
             return None
 
         return sublime.CompletionList(
-            [
+            tuple(
                 self._generate_completion_item(m)
                 for m in self.re_ref_links.finditer(view.substr(sublime.Region(0, len(view))))
-            ],
+            ),
             sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS,
         )
 
@@ -120,7 +133,14 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
         # ------------- #
 
         title = str(m.group("title") or "").strip()
-        title = strip_pairs(title, [("'", "'"), ('"', '"'), ("(", ")")])
+        title = strip_pairs(
+            title,
+            (
+                ("'", "'"),
+                ('"', '"'),
+                ("(", ")"),
+            ),
+        )
 
         if not title:
             title = "No title"
@@ -130,7 +150,7 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
         # ------------ #
 
         link = str(m.group("link") or "").strip()
-        link = strip_pairs(link, [("<", ">")])
+        link = strip_pairs(link, (("<", ">"),))
 
         if not link:
             link = "No link"
@@ -154,3 +174,6 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
             kind=(sublime.KIND_ID_MARKUP, "m", "Ref"),
             trigger=str(m.group("ref_id")),
         )
+
+    def _view_match_selector(self, view: sublime.View, point: int) -> bool:
+        return any(view.match_selector(point, scope) for scope in self.working_scopes)
