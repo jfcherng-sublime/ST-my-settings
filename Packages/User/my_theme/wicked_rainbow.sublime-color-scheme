@@ -761,6 +761,10 @@
             "scope": "meta.diff.header.from-file | punctuation.definition.from-file | meta.diff.header.to-file | punctuation.definition.to-file",
         },
         {
+            "background": "var(Brown900)",
+            "scope": "meta.header.from-to-file.diff",
+        },
+        {
             "foreground": "var(Grey700)",
             "scope": "punctuation.separator.mapping.pair.change-list.git.commit",
         },

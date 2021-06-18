@@ -10,6 +10,12 @@
         "context": [{ "key": "selector", "operator": "equal", "operand": "comment" }]
     },
     { "keys": ["pause"], "command": "exec", "args": { "kill": true } },
+    { "keys": ["alt+a", "alt+r", "alt+i"], "command": "arithmetic" },
+    {
+        "keys": ["alt+g"],
+        "command": "run_input_cli_command",
+        "args": { "cwd": "", "initial_text": "git " },
+    },
     /**************************
      *    Built-in commands   *
      **************************/
@@ -490,8 +496,6 @@
     { "keys": ["ctrl+alt+p"], "command": "project_manager" },
     // plugin: Scope Hunter
     { "keys": ["ctrl+alt+shift+p"], "command": "get_selection_scope" },
-    // plugin: Side Bar Git
-    { "keys": ["alt+g"], "command": "side_bar_git_liberal", "args": { "paths": "" } },
     // plugin: SelectUntil
     { "keys": ["alt+s", "alt+u"], "command": "select_until", "args": { "extend": true } },
     // plugin: Terminal
