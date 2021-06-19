@@ -1,7 +1,8 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/3/syntax.html
+# http://www.sublimetext.com/docs/syntax.html
 name: CUE Sheet
+version: 2
 comment: Textmate bundle for CUE Sheets
 file_extensions:
   - cue
@@ -27,4 +28,4 @@ contexts:
         - match: '"'
           captures:
             0: punctuation.definition.string.end
-          pop: true
+          pop: 1

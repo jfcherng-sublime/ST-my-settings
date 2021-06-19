@@ -1,8 +1,9 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/3/syntax.html
+# http://www.sublimetext.com/docs/syntax.html
 # Derived from https://github.com/wuub/requirementstxt
 name: requirements.txt
+version: 2
 file_extensions:
   - requirements-linux.txt
   - requirements-mac.txt
@@ -25,7 +26,7 @@ contexts:
       push:
         - match: .*
           scope: string.package_name.requirements-txt
-          pop: true
+          pop: 1
     - match: ^[a-zA-Z0-9_\-\.]+
       scope: string.package_name.requirements-txt
     - match: ==|<|<=|>=|>

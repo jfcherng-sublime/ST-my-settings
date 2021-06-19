@@ -1,10 +1,9 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/3/syntax.html
-# https://httpd.apache.org/docs/2.0/mod/
-# https://httpd.apache.org/docs/2.2/mod/
+# http://www.sublimetext.com/docs/syntax.html
 # https://httpd.apache.org/docs/2.4/mod/
 name: Apache Conf
+version: 2
 file_extensions:
   - conf
   - CONF

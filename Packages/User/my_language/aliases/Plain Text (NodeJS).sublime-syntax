@@ -1,7 +1,8 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/3/syntax.html
+# http://www.sublimetext.com/docs/syntax.html
 name: Plain Text (NodeJS)
+version: 2
 hidden: true
 file_extensions:
   - .node-version

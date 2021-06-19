@@ -1,7 +1,8 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/3/syntax.html
+# http://www.sublimetext.com/docs/syntax.html
 name: SRT Subtitles
+version: 2
 file_extensions:
   - srt
 scope: text.srt
@@ -19,7 +20,7 @@ contexts:
           captures:
             1: storage.type.srt
         - match: $
-          pop: true
+          pop: 1
     - match: \<(b)\>
       captures:
         1: entity.name.tag.srt
@@ -27,7 +28,7 @@ contexts:
         - match: \<\/(b)\>
           captures:
             1: entity.name.tag.srt
-          pop: true
+          pop: 1
         - include: main
         - match: .
           scope: markup.bold.srt
@@ -38,7 +39,7 @@ contexts:
         - match: \<\/(i)\>
           captures:
             1: entity.name.tag.srt
-          pop: true
+          pop: 1
         - include: main
         - match: .
           scope: markup.italic.srt
@@ -49,7 +50,7 @@ contexts:
         - match: \<\/(u)\>
           captures:
             1: entity.name.tag.srt
-          pop: true
+          pop: 1
         - include: main
         - match: .
           scope: markup.underline.srt

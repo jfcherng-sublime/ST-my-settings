@@ -2,6 +2,7 @@
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
 name: Git Blame
+version: 2
 file_extensions:
   - git-blame
 scope: text.git-blame

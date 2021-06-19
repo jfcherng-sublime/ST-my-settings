@@ -1,7 +1,8 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/3/syntax.html
+# http://www.sublimetext.com/docs/syntax.html
 name: Gettext
+version: 2
 comment: |
   TODO:  Command for copy original to untranslated, label as fuzzy, remove fuzzy, next fuzzy etc
           Create meta scope for each entry
@@ -15,7 +16,7 @@ contexts:
       push:
         - meta_scope: entity.name.section.header.po
         - match: ^$
-          pop: true
+          pop: 1
     - match: ^msgid(?:_plural)?\s+(")(.*)(")\s*$
       scope: keyword.control.msgid.po
       captures:

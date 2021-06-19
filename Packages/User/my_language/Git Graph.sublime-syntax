@@ -1,7 +1,8 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/3/syntax.html
+# http://www.sublimetext.com/docs/syntax.html
 name: Git Graph
+version: 2
 file_extensions:
   - git-graph
 scope: text.git-graph

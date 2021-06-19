@@ -1,7 +1,8 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/3/syntax.html
+# http://www.sublimetext.com/docs/syntax.html
 name: VTT Subtitles
+version: 2
 file_extensions:
   - vtt
 first_line_match: '^\s*WEBVTT\s*$'
@@ -24,14 +25,14 @@ contexts:
       push:
         - meta_scope: comment.vtt
         - match: '{{blank_line}}'
-          pop: true
+          pop: 1
   content-block:
     - match: ^(\d+)\s*$
       scope: constant.numeric.sequence.vtt
     - match: '(?=^((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})\s*(-->)\s*((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3}))'
       push:
         - match: '{{blank_line}}'
-          pop: true
+          pop: 1
         - match: '^((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})\s*(-->)\s*((?:\d{2}:)?\d{2}:\d{2}[,.]\d{3})'
           captures:
             1: variable.parameter.vtt
@@ -42,7 +43,7 @@ contexts:
               captures:
                 1: storage.type.vtt
             - match: $
-              pop: true
+              pop: 1
         - match: \<(b)\>
           captures:
             1: entity.name.tag.vtt
@@ -50,7 +51,7 @@ contexts:
             - match: \<\/(b)\>
               captures:
                 1: entity.name.tag.vtt
-              pop: true
+              pop: 1
             - include: main
             - match: .
               scope: markup.bold.vtt
@@ -61,7 +62,7 @@ contexts:
             - match: \<\/(i)\>
               captures:
                 1: entity.name.tag.vtt
-              pop: true
+              pop: 1
             - include: main
             - match: .
               scope: markup.italic.vtt
@@ -72,7 +73,7 @@ contexts:
             - match: \<\/(u)\>
               captures:
                 1: entity.name.tag.vtt
-              pop: true
+              pop: 1
             - include: main
             - match: .
               scope: markup.underline.vtt
