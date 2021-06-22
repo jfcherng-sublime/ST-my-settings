@@ -1,6 +1,7 @@
 %YAML 1.2
 ---
 name: PHP Source
+symbol_name: PHP
 hidden: true
 version: 2
 scope: source.php
@@ -1053,7 +1054,7 @@ contexts:
             3: punctuation.definition.tag.begin.php
             4: entity.name.tag.heredoc.php
             5: punctuation.definition.tag.end.php
-          embed: scope:text.html.basic.php-interpolation
+          embed: heredoc-html
           embed_scope: meta.embedded.html
           escape: (?=^\s*\4\b)
         - match: (<<<)\s*((')(HTML)('))\s*$\n?
@@ -1073,7 +1074,7 @@ contexts:
             3: punctuation.definition.tag.begin.php
             4: entity.name.tag.heredoc.php
             5: punctuation.definition.tag.end.php
-          embed: scope:text.xml.php-interpolation
+          embed: heredoc-xml
           embed_scope: meta.embedded.xml
           escape: (?=^\s*\4\b)
         - match: (<<<)\s*((')(XML)('))\s*$\n?
@@ -1093,7 +1094,7 @@ contexts:
             3: punctuation.definition.tag.begin.php
             4: entity.name.tag.heredoc.php
             5: punctuation.definition.tag.end.php
-          embed: scope:source.sql.php-interpolation
+          embed: heredoc-sql
           embed_scope: meta.embedded.sql
           escape: (?=^\s*\4\b)
         - match: (<<<)\s*((')(SQL)('))\s*$\n?
@@ -1113,8 +1114,8 @@ contexts:
             3: punctuation.definition.tag.begin.php
             4: entity.name.tag.heredoc.php
             5: punctuation.definition.tag.end.php
-          embed: scope:source.js.php-interpolation
-          embed_scope: meta.embedded.js source.js
+          embed: heredoc-javascript
+          embed_scope: meta.embedded.js
           escape: (?=^\s*\4\b)
         - match: (<<<)\s*((')(JAVASCRIPT)('))\s*$\n?
           captures:
@@ -1133,7 +1134,7 @@ contexts:
             3: punctuation.definition.tag.begin.php
             4: entity.name.tag.heredoc.php
             5: punctuation.definition.tag.end.php
-          embed: scope:source.json.php-interpolation
+          embed: heredoc-json
           embed_scope: meta.embedded.json
           escape: (?=^\s*\4\b)
         - match: (<<<)\s*((')(JSON)('))\s*$\n?
@@ -1153,7 +1154,7 @@ contexts:
             3: punctuation.definition.tag.begin.php
             4: entity.name.tag.heredoc.php
             5: punctuation.definition.tag.end.php
-          embed: scope:source.css.php-interpolation
+          embed: heredoc-css
           embed_scope: meta.embedded.css
           escape: (?=^\s*\4\b)
         - match: (<<<)\s*((')(CSS)('))\s*$\n?
@@ -1189,6 +1190,42 @@ contexts:
             - meta_scope: string.unquoted.heredoc.php
             - match: (?=^\s*\4\b)
               pop: 1
+  heredoc-html:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:text.html.basic
+      with_prototype:
+        - include: interpolation
+  heredoc-xml:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:text.xml
+      with_prototype:
+        - include: interpolation
+  heredoc-sql:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.sql
+      with_prototype:
+        - include: interpolation
+  heredoc-javascript:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.js
+      with_prototype:
+        - include: interpolation
+  heredoc-json:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.json
+      with_prototype:
+        - include: interpolation
+  heredoc-css:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.css
+      with_prototype:
+        - include: interpolation
   instantiation:
     # anonymous class ( http://php.net/manual/en/language.oop5.anonymous.php )
     - match: '(?i)(new)\s+(class)\b\s*'
@@ -1954,26 +1991,6 @@ contexts:
     - match: '[a-zA-Z0-9.!#$%&*+/=?^_|~-]+@[a-zA-Z0-9\-_]+(?:\.[a-zA-Z0-9\-_]+)*'
       scope: markup.underline.email.php
   heredoc-jfcherng:
-    - match: (<<<)\s*(()(JS)())\s*$\n?
-      captures:
-        1: keyword.operator.heredoc.php
-        2: meta.string.heredoc.php meta.tag.heredoc.php
-        3: punctuation.definition.tag.begin.php
-        4: entity.name.tag.heredoc.php
-        5: punctuation.definition.tag.end.php
-      embed: scope:source.js.php-interpolation
-      embed_scope: meta.embedded.js source.js
-      escape: (?=^\s*\4\b)
-    - match: (<<<)\s*((')(JS)('))\s*$\n?
-      captures:
-        1: keyword.operator.heredoc.php
-        2: meta.string.heredoc.php meta.tag.heredoc.php
-        3: punctuation.definition.tag.begin.php
-        4: entity.name.tag.heredoc.php
-        5: punctuation.definition.tag.end.php
-      embed: scope:source.js
-      embed_scope: meta.embedded.js source.js
-      escape: (?=^\s*\4\b)
     - match: (<<<)\s*(()(DIFF)())\s*$\n?
       captures:
         1: keyword.operator.heredoc.php
@@ -1981,7 +1998,7 @@ contexts:
         3: punctuation.definition.tag.begin.php
         4: entity.name.tag.heredoc.php
         5: punctuation.definition.tag.end.php
-      embed: scope:source.diff.php-interpolation
+      embed: heredoc-diff
       embed_scope: meta.embedded.diff
       escape: (?=^\s*\4\b)
     - match: (<<<)\s*((')(DIFF)('))\s*$\n?
@@ -1994,3 +2011,9 @@ contexts:
       embed: scope:source.diff
       embed_scope: meta.embedded.diff source.diff
       escape: (?=^\s*\4\b)
+  heredoc-diff:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.diff
+      with_prototype:
+        - include: interpolation
