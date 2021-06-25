@@ -18,26 +18,14 @@ from sublime_plugin import text_command_classes
 
 
 KIND_APPLICATION = (sublime.KIND_ID_FUNCTION, "A", "Application Command")
-KIND_WINDOW = (sublime.KIND_ID_NAMESPACE, "W", "Window Command")
-KIND_TEXT = (sublime.KIND_ID_AMBIGUOUS, "T", "Text Command")
+KIND_WINDOW = (sublime.KIND_ID_FUNCTION, "W", "Window Command")
+KIND_TEXT = (sublime.KIND_ID_FUNCTION, "T", "Text Command")
 
 
 cmd_types = {
-    "app": {
-        "name": "ApplicationCommand",
-        "commands": application_command_classes,
-        "kind": KIND_APPLICATION
-    },
-    "wnd": {
-        "name": "WindowCommand",
-        "commands": window_command_classes,
-        "kind": KIND_WINDOW
-    },
-    "txt": {
-        "name": "TextCommand",
-        "commands": text_command_classes,
-        "kind": KIND_TEXT
-    }
+    "app": {"name": "ApplicationCommand", "commands": application_command_classes, "kind": KIND_APPLICATION},
+    "wnd": {"name": "WindowCommand", "commands": window_command_classes, "kind": KIND_WINDOW},
+    "txt": {"name": "TextCommand", "commands": text_command_classes, "kind": KIND_TEXT},
 }
 
 
@@ -65,6 +53,7 @@ class BrowseCommandsCommand(sublime_plugin.ApplicationCommand):
     packages) with the Python 3.3 plugin host triggering the command from the
     Python 3.8 host, so that we can gather all available commands.
     """
+
     arg_re = re.compile(r"^\(self(?:, )?(?:edit, |edit)?(.*)\)$")
 
     def legacy(self):
@@ -79,29 +68,32 @@ class BrowseCommandsCommand(sublime_plugin.ApplicationCommand):
             self.get_commands(cmd_type, cmd_info["commands"], cmd_dict)
 
         if self.legacy():
-            return sublime.run_command('browse_commands', {"cmd_dict": cmd_dict})
+            return sublime.run_command("browse_commands", {"cmd_dict": cmd_dict})
 
         items = []
-        for command,details in cmd_dict.items():
-            items.append(QuickPanelItem(details["name"],
-                                        "<i>%s</i>" % details["args"],
-                                        "%s.%s" % (details["pkg"] , details["mod"]),
-                                        cmd_types[details["type"]]["kind"]))
+        for command, details in cmd_dict.items():
+            items.append(
+                QuickPanelItem(
+                    details["name"],
+                    "<i>%s</i>" % details["args"],
+                    "%s.%s" % (details["pkg"], details["mod"]),
+                    cmd_types[details["type"]]["kind"],
+                )
+            )
 
         items.sort(key=lambda o: o.trigger)
 
-        sublime.active_window().show_quick_panel(items,
-                                                 lambda i: self.pick(i, items, cmd_dict))
+        sublime.active_window().show_quick_panel(items, lambda i: self.pick(i, items, cmd_dict))
 
     def pick(self, idx, items, cmd_dict):
         if idx == -1:
             return
 
         cmd = cmd_dict[items[idx].trigger]
-        module = cmd["mod"].replace('.', '/')
-        res = '${packages}/%s/%s.py' % (cmd["pkg"], module)
+        module = cmd["mod"].replace(".", "/")
+        res = "${packages}/%s/%s.py" % (cmd["pkg"], module)
 
-        sublime.active_window().run_command('open_file', {'file': res})
+        sublime.active_window().run_command("open_file", {"file": res})
         view = sublime.active_window().active_view()
         if view.is_loading():
             view.settings().set("_jump_to_class", cmd["class"])
@@ -134,7 +126,7 @@ class BrowseCommandsCommand(sublime_plugin.ApplicationCommand):
             "mod": ".".join(command.__module__.split(".")[1:]),
             "name": self.get_name(command),
             "args": self.get_args(command),
-            "class": command.__name__
+            "class": command.__name__,
         }
 
     def get_args(self, cmd_class):
@@ -157,7 +149,7 @@ class BrowseCommandsCommand(sublime_plugin.ApplicationCommand):
         last_upper = False
         for c in clsname[1:]:
             if c.isupper() and not last_upper:
-                name += '_'
+                name += "_"
                 name += c.lower()
             else:
                 name += c

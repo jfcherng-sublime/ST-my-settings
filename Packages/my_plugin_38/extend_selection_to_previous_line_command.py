@@ -21,7 +21,7 @@ class ExtendSelectionToPreviousLineCommand(sublime_plugin.TextCommand):
                 r[1] = max(r[1], line.end())
 
         sel.clear()
-        sel.add_all([sublime.Region(r[1], r[0]) for r in regions])
+        sel.add_all(sublime.Region(r[1], r[0]) for r in regions)
 
         # run select previous line
         v.run_command("move", {"by": "lines", "extend": True, "forward": False})

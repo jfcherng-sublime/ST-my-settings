@@ -134,7 +134,8 @@ class CliRunnerCommand(sublime_plugin.WindowCommand):
                 dirs.append("${home}")
                 cwd = dirs[0]
 
-        args = expand_variables(self.window, {"cwd": cwd, "encoding": encoding})
+        args: Dict[str, str] = expand_variables(self.window, {"cwd": cwd, "encoding": encoding})
+        args["cwd"] = self.fix_cwd_unc(args["cwd"])
 
         self.cwd = args.get("cwd", "")
         self.encoding = args.get("encoding", "")
@@ -157,6 +158,17 @@ class CliRunnerCommand(sublime_plugin.WindowCommand):
                 },
             )
         )
+
+    @staticmethod
+    def fix_cwd_unc(path: str) -> str:
+        """
+        To deal with an escaping "bug" in `sublime.expand_variables()` for UNC path.
+
+        @see https://github.com/sublimehq/sublime_text/issues/1878
+        """
+        if path.startswith("\\"):
+            path = r"\\" + path.lstrip("\\")
+        return path
 
 
 class CliRunnerShowResultCommand(sublime_plugin.TextCommand):

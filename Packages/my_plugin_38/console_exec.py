@@ -5,19 +5,24 @@ Plugin for Sublime Text to execute a command and redirect its output
 into a console window. This is based on the default exec command.
 """
 
+from shlex import quote
+from typing import Any, Dict, List, Optional
 import os
-import subprocess
 import sublime
 import sublime_plugin
-
-try:
-    from shlex import quote
-except ImportError:
-    from pipes import quote
+import subprocess
 
 
 class ConsoleExecCommand(sublime_plugin.WindowCommand):
-    def run(self, cmd=[], env={}, path="", shell=False, win_console=None, unix_console=None, **kwargs):
+    def run(
+        self,
+        cmd: List[str] = [],
+        env: Dict[str, str] = {},
+        path: str = "",
+        shell: bool = False,
+        win_console: Optional[List[str]] = None,
+        unix_console: Optional[List[str]] = None,
+    ) -> None:
         # Show message
         sublime.status_message("Running " + " ".join(cmd))
 
@@ -44,9 +49,8 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
 
         # Get environment
         env = env.copy()
-        if self.window.active_view():
-            user_env = self.window.active_view().settings().get("build_env")
-            if user_env:
+        if w := self.window.active_view():
+            if user_env := w.settings().get("build_env"):
                 env.update(user_env)
 
         # Get executing environment
@@ -67,7 +71,7 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
             if old_path:
                 os.environ["PATH"] = old_path
 
-    def get_unix_console(self):
+    def get_unix_console(self) -> List[str]:
         sessions = ["gnome-session", "ksmserver", "xfce4-session", "lxsession"]
         ps = 'ps -eo comm | grep -E "{0}"'.format("|".join(sessions))
         # get the first found session or an empty string
@@ -89,5 +93,5 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
             console = ["xterm", "-e"]
         return console
 
-    def debug_print(self, *arg):
+    def debug_print(self, *arg: Any) -> None:
         print("Console Exec:", *arg)

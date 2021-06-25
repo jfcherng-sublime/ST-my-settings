@@ -9,7 +9,6 @@ Keybinding example:
 { "keys": ["ctrl+super+l"], "command": "step_tab_cycle", "args": { "steps": 1 } },
 """
 
-import sublime
 import sublime_plugin
 
 
@@ -21,9 +20,8 @@ class StepTabCycleCommand(sublime_plugin.WindowCommand):
 
     def run(self, steps: int) -> None:
         window = self.window
-        view = window.active_view()
 
-        if not view:
+        if not (view := window.active_view()):
             return
 
         group_index, view_index = window.get_view_index(view)
