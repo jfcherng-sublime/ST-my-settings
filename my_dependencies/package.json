@@ -1,14 +1,15 @@
 {
-  "author": "Jack Cherng",
+  "private": true,
   "dependencies": {
-    "babel-eslint": "^10",
+    "@babel/eslint-parser": "^7",
     "diagnostic-languageserver": "^1",
-    "eslint": "^7",
-    "eslint-config-prettier": "^8",
-    "eslint-plugin-prettier": "^3",
-    "less": "^3",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9",
+    "eslint-plugin-prettier": "^5",
+    "less": "^4",
     "markdownlint-cli": "^0",
-    "prettier": "^2",
+    "prettier": "^3",
     "sass": "^1"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
 }
