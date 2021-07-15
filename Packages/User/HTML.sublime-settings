@@ -3,4 +3,7 @@
     // "-" is not a word breaker
     "word_separators": "./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?",
     "tab_size": 2,
+    // disable built-in tag autocompletion?
+    "disable_default_completions": false,
+    // "default_completions_selector": "",
 }

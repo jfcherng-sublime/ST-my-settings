@@ -1,0 +1,7 @@
+{
+    "settings": {
+        "auto_ask_completions": true,
+        "hook_to_auto_complete_command": true,
+        // "completion_style": "phantom",
+    },
+}

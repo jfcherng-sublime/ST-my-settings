@@ -3,9 +3,8 @@
 !/my_*/
 
 *.crt
-*.sublime-license
+color_helper.palettes
 encoding_cache.json
-
 OverrideAudit.status
 Package Control.*
 !Package Control.sublime-settings

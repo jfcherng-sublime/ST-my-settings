@@ -1,0 +1,8 @@
+{
+    "format_on_save": false,
+    "show_error_inline": false,
+    // shfmt options
+    "indent": 4,
+    "simplify": true,
+    "switchcase": true,
+}

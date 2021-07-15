@@ -10,7 +10,7 @@ try:
 
     utils = importlib.import_module("sublack.sublack").utils  # type: ignore
 
-    find_root_file_original = utils.find_root_file
+    find_root_file_bak = utils.find_root_file
 
     def find_root_file_modified(view: sublime.View, filename: str):
         view_name = view.file_name()
