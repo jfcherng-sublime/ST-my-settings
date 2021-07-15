@@ -1,0 +1,5 @@
+html .lsp_popup {
+    --mdpopups-font-mono: "Cascadia Mono";
+    font-family: "system";
+    font-size: 1.05em;
+}

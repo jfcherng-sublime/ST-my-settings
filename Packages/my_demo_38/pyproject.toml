@@ -1,12 +1,22 @@
-[tool.black]
+[tool.ruff]
+preview = true
 line-length = 120
-target-version = ['py38']
+target-version = 'py38'
+exclude = [
+  "*/libs/*",
+  ".git",
+  ".mypy_cache",
+  ".venv",
+  ".venv-*",
+  "branch-*",
+  "stubs",
+  "tests/files",
+  "typings",
+  "vendor",
+  "venv",
+  "venv-*",
+]
 
-# regex
-exclude = '''
-/(
-  \.git |
-  plugin/libs |
-  stubs
-)/
-'''
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+ignore = ["E203"]
