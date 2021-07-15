@@ -1,11 +1,5 @@
 # do not add any dir
-/*/
-!/my_*/
+/Projects/
 
-*.crt
-*.sublime-license
-encoding_cache.json
-
+color_helper.palettes
 OverrideAudit.status
-Package Control.*
-!Package Control.sublime-settings

@@ -1,17 +1,10 @@
 {
-    // @see https://github.com/redhat-developer/yaml-language-server
-    "languages": [
-        {
-            "languageId": "yaml",
-            "document_selector": "source.yaml | source.yml",
-        },
-    ],
     "settings": {
         "yaml.completion": true,
         "yaml.format.bracketSpacing": true,
         "yaml.format.enable": true,
         "yaml.format.printWidth": 120,
-        "yaml.format.proseWrap": true,
+        "yaml.format.proseWrap": "always",
         "yaml.format.singleQuote": true,
         "yaml.hover": true,
         "yaml.schemas": {},
