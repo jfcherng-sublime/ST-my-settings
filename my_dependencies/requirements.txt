@@ -1,12 +1,12 @@
-# This is an implicit value, here for clarity
---index https://pypi.python.org/simple/
-
-black[d]
+certifi
 compdb
 compiledb
-httpx
+httpie
 ipython
-jmespath
-markdown
 mypy
-pymdown-extensions
+ruff>=0.6
+
+build
+pip-tools
+setuptools
+vendorize

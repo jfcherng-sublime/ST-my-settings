@@ -1,12 +1,18 @@
 {
     // Debug logging
     "debug_enable": false,
+    // Global control of gutter icons.
+    "gutter_icons": false,
+    // Do the opposite of `show_unmatched` for the languages listed below
+    "show_unmatched_exceptions": [
+        "PHP",
+    ],
     // Character threshold to search
     "search_threshold": 20000,
     // Ignore threshold
     "ignore_threshold": false,
     // Set max number of multi-select brackets that will be searched automatically
-    "auto_selection_threshold": 20,
+    "auto_selection_threshold": 15,
     // Experimental: Creates a visible bar at the beginning of all lines between
     // multiline bracket spans.
     "content_highlight_bar": true,
@@ -18,7 +24,7 @@
     // that are shown when brackets are vertically off screen.
     // Specified line count is split to context before and after the target line.
     // So a value of 4 would give you two lines of context before and two lines after.
-    "popup_line_context": 6,
+    "popup_line_context": 3,
 
     // user_scope_brackets and user_brackets will be appended
     // to the tail of scope_brackets and brackets respectively
@@ -91,6 +97,28 @@
             "sub_bracket_search": "true",
             "enabled": true,
         },
+        {
+            "name": "triple_single_quote",
+            "open": "(''')",
+            "close": "(''')",
+            "style": "single_quote",
+            "scopes": ["string", "meta.string", "sting.quoted.single"],
+            "language_filter": "allowlist",
+            "language_list": ["Groovy", "Jenkinsfile"],
+            "sub_bracket_search": "true",
+            "enabled": true,
+        },
+        {
+            "name": "triple_double_quote",
+            "open": "(\"\"\")",
+            "close": "(\"\"\")",
+            "style": "double_quote",
+            "scopes": ["string", "meta.string", "sting.quoted.double"],
+            "language_filter": "allowlist",
+            "language_list": ["Groovy", "Jenkinsfile"],
+            "sub_bracket_search": "true",
+            "enabled": true,
+        },
         ///////////////////////////////////////
         // shift positions of built-in rules //
         ///////////////////////////////////////
@@ -130,8 +158,6 @@
             "plugin_library": "bh_modules.pyquotes",
             "enabled": true,
         },
-        {"name": "single_quote", "position": 502},
-        {"name": "double_quote", "position": 503},
         {"name": "jsregex", "position": 504},
         {"name": "perlregex", "position": 505},
         {"name": "rubyregex", "position": 506},
@@ -148,7 +174,7 @@
         // PHP Angle
         {
             "name": "php_angle",
-            "open": "(<\\?(?:php|=)?)",
+            "open": "(<\\?(?:php\\b|=)?)",
             "close": "(\\?>)",
             "style": "angle",
             "scope_exclude": ["string", "comment", "keyword.operator"],
@@ -171,9 +197,15 @@
                 "storage.type.function.arrow.js",
                 "punctuation.accessor.php",
                 "punctuation.accessor.arrow.php",
+                "punctuation.separator.key-value.php",
+                "punctuation.definition.arrow-function.php",
+                "keyword.declaration.function.arrow.js",
+                "embedding.php punctuation.separator.key-value.php",
                 "source.php meta.embedded.html punctuation.section.embedded.begin.php",
                 "source.php meta.embedded.js punctuation.section.embedded.begin.php",
-                "source.php meta.embedded.css punctuation.section.embedded.begin.php"
+                "source.php meta.embedded.css punctuation.section.embedded.begin.php",
+                // jfcherng
+                "keyword.declaration.function.arrow.php",
             ],
             "language_filter": "allowlist",
             "language_list": [
@@ -204,19 +236,6 @@
         ///////////////////
         // add new rules //
         ///////////////////
-        // Python
-        {
-            "name": "python_double_curly_brackets",
-            "style": "curly",
-            "open": "({{)",
-            "close": "(}})",
-            "scope_exclude": ["string.quoted"],
-            "language_filter": "allowlist",
-            "language_list": ["Python"],
-            "find_in_sub_search": "true",
-            "ignore_string_escape": true,
-            "enabled": true,
-        },
         // C/C++ template
         {
             "name": "c_template",
@@ -234,24 +253,24 @@
             "find_in_sub_search": "true",
             "enabled": true,
         },
-        // HTML (Twig)
+        // Jinja / Twig
         {
-            "name": "twig_tag",
+            "name": "jinja_twig_tag",
             "open": "({%)",
             "close": "(%})",
             "style": "angle",
             "language_filter": "allowlist",
-            "language_list": ["HTML (Twig)", "Twig"],
+            "language_list": ["Jinja", "HTML (Twig)", "Twig"],
             "find_in_sub_search": "true",
             "enabled": true,
         },
         {
-            "name": "twig_variable",
+            "name": "jinja_twig_variable",
             "open": "({{)",
             "close": "(}})",
             "style": "curly",
             "language_filter": "allowlist",
-            "language_list": ["HTML (Twig)", "Twig"],
+            "language_list": ["Jinja", "HTML (Twig)", "Twig"],
             "find_in_sub_search": "true",
             "enabled": true,
         },
@@ -302,6 +321,17 @@
             "plugin_library": "bh_modules.tags",
             "enabled": true
         },
+        // HTML
+        {
+            "name": "html_comment",
+            "open": "(<!--)",
+            "close": "(-->)",
+            "style": "angle",
+            "scope_exclude": [],
+            "language_filter": "allowlist",
+            "language_list": ["HTML", "HTML 5", "Markdown"],
+            "enabled": true,
+        },
         // Chinese punctuations
         {
             "name": "chinese_single_updown_quote",
@@ -310,7 +340,7 @@
             "style": "round",
             "scope_exclude": ["string.quoted"],
             "language_filter": "blocklist",
-            "language_list": [],
+            "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "enabled": true,
@@ -322,7 +352,7 @@
             "style": "round",
             "scope_exclude": ["string.quoted"],
             "language_filter": "blocklist",
-            "language_list": [],
+            "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "enabled": true,
@@ -334,7 +364,7 @@
             "style": "round",
             "scope_exclude": ["string.quoted"],
             "language_filter": "blocklist",
-            "language_list": [],
+            "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "enabled": true,
@@ -346,7 +376,7 @@
             "style": "round",
             "scope_exclude": ["string.quoted"],
             "language_filter": "blocklist",
-            "language_list": [],
+            "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "enabled": true,
@@ -358,7 +388,7 @@
             "style": "round",
             "scope_exclude": ["string.quoted"],
             "language_filter": "blocklist",
-            "language_list": [],
+            "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "enabled": true,
@@ -370,7 +400,7 @@
             "style": "round",
             "scope_exclude": ["string.quoted"],
             "language_filter": "blocklist",
-            "language_list": [],
+            "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "enabled": true,
@@ -382,7 +412,7 @@
             "style": "round",
             "scope_exclude": ["string.quoted"],
             "language_filter": "blocklist",
-            "language_list": [],
+            "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "enabled": true,
@@ -394,7 +424,7 @@
             "style": "round",
             "scope_exclude": ["string.quoted"],
             "language_filter": "blocklist",
-            "language_list": [],
+            "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "enabled": true,
@@ -406,7 +436,7 @@
             "style": "round",
             "scope_exclude": ["string.quoted"],
             "language_filter": "blocklist",
-            "language_list": [],
+            "language_list": ["Plain Text"],
             "find_in_sub_search": "true",
             "ignore_string_escape": true,
             "enabled": true,
@@ -445,6 +475,11 @@
                 "source.regexp constant.character.escape",
                 "source.yaml-tmlanguage constant.character.escape",
             ],
+            "scope_exclude_exceptions": [
+                "text.tex string.other.math",
+                // added
+                "source.yaml string.unquoted",
+            ],
         },
         {
             "name": "round",
@@ -453,7 +488,15 @@
                 // "comment",
                 "source.regexp constant.character.escape",
                 "keyword.control.conditional.patterns.end.shell",
+                "keyword.control.case.item",
                 "source.yaml-tmlanguage constant.character.escape",
+            ],
+            "scope_exclude_exceptions": [
+                "text.tex string.other.math",
+                "punctuation.definition.string.begin.shell",
+                "punctuation.definition.string.end.shell",
+                // added
+                "source.yaml string.unquoted",
             ],
         },
         {
@@ -462,6 +505,12 @@
                 "string",
                 "source.regexp constant.character.escape",
                 // "comment",
+            ],
+            "scope_exclude_exceptions": [
+                "text.tex string.other.math",
+                "source.yaml-tmlanguage meta.value -constant.character.escape",
+                // added
+                "source.yaml string.unquoted",
             ],
         },
     ],

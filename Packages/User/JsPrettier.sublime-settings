@@ -264,7 +264,10 @@
     // troubleshooting issues.
     // ----------------------------------------------------------------------
 
-    "additional_cli_args": {},
+    "additional_cli_args": {
+        // do not format js in markdown
+        "--embedded-language-formatting": "off",
+    },
 
     // ----------------------------------------------------------------------
     // Prettier Options
@@ -288,7 +291,7 @@
         // Fit code within this line limit.
         // --------------------------------------------------------------------
 
-        "printWidth": 100,
+        "printWidth": 120,
 
         // --------------------------------------------------------------------
         // tabWidth

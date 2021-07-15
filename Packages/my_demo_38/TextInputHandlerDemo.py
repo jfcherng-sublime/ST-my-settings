@@ -1,4 +1,5 @@
 from typing import Any, Dict
+
 import sublime
 import sublime_plugin
 
@@ -17,7 +18,8 @@ class MyTextInputHandlerDemoCommand(sublime_plugin.TextCommand):
         if self.input_handler.name() in args:
             return
 
-        self.view.window().run_command("show_overlay", {"overlay": "command_palette", "command": self.name()})
+        if window := self.view.window():
+            window.run_command("show_overlay", {"overlay": "command_palette", "command": self.name()})
 
     def input_description(self) -> str:
         return "Here's input_description"

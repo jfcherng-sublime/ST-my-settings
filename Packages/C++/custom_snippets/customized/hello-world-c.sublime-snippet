@@ -1,0 +1,13 @@
+<snippet>
+	<description>起手式</description>
+	<content><![CDATA[#include <stdio.h>
+
+int main (int argc, char *argv[]) {
+	${1:printf("hello world!\n");}
+	return 0;
+}
+
+]]></content>
+	<tabTrigger>helloworld</tabTrigger>
+	<scope>source.c, source.objc</scope>
+</snippet>

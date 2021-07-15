@@ -11,5 +11,5 @@ int main (int argc, char *argv[]) {
 
 ]]></content>
 	<tabTrigger>helloworld</tabTrigger>
-	<scope>source.c, source.objc, source.c++, source.objc++</scope> 
+	<scope>source.c++, source.objc++</scope>
 </snippet>
