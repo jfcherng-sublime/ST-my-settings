@@ -16,6 +16,7 @@ file_extensions:
   - .flowconfig
   - .hgrc
   # PHP framework ENV file
+  - env
   - .env
 
 variables:
