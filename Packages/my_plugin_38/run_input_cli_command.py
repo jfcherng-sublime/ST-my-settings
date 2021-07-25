@@ -49,9 +49,9 @@ def find_project_root_for_view(view: sublime.View) -> Optional[str]:
         filepath = str(Path(filepath).resolve())
         roots = map(str, (Path(root).resolve() for root in project_roots))
     else:
-        roots = iter(project_roots)
+        roots = project_roots
 
-    return next(filter(lambda root: filepath.startswith(root), roots), None)
+    return next(filter(filepath.startswith, roots), None)
 
 
 def lookup_syntax_for_cmd(cmd: str) -> Optional[str]:
@@ -121,10 +121,18 @@ class CliRunnerCommand(sublime_plugin.WindowCommand):
         shell: bool = False,
     ) -> None:
         if not cwd:
-            if (view := self.window.active_view()) and (project_root := find_project_root_for_view(view)):
+            if not (view := self.window.active_view()):
+                sublime.error_message("No active view")
+                return
+
+            if project_root := find_project_root_for_view(view):
                 cwd = project_root
             else:
-                cwd = (self.window.folders() or ["${home}"])[0]
+                dirs: List[str] = []
+                if filename := view.file_name():
+                    dirs.append(os.path.dirname(filename))
+                dirs.append("${home}")
+                cwd = dirs[0]
 
         args = expand_variables(self.window, {"cwd": cwd, "encoding": encoding})
 
