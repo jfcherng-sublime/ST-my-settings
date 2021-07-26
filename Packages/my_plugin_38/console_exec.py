@@ -5,12 +5,14 @@ Plugin for Sublime Text to execute a command and redirect its output
 into a console window. This is based on the default exec command.
 """
 
-from shlex import quote
 from typing import Any, Dict, List, Optional
 import os
+import shlex
 import sublime
 import sublime_plugin
 import subprocess
+
+PLUGIN_NAME = os.path.basename(__file__)
 
 
 class ConsoleExecCommand(sublime_plugin.WindowCommand):
@@ -20,13 +22,18 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
         env: Dict[str, str] = {},
         path: str = "",
         shell: bool = False,
+        working_dir: Optional[str] = None,
         win_console: Optional[List[str]] = None,
         unix_console: Optional[List[str]] = None,
+        # unused...
+        *args: Any,
+        **kwargs: Any,
     ) -> None:
-        # Show message
-        sublime.status_message("Running " + " ".join(cmd))
+        if not (view := self.window.active_view()):
+            return
 
-        # Get platform-specific command arguments
+        sublime.status_message(f"Running {' '.join(cmd)}")
+
         if os.name == "nt":
             console = win_console or ["cmd.exe", "/c"]
             pause = ["pause"]
@@ -34,35 +41,32 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
         else:
             console = unix_console or self.get_unix_console()
             pause = '; read -p "Press [Enter] to continue..."'
-            escaped_cmd = " ".join([quote(x) for x in cmd])
-            console_cmd = console + ["bash -c " + quote(escaped_cmd + pause)]
+            escaped_cmd = " ".join(map(shlex.quote, cmd))
+            console_cmd = console + ["bash -c " + shlex.quote(escaped_cmd + pause)]
 
-        # debug
-        self.debug_print("reconstructed console_cmd is", console_cmd)
+        self.debug_print(f"reconstructed `console_cmd` is {console_cmd}")
 
-        # Default the to the current file's directory if no working directory
-        # was provided
-        window = sublime.active_window()
-        view = window.active_view() if window else None
-        file_name = view.file_name() if view else None
-        cwd = os.path.dirname(file_name) if file_name else os.getcwd()
+        # default to the current file's directory if no working directory was provided
+        if working_dir:
+            cwd = working_dir
+        else:
+            cwd = os.path.dirname(filename) if (filename := view.file_name()) else os.getcwd()
 
-        # Get environment
-        env = env.copy()
-        if w := self.window.active_view():
-            if user_env := w.settings().get("build_env"):
-                env.update(user_env)
+        self.debug_print(f"`cwd` is '{cwd}'")
 
-        # Get executing environment
-        proc_env = os.environ.copy()
-        proc_env.update(env)
+        # get environment
+        if user_env := view.settings().get("build_env"):
+            env.update(user_env)
+
+        # get executing environment
+        proc_env = {**os.environ, **env}
         for key in proc_env:
             proc_env[key] = os.path.expandvars(proc_env[key])
 
-        # Run in new console
-        old_path = None
+        # run in new console
+        old_path: Optional[str] = None
         try:
-            # Set temporary PATH to locate executable in arg_list
+            # set temporary PATH to locate executable
             if path:
                 old_path = os.environ["PATH"]
                 os.environ["PATH"] = os.path.expandvars(path)
@@ -73,9 +77,9 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
 
     def get_unix_console(self) -> List[str]:
         sessions = ["gnome-session", "ksmserver", "xfce4-session", "lxsession"]
-        ps = 'ps -eo comm | grep -E "{0}"'.format("|".join(sessions))
+        ps = f'ps -eo comm | grep -E "{"|".join(sessions)}"'
         # get the first found session or an empty string
-        session_found = os.popen(ps).read().split("\n")[0]
+        session_found = os.popen(ps).read().partition("\n")[0]
         # Gnome
         if session_found == "gnome-session":
             console = ["gnome-terminal", "-e"]
@@ -94,4 +98,4 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
         return console
 
     def debug_print(self, *arg: Any) -> None:
-        print("Console Exec:", *arg)
+        print(f"[{PLUGIN_NAME}]", *arg)
