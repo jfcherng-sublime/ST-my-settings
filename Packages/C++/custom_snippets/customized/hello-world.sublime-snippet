@@ -1,15 +1,15 @@
 <snippet>
-    <description>起手式</description>
-    <content><![CDATA[#include <iostream>
+	<description>起手式</description>
+	<content><![CDATA[#include <iostream>
 
 using namespace std;
 
 int main (int argc, char *argv[]) {
-    ${1:cout << "hello world!" << endl;}
-    return 0;
+	${1:cout << "hello world!" << endl;}
+	return 0;
 }
 
 ]]></content>
-    <tabTrigger>helloworld</tabTrigger>
-    <scope>source.c, source.objc, source.c++, source.c++11, source.objc++</scope> 
+	<tabTrigger>helloworld</tabTrigger>
+	<scope>source.c, source.objc, source.c++, source.objc++</scope> 
 </snippet>

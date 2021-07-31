@@ -1,9 +1,9 @@
 <snippet>
-    <description>template constexpr function</description>
-    <content><![CDATA[template<typename ${1:T}>
+	<description>template constexpr function</description>
+	<content><![CDATA[template<typename ${1:T}>
 constexpr ${2:int} ${3:function_name}(${4:/* args */}) {
-    return ${5:/* code */};
+	return ${5:/* code */};
 }]]></content>
-    <tabTrigger>tempcfunc</tabTrigger>
-    <scope>source.c++, source.c++11</scope>
+	<tabTrigger>tempcfunc</tabTrigger>
+	<scope>source.c++</scope>
 </snippet>

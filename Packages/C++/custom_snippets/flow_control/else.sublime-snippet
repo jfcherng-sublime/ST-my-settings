@@ -1,8 +1,8 @@
 <snippet>
-    <name>Else</name>
-    <content><![CDATA[else {
-    ${0:/* code */}
+	<name>Else</name>
+	<content><![CDATA[else {
+	${0:/* code */}
 }]]></content>
-    <tabTrigger>else</tabTrigger>
-    <scope>source.c, source.objc, source.c++, source.c++11, source.objc++</scope>
+	<tabTrigger>else</tabTrigger>
+	<scope>source.c, source.objc, source.c++, source.objc++</scope>
 </snippet>
