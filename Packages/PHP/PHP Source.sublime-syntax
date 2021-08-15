@@ -321,6 +321,8 @@ contexts:
         - match: \)
           scope: punctuation.section.group.end.php
           pop: 1
+        - match: (?=;|\s*\?>)
+          pop: 1
         - include: expressions
 
   after-identifier:
