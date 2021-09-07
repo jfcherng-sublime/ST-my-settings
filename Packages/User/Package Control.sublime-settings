@@ -52,6 +52,7 @@
         "LSP-html",
         "LSP-intelephense",
         "LSP-json",
+        "LSP-TexLab",
         "LSP-typescript",
         "LSP-vue",
         "LSP-yaml",

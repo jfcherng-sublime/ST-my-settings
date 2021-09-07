@@ -235,6 +235,12 @@
                 "operand": "^(?:$|[\t )\\]}>,:;])",
                 "match_all": true,
             },
+            {
+                "key": "selector",
+                "operator": "equal",
+                "operand": "- text.tex",
+                "match_all": true,
+            },
         ],
     },
     {
