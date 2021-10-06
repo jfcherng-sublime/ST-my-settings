@@ -2,7 +2,7 @@
     // Plugin settings
 
     // Turn the debug output on/off
-    "show_debug": false,
+    "show_debug": true,
 
     // Which file types (file extensions), do you want the plugin to
     // execute for
@@ -51,7 +51,6 @@
     // add_regions
     "phpcs_icon_scope_color": "comment",
 
-
     // PHP_CodeSniffer settings
 
     // Do you want to run the phpcs checker?
@@ -76,8 +75,6 @@
         "-n": ""
     },
 
-
-
     // PHP-CS-Fixer settings
 
     // Fix the issues on save
@@ -95,7 +92,7 @@
         "--allow-risky": "yes",
         "--rules": [
             ["@PHP71Migration", true],
-            ["@PHP73Migration", false],
+            ["@PHP73Migration", true],
             ["@PhpCsFixer", true],
             ["@PhpCsFixer:risky", true],
             ["@PSR12", true],
@@ -110,18 +107,18 @@
             ["comment_to_phpdoc", true],
             ["compact_nullable_typehint", true],
             ["concat_space", { "spacing": "one" }],
+            ["echo_tag_syntax", { "format": "short" }],
             ["escape_implicit_backslashes", false],
             ["fully_qualified_strict_types", true],
             ["linebreak_after_opening_tag", true],
             ["list_syntax", { "syntax": "short" }],
-            ["method_argument_space", { "ensure_fully_multiline": true }],
-            ["native_constant_invocation", true],
-            ["native_function_invocation", true],
+            ["method_argument_space", { "on_multiline": "ensure_fully_multiline" }],
+            ["multiline_whitespace_before_semicolons", { "strategy": "new_line_for_chained_calls" }],
+            ["native_constant_invocation", { "scope": "all" }],
+            ["native_function_invocation", { "scope": "all", "include": ["@compiler_optimized"] }],
             ["native_function_type_declaration_casing", true],
             ["no_alternative_syntax", true],
-            ["no_multiline_whitespace_before_semicolons", true],
             ["no_null_property_initialization", true],
-            ["no_short_echo_tag", false],
             ["no_superfluous_elseif", true],
             ["no_unneeded_control_parentheses", true],
             ["no_useless_else", true],
@@ -131,12 +128,12 @@
             ["ordered_class_elements", true],
             ["ordered_imports", { "sort_algorithm": "alpha", "imports_order": ["class", "const", "function"] }],
             ["ordered_interfaces", true],
-            ["php_unit_ordered_covers", true],
             ["php_unit_set_up_tear_down_visibility", true],
             ["php_unit_strict", true],
             ["php_unit_test_class_requires_covers", true],
             ["phpdoc_add_missing_param_annotation", true],
             ["phpdoc_order", true],
+            ["phpdoc_order_by_value", { "annotations": ["covers"] }],
             ["phpdoc_to_comment", false],
             ["phpdoc_types_order", true],
             ["pow_to_exponentiation", true],
@@ -148,8 +145,8 @@
             ["strict_comparison", false],
             ["strict_param", false],
             ["string_line_ending", true],
-            ["yoda_style", false],
-        ],
+            ["yoda_style", false]
+        ]
     },
 
     // phpcbf settings
@@ -174,8 +171,6 @@
         "-n": ""
     },
 
-
-
     // PHP Linter settings
 
     // Are we going to run php -l over the file?
@@ -190,8 +185,6 @@
 
     // What is the regex for the linter? Has to provide a named match for 'message' and 'line'
     "phpcs_linter_regex": "(?P<message>.*) on line (?P<line>//d+)",
-
-
 
     // PHP Mess Detector settings
 
@@ -215,7 +208,6 @@
         "codesize,unusedcode,naming": ""
     },
 
-
     // PHP Scheck settings
 
     // Execute scheck
@@ -236,6 +228,6 @@
     //  "-strict" : ""
     //}
     "scheck_additional_args": {
-        "-strict" : ""
+        "-strict": ""
     }
 }
