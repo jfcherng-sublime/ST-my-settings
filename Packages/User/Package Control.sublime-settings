@@ -18,7 +18,8 @@
         "AutomaticPackageReloader",
         "AutoSetSyntax",
         "BetterFindBuffer",
-        "Bootstrap 4 Autocomplete",
+        "BetterJinja",
+        "BootstrapAutocomplete",
         "BracketHighlighter",
         "Case Conversion",
         "CMake",
@@ -83,11 +84,13 @@
         "TodoReview",
         "Toggle Words",
         "TOML",
+        "Twig",
         "Vue Syntax Highlight",
     ],
     "repositories":
     [
         "https://raw.githubusercontent.com/jfcherng-sublime/ST-my-package-control/master/repository.json",
-        "https://raw.githubusercontent.com/facelessuser/sublime-channel/master/repositories.json",
+        // "https://raw.githubusercontent.com/facelessuser/sublime-channel/master/repositories.json",
+        "https://github.com/Sublime-Instincts/BetterJinja",
     ],
 }

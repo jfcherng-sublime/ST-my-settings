@@ -2,8 +2,6 @@ PyV8/
 *.sublime-package
 *.sublime-package-new
 
-!BetterJinja.sublime-package
-!BetterTwig.sublime-package
 !LSP.sublime-package
 !Package Control.sublime-package
 !SideBarGit.sublime-package
