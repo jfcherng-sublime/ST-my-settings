@@ -84,21 +84,31 @@
     /////////////
     // Pairing //
     /////////////
+    // better parentheses auto indentation
+    {
+        "keys": ["enter"],
+        "command": "chain",
+        "args": {
+            "commands": [
+                ["run_macro_file", { "file": "res://Packages/Default/Add Line in Braces.sublime-macro" }],
+                ["move", {"by": "lines", "forward": true}],
+                ["unindent"],
+                ["move", {"by": "lines", "forward": false}],
+                ["move_to", {"to": "hardeol", "extend": false}],
+            ],
+        },
+        "context": [
+            { "key": "setting.auto_indent" },
+            { "key": "setting.smart_indent" }, // why "smart_indent" influnce this?
+            { "key": "selection_empty", "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "\\($", "match_all": true },
+            { "key": "following_text", "operator": "regex_contains", "operand": "^\\)", "match_all": true },
+            { "key": "selector", "operator": "equal", "operand": "source - (source.c | source.c++ | source.objc | source.objc++)" },
+        ],
+    },
     // better square bracket auto indentation
     {
         "keys": ["enter"],
-        "command": "run_macro_file",
-        "args": { "file": "res://Packages/Default/Add Line in Braces.sublime-macro" },
-        "context": [
-            { "key": "setting.auto_indent" },
-            { "key": "selection_empty", "match_all": true },
-            { "key": "preceding_text", "operator": "regex_contains", "operand": "\\[$", "match_all": true },
-            { "key": "following_text", "operator": "regex_contains", "operand": "^\\]", "match_all": true },
-            { "key": "selector", "operator": "equal", "operand": "source" },
-        ],
-    },
-    {
-        "keys": ["shift+enter"],
         "command": "run_macro_file",
         "args": { "file": "res://Packages/Default/Add Line in Braces.sublime-macro" },
         "context": [
