@@ -1,27 +1,33 @@
+from typing import List
 import sublime
 import sublime_plugin
 
 
-# { "keys": ["ctrl+shift+l"], "command": "extend_selection_to_previous_line" },
 class ExtendSelectionToPreviousLineCommand(sublime_plugin.TextCommand):
+    """
+    Similar to `ctrl+l` but the selection is upward.
+
+    Recommended keybinding:
+    ```js
+    { "keys": ["..."], "command": "extend_selection_to_previous_line" },
+    ```
+    """
+
     def run(self, edit: sublime.Edit) -> None:
         v = self.view
         sel = v.sel()
-        regions = [[r.begin(), r.end()] for r in sel]
 
-        for r in regions:
-            line = v.line(sublime.Region(*r))
+        regions: List[sublime.Region] = []
+        for r in sel:
+            row, col = v.rowcol(old_end := r.end())
+            new_begin = max(old_end, v.line(r).end()) if col else old_end
 
-            row, col = v.rowcol(r[0])
-            if col != 0:
-                r[0] = v.text_point(row + 1, 0)
+            row, col = v.rowcol(old_begin := r.begin())
+            new_end = v.text_point(row + 1, 0) if col else old_begin
 
-            row, col = v.rowcol(r[1])
-            if col != 0:
-                r[1] = max(r[1], line.end())
+            regions.append(sublime.Region(new_begin, new_end))
 
         sel.clear()
-        sel.add_all(sublime.Region(r[1], r[0]) for r in regions)
+        sel.add_all(regions)
 
-        # run select previous line
         v.run_command("move", {"by": "lines", "extend": True, "forward": False})

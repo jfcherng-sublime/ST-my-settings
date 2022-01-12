@@ -13,14 +13,7 @@ class ToggleAllInlineDiffsCommand(sublime_plugin.TextCommand):
         # toggle the whole file inline diff
         sel.clear()
         sel.add(sublime.Region(0, self.view.size()))
-        self.view.run_command(
-            "toggle_inline_diff",
-            {
-                "args": {
-                    "prefer_hide": True,
-                },
-            },
-        )
+        self.view.run_command("toggle_inline_diff", {"args": {"prefer_hide": True}})
 
         # add back previous selection
         sel.clear()

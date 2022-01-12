@@ -1,10 +1,3 @@
-"""
-Console Exec
-
-Plugin for Sublime Text to execute a command and redirect its output
-into a console window. This is based on the default exec command.
-"""
-
 from typing import Any, Dict, List, Optional
 import os
 import shlex
@@ -16,6 +9,8 @@ PLUGIN_NAME = os.path.basename(__file__)
 
 
 class ConsoleExecCommand(sublime_plugin.WindowCommand):
+    """Execute a command and redirect its output into a console window. This is based on the default exec command."""
+
     def run(
         self,
         cmd: List[str] = [],
@@ -25,8 +20,6 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
         working_dir: Optional[str] = None,
         win_console: Optional[List[str]] = None,
         unix_console: Optional[List[str]] = None,
-        # unused...
-        *args: Any,
         **kwargs: Any,
     ) -> None:
         if not (view := self.window.active_view()):
@@ -97,5 +90,5 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
             console = ["xterm", "-e"]
         return console
 
-    def debug_print(self, *arg: Any) -> None:
-        print(f"[{PLUGIN_NAME}]", *arg)
+    def debug_print(self, *arg: Any, **kwargs: Any) -> None:
+        print(f"[{PLUGIN_NAME}]", *arg, **kwargs)
