@@ -1,5 +1,5 @@
 <snippet>
-	<name>Case</name>
+	<description>Case</description>
 	<content><![CDATA[case ${1:/* constant */}:
 	${0:/* statements */}
 	break;

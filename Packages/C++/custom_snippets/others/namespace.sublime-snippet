@@ -1,6 +1,6 @@
 <snippet>
 	<description>Namespace</description>
-	<content><![CDATA[namespace${1/.+/ /m}${1:${TM_FILENAME/^((.*?)\..*)?$/$2/:mine}} {
+	<content><![CDATA[namespace${1/.+/ /m}${1:${TM_FILENAME/^((.*?)\..*)?$/$2/}} {
 	$0
 }
 ]]></content>

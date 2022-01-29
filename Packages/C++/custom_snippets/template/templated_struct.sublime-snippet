@@ -1,7 +1,7 @@
 <snippet>
 	<description>templated struct</description>
 	<content><![CDATA[template<typename ${1:T}>
-struct ${2:${TM_FILENAME/(.+)\..+|.*/$1/:name}} {
+struct ${2:${TM_FILENAME/(.+)\..+|.*/\1/}} {
 	${0:/* code */}
 };]]></content>
 	<tabTrigger>structtemp</tabTrigger>

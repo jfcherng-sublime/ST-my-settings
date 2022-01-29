@@ -1,5 +1,5 @@
 <snippet>
-	<name>Else if</name>
+	<description>Else if</description>
 	<content><![CDATA[else if (${1:/* condition */}) {
 	${0:/* code */}
 }]]></content>

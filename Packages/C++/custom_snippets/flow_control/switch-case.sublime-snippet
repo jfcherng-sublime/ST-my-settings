@@ -1,12 +1,12 @@
 <snippet>
-	<name>Switch Case</name>
+	<description>Switch Case</description>
 	<content><![CDATA[switch (${1:/* expression */}) {
-	case ${2:/* constant */}:
-		${3:/* statements */}
-		break;
-	default:
-		${0:/* statements */}
-		break;
+case ${2:/* constant */}:
+	${3:/* statements */}
+	break;
+default:
+	${0:/* statements */}
+	break;
 }]]></content>
 	<tabTrigger>switch</tabTrigger>
 	<scope>source.c, source.objc, source.c++, source.objc++</scope>

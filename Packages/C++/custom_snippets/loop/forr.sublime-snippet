@@ -4,5 +4,5 @@
 	${0:/* code */}
 }]]></content>
 	<tabTrigger>forr</tabTrigger>
-	<scope>source.c, source.objc, source.c++, source.objc++</scope>
+	<scope>source.c++, source.objc++</scope>
 </snippet>

@@ -1,5 +1,5 @@
 <snippet>
-	<name>Else</name>
+	<description>Else</description>
 	<content><![CDATA[else {
 	${0:/* code */}
 }]]></content>
