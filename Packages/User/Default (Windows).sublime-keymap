@@ -222,6 +222,22 @@
     { "keys": ["alt+'"], "command": "right_delete" },
     { "keys": ["ctrl+alt+/"], "command": "delete_word", "args": { "forward": false } },
     { "keys": ["ctrl+alt+'"], "command": "delete_word", "args": { "forward": true } },
+    {
+        "keys": ["backspace"],
+        "command": "chain",
+        "args": {
+            "commands": [
+                ["run_macro_file", { "file": "res://Packages/Default/Delete Line.sublime-macro" }],
+                ["move", { "by": "lines", "forward": false }],
+                ["move_to", { "to": "eol" }]
+            ]
+        },
+        "context": [
+            { "key": "setting.hungry_delete_empty_line", "operator": "equal", "operand": true },
+            { "key": "preceding_text", "operator": "regex_match", "operand": "^\\s*$", "match_all": true },
+            { "key": "following_text", "operator": "regex_match", "operand": "^\\s*$", "match_all": true }
+        ]
+    },
     // new line
     {
         "keys": ["ctrl+enter"],

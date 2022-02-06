@@ -198,6 +198,8 @@
     "hide_pointer_while_typing": false,
     "highlight_find_results_in_scrollbar": true,
     "highlight_line": true,
+    "highlight_modified_tabs": true,
+    "hungry_delete_empty_line": false,
     "ignored_packages":
     [
         "RestructuredText",
