@@ -107,8 +107,8 @@ class TerminalSelector():
 
         else:
             ps = 'ps -eo comm,args | grep -E "^(gnome-session|ksmserver|' + \
-                'xfce4-session|lxsession|mate-panel|cinnamon-sessio)" | grep -v grep'
-            wm = [x.replace("\n", '') for x in os.popen(ps)]
+                'xfce4-session|lxsession|lxqt-session|mate-panel|cinnamon-sessio)" | grep -v grep'
+            wm = tuple(x.replace("\n", '') for x in os.popen(ps))
             if wm:
                 if wm[0].startswith('gnome-session') or wm[0].startswith('cinnamon-sessio'):
                     if 'pantheon' in wm[0]:
@@ -117,6 +117,8 @@ class TerminalSelector():
                         default = 'gnome-terminal'
                 elif wm[0].startswith('lxsession'):
                     default = 'lxsession-default-terminal'
+                elif wm[0].startswith('lxqt-session'):
+                    default = 'qterminal'
                 elif wm[0].startswith('xfce4-session'):
                     default = 'xfce4-terminal'
                 elif wm[0].startswith('ksmserver'):
