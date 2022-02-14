@@ -1,7 +1,9 @@
 %YAML 1.2
 ---
 name: PHP
+scope: embedding.php
 version: 2
+
 file_extensions:
   - php
   - php3
@@ -12,10 +14,17 @@ file_extensions:
   - phps
   - phpt
   - phtml
-first_line_match: '^(#!.*[^-]php(?:\d+(?:\.\d+){0,2})?|<\?php)\b'
-scope: embedding.php
+
+first_line_match: |-
+  (?xi:
+    ^ \#! .*[^-]php(?:\d+(?:\.\d+){0,2})?\b # shebang
+  | ^ \s* // .*? -\*- .*? \bphp(?:\d+(?:\.\d+){0,2})?\b .*? -\*-  # editorconfig
+  | ^ \s* <\?php\b                          # php tag
+  )
+
 contexts:
   main:
+    - meta_include_prototype: false
     - match: ''
       push: [real-main, shebang]
 
@@ -23,6 +32,8 @@ contexts:
     - match: ''
       set: scope:text.html.basic
       with_prototype:
+        - match: <\?(?i:(?!php)ph?)
+          scope: meta.embedded.block.php punctuation.section.embedded.begin.php
         - match: <\?(?i:php|=)?(?![^?]*\?>)
           scope: punctuation.section.embedded.begin.php
           push:
@@ -45,6 +56,7 @@ contexts:
             - include: scope:source.php
 
   shebang:
+    - meta_include_prototype: false
     - match: ^\#!
       scope: punctuation.definition.comment.php
       set: shebang-body
@@ -52,8 +64,9 @@ contexts:
       pop: 1
 
   shebang-body:
+    - meta_include_prototype: false
     - meta_scope: comment.line.shebang.php
-    - match: \bphp(?:\d+(?:\.\d+){0,2})?\b
+    - match: \bphp(?:[-_]?\d+(?:\.\d+){0,2})?\b
       scope: constant.language.shebang.php
     - match: \n
       pop: 1
