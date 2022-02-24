@@ -34,7 +34,7 @@ contexts:
       with_prototype:
         - match: <\?(?i:(?!php)ph?)
           scope: meta.embedded.block.php punctuation.section.embedded.begin.php
-        - match: <\?(?i:php|=)?(?![^?]*\?>)
+        - match: <\?(?i:php\b|=)?(?![^?]*\?>)
           scope: punctuation.section.embedded.begin.php
           push:
             - clear_scopes: true # I don't want the "text.html.basic" parent scope
@@ -42,7 +42,7 @@ contexts:
             - meta_content_scope: source.php
             - include: php-end-tag-pop
             - include: scope:source.php
-        - match: <\?(?i:php|=)?
+        - match: <\?(?i:php\b|=)?
           scope: punctuation.section.embedded.begin.php
           push:
             # I don't add clear_scopes here because I would like to
