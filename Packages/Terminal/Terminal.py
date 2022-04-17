@@ -60,8 +60,9 @@ class TerminalSelector():
             wt = os.path.join(os.environ['LOCALAPPDATA'], 'Microsoft', 'WindowsApps', 'wt.exe')
             # git-bash
             git_shells = {
-                'git-bash-x64': os.environ['ProgramFiles'] + r'\Git\git-bash.exe',
-                'git-bash-x86': os.environ['ProgramFiles(x86)'] + r'\Git\git-bash.exe',
+                'git-bash-x64': os.environ['ProgramFiles'] + R'\Git\git-bash.exe',
+                'git-bash-x86': os.environ['ProgramFiles(x86)'] + R'\Git\git-bash.exe',
+                'git-bash-local': os.environ['LOCALAPPDATA'] + R'\Programs\Git\git-bash.exe',
             }
 
             if os.path.isfile(wt):
@@ -70,15 +71,16 @@ class TerminalSelector():
                 default = git_shells['git-bash-x64']
             elif os.path.isfile(git_shells['git-bash-x86']):
                 default = git_shells['git-bash-x86']
+            elif os.path.isfile(git_shells['git-bash-local']):
+                default = git_shells['git-bash-local']
             elif os.path.isfile(os.environ['SYSTEMROOT'] +
-                    '\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'):
+                    R'\System32\WindowsPowerShell\v1.0\powershell.exe'):
                 # This mimics the default powershell colors since calling
                 # subprocess.POpen() ends up acting like launching powershell
                 # from cmd.exe. Normally the size and color are inherited
                 # from cmd.exe, but this creates a custom mapping, and then
                 # the LaunchPowerShell.bat file adjusts some other settings.
-                key_string = 'Console\\%SystemRoot%_system32_' + \
-                    'WindowsPowerShell_v1.0_powershell.exe'
+                key_string = R'Console\%SystemRoot%_system32_WindowsPowerShell_v1.0_powershell.exe'
                 try:
                     key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER,
                         key_string)
@@ -98,7 +100,7 @@ class TerminalSelector():
                     sublime_terminal_path = buf.value
                 os.environ['sublime_terminal_path'] = sublime_terminal_path.replace(' ', '` ')
             else :
-                default = os.environ['SYSTEMROOT'] + '\\System32\\cmd.exe'
+                default = os.environ['SYSTEMROOT'] + R'\System32\cmd.exe'
 
         elif sys.platform == 'darwin':
             default = os.path.join(package_dir, 'Terminal.sh')
