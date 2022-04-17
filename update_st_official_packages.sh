@@ -12,7 +12,7 @@ PKG_GITHUB_URL="https://github.com/sublimehq/Packages"
 PKG_REMOTE_REPO="${PKG_GITHUB_URL}.git"
 
 ST_INSTALL_DIRS=(
-    # this script's dir and its parent
+    # this script's dir and its parent (if you put this script in Data/)
     "${SCRIPT_DIR}"
     "${SCRIPT_DIR}/.."
     # Windows
@@ -113,7 +113,8 @@ for st_install_dir in "${ST_INSTALL_DIRS[@]}"; do
     done
 
     if [ "${is_passed}" = "1" ]; then
-        echo "[✔️] Found ST installation directory: '${st_install_dir}'"
+        st_install_dir="$(realpath "${st_install_dir}")"
+        echo "[✔️] Found ST installation directory: ${st_install_dir}"
         break
     else
         st_install_dir=""
@@ -132,13 +133,13 @@ st_pkgs_dir="${st_install_dir}/Packages"
 # read option: commit_ref #
 #-------------------------#
 
-echo "[💡] You can use either branch, tag or even SHA as the reference."
-echo "[💡] You can check out references on '${PKG_GITHUB_URL}/commits'."
-read -erp "[❓] Which reference you want to used (such as 'v4126', default = 'master'): " commit_ref
+echo "[💡] You can use either branch, tag or even SHA as the ref."
+echo "[💡] You can check out refs on '${PKG_GITHUB_URL}/commits'."
+read -erp "[❓] Which ref you want to used (such as 'v4134', default = 'master'): " commit_ref
 
 if [ "${commit_ref}" = "" ]; then
     commit_ref="master"
-    echo "[⚠️] Use default '${commit_ref}' as the reference."
+    echo "[⚠️] Use the default ref: ${commit_ref}"
 fi
 
 
@@ -155,7 +156,7 @@ if clone_repo_ref "${repo_dir}" "${PKG_REMOTE_REPO}" "${commit_ref}"; then
     echo "[✔️] Download repository successfully!"
     commit_sha="$(git rev-parse HEAD)"
 else
-    echo "[❌] Fail to checkout reference '${commit_ref}'."
+    echo "[❌] Fail to checkout ref: ${commit_ref}"
     exit 1
 fi
 
@@ -178,10 +179,10 @@ for dir in */; do
 
     pkg_name=${dir%/}
 
-    echo "[📦] Packaging '${pkg_name}'..."
+    echo "[📦] Packaging: ${pkg_name}"
 
     zip -9rq "${packed_pkgs_dir}/${pkg_name}.sublime-package" . -z <<END
-Repo URL: ${PKG_REMOTE_REPO}
+Repository URL: ${PKG_REMOTE_REPO}
 Commit SHA: ${commit_sha}
 END
 
@@ -205,7 +206,7 @@ cp -rf "${packed_pkgs_dir}"/*.sublime-package "${st_pkgs_dir}"
 
 popd || exit
 
-echo "[💬] Clean up..."
+echo "[🧹] Clean up..."
 rm -rf "${TEMP_DIR}"
 
 

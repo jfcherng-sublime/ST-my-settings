@@ -85,14 +85,16 @@ class MarkdownReferenceCompletions(sublime_plugin.EventListener):
         "text.html.markdown meta.link.reference punctuation.definition.constant.end",
     )
 
-    def on_post_text_command(self, view: sublime.View, command_name: str, args: Dict[str, Any]) -> None:
-        cursor = view.sel()[0].b
+    def on_post_text_command(self, view: sublime.View, command_name: str, args: Optional[Dict[str, Any]]) -> None:
+        sel = view.sel()
+        if len(sel) == 0:
+            return
 
         if command_name in self.ignored_commands:
             return
 
         # auto invoke auto_complete
-        if self._view_match_selector(view, cursor):
+        if self._view_match_selector(view, sel[0].b):
             view.run_command("auto_complete")
 
     def on_query_completions(
