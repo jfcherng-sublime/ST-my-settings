@@ -1,0 +1,219 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: SSH Config
+file_extensions:
+  - ssh_config
+  - sshd_config
+scope: source.ssh-config
+contexts:
+  prototype:
+    - match: '#'
+      scope: punctuation.definition.comment.ssh-config
+      push:
+        - meta_scope: comment.line.number-sign.ssh-config
+        - match: \n
+          pop: true
+  main:
+    - match: |
+        (?x)\b(?:
+          AcceptEnv
+          | AddKeysToAgent
+          | AddressFamily
+          | AllowAgentForwarding
+          | AllowGroups
+          | AllowStreamLocalForwarding
+          | AllowTcpForwarding
+          | AllowUsers
+          | AuthenticationMethods
+          | AuthorizedKeysCommand
+          | AuthorizedKeysCommandUser
+          | AuthorizedKeysFile
+          | AuthorizedPrincipalsCommand
+          | AuthorizedPrincipalsCommandUser
+          | AuthorizedPrincipalsFile
+          | Banner
+          | BatchMode
+          | BindAddress
+          | BindInterface
+          | CanonicalDomains
+          | CanonicalizeFallbackLocal
+          | CanonicalizeHostname
+          | CanonicalizeMaxDots
+          | CanonicalizePermittedCNAMEs
+          | CertificateFile
+          | ChallengeResponseAuthentication
+          | CheckHostIP
+          | ChrootDirectory
+          | CientAliveCountMax
+          | CientAliveInterval
+          | Cipher
+          | Ciphers
+          | ClearAllForwardings
+          | Compression
+          | CompressionLevel
+          | ConnectionAttempts
+          | ConnectTimeout
+          | ControlMaster
+          | ControlPath
+          | ControlPersist
+          | DenyGroups
+          | DenyUsers
+          | DisableForwarding
+          | DynamicForward
+          | EnableSSHKeysign
+          | EscapeChar
+          | ExitOnForwardFailure
+          | ExposeAuthInfo
+          | FingerprintHash
+          | ForceCommand
+          | ForwardAgent
+          | ForwardX11
+          | ForwardX11Timeout
+          | ForwardX11Trusted
+          | GatewayPorts
+          | GlobalKnownHostsFile
+          | GSSAPIAuthentication
+          | GSSAPICleanupCredentials
+          | GSSAPIClientIdentity
+          | GSSAPIDelegateCredentials
+          | GSSAPIKeyExchange
+          | GSSAPIRenewalForcesRekey
+          | GSSAPIServerIdentity
+          | GSSAPIStrictAcceptorCheck
+          | GSSAPITrustDns
+          | HashKnownHosts
+          | HostbasedAcceptedKeyTypes
+          | HostbasedAuthentication
+          | HostbasedKeyTypes
+          | HostbasedUsesNameFromPacketOnly
+          | HostCertificate
+          | HostKey
+          | HostKeyAgent
+          | HostkeyAlgorithms
+          | HostKeyAlgorithms
+          | HostKeyAlias
+          | HostName
+          | IdentitiesOnly
+          | IdentityAgent
+          | IdentityFile
+          | IgnoreRhosts
+          | IgnoreUnknown
+          | IgnoreUserKnownHosts
+          | Include
+          | IPQoS
+          | KbdInteractiveAuthentication
+          | KbdInteractiveDevices
+          | KerberosAuthentication
+          | KerberosGetAFSToken
+          | KerberosOrLocalPasswd
+          | KerberosTicketCleanup
+          | kexalgorithms
+          | KexAlgorithms
+          | ListenAddress
+          | LocalCommand
+          | LocalForward
+          | LoginGraceTime
+          | LogLevel
+          | MACs
+          | Match
+          | MaxAuthTries
+          | MaxSessions
+          | MaxStartups
+          | NoHostAuthenticationForLocalhost
+          | NumberOfPasswordPrompts
+          | PasswordAuthentication
+          | PermitEmptyPasswords
+          | PermitLocalCommand
+          | PermitOpen
+          | PermitRootLogin
+          | PermitTTY
+          | PermitTunnel
+          | PermitUserEnvironment
+          | PermitUserRC
+          | PidFile
+          | PKCS11Provider
+          | Port
+          | PreferredAuthentications
+          | PrintLastLog
+          | PrintMotd
+          | Protocol
+          | ProxyCommand
+          | ProxyJump
+          | ProxyUseFdpass
+          | PubkeyAcceptedAlgorithms
+          | PubkeyAcceptedKeyTypes
+          | PubkeyAuthentication
+          | RDomain
+          | RekeyLimit
+          | RemoteCommand
+          | RemoteForward
+          | RequestTTY
+          | RevokedHostKeys
+          | RevokedKeys
+          | RhostsRSAAuthentication
+          | RSAAuthentication
+          | SendEnv
+          | ServerAliveCountMax
+          | ServerAliveInterval
+          | StreamLocalBindMask
+          | StreamLocalBindUnlink
+          | StrictHostKeyChecking
+          | StrictModes
+          | Subsystem
+          | SyslogFacility
+          | TCPKeepAlive
+          | TrustedUserCAKeys
+          | Tunnel
+          | TunnelDevice
+          | UpdateHostKeys
+          | UseBlacklistedKeys
+          | UseDNS
+          | UseKeychain
+          | UsePAM
+          | UsePrivilegedPort
+          | User
+          | UserKnownHostsFile
+          | VerifyHostKeyDNS
+          | VersionAddendum
+          | VisualHostKey
+          | X11DisplayOffset
+          | X11Forwarding
+          | X11UseLocalhost
+          | XAuthLocation
+        )\b
+      scope: keyword.other.ssh-config
+    - match: '(^[ \t]+)?(?=#)'
+      captures:
+        1: punctuation.whitespace.comment.leading.ssh-config
+      push:
+        - match: (?!\G)
+          pop: true
+    - match: '(^[ \t]+)?(?=//)'
+      captures:
+        1: punctuation.whitespace.comment.leading.ssh-config
+      push:
+        - match: (?!\G)
+          pop: true
+        - match: //
+          captures:
+            0: punctuation.definition.comment.ssh-config
+          push:
+            - meta_scope: comment.line.double-slash.ssh-config
+            - match: \n
+              pop: true
+    - match: (?:^| |\t)(Host)\s+((.*))$
+      captures:
+        1: storage.type.ssh-config
+        2: entity.name.section.ssh-config
+        3: meta.toc-list.ssh-config
+    - match: '\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b'
+      scope: constant.numeric.ssh-config
+    - match: '\b[0-9]+\b'
+      scope: constant.numeric.ssh-config
+    - match: \byes\b
+      scope: constant.language.boolean.true.ssh-config
+    - match: \bno\b
+      scope: constant.language.boolean.false.ssh-config
+    - match: '\b[A-Z_]+\b'
+      scope: constant.language.ssh-config
