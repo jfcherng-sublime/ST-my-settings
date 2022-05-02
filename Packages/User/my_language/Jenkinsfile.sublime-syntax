@@ -1,0 +1,110 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: Jenkinsfile
+# version: 2
+file_extensions:
+  - Jenkinsfile
+scope: source.groovy.jenkinsfile
+extends: Packages/Groovy/Groovy.sublime-syntax
+contexts:
+  # --------- #
+  # overriden #
+  # --------- #
+
+  groovy-code:
+    - meta_prepend: true
+    - include: bat-code
+    - include: shell-code
+
+  # ----------- #
+  # new context #
+  # ----------- #
+
+  bat-code:
+    - match: \b(bat)\s*(?=['"])
+      push:
+        - meta_content_scope: string.quoted.groovy.jenkinsfile
+        - match: "'''"
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.dosbatch
+          escape: "'''"
+          escape_captures:
+            0: string.quoted.groovy.jenkinsfile punctuation.definition.string.end.groovy.jenkinsfile
+        - match: '"""'
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.dosbatch
+          escape: '"""'
+          escape_captures:
+            0: string.quoted.groovy.jenkinsfile punctuation.definition.string.end.groovy.jenkinsfile
+        - match: "'"
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          push:
+            - match: (')\s*$
+              captures:
+                1: punctuation.definition.string.end.groovy.jenkinsfile
+              pop: 1
+            - match: ''
+              push: scope:source.dosbatch
+              with_prototype:
+                - match: (?=(')\s*$)
+                  pop: 1
+        - match: '"'
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          push:
+            - match: (")\s*$
+              captures:
+                1: punctuation.definition.string.end.groovy.jenkinsfile
+              pop: 1
+            - match: ''
+              push: scope:source.dosbatch
+              with_prototype:
+                - match: (?=(")\s*$)
+                  pop: 1
+        - include: pop-else
+
+  shell-code:
+    - match: \b(sh)\s*(?=['"])
+      push:
+        - meta_content_scope: string.quoted.groovy.jenkinsfile
+        - match: "'''"
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.shell.bash
+          escape: "'''"
+          escape_captures:
+            0: string.quoted.groovy.jenkinsfile punctuation.definition.string.end.groovy.jenkinsfile
+        - match: '"""'
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.shell.bash
+          escape: '"""'
+          escape_captures:
+            0: string.quoted.groovy.jenkinsfile punctuation.definition.string.end.groovy.jenkinsfile
+        - match: "'"
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          push:
+            - match: (')\s*$
+              captures:
+                1: punctuation.definition.string.end.groovy.jenkinsfile
+              pop: 1
+            - match: ''
+              push: scope:source.shell.bash
+              with_prototype:
+                - match: (?=(')\s*$)
+                  pop: 1
+        - match: '"'
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          push:
+            - match: (")\s*$
+              captures:
+                1: punctuation.definition.string.end.groovy.jenkinsfile
+              pop: 1
+            - match: ''
+              push: scope:source.shell.bash
+              with_prototype:
+                - match: (?=(")\s*$)
+                  pop: 1
+        - include: pop-else
+
+  pop-else:
+    - match: (?=\S)
+      pop: 1
