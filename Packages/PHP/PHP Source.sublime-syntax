@@ -963,7 +963,7 @@ contexts:
       scope: storage.modifier.php
     - include: access-modifiers
     - include: static-modifiers
-    - include: type-hint
+    - include: type-hints-set
     - include: attributes
     - include: comments
     - include: else-pop
@@ -1000,6 +1000,11 @@ contexts:
       set: arrow-function-parameters-body
     - include: else-pop
 
+  arrow-function-parameters-body:
+    - clear_scopes: 1
+    - meta_scope: meta.function.anonymous.parameters.php meta.group.php
+    - include: function-parameters-body
+
   arrow-function-return-type:
     - match: ':'
       scope: punctuation.separator.colon.php
@@ -1013,11 +1018,6 @@ contexts:
     - clear_scopes: 1
     - meta_scope: meta.function.anonymous.return-type.php
     - include: type-hint-body
-
-  arrow-function-parameters-body:
-    - clear_scopes: 1
-    - meta_scope: meta.function.anonymous.parameters.php meta.group.php
-    - include: function-parameters-body
 
   arrow-function-or-fail:
     - include: comments
@@ -1127,7 +1127,7 @@ contexts:
     - include: punctuation-separators
     - include: reference-modifiers
     - include: variadic-operators
-    - include: type-hints
+    - include: type-hints-push
     - match: (\$+){{identifier}}
       scope: variable.parameter.php
       captures:
@@ -1299,7 +1299,7 @@ contexts:
     - include: expression-end-pop
     - include: attributes
     - include: comments
-    - include: type-hints
+    - include: type-hints-push
     - match: (\$){{identifier}}
       scope: variable.other.php
       captures:
@@ -1909,17 +1909,17 @@ contexts:
 
 ###[ TYPE HINTS ]#############################################################
 
-  type-hints:
+  type-hints-push:
     # https://wiki.php.net/rfc/union_types_v2
-    - match: (?=(?:\?\s*)?\\?{{identifier_start}})
+    - match: (?=(?:\(\s*)?(?:\?\s*)?\\?{{identifier_start}})
       push:
         - type-hint-body
         - type-hint-simple-type
         - type-hint-nullable
 
-  type-hint:
+  type-hints-set:
     # https://wiki.php.net/rfc/union_types_v2
-    - match: (?=(?:\?\s*)?\\?{{identifier_start}})
+    - match: (?=(?:\(\s*)?(?:\?\s*)?\\?{{identifier_start}})
       set:
         - type-hint-body
         - type-hint-simple-type
@@ -1935,9 +1935,19 @@ contexts:
     - match: '&(?!\s*\$)'
       scope: punctuation.separator.type.intersection.php
       push:
-        - type-hint-nullable
         - type-hint-simple-type
+        - type-hint-nullable
+    - include: type-hint-body-group
     - include: else-pop
+
+  type-hint-body-group:
+    - match: \(
+      scope: punctuation.section.group.begin.php
+      push:
+        - match: \)
+          scope: punctuation.section.group.end.php
+          pop: 1
+        - include: type-hints-push
 
   type-hint-nullable:
     - match: \?
@@ -2184,7 +2194,7 @@ contexts:
       scope: storage.modifier.access.php
 
   global-modifiers:
-    - match: (?i:global)\b
+    - match: '{{global_modifier}}'
       scope: storage.modifier.namespace.php
 
   static-modifiers:
@@ -3734,4 +3744,4 @@ contexts:
     - match: ''
       push: scope:source.diff
       with_prototype:
-        - include: interpolation
+        - include: interpolations
