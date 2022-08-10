@@ -1,0 +1,9 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: EditorConfig
+scope: source.ini.editorconfig
+hidden: true
+
+contexts:
+  main: []

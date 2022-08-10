@@ -1,0 +1,1 @@
+I prefer the `EditorConfig.sublime-syntax` in the `EditorConfig` plugin.
