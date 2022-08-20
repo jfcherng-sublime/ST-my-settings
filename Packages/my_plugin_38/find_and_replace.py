@@ -1,7 +1,8 @@
-from dataclasses import dataclass
-from typing import Optional
 import functools
 import re
+from dataclasses import dataclass
+from typing import Optional
+
 import sublime
 import sublime_plugin
 

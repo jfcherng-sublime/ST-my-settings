@@ -1,6 +1,7 @@
+import re
+
 import sublime
 import sublime_plugin
-import re
 
 COMMENT_SCOPE = "comment"
 

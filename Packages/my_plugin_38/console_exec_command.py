@@ -1,11 +1,12 @@
-from typing import Any, Dict, List, Optional
 import os
 import shlex
-import sublime
-import sublime_plugin
 import subprocess
 import tempfile
 import textwrap
+from typing import Any, Dict, List, Optional
+
+import sublime
+import sublime_plugin
 
 PLUGIN_NAME = os.path.basename(__file__)
 

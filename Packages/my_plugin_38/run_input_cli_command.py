@@ -1,13 +1,14 @@
-from datetime import datetime
-from pathlib import Path
-from typing import Dict, List, Optional, Sequence, Tuple, TypeVar, Union
 import getpass
 import os
-import sublime
-import sublime_plugin
 import subprocess
 import tempfile
 import traceback
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Optional, Sequence, Tuple, TypeVar, Union
+
+import sublime
+import sublime_plugin
 
 T_ExpandableVar = TypeVar("T_ExpandableVar", None, bool, int, float, str, Dict, List, Tuple)
 

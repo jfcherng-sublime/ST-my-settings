@@ -1,4 +1,5 @@
 from typing import Tuple
+
 import sublime
 import sublime_plugin
 

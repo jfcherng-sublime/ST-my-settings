@@ -1,7 +1,8 @@
-from collections import OrderedDict
 import importlib
 import json
 import os
+from collections import OrderedDict
+
 import sublime
 
 template_variables = {
