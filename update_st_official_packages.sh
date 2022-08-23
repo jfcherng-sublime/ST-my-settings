@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 #---------#
 # configs #
@@ -28,19 +27,18 @@ ST_INSTALL_DIRS=(
     "/Applications/Sublime Text 3.app/Contents/MacOS"
 )
 
-
 #-----------#
 # functions #
 #-----------#
 
 pushd() {
     # suppress messages from pushd, which is usually verbose
-    command pushd "$@" > /dev/null
+    command pushd "$@" >/dev/null
 }
 
 popd() {
     # suppress messages from popd, which is usually verbose
-    command popd > /dev/null
+    command popd >/dev/null
 }
 
 ##
@@ -72,7 +70,6 @@ clone_repo_ref() {
     return "${retcode}"
 }
 
-
 #-------#
 # begin #
 #-------#
@@ -82,7 +79,6 @@ pushd "${SCRIPT_DIR}" || exit
 rm -rf "${TEMP_DIR}" && mkdir -p "${TEMP_DIR}"
 
 pushd "${TEMP_DIR}" || exit
-
 
 #-------------------------------------------#
 # try to find the ST installation directory #
@@ -101,7 +97,7 @@ for st_install_dir in "${ST_INSTALL_DIRS[@]}"; do
         path_to_check="${st_install_dir}/${path_to_check}"
 
         # if the path under checking is a dir, it ends with a slash
-        if [[ "${path_to_check}" =~ /$ ]]; then
+        if [[ ${path_to_check} =~ /$ ]]; then
             if [ ! -d "${path_to_check}" ]; then
                 is_passed=0
                 break
@@ -130,7 +126,6 @@ fi
 
 st_pkgs_dir="${st_install_dir}/Packages"
 
-
 #-------------------------#
 # read option: commit_ref #
 #-------------------------#
@@ -143,7 +138,6 @@ if [ "${commit_ref}" = "" ]; then
     commit_ref="master"
     echo "[⚠️] Use the default ref: ${commit_ref}"
 fi
-
 
 #-------------------------------#
 # get the latest package source #
@@ -161,7 +155,6 @@ else
     echo "[❌] Fail to checkout ref: ${commit_ref}"
     exit 1
 fi
-
 
 #------------------#
 # pack up packages #
@@ -193,14 +186,12 @@ done
 
 popd || exit
 
-
 #------------------#
 # replace packages #
 #------------------#
 
 echo "[💬] Update ST packages to '${commit_ref}'..."
 cp -rf "${packed_pkgs_dir}"/*.sublime-package "${st_pkgs_dir}"
-
 
 #----------#
 # clean up #
@@ -210,7 +201,6 @@ popd || exit
 
 echo "[🧹] Clean up..."
 rm -rf "${TEMP_DIR}"
-
 
 #-----#
 # end #
