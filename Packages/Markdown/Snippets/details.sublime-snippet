@@ -1,5 +1,5 @@
 <snippet>
-	<description>details & summary</description>
+	<description>details &amp; summary</description>
 	<content><![CDATA[<details>${1:<summary>$2</summary>}
 $3
 </details>]]></content>
