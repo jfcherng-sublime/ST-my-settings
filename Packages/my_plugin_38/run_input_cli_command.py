@@ -73,6 +73,7 @@ def run_cli_command(
         # do not create a window for the process
         startupinfo = subprocess.STARTUPINFO()  # type: ignore
         startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW  # type: ignore
+        startupinfo.wShowWindow = subprocess.SW_HIDE  # type: ignore
     else:
         startupinfo = None  # type: ignore
 
