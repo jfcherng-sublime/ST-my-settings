@@ -36,6 +36,7 @@ contexts:
     - include: ip_addresses
     - include: numbers
     - include: log_levels
+    - include: booleans
     #- include: scope:text.html.markdown#autolink-inet
     - match: \b\w+:/{2,3}
       scope: markup.underline.link.scheme.log
@@ -97,7 +98,7 @@ contexts:
     - match: \b(?={{hours_minutes_seconds}})
       push: time
   time:
-    - match: (?:{{hours_minutes_seconds}})(?:(\.)\d{3})?\b
+    - match: (?:{{hours_minutes_seconds}})(?:(\.)\d+)?\b
       scope: meta.time.log meta.number.integer.decimal.log constant.numeric.value.log
       captures:
         1: punctuation.separator.decimal.log
@@ -132,7 +133,7 @@ contexts:
         2: constant.numeric.value.log
         3: constant.numeric.value.log punctuation.separator.decimal.log
         4: constant.numeric.value.log
-    - match: \b\d+(\.)\d+\b
+    - match: \b\d+(\.)\d+(?=(?i:[smh]|[mgtpe]b)?\b)
       scope: meta.number.float.log constant.numeric.value.log
       captures:
         1: punctuation.separator.decimal.log
@@ -185,3 +186,9 @@ contexts:
     - match: \"
       scope: punctuation.definition.string.end.log
       pop: 1
+  # by jfcherng
+  booleans:
+    - match: \b(?i:true)\b
+      scope: constant.language.boolean.true.log
+    - match: \b(?i:false)\b
+      scope: constant.language.boolean.false.log
