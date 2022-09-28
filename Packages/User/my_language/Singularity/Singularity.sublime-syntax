@@ -1,0 +1,56 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/syntax.html
+name: Singularity Definition
+version: 2
+file_extensions:
+  - Singularity
+scope: source.singularity_definition
+variables:
+  keywords_header: (?:Bootstrap|From|Stage|OSVersion|MirrorURL|Include|Library)
+  section_labels: (?:labels)
+  section_shell: (?:environment|post|runscript|setup|startscript|test)
+  section_other: (?:files|help)
+contexts:
+  prototype:
+    - include: comments
+  main:
+    - include: header
+    - include: sections
+  comments:
+    - match: ^\s*((#).*$\n?)
+      captures:
+        1: comment.line.singularity_definition
+        2: punctuation.definition.comment.singularity_definition
+  header:
+    - match: ^({{keywords_header}})\s*(:)\s*(.*)
+      captures:
+        1: keyword.control.singularity_definition
+        2: punctuation.separator.key-value.singularity_definition
+        3: meta.tag-digest.singularity_definition
+  sections:
+    - include: section_labels
+    - include: section_other
+    - include: section_shell
+  section_label:
+    - match: \w+
+      scope: constant.other.key.singularity_definition
+      push:
+        - include: pop_at_end
+  section_labels:
+    - match: ^(%)({{section_labels}})\s*\n?
+      scope: keyword.control.section.singularity_definition
+      embed: section_label
+      escape: (?=^%)
+  section_shell:
+    - match: ^(%)({{section_shell}})\s*\n?
+      scope: keyword.control.section.singularity_definition
+      embed: scope:source.shell.bash
+      embed_scope: meta.embedded.block.singularity_definition source.shell.bash
+      escape: (?=^%)
+  section_other:
+    - match: ^(%)({{section_other}})\s*\n?
+      scope: keyword.control.section.singularity_definition
+  pop_at_end:
+    - match: $
+      pop: 1
