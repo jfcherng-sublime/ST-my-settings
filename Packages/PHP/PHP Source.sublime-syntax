@@ -2288,6 +2288,7 @@ contexts:
         2: punctuation.terminator.statement.php
         3: meta.heredoc-end.php
       pop: 1
+    - include: heredoc-jfcherng
     - include: heredoc-css
     - include: heredoc-html
     - include: heredoc-javascript
