@@ -5,7 +5,7 @@ import tempfile
 import traceback
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Sequence, Tuple, TypeVar, Union
+from typing import Any, Dict, List, Optional, Sequence, Tuple, TypeVar, Union
 
 import sublime
 import sublime_plugin
@@ -24,12 +24,18 @@ SYNTAX_MAPPING = {
 }
 
 
-def expand_variables(window: sublime.Window, value: T_ExpandableVar) -> T_ExpandableVar:
+def expand_variables(
+    window: sublime.Window,
+    value: T_ExpandableVar,
+    *,
+    extra: Optional[Dict[str, Any]] = None,
+) -> T_ExpandableVar:
     variables = window.extract_variables()
     variables.update(
         {
             "home": os.path.expanduser("~"),
             "temp": tempfile.gettempdir(),
+            **(extra or {}),
         }
     )
 
@@ -47,8 +53,8 @@ def find_project_root_for_view(view: sublime.View) -> Optional[str]:
 
     if os.name == "nt":
         # fix drive cases
-        filepath = str(Path(filepath).resolve())
-        roots = map(str, (Path(root).resolve() for root in project_roots))
+        filepath = Path(filepath).resolve().as_posix() + "/"
+        roots = tuple(Path(root).resolve().as_posix() + "/" for root in project_roots)
     else:
         roots = project_roots
 
@@ -122,26 +128,28 @@ class CliRunnerCommand(sublime_plugin.WindowCommand):
         encoding: str = "utf-8",
         shell: bool = False,
     ) -> None:
-        if not cwd:
-            if not (view := self.window.active_view()):
-                sublime.error_message("No active view")
-                return
+        if not (view := self.window.active_view()):
+            sublime.error_message("No active view")
+            return
 
+        if file_name := view.file_name():
+            file_dir = str(Path(file_name).parent)
+        else:
+            file_dir = None
+
+        if not cwd:
             if project_root := find_project_root_for_view(view):
                 cwd = project_root
             else:
                 dirs: List[str] = []
-                if filename := view.file_name():
-                    dirs.append(os.path.dirname(filename))
+                if file_name:
+                    dirs.append(os.path.dirname(file_name))
                 dirs.append("${home}")
                 cwd = dirs[0]
 
-        args: Dict[str, str] = expand_variables(self.window, {"cwd": cwd, "encoding": encoding})
-        args["cwd"] = self.fix_cwd_unc(args["cwd"])
-
-        self.cwd = args.get("cwd", "")
-        self.encoding = args.get("encoding", "")
         self.shell = shell
+        self.cwd = self.fix_cwd_unc(expand_variables(self.window, cwd, extra={"file_dir": file_dir or "\0"}))
+        self.encoding = encoding
 
         self.window.show_input_panel(f"[{getpass.getuser()}@{self.cwd}]", initial_text, self.on_done, None, None)
 
@@ -191,10 +199,10 @@ class CliRunnerShowResultCommand(sublime_plugin.TextCommand):
             view = self.view
 
             settings = view.settings()
-            cmd = settings.get("cli_runner/cmd")
-            cwd = settings.get("cli_runner/cwd")
-            encoding = settings.get("cli_runner/encoding")
-            shell = settings.get("cli_runner/shell")
+            cmd = settings.get("cli_runner.cmd")
+            cwd = settings.get("cli_runner.cwd")
+            encoding = settings.get("cli_runner.encoding")
+            shell = settings.get("cli_runner.shell")
         else:
             if not (window := self.view.window()):
                 return
@@ -214,10 +222,10 @@ class CliRunnerShowResultCommand(sublime_plugin.TextCommand):
 
         settings = view.settings()
         settings.set(self.VIEW_MARK, True)
-        settings.set("cli_runner/cmd", cmd)
-        settings.set("cli_runner/cwd", cwd)
-        settings.set("cli_runner/encoding", encoding)
-        settings.set("cli_runner/shell", shell)
+        settings.set("cli_runner.cmd", cmd)
+        settings.set("cli_runner.cwd", cwd)
+        settings.set("cli_runner.encoding", encoding)
+        settings.set("cli_runner.shell", shell)
 
         view.set_scratch(True)
         view.set_name(f'({datetime.now().strftime("%Y%m%d%H%M%S")}) {cmd}')
