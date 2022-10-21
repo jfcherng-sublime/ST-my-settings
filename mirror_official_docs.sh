@@ -4,23 +4,41 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 NOW="$(date +'%Y/%m/%d %H:%M:%S')"
 TODAY="$(date +'%Y%m%d')"
 
+# ------ #
+# colors #
+# ------ #
+
+if [[ ${FORCE_COLOR} == "0" ]]; then
+    C_RESET=""
+    H_DEBUG="[DEBUG]"
+    H_INFO="[INFO]"
+    H_WARNING="[WARNING]"
+    H_ERROR="[ERROR]"
+else
+    C_RESET="\e[0m"
+    H_DEBUG="[\e[0;30;47mDEBUG${C_RESET}]"
+    H_INFO="[\e[0;37;44mINFO${C_RESET}]"
+    H_WARNING="[\e[0;30;43mWARNING${C_RESET}]"
+    H_ERROR="[\e[0;37;41mERROR${C_RESET}]"
+fi
+
 #---------#
 # configs #
 #---------#
 
-HTTRACK="C:/_Tools/httrack_x64-noinst-3.49.2/httrack.exe"
-USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36"
-FOOTER="<div style='text-align:center; background:#ffff6e'>Snapshot on ${NOW}</div>"
+HTTRACK=${HTTRACK:-"httrack"}
+USER_AGENT=${USER_AGENT-"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"}
+FOOTER=${FOOTER-"<div style='text-align:center; background:#ffff6e'>Snapshot on ${NOW}</div>"}
 
 function mirror() {
-    output_dir="$1"
-    start_url="$2"
+    local output_dir="$1"
+    local start_url="$2"
 
     rm -rf "${output_dir}"
 
     pushd "${SCRIPT_DIR}" || exit
 
-    echo "[⌛] Downloading..."
+    echo -e "${H_INFO} ⌛ Downloading..."
 
     "${HTTRACK}" \
         --path "${output_dir}" \
@@ -32,7 +50,7 @@ function mirror() {
         --display \
         --quiet \
         --max-rate=0 \
-        +*.png +*.gif +*.jpg +*.jpeg +*.webp +*.css +*.js \
+        +*.png +*.gif +*.jpg +*.jpeg +*.webp +*.svg +*.css +*.js \
         -ad.doubleclick.net/*
 
     # redirect index page to website index
@@ -49,11 +67,11 @@ function mirror() {
 }
 
 function cleanup() {
-    output_dir="$1"
+    local output_dir="$1"
 
     pushd "${output_dir}" || exit
 
-    echo "[🧹] Clean up..."
+    echo -e "${H_INFO} 🧹 Clean up..."
 
     rm -rf \
         hts-cache/ \
