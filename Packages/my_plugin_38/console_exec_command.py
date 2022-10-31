@@ -111,7 +111,7 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
             echo
             echo "Press any key to continue..."
             read -n1
-            """
+        """
         escaped_cmd = " ".join(map(shlex.quote, cmd))
         return reformat(template).format(cmd=escaped_cmd)
 
