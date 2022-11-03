@@ -19,6 +19,8 @@ ST_INSTALL_DIRS=(
     "C:/Program Files/Sublime Text"
     "C:/Program Files/Sublime Text 3"
     # Linux
+    "${HOME}/opt/sublime_text"
+    "${HOME}/opt/sublime_text_3"
     "/opt/sublime_text"
     "/opt/sublime_text_3"
     # Mac
