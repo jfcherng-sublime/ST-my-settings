@@ -1,0 +1,5 @@
+<snippet>
+    <content><![CDATA[.phony: ]]></content>
+    <tabTrigger>.phony</tabTrigger>
+    <scope>source.makefile - meta.function</scope>
+</snippet>
