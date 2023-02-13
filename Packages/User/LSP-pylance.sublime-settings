@@ -19,7 +19,7 @@
         //                   so ST package dependecies can be resolved by the LSP server.
         // - "sublime_text_33": Similar to "sublime_text" but Python 3.3 forced.
         // - "sublime_text_38": Similar to "sublime_text" but Python 3.8 forced.
-        "pyright.dev_environment": "sublime_text",
+        "pyright.dev_environment": "",
         // Offers predefined configurations to help users optimize Pylance's performance based on their development needs.
         // @see https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance#settings-and-customization
         "python.analysis.languageServerMode": "default",
