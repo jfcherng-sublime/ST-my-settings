@@ -1,4 +1,68 @@
 {
+    // LSP servers configurations
+    "clients": {
+        "groovy-language-server": {
+            "enabled": true,
+            "command": [
+                "java",
+                "-jar",
+                "D:\\jfcherng\\my_programs\\groovy-language-server\\build\\libs\\groovy-language-server-all.jar",
+            ],
+            "settings": {
+                "groovy.classpath": [
+                    "C:\\Program Files (x86)\\Groovy\\lib",
+                ],
+            },
+            "selector": "source.groovy",
+        },
+        "diagnostic-ls": {
+            "enabled": false,
+            "command": [
+                "diagnostic-languageserver",
+                "--stdio",
+            ],
+            "selector": "source.python | source.shell",
+            "initializationOptions": {
+                "linters": {
+                    // REF: https://gist.github.com/rchl/1077151a7339b734c1678fc626b123a2
+                    "shellcheck": {
+                        "command": "shellcheck",
+                        "debounce": 100,
+                        "args": [
+                            "--enable=all",
+                            "--format=json",
+                            "-",
+                        ],
+                        "offsetLine": 0,
+                        "offsetColumn": 0,
+                        "sourceName": "shellcheck",
+                        "formatLines": 1,
+                        "parseJson": {
+                            "line": "line",
+                            "column": "column",
+                            "endLine": "endLine",
+                            "endColumn": "endColumn",
+                            "security": "level",
+                            "message": "\\${message} [\\${code}]",
+                        },
+                        "securities": {
+                            "error": "error",
+                            "warning": "warning",
+                            "note": "info",
+                            "info": "info",
+                            "style": "info",
+                        },
+                    },
+                },
+                "filetypes": {
+                    "python": [
+                        "flake8"
+                    ],
+                    "shellscript": "shellcheck",
+                },
+            },
+        },
+    },
     // other settings
     "semantic_highlighting": true,
     "show_inlay_hints": true,
