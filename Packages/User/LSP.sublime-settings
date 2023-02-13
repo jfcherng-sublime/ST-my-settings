@@ -1,6 +1,20 @@
 {
     // LSP servers configurations
     "clients": {
+        "groovy-language-server": {
+            "enabled": true,
+            "command": [
+                "java",
+                "-jar",
+                "D:\\jfcherng\\my_programs\\groovy-language-server\\build\\libs\\groovy-language-server-all.jar",
+            ],
+            "settings": {
+                "groovy.classpath": [
+                    "C:\\Program Files (x86)\\Groovy\\lib",
+                ],
+            },
+            "selector": "source.groovy",
+        },
         "diagnostic-ls": {
             "enabled": false,
             "command": [
