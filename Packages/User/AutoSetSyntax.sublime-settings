@@ -13,6 +13,16 @@
             ]
         },
         {
+            "syntaxes": ["scope:source.ini"],
+            "selector": "text.plain",
+            "rules": [
+                {
+                    "constraint": "contains",
+                    "args": ["RELEASE_JOB=", "RELEASE_TYPE="]
+                }
+            ]
+        },
+        {
             "syntaxes": ["scope:text.html.markdown"],
             "selector": "text.plain",
             "rules": [
