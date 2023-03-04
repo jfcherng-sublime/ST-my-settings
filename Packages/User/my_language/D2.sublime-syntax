@@ -1,0 +1,278 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: D2
+scope: source.d2
+version: 2
+
+file_extensions:
+  - d2
+
+contexts:
+  main:
+    - include: comment
+    - include: semicolon
+    - include: key_value
+    - include: spread_substitution
+    - include: key
+    - include: error
+  comment:
+    - match: '#.*'
+      scope: comment.line.number-sign.d2
+  array:
+    - match: \[
+      scope: punctuation.array.d2
+      push:
+        - meta_scope: meta.array.d2
+        - match: \]
+          scope: punctuation.array.d2
+          pop: 1
+        - include: comment
+        - include: semicolon
+        - include: value
+        - include: error
+  boolean:
+    - match: (?:true|false)(?=\s|\n)
+      scope: constant.language.boolean.d2
+  debug:
+    - match: .*invalid\.illegal.*
+      scope: invalid.illegal
+    - match: .*punctuation.*
+      scope: punctuation
+    - match: .*string.*
+      scope: string
+    - match: .*constant\.character\.escape.*
+      scope: constant.character.escape
+    - match: .*entity\.name\.tag.*
+      scope: entity.name.tag
+    - match: .*keyword.*
+      scope: keyword
+    - match: .*keyword\.operator.*
+      scope: keyword.operator
+    - match: .*constant\.numeric.*
+      scope: constant.numeric
+    - match: .*constant\.language\.boolean.*
+      scope: constant.language.boolean
+    - match: .*constant\.language\.null.*
+      scope: constant.language.null
+    - match: .*comment.*
+      scope: comment
+  error:
+    - match: \S[^;\n]*
+      scope: invalid.illegal.d2
+  escape:
+    - match: \\U\h{8}
+      scope: constant.character.escape.d2
+    - match: \\u\h{4}
+      scope: constant.character.escape.d2
+    - match: \\[0-7]{3}
+      scope: constant.character.escape.d2
+    - match: \\x\h{2}
+      scope: constant.character.escape.d2
+    - match: \\.
+      scope: constant.character.escape.d2
+    - match: \\\n
+      scope: constant.character.escape.d2
+  key:
+    - match: "'"
+      scope: punctuation.quote.single.d2
+      push:
+        - meta_scope: meta.key.quoted.single.d2
+        - meta_content_scope: entity.name.tag.quoted.single.d2
+        - match: '''|(?=\n)'
+          scope: punctuation.quote.single.d2
+          pop: 1
+        - include: escape
+    - match: '"'
+      scope: punctuation.quote.double.d2
+      push:
+        - meta_scope: meta.key.quoted.double.d2
+        - meta_content_scope: entity.name.tag.quoted.double.d2
+        - match: '"|(?=\n)'
+          scope: punctuation.quote.double.d2
+          pop: 1
+        - include: escape
+    - match: \(
+      scope: punctuation.parenthesis.d2
+      push:
+        - meta_scope: meta.key.group.d2
+        - match: \)(?:\[(?:[0-9_]+|\*)\])?
+          scope: punctuation.parenthesis.d2
+          pop: 1
+        - include: key
+        - include: error
+    - match: (?:shape|layer|tooltip|bold|italic|underline|top|left|icon|constraint|near|opacity|stroke|fill|filled|stroke\-width|width|height|border\-radius|source\-arrowhead|target\-arrowhead|link|stroke\-dash|font\-size|font\-color|shadow|multiple|3d|animated|class|label|style|imports|vars|scenarios|on_click|src|dst)(?=\s*[\n#;\[\]{}|$''":.<>*&()]|-+-|-+>|-+\*)
+      scope: keyword.reserved.d2
+    - match: \.
+      scope: punctuation.period.d2
+    - match: \*
+      scope: keyword.operator.glob.d2
+    - match: \*\*
+      scope: keyword.operator.double_glob.d2
+    - match: '&'
+      scope: keyword.operator.ampersand.d2
+    - match: (?=[^[:space:]\n#;\[\]{}|$''":.<>*&()])(?!-+-)(?!-+>)(?!-+\*)
+      push:
+        - meta_scope: entity.name.tag.unquoted.d2
+        - match: (?=\s*(?:[\n#;\[\]{}|$''":.<>*&()]|-+-|-+>|-+\*))
+          pop: 1
+        - include: escape
+    - match: '[\-<>]+'
+      scope: punctuation.edge.d2
+      push:
+        - meta_scope: meta.key.edge.d2
+        - match: (?=[^\-<>])
+          scope: punctuation.edge.d2
+          pop: 1
+        - include: line_continuation
+  key_value:
+    - match: ':'
+      scope: punctuation.colon.d2
+      push:
+        - meta_scope: meta.key_value.d2
+        - match: (?=\s*[\n#;\]}])
+          pop: 1
+        - include: value
+        - include: error
+  line_continuation:
+    - match: \\\n
+      scope: constant.character.escape.d2
+  map:
+    - match: \{
+      scope: punctuation.map.d2
+      push:
+        - meta_scope: meta.map.d2
+        - match: \}
+          scope: punctuation.map.d2
+          pop: 1
+        - include: main
+  'null':
+    - match: null(?=\s|\n)
+      scope: constant.language.null.d2
+  number:
+    - match: '[+-]?0[xX][[:xdigit:]_]*\.?[[:xdigit:]_]*(?:[eEpP][+-]?[0-9_]*)?(?=\s|\n)'
+      scope: constant.numeric.hexadecimal.d2
+    - match: '[+-]?0[bB][01_]*\.?[01_]*(?:[eEpP][+-]?[0-9_]*)?(?=\s|\n)'
+      scope: constant.numeric.binary.d2
+    - match: '[+-]?0[oO]?[0-7_]*\.?[0-7_]*(?=\s|\n)'
+      scope: constant.numeric.octal.d2
+    - match: '[+-]?[0-9_]+(?:[eEpP][+-]?[0-9_]*)?(?=\s|\n)'
+      scope: constant.numeric.decimal.d2
+    - match: '[+-]?[0-9_]*\.[0-9_]+(?:[eEpP][+-]?[0-9_]*)?(?=\s|\n)'
+      scope: constant.numeric.decimal.d2
+  semicolon:
+    - match: ;
+      scope: punctuation.semicolon.d2
+  spread_substitution:
+    - match: \.\.\.\$
+      scope: keyword.operator.substitution.d2
+      push:
+        - meta_scope: meta.operator.substitution.d2
+        - match: (?=\s*[\n#;\[\]{}|$])
+          scope: keyword.operator.substitution.d2
+          pop: 1
+        - include: key
+  string:
+    - match: "'"
+      scope: punctuation.quote.single.d2
+      push:
+        - meta_scope: meta.string.quoted.single.d2
+        - meta_content_scope: string.quoted.single.d2
+        - match: '''|(?=\n)'
+          scope: punctuation.quote.single.d2
+          pop: 1
+        - include: escape
+    - match: '"'
+      scope: punctuation.quote.double.d2
+      push:
+        - meta_scope: meta.string.quoted.double.d2
+        - meta_content_scope: string.quoted.double.d2
+        - match: '"|(?=\n)'
+          scope: punctuation.quote.double.d2
+          pop: 1
+        - include: escape
+    - match: \|([^[:alnum:]]*)sh[\n[:space:]]
+      scope: punctuation.block.d2
+      push:
+        - meta_scope: meta.string.block.shellscript.d2
+        - match: \1\|
+          scope: punctuation.block.d2
+          pop: 1
+        - include: scope:source.shell
+    - match: \|([^[:alnum:]]*)md[\n[:space:]]
+      scope: punctuation.block.d2
+      push:
+        - meta_scope: meta.string.block.markdown.d2
+        - match: \1\|
+          scope: punctuation.block.d2
+          pop: 1
+        - include: scope:text.html.markdown
+    - match: \|([^[:alnum:]]*)js[\n[:space:]]
+      scope: punctuation.block.d2
+      push:
+        - meta_scope: meta.string.block.js.d2
+        - match: \1\|
+          scope: punctuation.block.d2
+          pop: 1
+        - include: scope:source.js
+    - match: \|([^[:alnum:]]*)go[\n[:space:]]
+      scope: punctuation.block.d2
+      push:
+        - meta_scope: meta.string.block.go.d2
+        - match: \1\|
+          scope: punctuation.block.d2
+          pop: 1
+        - include: scope:source.go
+    - match: \|([^[:alnum:]]*)text[\n[:space:]]
+      scope: punctuation.block.d2
+      push:
+        - meta_scope: meta.string.block.text.d2
+        - match: \1\|
+          scope: punctuation.block.d2
+          pop: 1
+    - match: \|([^[:alnum:]]*)d2[\n[:space:]]
+      scope: punctuation.block.d2
+      push:
+        - meta_scope: meta.string.block.d2.d2
+        - match: \1\|
+          scope: punctuation.block.d2
+          pop: 1
+        - include: scope:source.d2
+    - match: \|([^[:alnum:]]*)[\n[:space:]]
+      scope: punctuation.block.d2
+      push:
+        - meta_scope: meta.string.block.markdown.d2
+        - match: \1\|
+          scope: punctuation.block.d2
+          pop: 1
+        - include: scope:text.html.markdown
+    - match: \|([^[:alnum:]]*)[^[:space:]]+[\n[:space:]]
+      scope: punctuation.block.d2
+      push:
+        - meta_scope: meta.string.block.d2
+        - match: \1\|
+          scope: punctuation.block.d2
+          pop: 1
+    - match: (?=[^[:space:]\n#;\[\]{}|$''"$])
+      push:
+        - meta_scope: string.unquoted.d2
+        - match: (?=\s*[\n#;\[\]{}])
+          pop: 1
+        - include: escape
+  substitution:
+    - match: \$
+      scope: keyword.operator.substitution.d2
+      push:
+        - meta_scope: meta.operator.substitution.d2
+        - match: (?=\s*[\n#;\[\]{}|$])
+          scope: keyword.operator.substitution.d2
+          pop: 1
+        - include: key
+  value:
+    - include: boolean
+    - include: 'null'
+    - include: number
+    - include: substitution
+    - include: array
+    - include: map
+    - include: string
