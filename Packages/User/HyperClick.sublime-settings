@@ -2,14 +2,12 @@
     "annotation_found_text": "→",
     "annotation_not_found_text": "Ｘ",
     "annotations_enabled": true,
-
     "scopes": {
         "source.js | source.jsx | source.ts | source.tsx": {
             "regexes": [
-                "^import\\s+['\"](.+)['\"];?$",
-                ".*from\\s+['\"](.+)['\"];?$",
-                ".*require\\(['\"](.+?)['\"]\\)",
-                ".*import\\((?:\\/\\*.+?\\*\\/\\s+)?['\"](.+)['\"]\\)(?:[;\\.,])?",
+                "^import\\s+(?:.+?\\s+from\\s+)?['\"]([^'\"]+)['\"]",
+                "^from\\s+['\"]([^'\"]+)['\"]",
+                ".*require\\(['\"]([^'\"]+)['\"]",
             ],
             "extensions": [
                 "ts",
@@ -30,31 +28,25 @@
         },
         "source.sass | source.scss": {
             "regexes": [
-                "^@import\\s+['\"](.+)['\"].*?;$",
-                "^@import\\s+url\\(['\"](.+)['\"]\\).*?;$",
-                "^@import\\s+\\(?.*\\)?\\s*['\"](.+)['\"];?$",
+                "^@import\\s+['\"]([^'\"]+)['\"]",
+                "^@import\\s+url\\(['\"]([^'\"]+)['\"]",
+                "^@import\\s+\\(?.*\\)?\\s*['\"]([^'\"]+)['\"]",
             ],
             "extensions": [
                 "scss",
                 "sass",
             ],
+            "vendor_dirs": [
+                "node_modules",
+            ],
             "aliases": {
                 "@assets": "assets",
             },
         },
-        "source.less": {
-            "regexes": [
-                "^@import\\s+['\"](.+)['\"].*?;$",
-                "^@import\\s+url\\(['\"](.+)['\"]\\).*?;$",
-            ],
-            "extensions": [
-                "less",
-            ],
-        },
         "source.css": {
             "regexes": [
-                "^@import\\s+['\"](.+)['\"].*?;$",
-                "^@import\\s+url\\(['\"](.+)['\"]\\).*?;$",
+                "^@import\\s+['\"]([^'\"]+)['\"]",
+                "^@import\\s+url\\(['\"]([^'\"]+)['\"]",
             ],
             "extensions": [
                 "css",
@@ -63,9 +55,9 @@
         "source.php": {
             "regexes": [
                 // jfcherng
-                "\\b(?:include|require)(?:_once)?\\s*\\(?['\"](.+)['\"]\\)?;?$",
+                ".*\\b(?:include|require)(?:_once)?\\s*\\(?['\"]([^'\"]+)['\"]\\)?;?$",
                 // Symfony render Twig templates in PHP
-                ".*['\"]([^'\"]+\\.twig(?:\\.html)?)['\"]",
+                ".*['\"]([^'\"]+\\.twig(?:\\.[^'\"]*)?)['\"]",
             ],
             "extensions": [
                 "php",
@@ -78,41 +70,22 @@
                 "views",
             ],
         },
-        "source.stylus": {
-            "regexes": [
-                "^@import\\s+['\"](.+)['\"];?$",
-            ],
-            "extensions": [
-                "styl",
-                "stylus",
-            ],
-        },
-        "text.html.basic": {
-            "regexes": [
-                // jfcherng
-                ".*?<link\\s+rel=\"import\"\\s+href=['\"](.+)['\"]/?>",
-            ],
-            "extensions": [
-                "htm",
-                "html",
-            ],
-            "vendor_dirs": [
-                "node_modules",
-            ],
-        },
         "text.jinja": {
             "regexes": [
                 // jfcherng
-                "^{%\\s+(?:extends|include|import)\\s+['\"](.+)['\"].*?%}$",
-                "^{%\\s+from\\s+['\"](.+)['\"]\\s+import.*?%}$",
+                "^{%\\s+(?:extends|include|import)\\s+['\"]([^'\"]+)['\"]",
+                "^{%\\s+from\\s+['\"]([^'\"]+)['\"]",
             ],
         },
         "text.html.twig": {
             "regexes": [
                 // jfcherng
-                "^{%\\s+(?:embed|extends|include|import|use)\\s+['\"](.+)['\"]",
-                "^{%\\s+from\\s+['\"](.+)['\"]",
-                "^{%\\s+.+?\\s+with\\s+['\"](.+)['\"]",
+                "^{%\\s+(?:embed|extends|include|import|use)\\s+['\"]([^'\"]+)['\"]",
+                "^{%\\s+from\\s+['\"]([^'\"]+)['\"]",
+                "^{%\\s+.+?\\s+with\\s+['\"]([^'\"]+)['\"]",
+            ],
+            "extensions": [
+                "twig"
             ],
             "lookup_paths": [
                 "templates",
