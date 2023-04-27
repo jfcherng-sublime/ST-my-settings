@@ -1,0 +1,104 @@
+{
+    "rules": [
+        // biome (https://biomejs.dev/reference/cli/#biome-format)
+        {
+            "selector": "source.js",
+            "cmd": [
+                "biome",
+                "format",
+                "--files-max-size=31457280", // 30 MB
+                "--indent-style=space",
+                "--indent-width=2",
+                "--line-ending=lf",
+                "--line-width=120",
+                "--semicolons=always",
+                "--trailing-comma=all",
+                // ...
+                "--stdin-file-path=stdin.js",
+            ],
+            "format_on_save": false,
+            "merge_type": "replace",
+        },
+        {
+            "selector": "source.jsx",
+            "cmd": [
+                "biome",
+                "format",
+                "--files-max-size=31457280", // 30 MB
+                "--indent-style=space",
+                "--indent-width=2",
+                "--line-ending=lf",
+                "--line-width=120",
+                "--semicolons=always",
+                "--trailing-comma=all",
+                // ...
+                "--stdin-file-path=stdin.jsx",
+            ],
+            "format_on_save": false,
+            "merge_type": "diff",
+        },
+        {
+            "selector": "source.ts",
+            "cmd": [
+                "biome",
+                "format",
+                "--files-max-size=31457280", // 30 MB
+                "--indent-style=space",
+                "--indent-width=2",
+                "--line-ending=lf",
+                "--line-width=120",
+                "--semicolons=always",
+                "--trailing-comma=all",
+                // ...
+                "--stdin-file-path=stdin.ts",
+            ],
+            "format_on_save": false,
+            "merge_type": "diff",
+        },
+        {
+            "selector": "source.tsx",
+            "cmd": [
+                "biome",
+                "format",
+                "--files-max-size=31457280", // 30 MB
+                "--indent-style=space",
+                "--indent-width=2",
+                "--line-ending=lf",
+                "--line-width=120",
+                "--semicolons=always",
+                "--trailing-comma=all",
+                // ...
+                "--stdin-file-path=stdin.tsx",
+            ],
+            "format_on_save": false,
+            "merge_type": "diff",
+        },
+        // ruff
+        {
+            "selector": "source.python",
+            "cmd": [
+                "ruff",
+                "format",
+                "--isolated",
+                "--line-length=120",
+                "--preview",
+                "--stdin-filename=stdin.py",
+                "--target-version=py311",
+            ],
+            "format_on_save": false,
+            "merge_type": "replace",
+        },
+        // shfmt
+        {
+            "selector": "source.shell.bash",
+            "cmd": [
+                "shfmt",
+                "--case-indent",
+                "--indent=4",
+                "--simplify",
+            ],
+            "format_on_save": false,
+            "merge_type": "replace",
+        },
+    ],
+}
