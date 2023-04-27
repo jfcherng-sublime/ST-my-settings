@@ -1,15 +1,12 @@
 {
-    // @see https://www.npmjs.com/package/vscode-json-languageserver
-    "languages": [
-        {
-            "languageId": "json",
-            "document_selector": "source.json",
-        },
-    ],
     "initializationOptions": {
         "provideFormatter": true,
     },
     "settings": {
         "json.format.enable": true,
+    },
+    "disabled_capabilities": {
+        // prefer the ColorHelper plugin
+        "colorProvider": true,
     },
 }
