@@ -1,11 +1,5 @@
 {
-    "languages": [
-        {
-            "languageId": "php",
-            "document_selector": "embedding.php",
-            "feature_selector": "source.php",
-        },
-    ],
+    "auto_complete_selector": "punctuation.accessor | punctuation.definition.variable | punctuation.separator.namespace | punctuation.definition.tag.begin",
     "initializationOptions": {
         "clearCache": false,
         "storagePath": "${home}/.intelephense",
@@ -40,6 +34,5 @@
             "**/branch-*/**",
             "**/vendor/**/{Example,example,Examples,examples}/**"
         ],
-        "intelephense.trace.server": "off",
     },
 }

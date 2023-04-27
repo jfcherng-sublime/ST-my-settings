@@ -1,0 +1,4 @@
+{
+    // customize the menu text in your localization
+    "menu_text": "在 {app.name} 中開啟",
+}
