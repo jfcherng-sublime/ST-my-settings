@@ -80,6 +80,18 @@
     },
     // Python
     {
+        "keys": ["f", "j", " "],
+        "command": "insert_snippet",
+        "args": { "contents": "*" },
+        "context": [
+            {
+                "key": "selector",
+                "operator": "equal",
+                "operand": "source.python"
+            }
+        ]
+    },
+    {
         "keys": ["d", "k", " "],
         "command": "insert_snippet",
         "args": { "contents": "->" },
@@ -114,6 +126,19 @@
                 "key": "selector",
                 "operator": "equal",
                 "operand": "source.shell"
+            }
+        ]
+    },
+    // Groovy
+    {
+        "keys": ["f", "j", " "],
+        "command": "insert_snippet",
+        "args": { "contents": "\\$" },
+        "context": [
+            {
+                "key": "selector",
+                "operator": "equal",
+                "operand": "source.groovy"
             }
         ]
     }
