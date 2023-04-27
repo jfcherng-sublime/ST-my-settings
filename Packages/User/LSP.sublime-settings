@@ -1,104 +1,62 @@
 {
     // LSP servers configurations
     "clients": {
-        "clangd": {
-            "enabled": true,
-            "command": [
-                "clangd",
-                "-function-arg-placeholders=0",
-                "-header-insertion-decorators=1",
-                "-index",
-                "--suggest-missing-includes",
-            ],
-            "languages": [
-                {
-                    "languageId": "c",
-                    "document_selector": "source.c",
-                },
-                {
-                    "languageId": "cpp",
-                    "document_selector": "source.c++",
-                },
-                {
-                    "languageId": "objective-c",
-                    "document_selector": "source.objc",
-                },
-                {
-                    "languageId": "objective-cpp",
-                    "document_selector": "source.objc++",
-                },
-            ],
-        },
-        "pyls": {
-            // pip install -U python-language-server[all] pyls-mypy pyls-black
+        "diagnostic-ls": {
             "enabled": false,
             "command": [
-                "pyls",
+                "diagnostic-languageserver",
+                "--stdio",
             ],
-            "env": {
-                "PYTHONPATH": "$packages",
-                "MYPY_PATH": "$packages",
-            },
-            // @see https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
-            "settings": {
-                "pyls.env": {
-                    // @see https://github.com/sublimelsp/LSP/issues/531#issuecomment-568188403
-                    // "VIRTUAL_ENV": "/Users/mike/.virtualenvs/my-virtual-env"
-                    "PYTHONPATH": "$packages",
-                    "MYPY_PATH": "$packages",
+            "selector": "source.python | source.shell",
+            "initializationOptions": {
+                "linters": {
+                    // REF: https://gist.github.com/rchl/1077151a7339b734c1678fc626b123a2
+                    "shellcheck": {
+                        "command": "shellcheck",
+                        "debounce": 100,
+                        "args": [
+                            "--enable=all",
+                            "--format=json",
+                            "-",
+                        ],
+                        "offsetLine": 0,
+                        "offsetColumn": 0,
+                        "sourceName": "shellcheck",
+                        "formatLines": 1,
+                        "parseJson": {
+                            "line": "line",
+                            "column": "column",
+                            "endLine": "endLine",
+                            "endColumn": "endColumn",
+                            "security": "level",
+                            "message": "\\${message} [\\${code}]",
+                        },
+                        "securities": {
+                            "error": "error",
+                            "warning": "warning",
+                            "note": "info",
+                            "info": "info",
+                            "style": "info",
+                        },
+                    },
                 },
-                "pyls.plugins.autopep8.enabled": false,
-                "pyls.plugins.jedi.extra_paths": [
-                    // add jfcherng-sublime/ST-API-stubs
-                    "$packages/../st-stubs",
-                    "$packages",
-                ],
-                "pyls.plugins.jedi_completion.fuzzy": true,
-                "pyls.plugins.mccabe.enabled": true,
-                "pyls.plugins.pycodestyle.enabled": true,
-                "pyls.plugins.pycodestyle.ignore": [
-                    "E2",
-                    "E5",
-                    // PEP 8 suggests putting multiline binary operator in a new line
-                    // so we disable W503 (PEP 8) and enable W504
-                    // https://www.python.org/dev/peps/pep-0008/#should-a-line-break-before-or-after-a-binary-operator
-                    "W503",
-                ],
-                "pyls.plugins.pydocstyle.enabled": true,
-                "pyls.plugins.pydocstyle.ignore": [
-                    "D1",
-                    "D2",
-                    "D4",
-                ],
-                "pyls.plugins.pyflakes.enabled": true,
-                "pyls.plugins.pyflakes.ignore": [],
-                "pyls.plugins.pylint.enabled": false,
-                "pyls.plugins.pylint.ignore": [],
-                "pyls.plugins.pyls_mypy.enabled": false,
-                "pyls.plugins.pyls_mypy.live_mode": true,
-                "pyls.plugins.yapf.enabled": true,
-            },
-            "languages": [
-                {
-                    "languageId": "python",
-                    "document_selector": "source.python",
+                "filetypes": {
+                    "python": [
+                        "flake8"
+                    ],
+                    "shellscript": "shellcheck",
                 },
-            ],
+            },
         },
     },
     // other settings
-    "auto_show_diagnostics_panel": "never",
-    "auto_show_diagnostics_panel_level": 2,
+    "semantic_highlighting": true,
+    "show_inlay_hints": true,
+    "show_diagnostics_panel_on_save": 0,
     "diagnostics_gutter_marker": "sign",
     "diagnostics_highlight_style": "box",
-    "disabled_capabilities": [
-        "colorProvider",
-        // "completion",
-        // "documentHighlight",
-        // "hover",
-        // "signatureHelp",
-    ],
     "document_highlight_style": "underline",
+    "hover_highlight_style": "stippled",
     "inhibit_snippet_completions": false,
     "inhibit_word_completions": false,
     "show_diagnostics_count_in_view_status": true,
@@ -111,10 +69,16 @@
     "log_server": [
         "panel",
     ],
-    "log_stderr": true,
     "lsp_code_actions_on_save": {
         // "source.fixAll": true,
         // "source.organizeImports": true,
     },
     "lsp_format_on_save": false,
+    // Controls if files that were part of a refactoring (e.g. rename) are saved automatically:
+    // "always" - save all affected files
+    // "preserve" - only save files that didn't have unsaved changes beforehand
+    // "preserve_opened" - only save opened files that didn't have unsaved changes beforehand
+    //                     and open other files that were affected by the refactoring
+    // "never" - never save files automatically
+    "refactoring_auto_save": "preserve",
 }

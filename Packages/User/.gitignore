@@ -1,11 +1,11 @@
-# do not add any dir
-/*/
-!/my_*/
+# plugin: ColorHelper
+color_helper.palettes
 
-*.crt
-*.sublime-license
-encoding_cache.json
-
+# plugin: OverrideAudit
 OverrideAudit.status
-Package Control.*
-!Package Control.sublime-settings
+
+# plugin: Package Control
+*.user-ca-bundle
+
+# plugin: ProjectManager
+/Projects/

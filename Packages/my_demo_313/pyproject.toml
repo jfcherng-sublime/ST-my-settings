@@ -23,11 +23,6 @@ exclude = [
   "venv-*",
 ]
 
-# regex
-exclude = '''
-/(
-  \.git |
-  plugin/libs |
-  stubs
-)/
-'''
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+ignore = ["E203"]
