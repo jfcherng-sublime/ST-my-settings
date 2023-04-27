@@ -2,7 +2,7 @@
 ---
 # http://www.sublimetext.com/docs/syntax.html
 name: Jenkinsfile
-# version: 2
+version: 2
 file_extensions:
   - Jenkinsfile
 scope: source.groovy.jenkinsfile
@@ -14,8 +14,20 @@ contexts:
 
   groovy-code:
     - meta_prepend: true
-    - include: bat-code
-    - include: shell-code
+    - include: special-vars
+    - include: block-keywords
+    - include: embedded-codes
+
+  map-keys:
+    - match: (\$?\w+)\s*(:)
+      captures:
+        1: constant.other.key.groovy
+        2: punctuation.definition.separator.key-value.groovy
+
+  special-vars:
+    - match: \b(env)\b
+      captures:
+        1: variable.language.env.groovy.jenkinsfile
 
   # ----------- #
   # new context #
