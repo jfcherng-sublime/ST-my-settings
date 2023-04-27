@@ -1,0 +1,8 @@
+{
+    "disabled_capabilities": {
+        // prefer the ColorHelper plugin
+        "colorProvider": true,
+    },
+    // ST4 configuration
+    "selector": "text.html.basic | text.html.twig | embedding.php | text.jinja",
+}
