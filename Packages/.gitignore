@@ -1,64 +1,11 @@
-# dependencies will be downloaded by Package Control automatically
-/backrefs/
-/bracex/
-/bz2/
-/coloraide/
-/concurrentloghandler/
-/coverage/
-/debugtools/
-/jieba/
-/jsonschema/
-/lsp_utils/
-/markupsafe/
-/mdpopups/
-/natsort/
-/package_setting_context/
-/pathlib/
-/portalockerfile/
-/pygments/
-/pymdownx/
-/python-jinja2/
-/python-markdown/
-/python-pywin32/
-/python-toml/
-/PyV8/
-/pyyaml/
-/regex/
-/requests/
-/ssl-linux/
-/sublime_lib/
-/typing/
-/wcmatch/
-
-# packages
-/*33/
-/AceJump*/
 /AutomaticPackageReloader*/
-/AutoSetIndentation/
-/Bootstrap 4x Autocomplete/
-/Codecs/
+/CommandsBrowser33/
 /ConvertToUTF8/
-/CTags/
-/HTML-CSS-JS Prettify/
-/IntelliDocs/
 /JsPrettier/
-/LaTeXTools/
 /LiveReload/
 /LSP-*/
-/NSIS/
-/OmniMarkupPreviewer/
-/Pretty JSON/
-/Quokka/
-/SublimeAStyleFormatter/
 /SublimeLinter*/
-!/SublimeLinter-contrib-markdownlint/
-/SublimeREPL/
-/TypeScript/
 /UnitTesting/
 
 /Terminal/*
-!/Terminal/PS.ps1
 !/Terminal/Terminal.py
-
-# my custom things
-!/my_*/
