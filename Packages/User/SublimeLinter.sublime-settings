@@ -59,7 +59,14 @@
         "eslint": {
             "disable": false,
             "args": [],
-            "excludes": ["*.twig.html", "*.twig"]
+            "excludes": [
+                "*.jinja",
+                "*.jinja2",
+                "*.jinja.html",
+                "*.jinja2.html",
+                "*.twig",
+                "*.twig.html",
+            ]
         },
         "json": {
             "disable": false,
