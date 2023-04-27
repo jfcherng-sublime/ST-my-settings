@@ -178,34 +178,5 @@
             // we can use it to simulate border by adding colors on higher layers
             "layer0.tint": "#313131",
         },
-
-        // tab
-        {
-            "class": "tab_label",
-            "parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-            "fg": "var(--yellowish)",
-        },
-        {
-            "class": "tab_label",
-            "parents": [{"class": "tab_control", "attributes": ["added"]}],
-            "fg": "var(--greenish)",
-        },
-        {
-            "class": "tab_label",
-            "parents": [{"class": "tab_control", "attributes": ["deleted"]}],
-            "fg": "var(--redish)",
-        },
-        {
-            "class": "tab_label",
-            "parents": [{"class": "tab_control", "attributes": ["selected"]}],
-            "fg": "white",
-        },
-        {
-            "class": "tab_close_button",
-            "attributes": ["!hover"],
-            "parents": [{"class": "tab_control", "attributes": ["dirty", "!added", "!deleted"]}],
-            "layer0.texture": "Theme - Default/common/tab_dirty.png",
-            "layer0.tint": "var(--yellowish)",
-        },
     ],
 }
