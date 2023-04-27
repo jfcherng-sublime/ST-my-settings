@@ -2,7 +2,7 @@
     "cmd": [
         // @see https://sass-lang.com/documentation/cli/dart-sass
         "sass",
-        "${file}",
+        "${file_name}",
         "${file_base_name}.css",
         "--style=expanded",
         "--no-source-map",
@@ -11,10 +11,10 @@
     "selector": "source.sass, source.scss",
     "working_dir": "${file_path}",
     "osx": {
-        "path": "/usr/local/bin:$PATH",
+        "path": "/usr/local/bin:/usr/bin:$PATH",
     },
     "linux": {
-        "path": "/usr/local/bin:$PATH",
+        "path": "/usr/local/bin:/usr/bin:$PATH",
     },
     "windows": {
         "shell": true,
@@ -23,13 +23,13 @@
         {
             "cmd": [
                 "sass",
-                "${file}",
+                "${file_name}",
                 "${file_base_name}.css",
                 "--style=compressed",
                 "--no-source-map",
                 "--load-path=C:/Users/jfcherng/AppData/Local/Yarn/Data/global/node_modules/compass-mixins/lib",
             ],
-            "name": "Compressed",
+            "name": "Minify",
         }
     ],
 }
