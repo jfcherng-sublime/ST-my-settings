@@ -1,8 +1,4 @@
-PyV8/
-*.sublime-package
-*.sublime-package-new
+*
 
 !LSP.sublime-package
 !Package Control.sublime-package
-!SideBarGit.sublime-package
-!Theme - DC.sublime-package
