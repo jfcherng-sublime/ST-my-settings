@@ -14,6 +14,15 @@ file_extensions:
   - requirements-win.txt
   - requirements-windows.txt
   - requirements.txt
+  - requirements-dev.in
+  - requirements-development.in
+  - requirements-linux.in
+  - requirements-mac.in
+  - requirements-prod.in
+  - requirements-production.in
+  - requirements-win.in
+  - requirements-windows.in
+  - requirements.in
 scope: source.pip-requirements
 contexts:
   main:

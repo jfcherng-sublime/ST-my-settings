@@ -19,13 +19,11 @@ class NewBuildSystemCommand(sublime_plugin.WindowCommand):
         v.assign_syntax("Packages/JavaScript/JSON.sublime-syntax")
         v.set_name("untitled.sublime-build")
 
-        template = reformat(
-            """
+        template = reformat("""
             {
             \t"shell_cmd": "${0:make}"
             }
-            """
-        )
+        """)
         v.run_command("insert_snippet", {"contents": template})
 
 
@@ -35,8 +33,7 @@ class NewPluginCommand(sublime_plugin.WindowCommand):
         v.settings().set("default_dir", ST_USER_DIR)
         v.assign_syntax("Packages/Python/Python.sublime-syntax")
 
-        template = reformat(
-            """
+        template = reformat("""
             import sublime
             import sublime_plugin
 
@@ -44,8 +41,7 @@ class NewPluginCommand(sublime_plugin.WindowCommand):
             class ExampleCommand(sublime_plugin.TextCommand):
             \tdef run(self, edit: sublime.Edit) -> None:
             \t\t$0self.view.insert(edit, 0, "Hello, World!")
-            """
-        )
+        """)
         v.run_command("insert_snippet", {"contents": template})
 
 
@@ -56,8 +52,7 @@ class NewSnippetCommand(sublime_plugin.WindowCommand):
         v.settings().set("default_extension", "sublime-snippet")
         v.assign_syntax("Packages/XML/XML.sublime-syntax")
 
-        template = reformat(
-            """
+        template = reformat("""
             <snippet>
             \t<content><![CDATA[
             Hello, \\${1:this} is a \\${2:snippet}.
@@ -67,8 +62,7 @@ class NewSnippetCommand(sublime_plugin.WindowCommand):
             \t<!-- Optional: Set a scope to limit where the snippet will trigger -->
             \t<!-- <scope>source.python</scope> -->
             </snippet>
-            """
-        )
+        """)
         v.run_command("insert_snippet", {"contents": template})
 
 
@@ -79,8 +73,7 @@ class NewSyntaxCommand(sublime_plugin.WindowCommand):
         v.settings().set("default_extension", "sublime-syntax")
         v.assign_syntax("Packages/YAML/YAML.sublime-syntax")
 
-        template = reformat(
-            R"""
+        template = reformat(R"""
             %YAML 1.2
             ---
             # See http://www.sublimetext.com/docs/syntax.html
@@ -126,7 +119,6 @@ class NewSyntaxCommand(sublime_plugin.WindowCommand):
                 - meta_scope: comment.line.example-c
                 - match: $
                   pop: 1
-            """
-        )
+        """)
 
         v.run_command("append", {"characters": template})
