@@ -1,0 +1,13 @@
+{
+    "shell_cmd": "./$file_name",
+    "working_dir": "$file_path",
+
+    "target": "console_exec",
+    "selector": "source.shell",
+    "word_wrap": false,
+
+    "windows": {
+        // Try to run via MSYS2 shell on Windows
+        "cmd": ["sh", "$file_name"]
+    }
+}
