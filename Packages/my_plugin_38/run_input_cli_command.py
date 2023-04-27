@@ -1,5 +1,4 @@
 from __future__ import annotations
-from collections.abc import Sequence
 
 import getpass
 import os
@@ -8,6 +7,7 @@ import subprocess
 import tempfile
 import traceback
 from collections import UserDict
+from collections.abc import Sequence
 from datetime import datetime
 from pathlib import Path
 from typing import Any, TypeVar
@@ -28,20 +28,18 @@ class SyntaxMapping(UserDict):
         return None
 
 
-SYNTAX_MAPPING = SyntaxMapping(
-    {
-        ("git", "blame"): "scope:text.git-blame",
-        ("git", "diff"): "scope:source.diff",
-        ("git", "log"): "scope:text.git.log",
-        ("git", "show"): "scope:source.diff",
-        ("git", "status"): "scope:source.diff",
-        # aliases
-        ("git", "bl"): ("git", "blame"),
-        ("git", "d"): ("git", "diff"),
-        ("git", "sh"): ("git", "show"),
-        ("git", "st"): ("git", "status"),
-    }
-)
+SYNTAX_MAPPING = SyntaxMapping({
+    ("git", "blame"): "scope:text.git-blame",
+    ("git", "diff"): "scope:source.diff",
+    ("git", "log"): "scope:text.git.log",
+    ("git", "show"): "scope:source.diff",
+    ("git", "status"): "scope:source.diff",
+    # aliases
+    ("git", "bl"): ("git", "blame"),
+    ("git", "d"): ("git", "diff"),
+    ("git", "sh"): ("git", "show"),
+    ("git", "st"): ("git", "status"),
+})
 
 
 def empty_view_text(view: sublime.View) -> None:
@@ -65,13 +63,11 @@ def expand_variables(
     extra: dict[str, Any] | None = None,
 ) -> T_ExpandableVar:
     variables = window.extract_variables()
-    variables.update(
-        {
-            "home": os.path.expanduser("~"),
-            "temp": tempfile.gettempdir(),
-            **(extra or {}),
-        }
-    )
+    variables.update({
+        "home": os.path.expanduser("~"),
+        "temp": tempfile.gettempdir(),
+        **(extra or {}),
+    })
 
     return sublime.expand_variables(value, variables)
 
@@ -265,15 +261,13 @@ class CliRunnerShowResultCommand(sublime_plugin.TextCommand):
         view.set_scratch(True)
         view.set_name(f'({now.strftime("%Y%m%d%H%M%S")}) {cmd}')
         view.assign_syntax(syntax)
-        view.settings().update(
-            {
-                self.VIEW_MARK: True,
-                "cli_runner.cmd": cmd,
-                "cli_runner.cwd": cwd,
-                "cli_runner.encoding": encoding,
-                "cli_runner.shell": shell,
-                "cli_runner.timestamp": now.timestamp(),
-            }
-        )
+        view.settings().update({
+            self.VIEW_MARK: True,
+            "cli_runner.cmd": cmd,
+            "cli_runner.cwd": cwd,
+            "cli_runner.encoding": encoding,
+            "cli_runner.shell": shell,
+            "cli_runner.timestamp": now.timestamp(),
+        })
 
         replace_view_text(view, output)
