@@ -1,0 +1,6 @@
+{
+    "disabled_capabilities": {
+        // prefer the ColorHelper plugin
+        "colorProvider": true,
+    },
+}

@@ -1,0 +1,6 @@
+{
+    "disabled_capabilities": {
+        // set to true if you don't want semantic highlighting
+        "semanticTokensProvider": true,
+    },
+}
