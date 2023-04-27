@@ -144,6 +144,9 @@
         "Grey"       : "var(Grey600)"       ,
         "BlueGrey"   : "var(BlueGrey600)"   ,
         // built-in
+        // do not use perfect black as it may be the same background color
+        // with the one used in "add_region()" and cause failing to
+        // change the foreground color
         "--background": "var(Black)",
         "--foreground": "var(White)",
         // "--accent": "var(White)",
@@ -235,9 +238,10 @@
         /////////
         // CSS //
         /////////
-        "phantom_css": "html { color: var(--foreground); --yellowish: #FFC966; --background: #262626; --bluish: #75ADE6; --foreground: #E8E8E8; --greenish: #A9D274; --redish: #FF6673; --orangish: #FC9569; background-color: transparent; --purplish: #BF94E6; } a { color: var(--bluish); } #inline-error .error a { color: var(--foreground); background-color: color(var(--redish) blend(var(--background) 30%)); font-size: 1rem; font-weight: normal; } #inline-error .error-arrow { border-left-color: color(var(--redish) blend(var(--background) 30%)); } #inline-error .error { background-color: color(var(--redish) blend(var(--background) 30%)); }",
-        "popup_css": "html { color: var(--foreground); --yellowish: #FFC966; --background: #262626; --bluish: #75ADE6; --foreground: #E8E8E8; --greenish: #A9D274; --redish: #FF6673; --orangish: #FC9569; background-color: color(var(--background) blend(#FFF 95%)); --purplish: #BF94E6; } a { color: var(--bluish); } html.light { background-color: color(var(--background) blend(#000 95%)); } #show-scope a { font-size: 1rem; } #show-scope { padding: 0.5rem; }",
-        "sheet_css": "html { color: var(--foreground); --yellowish: #FFC966; --background: #262626; --bluish: #75ADE6; --foreground: #E8E8E8; --greenish: #A9D274; --redish: #FF6673; --orangish: #FC9569; background-color: transparent; --purplish: #BF94E6; } a { color: var(--bluish); } #inline-error .error a { color: var(--foreground); background-color: color(var(--redish) blend(var(--background) 30%)); font-size: 1rem; font-weight: normal; } #inline-error .error-arrow { border-left-color: color(var(--redish) blend(var(--background) 30%)); } #inline-error .error { background-color: color(var(--redish) blend(var(--background) 30%)); }",
+        "phantom_css": "html { color: var(--foreground); --yellowish: #FFC966; --background: #080808; --bluish: #75ADE6; --foreground: #E8E8E8; --greenish: #A9D274; --redish: #FF6673; --orangish: #FC9569; background-color: color(var(--background) blend(#FFF 95%)); --purplish: #BF94E6; } a { color: var(--bluish); }",
+        "popup_css": "html { color: var(--foreground); --yellowish: #FFC966; --background: #282828; --bluish: #75ADE6; --foreground: #E8E8E8; --greenish: #A9D274; --redish: #FF6673; --orangish: #FC9569; background-color: color(var(--background) blend(#FFF 95%)); --purplish: #BF94E6; } a { color: var(--bluish); } html.light { background-color: color(var(--background) blend(#000 95%)); } #show-scope a { font-size: 1rem; } #show-scope { padding: 0.5rem; }",
+        // sheet is like a view, need special fg/bg colors for it
+        "sheet_css": "html { color: var(--foreground); --yellowish: #FFC966; --background: #282828; --bluish: #75ADE6; --foreground: #E8E8E8; --greenish: #A9D274; --redish: #FF6673; --orangish: #FC9569; background-color: color(var(--background) blend(#FFF 95%)); --purplish: #BF94E6; } a { color: var(--bluish); } html.light { background-color: color(var(--background) blend(#000 95%)); } #show-scope a { font-size: 1rem; } #show-scope { padding: 0.5rem; }",
     },
     "rules": [
         // hash style syntax highlight
@@ -247,6 +251,16 @@
             "foreground": ["var(BlueSaturated)", "var(GreenSaturated)", "var(RedSaturated)"],
         },
         */
+        {
+            "font_style": "bold",
+            "name": "Bold",
+            "scope": "markup.bold",
+        },
+        {
+            "font_style": "italic",
+            "name": "Italic",
+            "scope": "markup.italic",
+        },
         {
             "font_style": "underline",
             "name": "Underline",
@@ -279,6 +293,16 @@
             "scope": "constant.language",
         },
         {
+            "foreground": "var(Cyan200)",
+            "name": "Constant - true",
+            "scope": "constant.language.boolean.true",
+        },
+        {
+            "foreground": "var(Pink200)",
+            "name": "Constant - false",
+            "scope": "constant.language.boolean.false",
+        },
+        {
             "foreground": "var(DeepPurple300)",
             "name": "User-defined Constant",
             "scope": "constant.character | constant.other",
@@ -288,13 +312,16 @@
             "scope": "variable",
         },
         {
-            "font_style": "bold",
             "foreground": "var(Pink)",
             "name": "Keyword",
             "scope": "keyword",
         },
         {
-            "font_style": "bold",
+            "foreground": "var(Blue)",
+            "name": "Keyword - Declaration",
+            "scope": "keyword.declaration",
+        },
+        {
             "foreground": "var(Pink)",
             "name": "Storage",
             "scope": "storage",
@@ -306,7 +333,12 @@
             "scope": "storage.type",
         },
         {
-            "font_style": "bold",
+            "font_style": "italic",
+            "foreground": "var(Pink)",
+            "name": "Storage type annotation",
+            "scope": "storage.type.annotation",
+        },
+        {
             "foreground": "var(--foreground)",
             "name": "Class Name",
             "scope": "entity.name.class",
@@ -318,7 +350,6 @@
             "scope": "entity.other.inherited-class",
         },
         {
-            "font_style": "bold",
             "foreground": "var(LimeA700)",
             "name": "Function name",
             "scope": "entity.name.function",
@@ -335,13 +366,11 @@
             "scope": "variable.language",
         },
         {
-            "font_style": "bold",
             "foreground": "var(Pink)",
             "name": "Tag Name",
             "scope": "entity.name.tag",
         },
         {
-            "font_style": "bold",
             "foreground": "var(Green)",
             "name": "Tag Attribute",
             "scope": "entity.other.attribute-name",
@@ -394,13 +423,19 @@
             "name": "Access Operator",
             "scope": "punctuation.accessor",
         },
+        {
+            "foreground": "var(Pink)",
+            "name": "Annotation Punctuation",
+            "scope": "punctuation.definition.annotation",
+        },
         ////////////
         // Others //
         ////////////
         {
             "foreground": "var(Pink)",
-            "name": "JS - Arrow Function",
-            "scope": "storage.type.function.arrow.js",
+            "background": "var(Indigo900)",
+            "name": "Keyword (async)",
+            "scope": "keyword.declaration.async | storage.modifier.async | keyword.other.await | keyword.control.flow.await",
         },
         {
             "foreground": "var(DeepPurple300)",
@@ -413,9 +448,9 @@
             "scope": "meta.function-call.generic.python",
         },
         {
-            "foreground": "var(Pink)",
-            "name": "Python - Annotation Punctuation",
-            "scope": "punctuation.definition.annotation.python",
+            "foreground": "var(Green)",
+            "name": "Regex - Captured Group Name",
+            "scope": "entity.name.capture-group.regexp",
         },
         {
             "font_style": "italic",
@@ -424,25 +459,55 @@
             "scope": "variable.scss",
         },
         {
-            "font_style": "bold",
+            "foreground": "var(Pink)",
+            "name": "CSS - Unit",
+            "scope": "constant.numeric.suffix.css",
+        },
+        {
             "foreground": "var(Orange)",
             "name": "HTML - Other Tags",
             "scope": "entity.name.tag.other.html",
         },
         {
-            "font_style": "bold",
             "foreground": "var(Green)",
             "name": "Apache Conf - Tag",
             "scope": "entity.tag.apacheconf",
         },
         {
             "foreground": "var(Pink)",
-            "name": "Sublime Settings - JSON Key",
-            "scope": "meta.mapping.key.json string.quoted.double.json",
+            "name": "Sublime Settings - YAML/JSON/INI Key",
+            "scope": "meta.mapping.key string | meta.mapping.key variable.other.readwrite.git.config",
+        },
+        {
+            "foreground": "var(Green)",
+            "name": "Sublime Settings - JSON Key Namespace",
+            "scope": "keyword.other.namespace.sublime-settings",
+        },
+        {
+            "foreground": "var(--foreground)",
+            "name": "Sublime Settings - JSON Key Namespace Separator",
+            "scope": "punctuation.separator.namespace.sublime-settings",
         },
         //////////////
         // Markdown //
         //////////////
+        {
+            "font_style": "bold",
+            "foreground": "var(Green)",
+            "name": "Markdown - Bold",
+            "scope": "markup.bold.markdown",
+        },
+        {
+            "font_style": "italic",
+            "foreground": "var(Green)",
+            "name": "Markdown - Italic",
+            "scope": "markup.italic.markdown",
+        },
+        {
+            "foreground": "var(Green)",
+            "name": "Markdown - Inline",
+            "scope": "markup.raw.inline.markdown",
+        },
         {
             "name": "Markdown - Heading 1",
             "background": "color(var(Red) alpha(0.2))",
@@ -482,60 +547,87 @@
         {
             "foreground": "var(Red)",
             "name": "Markdown - List - Punctuation",
-            "scope": "markup.list.numbered.bullet.markdown | punctuation.definition.list_item.markdown",
+            "scope": "markup.list.numbered.bullet | punctuation.definition.list_item",
         },
         {
             "foreground": "var(Amber100)",
             "name": "Markdown - List - Paragraph",
-            "scope": "meta.paragraph.list.markdown",
+            "scope": "meta.paragraph.list",
         },
         {
             "foreground": "var(Blue)",
             "name": "Markdown - Link - Description",
-            "scope": "meta.link.inline.description.markdown | meta.link.reference.description.markdown",
+            "scope": "meta.link.inline.description | meta.link.reference.description",
         },
         {
             "foreground": "var(Teal300)",
             "name": "Markdown - Image - Description",
-            "scope": "meta.image.inline.description.markdown | meta.image.reference.description.markdown",
+            "scope": "meta.image.inline.description | meta.image.reference.description",
         },
         {
             "foreground": "var(Lime900)",
             "name": "Markdown - Link - href",
-            "scope": "markup.underline.link.markdown | markup.underline.link.image.markdown | markup.underline.link.markdown-gfm",
+            "scope": "markup.underline.link",
         },
         {
             "foreground": "var(Grey500)",
-            "name": "Markdown - Link/Image - Punctuation",
-            "scope": "punctuation.definition.image.begin.markdown | punctuation.definition.image.end.markdown | punctuation.definition.link.begin.markdown | punctuation.definition.link.end.markdown | punctuation.definition.metadata.begin.markdown | punctuation.definition.metadata.end.markdown",
-        },
-        {
-            "foreground": "var(Green)",
-            "name": "Markdown - Inline",
-            "scope": "markup.raw.inline.markdown",
-        },
-        {
-            "font_style": "bold",
-            "foreground": "var(Green)",
-            "name": "Markdown - Bold",
-            "scope": "markup.bold.markdown",
-        },
-        {
-            "font_style": "italic",
-            "foreground": "var(Green)",
-            "name": "Markdown - Italic",
-            "scope": "markup.italic.markdown",
+            "name": "Markdown - Punctuation",
+            "scope": "punctuation.definition.image.begin | punctuation.definition.image.end | punctuation.definition.link.begin | punctuation.definition.link.end | punctuation.definition.metadata.begin | punctuation.definition.metadata.end | punctuation.definition.raw.begin | punctuation.definition.raw.end | punctuation.definition.raw.code-fence.begin | punctuation.definition.raw.code-fence.end",
         },
         {
             "background": "color(var(White) alpha(0.02))",
             "foreground": "var(White) ",
             "name": "Markdown - Code-fence",
-            "scope": "markup.raw.code-fence.markdown-gfm",
+            "scope": "markup.raw.code-fence",
         },
         {
             "foreground": "var(Red)",
             "name": "Markdown - Table Separator",
-            "scope": "punctuation.separator.table-cell.markdown | punctuation.section.table-header.markdown",
+            "scope": "punctuation.separator.table-cell | punctuation.section.table-header",
+        },
+        //////////////////////////
+        // Groovy / Jenkinsfile //
+        //////////////////////////
+        {
+            "foreground": "var(--foreground)",
+            "name": "Groovy - Interpolation",
+            "scope": "source.groovy.embedded.source",
+        },
+        {
+            "foreground": "var(Green)",
+            "name": "Groovy - Method Name",
+            "scope": "meta.method.groovy",
+        },
+        {
+            "background": "var(BlackLighter)",
+            "name": "Groovy - Method Name",
+            "scope": "constant.other.key.groovy",
+        },
+        {
+            "foreground": "var(--foreground)",
+            "name": "Groovy - imported class name",
+            "scope": "storage.modifier.import.groovy",
+        },
+        {
+            "foreground": "var(Blue)",
+            "name": "Groovy - env variable",
+            "scope": "variable.language.env.groovy.jenkinsfile",
+        },
+        {
+            "foreground": "var(DeepPurple300)",
+            "background": "var(BlackLighter)",
+            "name": "Groovy - interpoloation variable",
+            "scope": "meta.variable.groovy",
+        },
+        {
+            "foreground": "var(--foreground)",
+            "name": "Groovy - interpoloation variable",
+            "scope": "string.quoted punctuation.definition.variable.begin | string.quoted punctuation.definition.variable.end",
+        },
+        {
+            "background": "var(BlackLighter)",
+            "name": "Groovy - Keywords",
+            "scope": "source.groovy.jenkinsfile keyword.context",
         },
         /////////
         // C++ //
@@ -552,7 +644,7 @@
             "scope": "variable.function.c | variable.function.c++ | variable.function.member.c++",
         },
         {
-            "font_style": "bold italic",
+            "font_style": "italic",
             "foreground": "var(Blue)",
             "name": "C++ - Typedef Type",
             "scope": "entity.name.type.typedef.c++",
@@ -566,7 +658,6 @@
             "scope": "source.php comment.block.documentation",
         },
         {
-            "font_style": "bold",
             "foreground": "var(Pink300)",
             "name": "PHP - PHPUnit Annotations",
             "scope": "keyword.other.phpunit.php",
@@ -577,39 +668,24 @@
             "scope": "keyword.operator.spread.php",
         },
         {
-            "foreground": "var(Pink200)",
-            "name": "PHP - Annotations",
-            "scope": "keyword.other.annotation.tag.php | keyword.other.annotation.object.php",
-        },
-        {
-            "foreground": "var(--foreground)",
-            "name": "PHP - Annotation Punctuations",
-            "scope": "punctuation.section.group",
-        },
-        {
-            "foreground": "var(--foreground)",
-            "name": "PHP - Annotation Parameter Separator",
-            "scope": "meta.comment.annotation.php punctuation.separator.php",
+            "foreground": "var(Pink)",
+            "name": "PHP - K/V Separator",
+            "scope": "punctuation.separator.key-value.php",
         },
         {
             "foreground": "var(Pink)",
-            "name": "PHP - Arrow Function Definition Punctuation",
-            "scope": "punctuation.definition.arrow-function.php",
-        },
-        {
-            "foreground": "var(Pink)",
-            "name": "PHP - Function Return Type Separator",
-            "scope": "meta.function.return-type.php punctuation.separator.php",
+            "name": "PHP - Just be pink please",
+            "scope": "storage.type.nullable.php | punctuation.separator.type.union.php | punctuation.separator.type.intersection.php | keyword.declaration.php | keyword.declaration.namespace.php | keyword.declaration.use.php | keyword.declaration.function.arrow.php | keyword.declaration.constant.php",
         },
         {
             "foreground": "var(--foreground)",
             "name": "PHP - Variable in Double Quotes",
-            "scope": "(string.quoted.double.php | string.regexp.double-quoted.php | string.unquoted.heredoc.php | meta.embedded.sql | meta.embedded.css | meta.embedded.js | meta.embedded.html) & (variable.other)",
+            "scope": "(string.quoted.double.php | string.regexp.double-quoted.php | string.unquoted.heredoc.php | meta.string.php | meta.embedded.sql | meta.embedded.css | meta.embedded.js | meta.embedded.html) & (variable.other)",
         },
         {
             "foreground": "var(Red200)",
             "name": "PHP - Special Variable in Double Quotes",
-            "scope": "(string.quoted.double.php | string.regexp.double-quoted.php | string.unquoted.heredoc.php | meta.embedded.sql | meta.embedded.css | meta.embedded.js | meta.embedded.html) & (variable.language.php)",
+            "scope": "(string.quoted.double.php | string.regexp.double-quoted.php | string.unquoted.heredoc.php | meta.string.php | meta.embedded.sql | meta.embedded.css | meta.embedded.js | meta.embedded.html) & (variable.language.php)",
         },
         {
             "foreground": "var(--foreground)",
@@ -617,18 +693,11 @@
             "scope": "string.quoted.double.php punctuation.definition.expression.php | string.unquoted.heredoc.php punctuation.definition.expression.php",
         },
         {
-            "font_style": "italic",
-            "foreground": "var(DeepPurple300)",
-            "name": "PHP - Constants",
-            "scope": "constant.language.boolean.php | constant.language.null.php",
-        },
-        {
             "foreground": "var(Blue)",
             "name": "PHP - RegExp - Modifier",
             "scope": "meta.regex.modifier.php",
         },
         {
-            "font_style": "bold",
             "foreground": "var(Green)",
             "name": "PHP - RegExp - Group Names",
             "scope": "entity.name.other.group.regexp | punctuation.definition.group.capture.begin.regexp | punctuation.definition.group.capture.end.regexp",
@@ -637,6 +706,14 @@
             "foreground": "var(Pink)",
             "name": "PHP - RegExp - Keyword Punctuations",
             "scope": "punctuation.definition.group.begin.regexp | punctuation.definition.group.end.regexp | punctuation.definition.character-class.begin.regexp | punctuation.definition.character-class.end.regexp",
+        },
+        /////////
+        // Lua //
+        /////////
+        {
+            "foreground": "var(Pink)",
+            "name": "Lua - key-value separator",
+            "scope": "punctuation.separator.key-value.lua",
         },
         ///////////
         // Shell //
@@ -655,12 +732,7 @@
         {
             "foreground": "var(DeepPurple300)",
             "name": "Shell - Variable",
-            "scope": "variable.other.normal.shell | variable.other.positional.shell | variable.other.bracket.shell | variable.other.special.shell | variable.other.loop.shell | variable.other.c-style.shell | variable.other.positional.shell | variable.other.readwrite.shell",
-        },
-        {
-            "foreground": "var(Cyan500)",
-            "name": "Shell - true/false",
-            "scope": "constant.language.boolean.shell",
+            "scope": "(source.shell | source.groovy) & variable.other",
         },
         {
             "foreground": "var(RedSaturated)",
@@ -727,32 +799,50 @@
             "name": "Shell - Variable Punctuation",
             "scope": "punctuation.definition.variable.shell | meta.group.expansion punctuation.section | meta.group.arithmetic.shell | meta.group.expansion.arithmetic.shell",
         },
+        {
+            "foreground": "var(--foreground)",
+            "name": "Shell - variable interpolation",
+            "scope": "string.quoted punctuation.definition.variable.shell | string.quoted punctuation.section.interpolation.begin | string.quoted punctuation.section.interpolation.end",
+        },
+        //////////////////
+        // Jinja / Twig //
+        //////////////////
+        {
+            "background": "color(var(Brown700) alpha(0.7))",
+            "name": "Jinja - Placeholder",
+            "scope": "meta.placeholder.jinja | meta.embedded.expression.jinja | meta.placeholder.twig",
+        },
+        {
+            "background": "color(var(Indigo900) alpha(0.7))",
+            "name": "Jinja - Placeholder",
+            "scope": "meta.statement.jinja | meta.embedded.statement.jinja | meta.statement.twig",
+        },
         ///////////////////
         // Diff (syntax) //
         ///////////////////
         {
             "foreground": "var(--foreground)",
-            "name": "diff.header",
+            "name": "Diff - Header",
             "scope": "punctuation.definition.separator.diff",
         },
         {
             "foreground": "var(Blue)",
-            "name": "diff.header",
+            "name": "Diff - Header",
             "scope": "meta.diff | meta.diff.header",
         },
         {
             "foreground": "var(Red)",
-            "name": "diff.deleted",
+            "name": "Diff - Deleted",
             "scope": "markup.deleted | punctuation.definition.deleted.diff",
         },
         {
             "foreground": "var(Green)",
-            "name": "diff.inserted",
+            "name": "Diff - Inserted",
             "scope": "markup.inserted | punctuation.definition.inserted.diff",
         },
         {
             "foreground": "var(Yellow)",
-            "name": "diff.changed",
+            "name": "Diff - Changed",
             "scope": "markup.changed | punctuation.definition.changed.diff",
         },
         {
@@ -811,18 +901,40 @@
         // INI //
         /////////
         {
-            "foreground": "var(Pink)",
+            "foreground": "var(--foreground)",
             "name": "INI punctuation: Assign",
             "scope": "punctuation.separator.mapping.key-value.ini",
+        },
+        ////////////////////
+        // Sublime Syntax //
+        ////////////////////
+        {
+            "foreground": "var(Yellow900)",
+            "name": "Sublime Syntax: scope separator",
+            "scope": "punctuation.separator.context-name.sublime-syntax",
+        },
+        /////////
+        // Log //
+        /////////
+        {
+            "background": "var(Red900)",
+            "scope": "markup.error.log",
+        },
+        {
+            "background": "var(Yellow900)",
+            "scope": "markup.warning.log",
+        },
+        {
+            "background": "var(Blue900)",
+            "scope": "markup.info.log",
+        },
+        {
+            "background": "var(Green900)",
+            "scope": "markup.debug.log",
         },
         //////////////////
         // ASS Subitlte //
         //////////////////
-        {
-            "background": "var(Brown800)",
-            "font_style": "bold",
-            "scope": "meta.section.ass",
-        },
         {
             "foreground": "var(Blue200)",
             "font_style": "italic",
@@ -830,12 +942,33 @@
         },
         {
             "foreground": "var(Orange600)",
-            "font_style": "bold",
             "scope": "entity.name.style.ass | variable.parameter.style.ass",
         },
         {
             "foreground": "var(PinkA100)",
             "scope": "string.unquoted.font.ass",
+        },
+        /////////
+        // PEM //
+        /////////
+        {
+            "foreground": "var(Red)",
+            "scope": "entity.name.section.pem",
+        },
+        {
+            "background": "color(var(Green) alpha(0.2))",
+            "scope": "punctuation.definition.section.begin.pem",
+        },
+        {
+            "background": "color(var(Blue) alpha(0.2))",
+            "scope": "punctuation.definition.section.end.pem",
+        },
+        /////////////////////
+        // Special Section //
+        /////////////////////
+        {
+            "background": "var(Indigo900)",
+            "scope": "meta.section.ass | meta.section.ini | meta.section.header",
         },
         ////////////////////////
         // BracketHighlighter //
@@ -894,6 +1027,12 @@
             "name": "Bracket Unmatched",
             "scope": "brackethighlighter.unmatched",
         },
+        {
+            "foreground": "var(Grey700)",
+            "name": "PEM Comment",
+            "scope": "text.pem -meta.block.pem",
+            "selection_foreground": "var(Grey600)",
+        },
         ///////////////////
         // sublimelinter //
         ///////////////////
@@ -911,6 +1050,53 @@
             "foreground": "var(--foreground)",
             "name": "SublimeLinter Gutter Mark",
             "scope": "sublimelinter.gutter-mark",
+        },
+        ///////////////////////////
+        // semantic highlihgting //
+        ///////////////////////////
+        {
+            // the background should be the same with color scheme's global background
+            "background": "#010101",
+            "name": "LSP semantic highlighting background color",
+            "scope": "meta.semantic-token",
+        },
+        {
+            "background": "var(Indigo900)",
+            "foreground": "var(Orange)",
+            "scope": "meta.semantic-token.macro",
+        },
+        ///////////////////
+        // RainbowIndent //
+        ///////////////////
+        {
+            "foreground": "color(var(Red) alpha(0.35))",
+            "background": "color(var(Red) alpha(0.2))",
+            "scope": "region.indent.0",
+        },
+        {
+            "foreground": "color(var(Green) alpha(0.35))",
+            "background": "color(var(Green) alpha(0.2))",
+            "scope": "region.indent.1",
+        },
+        {
+            "foreground": "color(var(Blue) alpha(0.35))",
+            "background": "color(var(Blue) alpha(0.2))",
+            "scope": "region.indent.2",
+        },
+        {
+            "foreground": "color(var(Orange) alpha(0.35))",
+            "background": "color(var(Orange) alpha(0.2))",
+            "scope": "region.indent.3",
+        },
+        {
+            "foreground": "color(var(Purple) alpha(0.35))",
+            "background": "color(var(Purple) alpha(0.2))",
+            "scope": "region.indent.4",
+        },
+        {
+            "foreground": "color(var(Cyan) alpha(0.35))",
+            "background": "color(var(Cyan) alpha(0.2))",
+            "scope": "region.indent.5",
         },
     ],
 }

@@ -2,7 +2,7 @@
 ---
 # http://www.sublimetext.com/docs/syntax.html
 name: Jenkinsfile
-# version: 2
+version: 2
 file_extensions:
   - Jenkinsfile
 scope: source.groovy.jenkinsfile
@@ -14,97 +14,287 @@ contexts:
 
   groovy-code:
     - meta_prepend: true
-    - include: bat-code
-    - include: shell-code
+    - include: special-vars
+    - include: block-keywords
+    - include: embedded-codes
+
+  map-keys:
+    - match: (\$?\w+)\s*(:)
+      captures:
+        1: constant.other.key.groovy
+        2: punctuation.definition.separator.key-value.groovy
+
+  special-vars:
+    - match: \b(env)\b
+      captures:
+        1: variable.language.env.groovy.jenkinsfile
 
   # ----------- #
   # new context #
   # ----------- #
 
-  bat-code:
-    - match: \b(bat)\s*(?=['"])
-      push:
-        - meta_content_scope: string.quoted.groovy.jenkinsfile
-        - match: "'''"
-          scope: punctuation.definition.string.begin.groovy.jenkinsfile
-          embed: scope:source.dosbatch
-          escape: "'''"
-          escape_captures:
-            0: string.quoted.groovy.jenkinsfile punctuation.definition.string.end.groovy.jenkinsfile
-        - match: '"""'
-          scope: punctuation.definition.string.begin.groovy.jenkinsfile
-          embed: scope:source.dosbatch
-          escape: '"""'
-          escape_captures:
-            0: string.quoted.groovy.jenkinsfile punctuation.definition.string.end.groovy.jenkinsfile
-        - match: "'"
-          scope: punctuation.definition.string.begin.groovy.jenkinsfile
-          push:
-            - match: (')\s*$
-              captures:
-                1: punctuation.definition.string.end.groovy.jenkinsfile
-              pop: 1
-            - match: ''
-              push: scope:source.dosbatch
-              with_prototype:
-                - match: (?=(')\s*$)
-                  pop: 1
-        - match: '"'
-          scope: punctuation.definition.string.begin.groovy.jenkinsfile
-          push:
-            - match: (")\s*$
-              captures:
-                1: punctuation.definition.string.end.groovy.jenkinsfile
-              pop: 1
-            - match: ''
-              push: scope:source.dosbatch
-              with_prototype:
-                - match: (?=(")\s*$)
-                  pop: 1
-        - include: pop-else
+  # @see https://www.jenkins.io/doc/book/pipeline/syntax/
+  block-keywords:
+    - match: \b(pipeline)\s*(?=\{)
+      captures:
+        1: keyword.context.root.groovy.jenkinsfile
+    - match: \b(agent|post|stages|steps)\s*(?=\{)
+      captures:
+        1: keyword.context.section.groovy.jenkinsfile
+    - match: \b(node|dockerfile)\s*(?=\{)
+      captures:
+        1: keyword.context.agent.groovy.jenkinsfile
+    - match: \b(environment|options|parameters|triggers|stage|tools|input|when)\s*(?=\{)
+      captures:
+        1: keyword.context.directive.groovy.jenkinsfile
+    - match: \b(axes|axis|exclude|excludes)\s*(?=\{)
+      captures:
+        1: keyword.context.matrix.groovy.jenkinsfile
+    - match: \b(script|parallel)\s*(?=\{)
+      captures:
+        1: keyword.context.step.groovy.jenkinsfile
+    - match: \b(not|allOf|anyOf|expression)\s*(?=\{)
+      captures:
+        1: keyword.context.when-condition.groovy.jenkinsfile
+    - match: \b(always|changed|fixed|regression|aborted|failure|success|unstable|unsuccessful|cleanup)\s*(?=\{)
+      captures:
+        1: keyword.context.post-condition.groovy.jenkinsfile
 
-  shell-code:
+  embedded-codes:
+    - include: embedded-bat
+    - include: embedded-shell
+    - include: embedded-powershell
+    - include: embedded-yaml
+
+  embedded-bat:
+    - match: \b(bat)\s*(?=['"])
+      captures:
+        1: support.function.bat.groovy.jenkinsfile
+      push: embedded-bat-in
+
+  embedded-bat-in:
+    - match: (?=''')
+      set:
+        - meta_content_scope: meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+        - match: "'''"
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.dosbatch
+          escape: "'''"
+          escape_captures:
+            0:
+              meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+              punctuation.definition.string.end.groovy.jenkinsfile
+        - include: pop-else
+    - match: (?=""")
+      set:
+        - meta_content_scope: meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+        - match: '"""'
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.dosbatch
+          escape: '"""'
+          escape_captures:
+            0:
+              meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+              punctuation.definition.string.end.groovy.jenkinsfile
+        - include: pop-else
+    - match: "'"
+      scope: punctuation.definition.string.begin.groovy.jenkinsfile
+      set:
+        - meta_scope: meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+        - match: (')(?=\s*$)
+          scope: punctuation.definition.string.end.groovy.jenkinsfile
+          pop: 1
+        - match: ''
+          push: scope:source.dosbatch
+          with_prototype:
+            - match: (?="\s*$)
+              pop: 1
+    - match: '"'
+      scope: punctuation.definition.string.begin.groovy.jenkinsfile
+      set:
+        - meta_scope: meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+        - match: (")(?=\s*$)
+          scope: punctuation.definition.string.end.groovy.jenkinsfile
+          pop: 1
+        - match: ''
+          push: scope:source.dosbatch
+          with_prototype:
+            - match: (?="\s*$)
+              pop: 1
+
+  embedded-shell:
     - match: \b(sh)\s*(?=['"])
-      push:
-        - meta_content_scope: string.quoted.groovy.jenkinsfile
+      captures:
+        1: support.function.sh.groovy.jenkinsfile
+      push: embedded-shell-in
+    - match: (?=(?:'''|""")#!/usr/bin/env +(?=bash|sh|zsh))
+      push: embedded-shell-in
+
+  embedded-shell-in:
+    - match: (?=''')
+      set:
+        - meta_content_scope: meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
         - match: "'''"
           scope: punctuation.definition.string.begin.groovy.jenkinsfile
           embed: scope:source.shell.bash
           escape: "'''"
           escape_captures:
-            0: string.quoted.groovy.jenkinsfile punctuation.definition.string.end.groovy.jenkinsfile
+            0:
+              meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+              punctuation.definition.string.end.groovy.jenkinsfile
+        - include: pop-else
+    - match: (?=""")
+      set:
+        - meta_content_scope: meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
         - match: '"""'
           scope: punctuation.definition.string.begin.groovy.jenkinsfile
           embed: scope:source.shell.bash
           escape: '"""'
           escape_captures:
-            0: string.quoted.groovy.jenkinsfile punctuation.definition.string.end.groovy.jenkinsfile
-        - match: "'"
-          scope: punctuation.definition.string.begin.groovy.jenkinsfile
-          push:
-            - match: (')\s*$
-              captures:
-                1: punctuation.definition.string.end.groovy.jenkinsfile
-              pop: 1
-            - match: ''
-              push: scope:source.shell.bash
-              with_prototype:
-                - match: (?=(')\s*$)
-                  pop: 1
-        - match: '"'
-          scope: punctuation.definition.string.begin.groovy.jenkinsfile
-          push:
-            - match: (")\s*$
-              captures:
-                1: punctuation.definition.string.end.groovy.jenkinsfile
-              pop: 1
-            - match: ''
-              push: scope:source.shell.bash
-              with_prototype:
-                - match: (?=(")\s*$)
-                  pop: 1
+            0:
+              meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+              punctuation.definition.string.end.groovy.jenkinsfile
         - include: pop-else
+    # ERROR: Apparent recursion within a with_prototype action: 25oo0 context sanity limit hit
+    # - match: "'"
+    #   scope: punctuation.definition.string.begin.groovy.jenkinsfile
+    #   set:
+    #     - meta_scope: meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+    #     - match: (')(?=\s*$)
+    #       scope: punctuation.definition.string.end.groovy.jenkinsfile
+    #       pop: 1
+    #     - match: ''
+    #       push: scope:source.shell.bash
+    #       with_prototype:
+    #         - match: (?='\s*$)
+    #           pop: 1
+    # - match: '"'
+    #   scope: punctuation.definition.string.begin.groovy.jenkinsfile
+    #   set:
+    #     - meta_scope: meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+    #     - match: (")(?=\s*$)
+    #       scope: punctuation.definition.string.end.groovy.jenkinsfile
+    #       pop: 1
+    #     - match: ''
+    #       push: scope:source.shell.bash
+    #       with_prototype:
+    #         - match: (?="\s*$)
+    #           pop: 1
+
+  embedded-powershell:
+    - match: \b(powershell)\s*(?=['"])
+      captures:
+        1: support.function.powershell.groovy.jenkinsfile
+      push: embedded-powershell-in
+
+  embedded-powershell-in:
+    - match: (?=''')
+      set:
+        - meta_content_scope: meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+        - match: "'''"
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.powershell
+          escape: "'''"
+          escape_captures:
+            0:
+              meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+              punctuation.definition.string.end.groovy.jenkinsfile
+        - include: pop-else
+    - match: (?=""")
+      set:
+        - meta_content_scope: meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+        - match: '"""'
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.powershell
+          escape: '"""'
+          escape_captures:
+            0:
+              meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+              punctuation.definition.string.end.groovy.jenkinsfile
+        - include: pop-else
+    - match: "'"
+      scope: punctuation.definition.string.begin.groovy.jenkinsfile
+      set:
+        - meta_scope: meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+        - match: (')(?=\s*$)
+          scope: punctuation.definition.string.end.groovy.jenkinsfile
+          pop: 1
+        - match: ''
+          push: scope:source.powershell
+          with_prototype:
+            - match: (?='\s*$)
+              pop: 1
+    - match: '"'
+      scope: punctuation.definition.string.begin.groovy.jenkinsfile
+      set:
+        - meta_scope: meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+        - match: (")(?=\s*$)
+          scope: punctuation.definition.string.end.groovy.jenkinsfile
+          pop: 1
+        - match: ''
+          push: scope:source.powershell
+          with_prototype:
+            - match: (?="\s*$)
+              pop: 1
+
+  embedded-yaml:
+    - match: \b(yaml)\s*(?=['"])
+      captures:
+        1: support.function.yaml.groovy.jenkinsfile
+      push: embedded-yaml-in
+    - match: (?=(?:'''|""")%YAML\s+\d+\.\d+)
+      push: embedded-yaml-in
+
+  embedded-yaml-in:
+    - match: (?=''')
+      set:
+        - meta_content_scope: meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+        - match: "'''"
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.yaml
+          escape: "'''"
+          escape_captures:
+            0:
+              meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+              punctuation.definition.string.end.groovy.jenkinsfile
+        - include: pop-else
+    - match: (?=""")
+      set:
+        - meta_content_scope: meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+        - match: '"""'
+          scope: punctuation.definition.string.begin.groovy.jenkinsfile
+          embed: scope:source.yaml
+          escape: '"""'
+          escape_captures:
+            0:
+              meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+              punctuation.definition.string.end.groovy.jenkinsfile
+        - include: pop-else
+    - match: "'"
+      scope: punctuation.definition.string.begin.groovy.jenkinsfile
+      set:
+        - meta_scope: meta.string.groovy.jenkinsfile string.quoted.single.groovy.jenkinsfile
+        - match: (')(?=\s*$)
+          scope: punctuation.definition.string.end.groovy.jenkinsfile
+          pop: 1
+        - match: ''
+          push: scope:source.yaml
+          with_prototype:
+            - match: (?='\s*$)
+              pop: 1
+    - match: '"'
+      scope: punctuation.definition.string.begin.groovy.jenkinsfile
+      set:
+        - meta_scope: meta.string.groovy.jenkinsfile string.quoted.double.groovy.jenkinsfile
+        - match: (")(?=\s*$)
+          scope: punctuation.definition.string.end.groovy.jenkinsfile
+          pop: 1
+        - match: ''
+          push: scope:source.yaml
+          with_prototype:
+            - match: (?="\s*$)
+              pop: 1
 
   pop-else:
-    - match: (?=\S)
+    - match: ''
       pop: 1

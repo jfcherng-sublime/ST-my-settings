@@ -12,8 +12,19 @@ variables:
   hours_minutes_seconds: (?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)
   error: \b(?i:fail(?:ure|ed)?|error|exception|fatal|critical)\b
   warning: \b(?i:warn(?:ing)?)\b
-  info: \b(?i:info)\b
+  info: \b(?i:info|notice)\b
   debug: \b(?i:debug)\b
+
+  # -------- #
+  # jfcherng #
+  # -------- #
+
+  # 2023-04-25T07:28:46.111+00:00
+  # 2023-04-25T07:28:46+00:00
+  # 2023-04-25T07:28:46Z
+  # 2023-04-25 07:28:46Z (not really ISO 8601 but is common)
+  time_iso_8601: '\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}(\.\d+)?(?:Z|[+-]\d{2}:\d{2})'
+
 contexts:
   main:
     - include: log_level_lines
@@ -89,6 +100,8 @@ contexts:
     - include: main_without_log_level_line
     - include: pop_at_eol
   dates:
+    - match: \b({{time_iso_8601}})\b
+      scope: meta.date.log meta.number.integer.decimal.log constant.numeric.value.log
     - match: \b\d{4}-\d{2}-\d{2}(?=\b|T)
       scope: meta.date.log meta.number.integer.decimal.log constant.numeric.value.log
       push: maybe_date_time_separator
@@ -188,7 +201,7 @@ contexts:
       pop: 1
   # by jfcherng
   booleans:
-    - match: \b(?i:true)\b
+    - match: \b(?i:true|yes)\b
       scope: constant.language.boolean.true.log
-    - match: \b(?i:false)\b
+    - match: \b(?i:false|no(?!\.))\b
       scope: constant.language.boolean.false.log

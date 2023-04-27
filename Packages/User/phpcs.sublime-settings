@@ -2,7 +2,7 @@
     // Plugin settings
 
     // Turn the debug output on/off
-    "show_debug": true,
+    "show_debug": false,
 
     // Which file types (file extensions), do you want the plugin to
     // execute for
@@ -84,7 +84,7 @@
     "php_cs_fixer_show_quick_panel": false,
 
     // Path to where you have the php-cs-fixer installed
-    "php_cs_fixer_executable_path": "${st_packages_path}/User/my_bin/php-cs-fixer.phar",
+    "php_cs_fixer_executable_path": "php-cs-fixer",
 
     // Additional arguments you can specify into the application
     "php_cs_fixer_additional_args": {
@@ -92,7 +92,13 @@
         "--allow-risky": "yes",
         "--rules": [
             ["@PHP71Migration", true],
+            ["@PHP71Migration:risky", true],
             ["@PHP73Migration", true],
+            ["@PHP74Migration", true],
+            ["@PHP74Migration:risky", true],
+            ["@PHP80Migration", true],
+            ["@PHP80Migration:risky", true],
+            ["@PHP81Migration", false],
             ["@PhpCsFixer", true],
             ["@PhpCsFixer:risky", true],
             ["@PSR12", true],
@@ -145,6 +151,8 @@
             ["strict_comparison", false],
             ["strict_param", false],
             ["string_line_ending", true],
+            ["trailing_comma_in_multiline", { "after_heredoc": true, "elements": ["arrays", "arguments"] }],
+            ["types_spaces", {"space_multiple_catch": "single"}],
             ["yoda_style", false]
         ]
     },
@@ -177,7 +185,7 @@
     "phpcs_linter_run": false,
 
     // Execute the linter on file save
-    "phpcs_linter_command_on_save": true,
+    "phpcs_linter_command_on_save": false,
 
     // It seems python/sublime cannot always find the php application
     // If empty, then use PATH version of php, else use the set value
@@ -192,7 +200,7 @@
     "phpmd_run": false,
 
     // Execute the phpmd on file save
-    "phpmd_command_on_save": true,
+    "phpmd_command_on_save": false,
 
     // It seems python/sublime cannot always find the phpmd application
     // If empty, then use PATH version of phpmd, else use the set value

@@ -53,5 +53,16 @@
     // - `allow_scanning`: This is an easy way to disable just scanning within a certain ruleset. Defaults to `true`.
     //
     //.- `enable`:         This can be used to disable a color rule entirely. Defaults to `true`.
-    "user_color_rules": [],
+    "user_color_rules": [
+        {
+            "name": "XML",
+            "base_scopes": ["text.xml"],
+            "color_class": "css-level-4",
+            "scanning": [
+                "text.xml -meta.tag.xml -comment -string, string.unquoted.cdata.xml",
+                // C# application config files (jfcherng)
+                "text.xml.config string.quoted.double.xml",
+            ]
+        },
+    ],
 }

@@ -1,0 +1,8 @@
+{
+    "initializationOptions": {
+        "settings": {
+            "lint.ignore": ["F403", "E402"],
+            "lint.preview": true,
+        },
+    },
+}

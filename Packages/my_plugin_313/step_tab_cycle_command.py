@@ -8,6 +8,7 @@ Keybinding example:
 // go to the next tab sheet
 { "keys": ["ctrl+super+l"], "command": "step_tab_cycle", "args": { "steps": 1 } },
 """
+
 from __future__ import annotations
 
 import sublime_plugin
