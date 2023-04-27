@@ -1,11 +1,28 @@
+# auto generated or unimportant
 /Backup/
 /Cache/
+/Crash Reports/
 /Index/
+/KEEPME
+/Lib/
 /Local/
 /Log/
+/Trash/
 
 # LSP
 /Package Storage/
 
+# secrets
+*.sublime-license
+*.sublime_license
+
+# script temp
+*_cache/
 .Sublime-Official-Packages/
-/KEEPME
+docs/
+
+# venv
+.venv-*/
+.venv/
+venv-*/
+venv/
