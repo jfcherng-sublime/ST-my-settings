@@ -32,8 +32,10 @@ contexts:
         - include: value
         - include: error
   boolean:
-    - match: (?:true|false)(?=\s|\n)
-      scope: constant.language.boolean.d2
+    - match: false(?=\s|\n)
+      scope: constant.language.boolean.false.d2
+    - match: true(?=\s|\n)
+      scope: constant.language.boolean.true.d2
   debug:
     - match: .*invalid\.illegal.*
       scope: invalid.illegal

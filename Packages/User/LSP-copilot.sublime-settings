@@ -1,0 +1,8 @@
+{
+    "settings": {
+        "auto_ask_completions": true,
+        "commit_completion_on_tab": false,
+        "hook_to_auto_complete_command": true,
+        // "completion_style": "phantom",
+    },
+}
