@@ -3,7 +3,6 @@ import sublime_plugin
 import os
 import sys
 import subprocess
-import locale
 
 if os.name == 'nt':
     try:
@@ -12,14 +11,13 @@ if os.name == 'nt':
         import winreg as _winreg
     from ctypes import windll, create_unicode_buffer
 
+
 class NotFoundError(Exception):
     pass
 
 
-if sys.version_info >= (3,):
-    installed_dir, _ = __name__.split('.')
-else:
-    installed_dir = os.path.basename(os.getcwd())
+INSTALLED_DIR = __name__.split('.')[0]
+
 
 def get_setting(key, default=None):
     settings = sublime.load_settings('Terminal.sublime-settings')
@@ -33,16 +31,68 @@ def get_setting(key, default=None):
     return os_specific_settings.get(key, settings.get(key, default))
 
 
+def powershell(package_dir):
+    # This mimics the default powershell colors since calling
+    # subprocess.POpen() ends up acting like launching powershell
+    # from cmd.exe. Normally the size and color are inherited
+    # from cmd.exe, but this creates a custom mapping, and then
+    # the LaunchPowerShell.bat file adjusts some other settings.
+    key_string = 'Console\\%SystemRoot%_system32_WindowsPowerShell_v1.0_powershell.exe'
+    try:
+        key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER, key_string)
+    except (WindowsError):
+        key = _winreg.CreateKey(_winreg.HKEY_CURRENT_USER, key_string)
+        _winreg.SetValueEx(key, 'ColorTable05', 0, _winreg.REG_DWORD, 5645313)
+        _winreg.SetValueEx(key, 'ColorTable06', 0, _winreg.REG_DWORD, 15789550)
+    default = os.path.join(package_dir, 'PS.bat')
+    sublime_terminal_path = os.path.join(
+        sublime.packages_path(), INSTALLED_DIR)
+    # This should turn the path into an 8.3-style path,
+    # getting around unicode issues and spaces
+    buf = create_unicode_buffer(512)
+    if windll.kernel32.GetShortPathNameW(sublime_terminal_path, buf, len(buf)):
+        sublime_terminal_path = buf.value
+    os.environ['sublime_terminal_path'] = sublime_terminal_path.replace(' ', '` ')
+
+    return default
+
+
+def linux_terminal():
+    ps = 'ps -eo comm,args | grep -E "^(gnome-session|ksmserver|xfce4-session|lxsession|lxqt-session|mate-panel|cinnamon-sessio)" | grep -v grep'  # noqa: E501
+    wm = [x.replace("\n", '') for x in os.popen(ps)]
+    if wm:
+        # elementary OS: `/usr/lib/gnome-session/gnome-session-binary --session=pantheon`
+        # Gnome: `gnome-session` or `gnome-session-binary`
+        # Linux Mint Cinnamon: `cinnamon-sessio cinnamon-session --session cinnamon`
+        if wm[0].startswith('gnome-session') or wm[0].startswith('cinnamon-sessio'):
+            if 'pantheon' in wm[0]:
+                return 'pantheon-terminal'
+            return 'gnome-terminal'
+        if wm[0].startswith('xfce4-session'):
+            return 'xfce4-terminal'
+        if wm[0].startswith('ksmserver'):
+            return 'konsole'
+        if wm[0].startswith('lxsession'):
+            return 'lxterminal'
+        if wm[0].startswith('lxqt-session'):
+            return 'qterminal'
+        if wm[0].startswith('mate-panel'):
+            return 'mate-terminal'
+
+    # nothing specific found, return a default
+    return 'xterm'
+
+
 class TerminalSelector():
     default = None
 
     @staticmethod
-    def get():
-        package_dir = os.path.join(sublime.packages_path(), installed_dir)
-        terminal = get_setting('terminal')
+    def get(terminal_key):
+        package_dir = os.path.join(sublime.packages_path(), INSTALLED_DIR)
+        terminal = get_setting(terminal_key)
         if terminal:
-            dir, executable = os.path.split(terminal)
-            if not dir:
+            path, executable = os.path.split(terminal)
+            if not path:
                 joined_terminal = os.path.join(package_dir, executable)
                 if os.path.exists(joined_terminal):
                     terminal = joined_terminal
@@ -57,7 +107,7 @@ class TerminalSelector():
 
         if os.name == 'nt':
             # Windows Terminal
-            wt = os.path.join(os.environ['LOCALAPPDATA'], 'Microsoft', 'WindowsApps', 'wt.exe')
+            wt = os.environ['LOCALAPPDATA'] + R'\Microsoft\WindowsApps\wt.exe'
             # git-bash
             git_shells = {
                 'git-bash-x64': os.environ['ProgramFiles'] + R'\Git\git-bash.exe',
@@ -73,33 +123,9 @@ class TerminalSelector():
                 default = git_shells['git-bash-x86']
             elif os.path.isfile(git_shells['git-bash-local']):
                 default = git_shells['git-bash-local']
-            elif os.path.isfile(os.environ['SYSTEMROOT'] +
-                    R'\System32\WindowsPowerShell\v1.0\powershell.exe'):
-                # This mimics the default powershell colors since calling
-                # subprocess.POpen() ends up acting like launching powershell
-                # from cmd.exe. Normally the size and color are inherited
-                # from cmd.exe, but this creates a custom mapping, and then
-                # the LaunchPowerShell.bat file adjusts some other settings.
-                key_string = R'Console\%SystemRoot%_system32_WindowsPowerShell_v1.0_powershell.exe'
-                try:
-                    key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER,
-                        key_string)
-                except (WindowsError):
-                    key = _winreg.CreateKey(_winreg.HKEY_CURRENT_USER,
-                        key_string)
-                    _winreg.SetValueEx(key, 'ColorTable05', 0,
-                        _winreg.REG_DWORD, 5645313)
-                    _winreg.SetValueEx(key, 'ColorTable06', 0,
-                        _winreg.REG_DWORD, 15789550)
-                default = os.path.join(package_dir, 'PS.bat')
-                sublime_terminal_path = os.path.join(sublime.packages_path(), installed_dir)
-                # This should turn the path into an 8.3-style path, getting around unicode
-                # issues and spaces
-                buf = create_unicode_buffer(512)
-                if windll.kernel32.GetShortPathNameW(sublime_terminal_path, buf, len(buf)):
-                    sublime_terminal_path = buf.value
-                os.environ['sublime_terminal_path'] = sublime_terminal_path.replace(' ', '` ')
-            else :
+            elif os.path.isfile(os.environ['SYSTEMROOT'] + R'\System32\WindowsPowerShell\v1.0\powershell.exe'):
+                default = powershell(package_dir)
+            else:
                 default = os.environ['SYSTEMROOT'] + R'\System32\cmd.exe'
 
         elif sys.platform == 'darwin':
@@ -108,27 +134,7 @@ class TerminalSelector():
                 os.chmod(default, 0o755)
 
         else:
-            ps = 'ps -eo comm,args | grep -E "^(gnome-session|ksmserver|' + \
-                'xfce4-session|lxsession|lxqt-session|mate-panel|cinnamon-sessio)" | grep -v grep'
-            wm = tuple(x.replace("\n", '') for x in os.popen(ps))
-            if wm:
-                if wm[0].startswith('gnome-session') or wm[0].startswith('cinnamon-sessio'):
-                    if 'pantheon' in wm[0]:
-                        default = 'pantheon-terminal'
-                    else:
-                        default = 'gnome-terminal'
-                elif wm[0].startswith('lxsession'):
-                    default = 'lxsession-default-terminal'
-                elif wm[0].startswith('lxqt-session'):
-                    default = 'qterminal'
-                elif wm[0].startswith('xfce4-session'):
-                    default = 'xfce4-terminal'
-                elif wm[0].startswith('ksmserver'):
-                    default = 'konsole'
-                elif wm[0].startswith('mate-panel'):
-                    default = 'mate-terminal'
-            if not default:
-                default = 'xterm'
+            default = linux_terminal()
 
         TerminalSelector.default = default
         return default
@@ -136,33 +142,30 @@ class TerminalSelector():
 
 class TerminalCommand():
     def get_path(self, paths):
+        view = self.window.active_view()
+
         if paths:
+            # a path has been passed to the command (ie. a context)
             return paths[0]
-        # DEV: On ST3, there is always an active view.
-        #   Be sure to check that it's a file with a path (not temporary view)
-        elif self.window.active_view() and self.window.active_view().file_name():
-            return self.window.active_view().file_name()
-        elif self.window.folders():
+
+        if view and view.file_name():
+            # check that the file actually exists on disk
+            return view.file_name()
+
+        if self.window.folders():
+            # default to the first project directory, if it exists
             return self.window.folders()[0]
-        else:
-            sublime.error_message('Terminal: No place to open terminal to')
-            return False
 
-    def run_terminal(self, dir_, parameters):
+        # finally fall back to the user home directory
+        sublime.status_message('Terminal: opening at home directory')
+        return os.path.expanduser('~')
+
+    def open_terminal(self, location, terminal, parameters):
         try:
-            if not dir_:
-                raise NotFoundError('The file open in the selected view has ' +
-                    'not yet been saved')
             for k, v in enumerate(parameters):
-                parameters[k] = v.replace('%CWD%', dir_)
-            args = [TerminalSelector.get()]
+                parameters[k] = v.replace('%CWD%', location)
+            args = [TerminalSelector.get(terminal)]
             args.extend(parameters)
-
-            encoding = locale.getpreferredencoding(do_setlocale=True)
-            if sys.version_info >= (3,):
-                cwd = dir_
-            else:
-                cwd = dir_.encode(encoding)
 
             # Copy over environment settings onto parent environment
             env_setting = get_setting('env', {})
@@ -173,32 +176,29 @@ class TerminalCommand():
                 else:
                     env[k] = env_setting[k]
 
-            # Normalize environment settings for ST2
-            # https://github.com/wbond/sublime_terminal/issues/154
-            # http://stackoverflow.com/a/4987414
-            for k in env:
-                if not isinstance(env[k], str):
-                    if isinstance(env[k], unicode):
-                        env[k] = env[k].encode('utf8')
-                    else:
-                        print('Unsupported environment variable type. Expected "str" or "unicode"', env[k])
-
             # Run our process
-            subprocess.Popen(args, cwd=cwd, env=env)
+            subprocess.Popen(args, cwd=location, env=env)
 
         except (OSError) as exception:
             print(str(exception))
-            sublime.error_message('Terminal: The terminal ' +
-                TerminalSelector.get() + ' was not found')
+            sublime.error_message('Terminal: The terminal ' + TerminalSelector.get(terminal) + ' was not found')
         except (Exception) as exception:
             sublime.error_message('Terminal: ' + str(exception))
 
 
 class OpenTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
-    def run(self, paths=[], parameters=None):
+    def is_visible(self, paths=[]):
+        # remove the command if the view doesn't have a path to open at
+        # taking is_visible over is_enabled to remove it from the context menu,
+        # instead of simply disabling the entry
+        view = self.window.active_view()
+        return bool(view and view.file_name() or paths)
+
+    def run(self, paths=[], parameters=None, terminal=None):
         path = self.get_path(paths)
-        if not path:
-            return
+
+        if terminal is None:
+            terminal = 'terminal'
 
         if parameters is None:
             parameters = get_setting('parameters', [])
@@ -206,19 +206,24 @@ class OpenTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
         if os.path.isfile(path):
             path = os.path.dirname(path)
 
-        self.run_terminal(path, parameters)
+        self.open_terminal(path, terminal, parameters)
 
 
-class OpenTerminalProjectFolderCommand(sublime_plugin.WindowCommand,
-        TerminalCommand):
+class OpenTerminalProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCommand):
+    def is_visible(self):
+        # remove the command if the current window doesn't have directories
+        # i.e. it's a single file (use the other command)
+        # is_visible and is_enabled effectively do the same thing here
+        return bool(self.window.folders())
+
     def run(self, paths=[], parameters=None):
         path = self.get_path(paths)
         if not path:
             return
 
-        # DEV: We require separator to be appended since `/hello` and `/hello-world`
-        #   would both match a file in `/hello` without it
-        #   For more info, see https://github.com/wbond/sublime_terminal/issues/86
+        # We require separator to be appended since /hello and /hello-world
+        # would both match a file in `/hello` without it
+        # See https://github.com/wbond/sublime_terminal/issues/86
         folders = [x for x in self.window.folders() if path.find(x + os.sep) == 0][0:1]
 
         command = OpenTerminalCommand(self.window)
