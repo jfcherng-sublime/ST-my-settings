@@ -1,7 +1,8 @@
+from __future__ import annotations
+
 import functools
 import re
 from dataclasses import dataclass
-from typing import Optional
 
 import sublime
 import sublime_plugin
@@ -9,9 +10,9 @@ import sublime_plugin
 
 @dataclass
 class FindReplacePair:
-    find: Optional[str] = None
-    replace: Optional[str] = None
-    flags: Optional[str] = None
+    find: str | None = None
+    replace: str | None = None
+    flags: str | None = None
 
 
 class FindAndReplaceCommand(sublime_plugin.WindowCommand):
@@ -23,9 +24,9 @@ class FindAndReplaceCommand(sublime_plugin.WindowCommand):
 
     def run(
         self,
-        find: Optional[str] = None,
-        replace: Optional[str] = None,
-        flags: Optional[str] = None,
+        find: str | None = None,
+        replace: str | None = None,
+        flags: str | None = None,
     ) -> None:
         fr = FindReplacePair(find, replace, flags)
         self._ask_attr_and_replace(fr)

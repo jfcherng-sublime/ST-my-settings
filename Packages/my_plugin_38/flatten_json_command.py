@@ -1,12 +1,14 @@
+from __future__ import annotations
+
 import json
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import sublime
 import sublime_plugin
 
 
-def flatten_dict(data: Dict[Any, Any], *, sep: str = ".", prefix: str = "") -> Dict[str, Any]:
-    result: Dict[str, Any] = {}
+def flatten_dict(data: dict[Any, Any], *, sep: str = ".", prefix: str = "") -> dict[str, Any]:
+    result: dict[str, Any] = {}
     for key, value in data.items():
         key = f"{prefix}{key}"
         if isinstance(value, dict):
@@ -22,7 +24,7 @@ class FlattenJsonCommand(sublime_plugin.TextCommand):
         edit: sublime.Edit,
         *,
         ensure_ascii: bool = False,
-        pretty: Optional[Union[int, str]] = "\t",
+        pretty: int | str | None = "\t",
         sep: str = ".",
     ) -> None:
         if len(sel := self.view.sel()) != 1:
@@ -50,12 +52,12 @@ class FlattenJsonCommand(sublime_plugin.TextCommand):
         self,
         *,
         ensure_ascii: bool = False,
-        pretty: Optional[Union[int, str]] = "\t",
-    ) -> Dict[str, Any]:
-        args: Dict[str, Any] = {
+        pretty: int | str | None = "\t",
+    ) -> dict[str, Any]:
+        args: dict[str, Any] = {
             "ensure_ascii": ensure_ascii,
             "indent": pretty,
         }
-        if pretty is None:
+        if not pretty:
             args["separators"] = (",", ":")
         return args

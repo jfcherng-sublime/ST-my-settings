@@ -1,4 +1,4 @@
-from typing import Tuple
+from __future__ import annotations
 
 import sublime
 import sublime_plugin
@@ -9,7 +9,7 @@ class ToggleAllInlineDiffsCommand(sublime_plugin.TextCommand):
 
     def run(self, edit: sublime.Edit) -> None:
         sel = self.view.sel()
-        regions_backup: Tuple[sublime.Region, ...] = tuple(sel)
+        regions_backup: tuple[sublime.Region, ...] = tuple(sel)
 
         # toggle the whole file inline diff
         sel.clear()
