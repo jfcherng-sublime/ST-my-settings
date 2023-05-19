@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 
 import sublime
 import sublime_plugin
@@ -18,7 +18,7 @@ class ExtendSelectionToPreviousLineCommand(sublime_plugin.TextCommand):
         v = self.view
         sel = v.sel()
 
-        regions: List[sublime.Region] = []
+        regions: list[sublime.Region] = []
         for r in sel:
             row, col = v.rowcol(old_end := r.end())
             new_begin = max(old_end, v.line(r).end()) if col else old_end

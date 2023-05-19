@@ -1,3 +1,6 @@
+from __future__ import annotations
+from collections.abc import Sequence
+
 import getpass
 import os
 import subprocess
@@ -5,12 +8,12 @@ import tempfile
 import traceback
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Tuple, TypeVar, Union
+from typing import Any, TypeVar
 
 import sublime
 import sublime_plugin
 
-T_ExpandableVar = TypeVar("T_ExpandableVar", None, bool, int, float, str, Dict, List, Tuple)
+T_ExpandableVar = TypeVar("T_ExpandableVar", None, bool, int, float, str, dict, list, tuple)
 
 SYNTAX_MAPPING = {
     "git bl": "scope:text.git-blame",
@@ -19,6 +22,7 @@ SYNTAX_MAPPING = {
     "git diff": "scope:source.diff",
     "git log": "scope:text.git.log",
     "git sh": "scope:source.diff",
+    "git show": "scope:source.diff",
     "git st": "scope:source.diff",
     "git status": "scope:source.diff",
 }
@@ -28,7 +32,7 @@ def expand_variables(
     window: sublime.Window,
     value: T_ExpandableVar,
     *,
-    extra: Optional[Dict[str, Any]] = None,
+    extra: dict[str, Any] | None = None,
 ) -> T_ExpandableVar:
     variables = window.extract_variables()
     variables.update(
@@ -42,7 +46,7 @@ def expand_variables(
     return sublime.expand_variables(value, variables)
 
 
-def find_project_root_for_view(view: sublime.View) -> Optional[str]:
+def find_project_root_for_view(view: sublime.View) -> str | None:
     if (
         not (window := view.window())
         or not (filepath := view.file_name())
@@ -61,7 +65,7 @@ def find_project_root_for_view(view: sublime.View) -> Optional[str]:
     return next(filter(filepath.startswith, roots), None)
 
 
-def lookup_syntax_for_cmd(cmd: str) -> Optional[str]:
+def lookup_syntax_for_cmd(cmd: str) -> str | None:
     cmd = cmd.strip() + " "
     for prefix, syntax in SYNTAX_MAPPING.items():
         if cmd.startswith(f"{prefix} "):
@@ -70,12 +74,12 @@ def lookup_syntax_for_cmd(cmd: str) -> Optional[str]:
 
 
 def run_cli_command(
-    cmd: Union[str, Sequence[str]],
+    cmd: str | Sequence[str],
     cwd: str = "",
     encoding: str = "utf-8",
-    timeout_s: Optional[float] = None,
+    timeout_s: float | None = None,
     shell: bool = False,
-) -> Tuple[str, str, int]:
+) -> tuple[str, str, int]:
     if os.name == "nt":
         # do not create a window for the process
         startupinfo = subprocess.STARTUPINFO()  # type: ignore
@@ -102,10 +106,10 @@ def run_cli_command(
 
 
 def get_cli_command_result_text(
-    cmd: Union[str, Sequence[str]],
+    cmd: str | Sequence[str],
     cwd: str = "",
     encoding: str = "utf-8",
-    timeout_s: Optional[float] = None,
+    timeout_s: float | None = None,
     shell: bool = False,
 ) -> str:
     stdout, stderr, _ = run_cli_command(cmd, cwd=cwd, encoding=encoding, timeout_s=timeout_s, shell=shell)
@@ -141,7 +145,7 @@ class CliRunnerCommand(sublime_plugin.WindowCommand):
             if project_root := find_project_root_for_view(view):
                 cwd = project_root
             else:
-                dirs: List[str] = []
+                dirs: list[str] = []
                 if file_name:
                     dirs.append(os.path.dirname(file_name))
                 dirs.append("${home}")
@@ -190,7 +194,7 @@ class CliRunnerShowResultCommand(sublime_plugin.TextCommand):
     def run(
         self,
         edit: sublime.Edit,
-        cmd: Optional[str] = None,
+        cmd: str | None = None,
         cwd: str = "",
         encoding: str = "utf-8",
         shell: bool = False,
@@ -213,7 +217,7 @@ class CliRunnerShowResultCommand(sublime_plugin.TextCommand):
 
         try:
             output = get_cli_command_result_text(cmd, cwd=cwd, encoding=encoding, shell=shell)
-        except:
+        except Exception:
             output = traceback.format_exc()
 
         if not (syntax := lookup_syntax_for_cmd(cmd)):

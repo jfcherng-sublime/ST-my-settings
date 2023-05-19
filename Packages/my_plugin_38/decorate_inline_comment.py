@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import re
 
 import sublime
@@ -55,16 +57,15 @@ class decorateInlineCommentCommand(sublime_plugin.TextCommand):
             # find the corresponding matches and cmt_config
             for line_region in line_regions:
                 for cmt_config in CMT_CONFIGS:
-                    matches = cmt_config["re_whitespaces"].match(v.substr(line_region))
-                    if matches is not None:
+                    if matches := cmt_config["re_whitespaces"].match(v.substr(line_region)):
                         break
 
             if not matches or not cmt_config:
-                print("Unsupported comment: {!r}".format(v.substr(sel)))
+                print(f"Unsupported comment: {v.substr(sel)!r}")
                 continue
 
             leading_ws = matches.group("leading_ws")
-            max_length = max(map(lambda l: len(l), line_regions))
+            max_length = max(map(len, line_regions))
             line_length = max_length - len(leading_ws + cmt_config["modifier"])
 
             # "expand selection to scope" may not select the trailing \n
@@ -128,20 +129,18 @@ class decorateInlineCommentCommand(sublime_plugin.TextCommand):
             test_row = row_begin - 1
             test_col = len(view.line(view.text_point(test_row, 0)))
 
-            if view.match_selector(view.text_point(test_row, test_col), COMMENT_SCOPE):
-                row_begin = test_row
-            else:
+            if not view.match_selector(view.text_point(test_row, test_col), COMMENT_SCOPE):
                 break
+            row_begin = test_row
 
         # next lines are comments too?
         while 0 < row_end < row_max:
             test_row = row_end + 1
             test_col = len(view.line(view.text_point(test_row, 0)))
 
-            if view.match_selector(view.text_point(test_row, test_col), COMMENT_SCOPE):
-                row_end = test_row
-            else:
+            if not view.match_selector(view.text_point(test_row, test_col), COMMENT_SCOPE):
                 break
+            row_end = test_row
 
         return view.full_line(
             sublime.Region(

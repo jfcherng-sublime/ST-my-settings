@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass, field
-from typing import Iterable, Iterator, List, Optional, Tuple
 
 import sublime
 import sublime_plugin
@@ -15,8 +15,8 @@ class WordInfo:
 
 
 class ToggleGroup:
-    def __init__(self, words: Optional[Iterable[str]] = None) -> None:
-        self._word_infos: List[WordInfo] = []
+    def __init__(self, words: Iterable[str] | None = None) -> None:
+        self._word_infos: list[WordInfo] = []
         self.extend(words or [])
 
     def __iter__(self) -> Iterator[WordInfo]:
@@ -39,11 +39,11 @@ class ToggleGroup:
 
 
 class ToggleGroups:
-    def __init__(self, group_words: List[Iterable[str]]) -> None:
+    def __init__(self, group_words: list[Iterable[str]]) -> None:
         groups = [ToggleGroup(words) for words in filter(None, group_words)]
 
         # sort words by their length, so that longer words are tried first
-        self._word_infos: List[WordInfo] = sorted(
+        self._word_infos: list[WordInfo] = sorted(
             (word_info for group in groups for word_info in group),
             key=lambda word_info: len(word_info.word),
             reverse=True,
@@ -62,7 +62,7 @@ class ToggleGroups:
         *,
         search_region: sublime.Region,
         caret_pt: int,
-    ) -> Optional[Tuple[WordInfo, sublime.Region]]:
+    ) -> tuple[WordInfo, sublime.Region] | None:
         string = view.substr(search_region)
         for word_info in self._word_infos:
             for m in re.finditer(re.escape(word_info.word), string, flags=re.IGNORECASE):

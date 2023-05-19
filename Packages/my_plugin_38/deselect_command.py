@@ -2,6 +2,7 @@
 #
 # based on a forum post by C0D312:
 # https://www.sublimetext.com/forum/viewtopic.php?f=2&t=4716#p21219
+from __future__ import annotations
 
 import sublime
 import sublime_plugin

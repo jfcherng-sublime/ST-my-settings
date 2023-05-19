@@ -1,4 +1,7 @@
-from typing import Any, Dict, Optional
+from __future__ import annotations
+
+from typing import Any
+
 import sublime
 import sublime_plugin
 
@@ -24,7 +27,7 @@ class ReadOnlyStatusListener(sublime_plugin.ViewEventListener):
     def on_activated(self) -> None:
         update_status_bar(self.view)
 
-    def on_post_text_command(self, command_name: str, args: Optional[Dict[str, Any]]) -> None:
+    def on_post_text_command(self, command_name: str, args: dict[str, Any] | None) -> None:
         # why "revert" command makes the view read-only for a moment?
         if command_name not in {"revert"}:
             update_status_bar(self.view)

@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 import os
 import shlex
 import subprocess
 import tempfile
 import textwrap
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import sublime
 import sublime_plugin
@@ -23,13 +25,13 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
 
     def run(
         self,
-        cmd: List[str] = [],
-        env: Dict[str, str] = {},
+        cmd: list[str] = [],
+        env: dict[str, str] = {},
         path: str = "",
         shell: bool = False,
-        working_dir: Optional[str] = None,
-        win_console: Optional[List[str]] = None,
-        unix_console: Optional[List[str]] = None,
+        working_dir: str | None = None,
+        win_console: list[str] | None = None,
+        unix_console: list[str] | None = None,
         **kwargs: Any,
     ) -> None:
         if not (view := self.window.active_view()):
@@ -68,7 +70,7 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
             proc_env[key] = os.path.expandvars(proc_env[key])
 
         # run in new console
-        old_path: Optional[str] = None
+        old_path: str | None = None
         try:
             # set temporary PATH to locate executable
             if path:
@@ -79,7 +81,7 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
             if old_path:
                 os.environ["PATH"] = old_path
 
-    def get_unix_console(self) -> List[str]:
+    def get_unix_console(self) -> list[str]:
         sessions = ["gnome-session", "ksmserver", "xfce4-session", "lxqt-session", "lxsession"]
         ps = f'ps -eo comm | grep -E "{"|".join(sessions)}"'
         # get the first found session or an empty string
@@ -105,16 +107,15 @@ class ConsoleExecCommand(sublime_plugin.WindowCommand):
         return console
 
     @staticmethod
-    def generate_linux_script(cmd: List[str]) -> str:
-        template = """
+    def generate_linux_script(cmd: list[str]) -> str:
+        escaped_cmd = " ".join(map(shlex.quote, cmd))
+        return reformat(f"""
             #!/usr/bin/env bash
-            {cmd}
+            {escaped_cmd}
             echo
             echo "Press any key to continue..."
             read -n1
-        """
-        escaped_cmd = " ".join(map(shlex.quote, cmd))
-        return reformat(template).format(cmd=escaped_cmd)
+        """)
 
     def debug_print(self, *arg: Any, **kwargs: Any) -> None:
         print(f"[{PLUGIN_NAME}]", *arg, **kwargs)
