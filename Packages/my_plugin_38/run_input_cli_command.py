@@ -3,9 +3,11 @@ from collections.abc import Sequence
 
 import getpass
 import os
+import shlex
 import subprocess
 import tempfile
 import traceback
+from collections import UserDict
 from datetime import datetime
 from pathlib import Path
 from typing import Any, TypeVar
@@ -15,17 +17,45 @@ import sublime_plugin
 
 T_ExpandableVar = TypeVar("T_ExpandableVar", None, bool, int, float, str, dict, list, tuple)
 
-SYNTAX_MAPPING = {
-    "git bl": "scope:text.git-blame",
-    "git blame": "scope:text.git-blame",
-    "git d": "scope:source.diff",
-    "git diff": "scope:source.diff",
-    "git log": "scope:text.git.log",
-    "git sh": "scope:source.diff",
-    "git show": "scope:source.diff",
-    "git st": "scope:source.diff",
-    "git status": "scope:source.diff",
-}
+
+class SyntaxMapping(UserDict):
+    def resolve(self, key: Any) -> str | None:
+        visited = {None}
+        while (syntax := self.get(key)) not in visited:
+            if isinstance(syntax, str):
+                return syntax
+            visited.add(key := syntax)
+        return None
+
+
+SYNTAX_MAPPING = SyntaxMapping(
+    {
+        ("git", "blame"): "scope:text.git-blame",
+        ("git", "diff"): "scope:source.diff",
+        ("git", "log"): "scope:text.git.log",
+        ("git", "show"): "scope:source.diff",
+        ("git", "status"): "scope:source.diff",
+        # aliases
+        ("git", "bl"): ("git", "blame"),
+        ("git", "d"): ("git", "diff"),
+        ("git", "sh"): ("git", "show"),
+        ("git", "st"): ("git", "status"),
+    }
+)
+
+
+def empty_view_text(view: sublime.View) -> None:
+    view.run_command("select_all")
+    view.run_command("left_delete")
+
+
+def replace_view_text(view: sublime.View, text: str) -> None:
+    empty_view_text(view)
+    append_view_text(view, text)
+
+
+def append_view_text(view: sublime.View, text: str) -> None:
+    view.run_command("append", {"characters": text})
 
 
 def expand_variables(
@@ -46,7 +76,7 @@ def expand_variables(
     return sublime.expand_variables(value, variables)
 
 
-def find_project_root_for_view(view: sublime.View) -> str | None:
+def find_view_project_root(view: sublime.View) -> str | None:
     if (
         not (window := view.window())
         or not (filepath := view.file_name())
@@ -65,12 +95,16 @@ def find_project_root_for_view(view: sublime.View) -> str | None:
     return next(filter(filepath.startswith, roots), None)
 
 
-def lookup_syntax_for_cmd(cmd: str) -> str | None:
-    cmd = cmd.strip() + " "
-    for prefix, syntax in SYNTAX_MAPPING.items():
-        if cmd.startswith(f"{prefix} "):
-            return syntax
+def lookup_cmd_syntax(cmd: str) -> str | None:
+    cmd_parts = shlex.split(cmd)
+    for prefix in SYNTAX_MAPPING:
+        if sequence_startswith(cmd_parts, prefix):
+            return SYNTAX_MAPPING.resolve(prefix)
     return None
+
+
+def sequence_startswith(seq: Sequence[str], prefix: Sequence[str]) -> bool:
+    return all(seq[i] == prefix[i] for i in range(len(prefix)))
 
 
 def run_cli_command(
@@ -142,7 +176,7 @@ class CliRunnerCommand(sublime_plugin.WindowCommand):
             file_dir = None
 
         if not cwd:
-            if project_root := find_project_root_for_view(view):
+            if project_root := find_view_project_root(view):
                 cwd = project_root
             else:
                 dirs: list[str] = []
@@ -199,10 +233,13 @@ class CliRunnerShowResultCommand(sublime_plugin.TextCommand):
         encoding: str = "utf-8",
         shell: bool = False,
     ) -> None:
-        if self.view.settings().get(self.VIEW_MARK):
-            view = self.view
+        is_in_cmd_view = self.view.settings().get(self.VIEW_MARK)
+        now = datetime.now()
 
+        if is_in_cmd_view:
+            view = self.view
             settings = view.settings()
+
             cmd = settings.get("cli_runner.cmd")
             cwd = settings.get("cli_runner.cwd")
             encoding = settings.get("cli_runner.encoding")
@@ -215,27 +252,28 @@ class CliRunnerShowResultCommand(sublime_plugin.TextCommand):
         if not cmd:
             return
 
+        sublime.status_message(f"Re-run command: {cmd}")
         try:
             output = get_cli_command_result_text(cmd, cwd=cwd, encoding=encoding, shell=shell)
         except Exception:
             output = traceback.format_exc()
 
-        if not (syntax := lookup_syntax_for_cmd(cmd)):
-            first_line = output[:200].split("\n")[0]
+        if not (syntax := lookup_cmd_syntax(cmd)):
+            first_line = output[:200].partition("\n")[0]
             syntax = getattr(sublime.find_syntax_for_file("", first_line), "path", "scope:text.plain")
 
-        settings = view.settings()
-        settings.set(self.VIEW_MARK, True)
-        settings.set("cli_runner.cmd", cmd)
-        settings.set("cli_runner.cwd", cwd)
-        settings.set("cli_runner.encoding", encoding)
-        settings.set("cli_runner.shell", shell)
-
         view.set_scratch(True)
-        view.set_name(f'({datetime.now().strftime("%Y%m%d%H%M%S")}) {cmd}')
+        view.set_name(f'({now.strftime("%Y%m%d%H%M%S")}) {cmd}')
         view.assign_syntax(syntax)
+        view.settings().update(
+            {
+                self.VIEW_MARK: True,
+                "cli_runner.cmd": cmd,
+                "cli_runner.cwd": cwd,
+                "cli_runner.encoding": encoding,
+                "cli_runner.shell": shell,
+                "cli_runner.timestamp": now.timestamp(),
+            }
+        )
 
-        view.replace(edit, sublime.Region(0, view.size()), "")
-        view.insert(edit, 0, output)
-        view.sel().clear()
-        view.sel().add(0)
+        replace_view_text(view, output)
