@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "My Plugin: Expand JSON",
+        "command": "expand_json",
+    },
+    {
+        "caption": "My Plugin: Flatten JSON",
+        "command": "flatten_json",
+    },
+]
