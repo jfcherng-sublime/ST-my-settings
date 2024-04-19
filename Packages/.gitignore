@@ -4,6 +4,7 @@
 /JsPrettier/
 /LiveReload/
 /LSP-*/
+!/LSP-ruff/
 /SublimeLinter*/
 /UnitTesting/
 

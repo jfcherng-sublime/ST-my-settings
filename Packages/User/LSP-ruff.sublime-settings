@@ -1,4 +1,9 @@
 {
+    "command": [
+        "$server_path",
+        "server",
+        "--preview"
+    ],
     "initializationOptions": {
         "settings": {
             "args": ["--ignore", "F403,E402"]
