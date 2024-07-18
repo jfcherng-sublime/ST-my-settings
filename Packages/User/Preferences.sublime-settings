@@ -265,6 +265,8 @@
     "trim_only_modified_white_space": true,
     "update_check": false,
     "word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?＜＞（）［］｛｝「」『』〈〉《》【】‘’“”＂＋－＊／，。、．‧・･·﹣：；～！？＠＃＄％︿＆｜＝",
+    // just my own
+    "dev_mode": true,
     // plugin: ToggleWord
     "toggle_word.groups": [
         ["0", "1"],
