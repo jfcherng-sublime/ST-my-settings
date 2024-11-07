@@ -54,7 +54,7 @@ def encrypt(text: str, key: str) -> str:
         encrypted.append(byte ^ key_byte)
     # Combine salt and encrypted data, then encode to base64
     result = salt + bytes(encrypted)
-    return b64encode(result).decode("ascii")
+    return b64encode(result).decode("ascii").rstrip("=")
 
 
 def decrypt(encrypted_text: str, key: str) -> str:
