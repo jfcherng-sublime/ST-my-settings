@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Generator, Iterable
+from collections.abc import Generator, Iterable
 
 import sublime
 import sublime_plugin
