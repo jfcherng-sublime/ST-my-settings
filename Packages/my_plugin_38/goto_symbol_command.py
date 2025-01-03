@@ -12,7 +12,8 @@ Example keybindings:
 from __future__ import annotations
 
 import bisect
-from typing import Literal, Sequence
+from collections.abc import Sequence
+from typing import Literal
 
 import sublime
 import sublime_plugin
