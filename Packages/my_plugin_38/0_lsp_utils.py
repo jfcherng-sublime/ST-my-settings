@@ -1,22 +1,16 @@
 from __future__ import annotations
 
 import ctypes
-from typing import Callable, Iterable, TypeVar, overload
+from typing import Tuple
 
-_T = TypeVar("_T")
-_U = TypeVar("_U")
+from more_itertools import first_true
 
-
-# from "more_itertools" package
-@overload
-def first_true(iterable: Iterable[_T], *, pred: Callable[[_T], object] | None = ...) -> _T | None: ...
-@overload
-def first_true(iterable: Iterable[_T], default: _U, pred: Callable[[_T], object] | None = ...) -> _T | _U: ...
-def first_true(iterable, default=None, pred=None):
-    return next(filter(pred, iterable), default)
+ELECTRON_VER_STR = str
+GLIBC_VER_TUPLE = Tuple[int, int]
+NODE_VER_STR = str
 
 
-def get_glibc_version() -> tuple[int, int] | None:
+def get_glibc_version() -> GLIBC_VER_TUPLE | None:
     try:
         libc = ctypes.CDLL("libc.so.6")
         gnu_get_libc_version = libc.gnu_get_libc_version
@@ -33,14 +27,14 @@ def revise_node_electron_version() -> None:
     # To know the min glibc version requirement of "THE_BIN_FILE", run
     # $ objdump -T "THE_BIN_FILE" | command grep -Eo 'GLIBC_[0-9.]+' | sort -uV | tail -1
 
-    # @see https://nodejs.org/en/download/prebuilt-binaries/
-    node_min_reqs: tuple[tuple[tuple[int, int], str], ...] = (
+    # @see https://nodejs.org/download/release/
+    node_min_reqs: tuple[tuple[GLIBC_VER_TUPLE, NODE_VER_STR], ...] = (
         # ((min_glibc_version), "node_version"),
         ((2, 28), "22.18.0"),
         ((2, 17), "17.9.1"),
     )
     # @see https://github.com/electron/electron/releases
-    electron_min_reqs: tuple[tuple[tuple[int, int], str, str], ...] = (
+    electron_min_reqs: tuple[tuple[GLIBC_VER_TUPLE, ELECTRON_VER_STR, NODE_VER_STR], ...] = (
         # ((min_glibc_version), "electron_version", "node_version"),
         ((2, 25), "40.0.0-alpha.4", "24.11.0"),
         ((2, 18), "29.4.6", "20.9.0"),
