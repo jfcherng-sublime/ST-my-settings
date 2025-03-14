@@ -2,6 +2,7 @@
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
 name: Diff
+version: 2
 file_extensions:
   - diff
   - patch
