@@ -129,7 +129,11 @@ class TerminalSelector():
                 default = os.environ['SYSTEMROOT'] + R'\System32\cmd.exe'
 
         elif sys.platform == 'darwin':
-            default = os.path.join(package_dir, 'Terminal.sh')
+            script = 'Terminal.sh'
+            if get_setting('reuse_window', False):
+                script = 'TerminalReuse.sh'
+
+            default = os.path.join(package_dir, script)
             if not os.access(default, os.X_OK):
                 os.chmod(default, 0o755)
 
@@ -228,3 +232,13 @@ class OpenTerminalProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCom
 
         command = OpenTerminalCommand(self.window)
         command.run(folders, parameters=parameters)
+
+
+class SwitchToTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
+    def is_visible(self):
+        # only have an applescript to do this
+        return sys.platform == 'darwin'
+
+    def run(self, paths=[], parameters=None):
+        package_dir = os.path.join(sublime.packages_path(), INSTALLED_DIR)
+        subprocess.Popen(os.path.join(package_dir, 'TerminalSwitch.sh'))
