@@ -8,5 +8,8 @@ file_extensions:
   - docker-compose.yml
 scope: source.yaml.docker
 contexts:
+  prototype:
+    - include: scope:source.yaml#prototype
+
   main:
     - include: scope:source.yaml

@@ -9,5 +9,8 @@ file_extensions:
   - Berksfile.lock
 scope: source.yaml.lock
 contexts:
+  prototype:
+    - include: scope:source.yaml#prototype
+
   main:
     - include: scope:source.yaml

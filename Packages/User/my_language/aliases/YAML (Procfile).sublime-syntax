@@ -8,5 +8,8 @@ file_extensions:
   - Procfile
 scope: source.yaml.procfile
 contexts:
+  prototype:
+    - include: scope:source.yaml#prototype
+
   main:
     - include: scope:source.yaml

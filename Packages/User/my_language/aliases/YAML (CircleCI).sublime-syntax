@@ -8,5 +8,8 @@ file_extensions:
   - circle.yml
 scope: source.yaml.circleci
 contexts:
+  prototype:
+    - include: scope:source.yaml#prototype
+
   main:
     - include: scope:source.yaml

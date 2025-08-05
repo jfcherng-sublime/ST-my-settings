@@ -9,5 +9,8 @@ file_extensions:
   - .eslintrc.yml
 scope: source.yaml.eslint
 contexts:
+  prototype:
+    - include: scope:source.yaml#prototype
+
   main:
     - include: scope:source.yaml

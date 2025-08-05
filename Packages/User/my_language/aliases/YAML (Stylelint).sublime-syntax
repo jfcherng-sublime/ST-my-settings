@@ -9,5 +9,8 @@ file_extensions:
   - .stylelintrc.yml
 scope: source.yaml.stylelint
 contexts:
+  prototype:
+    - include: scope:source.yaml#prototype
+
   main:
     - include: scope:source.yaml

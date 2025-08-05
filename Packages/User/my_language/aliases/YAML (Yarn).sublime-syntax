@@ -8,5 +8,8 @@ file_extensions:
   - yarn.lock
 scope: source.yaml.yarn
 contexts:
+  prototype:
+    - include: scope:source.yaml#prototype
+
   main:
     - include: scope:source.yaml
