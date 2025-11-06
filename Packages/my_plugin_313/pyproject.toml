@@ -1,0 +1,28 @@
+[tool.basedpyright]
+pythonVersion = "3.13"
+
+[tool.pyright]
+pythonVersion = "3.13"
+
+[tool.ruff]
+preview = true
+line-length = 120
+target-version = "py313"
+exclude = [
+  "*/libs/*",
+  ".git",
+  ".mypy_cache",
+  ".venv",
+  ".venv-*",
+  "branch-*",
+  "stubs",
+  "tests/files",
+  "typings",
+  "vendor",
+  "venv",
+  "venv-*",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+ignore = ["E203"]

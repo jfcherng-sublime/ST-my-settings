@@ -1,13 +1,13 @@
 [tool.basedpyright]
-pythonVersion = "3.8"
+pythonVersion = "3.13"
 
 [tool.pyright]
-pythonVersion = "3.8"
+pythonVersion = "3.13"
 
 [tool.ruff]
 preview = true
 line-length = 120
-target-version = "py38"
+target-version = "py313"
 exclude = [
   "*/libs/*",
   ".git",
@@ -23,6 +23,11 @@ exclude = [
   "venv-*",
 ]
 
-[tool.ruff.lint]
-select = ["E", "F", "W", "I", "UP"]
-ignore = ["E203"]
+# regex
+exclude = '''
+/(
+  \.git |
+  plugin/libs |
+  stubs
+)/
+'''
