@@ -4,14 +4,14 @@ import sublime_plugin
 
 
 class MyTextInputHandlerDemoCommand(sublime_plugin.TextCommand):
-    def __init__(self, view):
+    def __init__(self, view: sublime.View) -> None:
         self.view = view
         self.input_handler = MyTestInputHandler()
 
-    def input(self, args: Dict[str, Any] = {}) -> sublime_plugin.CommandInputHandler:
+    def input(self, args: dict[str, Any] = {}) -> sublime_plugin.CommandInputHandler:
         return self.input_handler
 
-    def run(self, edit: sublime.Edit, **args: Dict[str, Any]) -> None:
+    def run(self, edit: sublime.Edit, **args: dict[str, Any]) -> None:
         print(f"{self.name()} run args: {args}")
 
         if self.input_handler.name() in args:
