@@ -10,12 +10,10 @@ import traceback
 from collections import UserDict
 from datetime import datetime
 from pathlib import Path
-from typing import Any, TypeVar
+from typing import Any
 
 import sublime
 import sublime_plugin
-
-T_ExpandableVar = TypeVar("T_ExpandableVar", None, bool, int, float, str, dict, list, tuple)
 
 
 class SyntaxMapping(UserDict):
@@ -58,12 +56,12 @@ def append_view_text(view: sublime.View, text: str) -> None:
     view.run_command("append", {"characters": text})
 
 
-def expand_variables(
+def expand_variables[T: (None, bool, int, float, str, dict, list, tuple)](
     window: sublime.Window,
-    value: T_ExpandableVar,
+    value: T,
     *,
     extra: dict[str, Any] | None = None,
-) -> T_ExpandableVar:
+) -> T:
     variables = window.extract_variables()
     variables.update(
         {
@@ -77,12 +75,7 @@ def expand_variables(
 
 
 def find_view_project_root(view: sublime.View) -> str | None:
-    if (
-        not (window := view.window())
-        or not (filepath := view.file_name())
-        or not (project_roots := window.folders())
-        # ...
-    ):
+    if not (window := view.window()) or not (filepath := view.file_name()) or not (project_roots := window.folders()):
         return None
 
     if os.name == "nt":
@@ -263,7 +256,7 @@ class CliRunnerShowResultCommand(sublime_plugin.TextCommand):
             syntax = getattr(sublime.find_syntax_for_file("", first_line), "path", "scope:text.plain")
 
         view.set_scratch(True)
-        view.set_name(f'({now.strftime("%Y%m%d%H%M%S")}) {cmd}')
+        view.set_name(f"({now.strftime('%Y%m%d%H%M%S')}) {cmd}")
         view.assign_syntax(syntax)
         view.settings().update(
             {

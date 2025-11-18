@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 import ctypes
-from typing import Tuple
 
 from more_itertools import first_true
 
-ELECTRON_VER_STR = str
-GLIBC_VER_TUPLE = Tuple[int, int]
-NODE_VER_STR = str
+type ELECTRON_VER_STR = str
+type GLIBC_VER_TUPLE = tuple[int, int]
+type NODE_VER_STR = str
 
 
 def get_glibc_version() -> GLIBC_VER_TUPLE | None:
@@ -30,7 +29,7 @@ def revise_node_electron_version() -> None:
     # @see https://nodejs.org/download/release/
     node_min_reqs: tuple[tuple[GLIBC_VER_TUPLE, NODE_VER_STR], ...] = (
         # ((min_glibc_version), "node_version"),
-        ((2, 28), "22.18.0"),
+        ((2, 28), "24.11.1"),
         ((2, 17), "17.9.1"),
     )
     # @see https://github.com/electron/electron/releases
