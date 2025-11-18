@@ -18,12 +18,7 @@ class JustOneSpaceCommand(sublime_plugin.TextCommand):
                 self.view.replace(edit, region, replacement)
             sel.add(region.a)
 
-    def extend_space_regions(
-        self,
-        *,
-        regions: Iterable[sublime.Region],
-        space_chars: str,
-    ) -> Generator[sublime.Region, None, None]:
+    def extend_space_regions(self, *, regions: Iterable[sublime.Region], space_chars: str) -> Generator[sublime.Region]:
         def extend_space_region(region: sublime.Region) -> sublime.Region:
             view_size = self.view.size()
             pt_l = pt_r = region.b  # the visual caret position
@@ -36,7 +31,7 @@ class JustOneSpaceCommand(sublime_plugin.TextCommand):
         yield from self.merge_overlapped_regions(sorted(map(extend_space_region, regions)))
 
     @staticmethod
-    def merge_overlapped_regions(regions: Iterable[sublime.Region]) -> Generator[sublime.Region, None, None]:
+    def merge_overlapped_regions(regions: Iterable[sublime.Region]) -> Generator[sublime.Region]:
         # assume `regions` is sorted and regions in it are normalized (.a <= .b)
         prev_ = next_ = None
 

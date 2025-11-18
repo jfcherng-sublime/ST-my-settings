@@ -2,6 +2,7 @@
     "*": {
         "*": [
             "more-itertools",
+            "natsort",
             "typing-extensions"
         ]
     }
