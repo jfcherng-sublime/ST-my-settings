@@ -1,10 +1,14 @@
 [
     {
-        "caption": "My Plugin: Expand JSON",
+        "caption": "Expand JSON",
         "command": "expand_json",
     },
     {
-        "caption": "My Plugin: Flatten JSON",
+        "caption": "Flatten JSON",
         "command": "flatten_json",
+    },
+    {
+        "caption": "Sort Lines (Numerically)",
+        "command": "sort_numerically",
     },
 ]
