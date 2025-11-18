@@ -1,0 +1,6 @@
+[
+  {
+    "caption": "Insert Raw Text Block",
+    "command": "insert_raw_text_block",
+  },
+]
