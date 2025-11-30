@@ -29,6 +29,15 @@ if [[ $? != "0" ]]; then
     exit 1
 fi
 
+# LSP stubs
+TYPINGS_DIR=../typings/LSP
+rm -rf "${TYPINGS_DIR}"
+stubgen --include-private --include-docstrings "${TMP_DIR}/LSP" -o "${TYPINGS_DIR}"
+pushd "${TYPINGS_DIR}" || exit
+    rm -f test_* sublime.pyi sublime_plugin.pyi setup.pyi server.pyi release.pyi mdpopups.pyi
+popd || exit
+rm -rf .mypy_cache
+
 pushd "${TMP_DIR}/LSP" || exit
 
 # create package
