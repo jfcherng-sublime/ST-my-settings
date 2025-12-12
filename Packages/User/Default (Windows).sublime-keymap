@@ -577,7 +577,19 @@
             }
         ]
     },
-    // plugin: php-cs-fix
+    // plugin: Terminal
+    { "keys": ["alt+shift+o", "alt+shift+t"], "command": "open_terminal" },
+    { "keys": ["ctrl+alt+shift+t"], "command": "open_terminal_project_folder" },
+    // plugin: ToggleWord
+    { "keys": ["alt+t"], "command": "toggle_word" },
+    // plugin: my_plugin_38
+    { "keys": ["ctrl+shift+,"], "command": "goto_symbol", "args": { "step": -1, "cycle": false } },
+    { "keys": ["ctrl+shift+."], "command": "goto_symbol", "args": { "step": 1, "cycle": false } },
+    { "keys": ["ctrl+alt+shift+e"], "command": "encrypt_selected" },
+    { "keys": ["ctrl+alt+shift+d"], "command": "decrypt_selected" },
+    /*******************
+     *   My commands   *
+     *******************/
     {
         "keys": ["ctrl+alt+f"],
         "command": "phpcs_fix_this_file",
