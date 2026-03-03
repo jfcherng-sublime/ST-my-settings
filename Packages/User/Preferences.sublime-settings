@@ -33,6 +33,8 @@
         "todo",
         "unittests",
         "Vue",
+        "Amouage",
+        "Malle",
     ],
     "auto_complete_cycle": true,
     "auto_complete_preserve_order": "none",
