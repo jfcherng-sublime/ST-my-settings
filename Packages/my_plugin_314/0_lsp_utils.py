@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import ctypes
+from functools import partial
+from pathlib import Path
 
+import sublime
 from more_itertools import first_true
 
 type ELECTRON_VER_STR = str
@@ -15,9 +18,52 @@ def get_glibc_version() -> GLIBC_VER_TUPLE | None:
         gnu_get_libc_version = libc.gnu_get_libc_version
         gnu_get_libc_version.restype = ctypes.c_char_p
         version_str = gnu_get_libc_version().decode("utf-8")
-        return tuple(map(int, version_str.split(".")))
+        return tuple(map(int, version_str.split(".")))  # type: ignore
     except Exception:
         return None
+
+
+GLIBC_VER: GLIBC_VER_TUPLE = get_glibc_version() or (99999, 0)
+
+
+def is_centos7_like() -> bool:
+    return GLIBC_VER == (2, 17) and sublime.arch() == "x64"
+
+
+def revise_node_electron_version_centos7() -> None:
+    from lsp_utils import node_runtime
+
+    settings = sublime.load_settings("lsp_utils.sublime-settings")
+    settings.set("local_use_electron", False)  # Node.js is forced
+
+    node_runtime_version = "22.22.2"
+    node_runtime.NODE_RUNTIME_VERSION = node_runtime_version
+
+    # -------------------- #
+    # fix NodeRuntimeLocal #
+    # -------------------- #
+
+    class MyNodeRuntimeLocal(node_runtime.NodeRuntimeLocal):
+        def __init__(self, base_dir: Path, node_version: str = node_runtime_version) -> None:
+            super().__init__(base_dir, node_version)
+
+    node_runtime.NodeRuntimeLocal = MyNodeRuntimeLocal
+
+    # ----------------- #
+    # fix NodeInstaller #
+    # ----------------- #
+
+    class MyNodeInstaller(node_runtime.NodeInstaller):
+        def __init__(self, base_dir: Path, node_version: str = node_runtime_version) -> None:
+            super().__init__(base_dir, node_version)
+
+        def _node_archive(self) -> tuple[str, str]:
+            return (
+                f"node-v{self._node_version}-linux-x64-glibc-217.tar.xz",
+                f"https://unofficial-builds.nodejs.org/download/release/v{self._node_version}/node-v{self._node_version}-linux-x64-glibc-217.tar.xz",
+            )
+
+    node_runtime.NodeInstaller = MyNodeInstaller
 
 
 def revise_node_electron_version() -> None:
@@ -29,7 +75,7 @@ def revise_node_electron_version() -> None:
     # @see https://nodejs.org/download/release/
     node_min_reqs: tuple[tuple[GLIBC_VER_TUPLE, NODE_VER_STR], ...] = (
         # ((min_glibc_version), "node_version"),
-        ((2, 28), "24.11.1"),
+        ((2, 28), "24.15.0"),
         ((2, 17), "17.9.1"),
     )
     # @see https://github.com/electron/electron/releases
@@ -40,14 +86,12 @@ def revise_node_electron_version() -> None:
         ((2, 17), "28.3.3", "18.18.2"),
     )
 
-    glibc_ver = get_glibc_version() or (99999, 0)
-
-    if node_min_req := first_true(node_min_reqs, pred=lambda x: glibc_ver >= x[0]):
+    if node_min_req := first_true(node_min_reqs, pred=lambda x: GLIBC_VER >= x[0]):
         node_runtime.NODE_RUNTIME_VERSION = node_min_req[1]
     else:
         print("[ERROR] glibc is too old for Node.js...")
 
-    if electron_min_req := first_true(electron_min_reqs, pred=lambda x: glibc_ver >= x[0]):
+    if electron_min_req := first_true(electron_min_reqs, pred=lambda x: GLIBC_VER >= x[0]):
         node_runtime.ELECTRON_RUNTIME_VERSION = electron_min_req[1]
         node_runtime.ELECTRON_NODE_VERSION = electron_min_req[2]
     else:
@@ -55,7 +99,11 @@ def revise_node_electron_version() -> None:
 
 
 try:
-    revise_node_electron_version()
+    if is_centos7_like():
+        print("[INFO] This machine is like old CentOS 7")
+        revise_node_electron_version_centos7()
+    else:
+        revise_node_electron_version()
 except Exception as e:
     print(__file__, e)
 

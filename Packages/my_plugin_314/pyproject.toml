@@ -1,13 +1,13 @@
 [tool.basedpyright]
-pythonVersion = "3.13"
+pythonVersion = "3.14"
 
 [tool.pyright]
-pythonVersion = "3.13"
+pythonVersion = "3.14"
 
 [tool.ruff]
 preview = true
 line-length = 120
-target-version = "py313"
+target-version = "py314"
 exclude = [
   "*/libs/*",
   ".git",

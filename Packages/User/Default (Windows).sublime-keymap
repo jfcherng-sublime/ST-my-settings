@@ -608,7 +608,7 @@
         ]
     },
     // plugin: Terminal
-    { "keys": ["alt+shift+o", "alt+shift+t"], "command": "open_terminal" },
+    { "keys": ["alt+shift+o", "alt+shift+t"], "command": "my_open_terminal" },
     { "keys": ["ctrl+alt+shift+t"], "command": "open_terminal_project_folder" },
     // plugin: ToggleWord
     { "keys": ["alt+t"], "command": "toggle_word" },

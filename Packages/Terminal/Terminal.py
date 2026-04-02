@@ -186,7 +186,8 @@ class TerminalCommand():
             sublime.error_message('Terminal: ' + str(exception))
 
 
-class OpenTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
+# ST4302 introduces a "open_terminal" command, so we need to use a different name
+class MyOpenTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
     def is_visible(self, paths=[]):
         # remove the command if the view doesn't have a path to open at
         # taking is_visible over is_enabled to remove it from the context menu,
@@ -226,5 +227,5 @@ class OpenTerminalProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCom
         # See https://github.com/wbond/sublime_terminal/issues/86
         folders = [x for x in self.window.folders() if path.find(x + os.sep) == 0][0:1]
 
-        command = OpenTerminalCommand(self.window)
+        command = MyOpenTerminalCommand(self.window)
         command.run(folders, parameters=parameters)
