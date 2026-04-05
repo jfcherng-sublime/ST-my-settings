@@ -59,6 +59,7 @@
         "LSP-dockerfile",
         "LSP-eslint",
         "LSP-file-watcher-chokidar",
+        "LSP-gopls",
         "LSP-html",
         "LSP-intelephense",
         "LSP-intelephense-patcher",
