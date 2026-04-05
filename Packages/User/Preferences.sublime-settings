@@ -1,4 +1,6 @@
 {
+    // Determines whether the old 3.3 plugin host is enabled or not.
+    "disable_plugin_host_3.3": false,
     "added_words": [
         "backend",
         "blackduck",

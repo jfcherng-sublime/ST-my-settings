@@ -98,6 +98,17 @@
             "enabled": true,
         },
         {
+            "name": "go_backtick",
+            "open": "(`)",
+            "close": "(`)",
+            "style": "single_quote",
+            "scopes": ["meta.string"],
+            "language_filter": "allowlist",
+            "language_list": ["Go"],
+            "sub_bracket_search": "true",
+            "enabled": true,
+        },
+        {
             "name": "triple_single_quote",
             "open": "(''')",
             "close": "(''')",
