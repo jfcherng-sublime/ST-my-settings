@@ -1,4 +1,6 @@
 {
+    // Determines whether the old 3.3 plugin host is enabled or not.
+    "disable_plugin_host_3.3": true,
     "added_words": [
         "backend",
         "blackduck",
@@ -197,6 +199,7 @@
     "hungry_delete_empty_line": false,
     "ignored_packages": [
         "Vintage",
+        "SublimeLinter-contrib-markdownlint",
     ],
     "ignored_snippets": [
         "C++/Snippets/*",
