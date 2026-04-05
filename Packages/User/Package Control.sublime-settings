@@ -1,4 +1,8 @@
 {
+    "channels":
+    [
+        "https://packages.sublimetext.com/channel_v4.json",
+    ],
     "install_prereleases":
     [
         "ColorHelper",
@@ -59,6 +63,7 @@
         "LSP-dockerfile",
         "LSP-eslint",
         "LSP-file-watcher-chokidar",
+        "LSP-gopls",
         "LSP-html",
         "LSP-intelephense",
         "LSP-intelephense-patcher",

@@ -116,6 +116,19 @@
             }
         ]
     },
+    // Go
+    {
+        "keys": ["f", "j", " "],
+        "command": "insert_snippet",
+        "args": { "contents": "*" },
+        "context": [
+            {
+                "key": "selector",
+                "operator": "equal",
+                "operand": "source.go"
+            }
+        ]
+    },
     // Shell
     {
         "keys": ["f", "j", " "],
