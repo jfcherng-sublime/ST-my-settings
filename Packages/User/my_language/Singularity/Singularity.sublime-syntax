@@ -9,7 +9,7 @@ scope: source.singularity_definition
 variables:
   keywords_header: (?:Bootstrap|From|Stage|OSVersion|MirrorURL|Include|Library)
   section_labels: (?:labels)
-  section_shell: (?:environment|post|runscript|setup|startscript|test)
+  section_shell: (?:arguments|environment|post|runscript|setup|startscript|test)
   section_other: (?:files|help)
 contexts:
   prototype:
