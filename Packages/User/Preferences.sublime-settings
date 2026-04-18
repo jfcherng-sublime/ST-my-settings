@@ -198,8 +198,8 @@
     "highlight_modified_tabs": true,
     "hungry_delete_empty_line": false,
     "ignored_packages": [
-        "Vintage",
         "SublimeLinter-contrib-markdownlint",
+        "Vintage",
     ],
     "ignored_snippets": [
         "C++/Snippets/*",
