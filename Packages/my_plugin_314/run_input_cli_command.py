@@ -111,6 +111,9 @@ def run_cli_command(
     else:
         startupinfo = None  # type: ignore
 
+    if isinstance(cmd, str) and not shell:
+        cmd = shlex.split(cmd, posix=os.name != "nt")
+
     process = subprocess.Popen(
         cmd,
         cwd=cwd,
