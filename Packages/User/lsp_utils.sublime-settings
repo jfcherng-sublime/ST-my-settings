@@ -6,6 +6,5 @@
     // The order in which the values are specified determines which one is tried first,
     // with the later one being used as a fallback.
     // You can also specify just a single value to disable the fallback.
-    "nodejs_runtime": ["local", "system"],
-    "local_use_electron": true,
+    "nodejs_runtime": ["local-test", "local", "system"],
 }
