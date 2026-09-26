@@ -129,7 +129,11 @@ class TerminalSelector():
                 default = os.environ['SYSTEMROOT'] + R'\System32\cmd.exe'
 
         elif sys.platform == 'darwin':
-            default = os.path.join(package_dir, 'Terminal.sh')
+            script = 'Terminal.sh'
+            if get_setting('reuse_window', False):
+                script = 'TerminalReuse.sh'
+
+            default = os.path.join(package_dir, script)
             if not os.access(default, os.X_OK):
                 os.chmod(default, 0o755)
 
@@ -160,7 +164,7 @@ class TerminalCommand():
         sublime.status_message('Terminal: opening at home directory')
         return os.path.expanduser('~')
 
-    def open_terminal(self, location, terminal, parameters):
+    def terminal_open(self, location, terminal, parameters):
         try:
             for k, v in enumerate(parameters):
                 parameters[k] = v.replace('%CWD%', location)
@@ -186,8 +190,7 @@ class TerminalCommand():
             sublime.error_message('Terminal: ' + str(exception))
 
 
-# ST4302 introduces a "open_terminal" command, so we need to use a different name
-class MyOpenTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
+class TerminalOpenCommand(sublime_plugin.WindowCommand, TerminalCommand):
     def is_visible(self, paths=[]):
         # remove the command if the view doesn't have a path to open at
         # taking is_visible over is_enabled to remove it from the context menu,
@@ -207,10 +210,10 @@ class MyOpenTerminalCommand(sublime_plugin.WindowCommand, TerminalCommand):
         if os.path.isfile(path):
             path = os.path.dirname(path)
 
-        self.open_terminal(path, terminal, parameters)
+        self.terminal_open(path, terminal, parameters)
 
 
-class OpenTerminalProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCommand):
+class TerminalOpenProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCommand):
     def is_visible(self):
         # remove the command if the current window doesn't have directories
         # i.e. it's a single file (use the other command)
@@ -227,5 +230,15 @@ class OpenTerminalProjectFolderCommand(sublime_plugin.WindowCommand, TerminalCom
         # See https://github.com/wbond/sublime_terminal/issues/86
         folders = [x for x in self.window.folders() if path.find(x + os.sep) == 0][0:1]
 
-        command = MyOpenTerminalCommand(self.window)
+        command = TerminalOpenCommand(self.window)
         command.run(folders, parameters=parameters)
+
+
+class TerminalSwitchCommand(sublime_plugin.WindowCommand, TerminalCommand):
+    def is_visible(self):
+        # only have an applescript to do this
+        return sys.platform == 'darwin'
+
+    def run(self, paths=[], parameters=None):
+        package_dir = os.path.join(sublime.packages_path(), INSTALLED_DIR)
+        subprocess.Popen(os.path.join(package_dir, 'TerminalSwitch.sh'))
