@@ -1,15 +1,10 @@
-import sublime
-import sublime_plugin
 import os
-import sys
 
-# fix for import order
-sys.path.append(os.path.join(sublime.packages_path(), "LiveReload"))
-LiveReload = __import__("LiveReload")
-sys.path.remove(os.path.join(sublime.packages_path(), "LiveReload"))
+import sublime_plugin
+from LiveReload.server.PluginAPI import PluginInterface as Plugin
 
 
-class MarkdownLiveReload(LiveReload.Plugin, sublime_plugin.EventListener):
+class MarkdownLiveReload(Plugin, sublime_plugin.EventListener):
     title = "Markdown Preview"
     description = "Generate preview in real-time"
     file_types = ".md,.markdown,.mdown"
